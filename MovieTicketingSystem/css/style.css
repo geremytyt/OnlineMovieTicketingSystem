@@ -1,0 +1,28 @@
+﻿* {
+    margin: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+#content {
+    height: 1000px;
+    background-color: #343a40;
+}
+
+.btn-default {
+    background: #f4e618;
+    width:50px;
+    padding:10px;
+}
+
+    .btn-default:hover {
+        color: white;
+        background: #f4e618;
+    }
+
+.text-heading {
+    color: #f4e618;
+    text-transform: uppercase;
+}

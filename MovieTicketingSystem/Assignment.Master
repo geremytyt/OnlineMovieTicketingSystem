@@ -1,0 +1,172 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Assignment.Master.cs" Inherits="Movie_Ticketing_System.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <form id="form1" runat="server">
+    <div id="header">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+                <a href="#" class="navbar-brand mb-0 h1">
+                    <img class="d-line-block" src="Image/logo.png" width="100" height="30"/>
+                </a>
+                <button type="button" data-bs-toggle="collapse" data-target="#navbarNav" class="navbar-toggler"
+                    aria-controls="navbarNav" navbar-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" />
+                </button>
+                <div class="collapse nav-bar collapse" id="navbarNav">
+                    <asp:Menu ID="MainMenu" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
+                        StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav mr-auto" RenderingMode="List">
+                        <StaticMenuItemStyle CssClass="nav-item" />
+                        <StaticSelectedStyle CssClass="nav-item active" />
+                        <StaticHoverStyle CssClass="nav-item active" />
+                        <DynamicMenuItemStyle CssClass="nav-item dropdown" />
+                        <DynamicHoverStyle CssClass="nav-item dropdown show" />
+                        <DynamicMenuStyle CssClass="dropdown-menu" />
+                        <DynamicSelectedStyle CssClass="dropdown-item active" />
+                        <LevelSubMenuStyles>
+                            <asp:SubMenuStyle CssClass="dropdown-menu" />
+                        </LevelSubMenuStyles>
+                    </asp:Menu>
+                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                </div>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+     <div id="content">
+        <asp:ContentPlaceHolder ID="main" runat="server">        
+        </asp:ContentPlaceHolder>       
+    </div>
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-heading">Products</h5>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Movies</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Food</a>
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-heading">About Us</h5>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Service</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Our Team</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Career</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">FAQs</a>
+                    </p>
+                </div>  
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-heading">Legal</h5>    
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Terms & Conditions</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Privacy Policy</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">ABAC Policy</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration:none;">Whistleblowing Policy</a>
+                    </p>
+                </div>       
+                <div class="col-md-4 col-lg-3 col-xl-3 mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-heading">Contact</h5>
+                    <p>
+                        <i class="fas fa-home mr-3"></i> Lot 3F-50, Queensbay Mall, No.100, Persiaran Bayan Indah, 11900 Bayan Lepas, Pulau Pinang
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> cs@gsc.com.my
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> 04-646 1960
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center text-md-left d-flex justify-content-between">
+                <div class="col-md-5 col-lg-4 text-left">
+                    <div class="text-center text-md-right">
+                        <h5 class="d-inline-block">Download Our App</h5>
+                        <ul class="list-unstyled list-inline d-inline-block" style="margin-left:20px;">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-apple"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-android"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 text-right">
+                    <div class="text-center text-md-right">
+                        <h5 class="d-inline-block">Follow Us On</h5>
+                        <ul class="list-unstyled list-inline d-inline-block" style="margin-left:20px;">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="align-items-center">
+                <div class="col-md-12 col-lg-12 text-center">
+                    <p>Copyright ©  2023 All Rights Reserved by:
+                            <strong style="color:#f4e618;">Golden Screen Cinemas 195901000261 (3609-M)</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>
