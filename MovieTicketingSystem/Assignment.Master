@@ -4,7 +4,9 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Master Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/style.css">
@@ -12,41 +14,31 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <form id="form1" runat="server">
-    <div id="header">
-        <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a href="#" class="navbar-brand mb-0 h1">
-                    <img class="d-line-block" src="Image/logo.png" width="100" height="30"/>
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" width="100" height="30"/>
                 </a>
-                <button type="button" data-bs-toggle="collapse" data-target="#navbarNav" class="navbar-toggler"
-                    aria-controls="navbarNav" navbar-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" />
-                </button>
-                <div class="collapse nav-bar collapse" id="navbarNav">
-                    <asp:Menu ID="MainMenu" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
-                        StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav mr-auto" RenderingMode="List">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
+                        StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav ml-auto">
                         <StaticMenuItemStyle CssClass="nav-item" />
                         <StaticSelectedStyle CssClass="nav-item active" />
                         <StaticHoverStyle CssClass="nav-item active" />
-                        <DynamicMenuItemStyle CssClass="nav-item dropdown" />
-                        <DynamicHoverStyle CssClass="nav-item dropdown show" />
-                        <DynamicMenuStyle CssClass="dropdown-menu" />
-                        <DynamicSelectedStyle CssClass="dropdown-item active" />
-                        <LevelSubMenuStyles>
-                            <asp:SubMenuStyle CssClass="dropdown-menu" />
-                        </LevelSubMenuStyles>
                     </asp:Menu>
                     <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
                 </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
-                  </div>
+                <div class="d-flex">
+                   <input type="text" class="form-control me-2" placeholder="Search">
+                   <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
                 </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </nav>
-    </div>
+
      <div id="content">
         <asp:ContentPlaceHolder ID="main" runat="server">        
         </asp:ContentPlaceHolder>       

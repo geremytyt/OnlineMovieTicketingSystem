@@ -11,16 +11,27 @@ body {
     background-color: #343a40;
 }
 
+.navbar-nav a {
+    font-family: "Sen", sans-serif;
+    margin: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item:hover {
+    color: #f4e618;
+}
+
 .btn-default {
     background: #f4e618;
     width:50px;
     padding:10px;
 }
 
-    .btn-default:hover {
-        color: white;
-        background: #f4e618;
-    }
+.btn-default:hover {
+    color: white;
+    background: #f4e618;
+}
 
 .text-heading {
     color: #f4e618;
