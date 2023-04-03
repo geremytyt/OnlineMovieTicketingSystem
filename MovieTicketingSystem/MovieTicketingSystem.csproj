@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="css\style.css" />
     <Content Include="Image\logo.png" />
+    <Content Include="View\Login.aspx" />
     <Content Include="View\Movie.aspx" />
     <Content Include="View\StaffMovie.aspx" />
     <Content Include="View\Staff.aspx" />
@@ -96,6 +97,13 @@
     </Compile>
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Movie.aspx.cs">
       <DependentUpon>Movie.aspx</DependentUpon>
