@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="Home.aspx" title="Home"  description="" roles="*">
-    <siteMapNode url="View/Movie.aspx" title="Movie"  description="" roles ="*"/>
-    <siteMapNode url="Food.aspx" title="Food"  description="" roles ="*"/>
-    <siteMapNode url="Profile.aspx" title="Profile"  description="" roles="Customer,Staff,Manager"/>
-  </siteMapNode>
-</siteMap>
-

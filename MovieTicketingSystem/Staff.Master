@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Assignment.Master.cs" Inherits="Movie_Ticketing_System.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Staff.Master.cs" Inherits="MovieTicketingSystem.Site2" %>
 
 <!DOCTYPE html>
 
@@ -17,19 +17,19 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="logo.png" width="100" height="30"/>
+                    <img src="Image/.png" width="100" height="30"/>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
+                    <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource2"
                         StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav ml-auto">
                         <StaticMenuItemStyle CssClass="nav-item" />
                         <StaticSelectedStyle CssClass="nav-item active" />
                         <StaticHoverStyle CssClass="nav-item active" />
                     </asp:Menu>
-                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                    <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" SiteMapProvider="Staff" />
                 </div>
                 <div class="d-flex">
-                   <input type="text" class="form-control me-2" placeholder="Search">
+                   <asp:TextBox ID="TextBox1" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
@@ -46,15 +46,6 @@
     <footer class="bg-dark text-white pt-5 pb-4">
         <div class="container text-center text-md-left">
             <div class="row text-center text-md-left">
-                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-heading">Products</h5>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration:none;">Movies</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration:none;">Food</a>
-                    </p>
-                </div>
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-heading">About Us</h5>
                     <p>

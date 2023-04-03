@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Movie_Ticketing_System
+namespace MovieTicketingSystem
 {
 
 
-    public partial class Site1
+    public partial class Site2
     {
 
         /// <summary>
@@ -33,13 +33,22 @@ namespace Movie_Ticketing_System
         protected global::System.Web.UI.WebControls.Menu Menu1;
 
         /// <summary>
-        /// SiteMapDataSource1 control.
+        /// SiteMapDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource2;
+
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
         /// main control.

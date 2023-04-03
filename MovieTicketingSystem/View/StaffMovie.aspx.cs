@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Movie_Ticketing_System.View
+namespace MovieTicketingSystem.View
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
