@@ -10,27 +10,29 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <div id="content" class="text-center mt-5">
-        <form style="max-width:480px;margin:auto;" id="form1" runat="server">
-        <h1 class="h3 mb-3">Login</h1>
-        <hr />
-        <div class="form-group">
-            <asp:Label class="form-label sr-only" ID="lblEmail" runat="server" Text="Email:"></asp:Label>
-            <asp:TextBox class="form-control" ID="txtEmail" runat="server"></asp:TextBox>
+    <div id="content" class="text-center text-light d-flex align-items-center">
+        <div class="bg-black rounded align-middle col-md-4 mx-auto">
+            <form id="form1" runat="server">
+                <h1 class="h3 my-3" style="color:white;">Login</h1>
+                <hr />
+                <div class="form-group mx-5 mt-5 mb-3">
+                    <asp:TextBox class="form-control" ID="txtEmail" runat="server" placeholder="Enter your email"></asp:TextBox>
+                </div>
+                <div class="form-group mx-5 my-3">
+                    <asp:TextBox class="form-control" ID="txtPassword" runat="server" TextMode="Password"  placeholder="Enter your password"></asp:TextBox>
+                </div>
+                <div class="checkbox">
+                    <asp:Label ID="lblRemember" runat="server">
+                        <asp:CheckBox  ID="cbRemember" runat="server" />Remember me
+                    </asp:Label>
+                </div>
+                <asp:Button class="btn btn-default btn-block w-50 mt-2" ID="btnSubmit" runat="server" Text="Submit"/>
+                <div class="row">
+                    <asp:HyperLink CssClass="mt-2" ID="hlRegister" runat="server">Register</asp:HyperLink>
+                    <asp:HyperLink CssClass="mt-2 mb-3" ID="hlForgetpwd" runat="server">Forget Password</asp:HyperLink>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <asp:Label class="form-label sr-only" ID="lblPassword" runat="server" Text="Password:"></asp:Label>
-            <asp:TextBox class="form-control" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
-        </div>
-        <div class="checkbox">
-            <asp:Label ID="lblRemember" runat="server">
-                <asp:CheckBox  ID="cbRemember" runat="server" />Remember me
-            </asp:Label>
-        </div>
-        <asp:Button class="btn btn-lg btn-default btn-block" ID="btnSubmit" runat="server" Text="Submit"/>
-        <asp:HyperLink ID="hlRegister" runat="server">Register</asp:HyperLink>
-        <asp:HyperLink ID="hlForgetpwd" runat="server">Forget Password</asp:HyperLink>
-    </form>
     </div>
 </body>
 </html>

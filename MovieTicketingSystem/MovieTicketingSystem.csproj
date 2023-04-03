@@ -71,6 +71,7 @@
     <Content Include="Image\logo.png" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Movie.aspx" />
+    <Content Include="View\Register.aspx" />
     <Content Include="View\StaffMovie.aspx" />
     <Content Include="View\Staff.aspx" />
     <Content Include="Web.config" />
@@ -111,6 +112,13 @@
     </Compile>
     <Compile Include="View\Movie.aspx.designer.cs">
       <DependentUpon>Movie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\StaffMovie.aspx.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
