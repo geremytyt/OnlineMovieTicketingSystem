@@ -11,10 +11,10 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <div id="content" class="text-center text-light align-items-center">
+    <div id="content" class="text-center text-light align-items-center justify-content-center">
         <div class="bg-black rounded col-md-4 mx-auto">
             <form id="form1" runat="server">
-                <h1 class="h3 my-3" style="color:white;">Register</h1>
+                <h1 class="h3" style="color:white;">Register</h1>
                 <hr />
                 <div class="form-group mx-5 my-3">
                     <asp:TextBox class="form-control" ID="txtName" runat="server" placeholder="Enter your name"></asp:TextBox>
