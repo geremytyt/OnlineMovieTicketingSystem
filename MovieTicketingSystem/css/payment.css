@@ -15,7 +15,12 @@ body {
     height: auto;
     min-height: 100%;
     background-color: #343a40;
-    
+}
+
+
+
+td{
+    color: white;
 }
 
 .navbar-nav a {
@@ -33,10 +38,10 @@ body {
     background: #f4e618;
 }
 
-.btn-default:hover {
-    color: white;
-    background: #f4e618;
-}
+    .btn-default:hover {
+        color: white;
+        background: #f4e618;
+    }
 
 .text-heading {
     color: #f4e618;

@@ -67,10 +67,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
     <Content Include="Image\logo.png" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Movie.aspx" />
+    <Content Include="View\Payment.aspx" />
+    <Content Include="View\PaymentMethod.aspx" />
     <Content Include="View\Register.aspx" />
     <Content Include="View\StaffMovie.aspx" />
     <Content Include="View\Staff.aspx" />
@@ -112,6 +115,20 @@
     </Compile>
     <Compile Include="View\Movie.aspx.designer.cs">
       <DependentUpon>Movie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaymentMethod.aspx.cs">
+      <DependentUpon>PaymentMethod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\PaymentMethod.aspx.designer.cs">
+      <DependentUpon>PaymentMethod.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
