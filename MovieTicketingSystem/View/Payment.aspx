@@ -4,8 +4,8 @@
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
     <link href="../css/payment.css" rel="stylesheet" />
     <div class="container">
-        <h2>Transaction Detail</h2>
-        <table>
+        <h2 class="pageTitle">Transaction Detail</h2> <hr />
+        <table id="transactionDetailTable">
             <tr>
                 <td>Movie Title:</td>
                 <td>
@@ -60,8 +60,21 @@
                     <asp:Label ID="Label8" runat="server" Text="RM 130.50"></asp:Label>
                 </td>
             </tr>
+
+            <tr>
+                <td>Payment Method:</td>
+                <td>
+                    <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPaymentMethod_SelectedIndexChanged">
+                        <asp:ListItem Text="Select a credit card" Value=""></asp:ListItem>
+                        <asp:ListItem Text="Credit Card 1" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Credit Card 2" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="Credit Card 3" Value="3"></asp:ListItem> 
+                        <asp:ListItem Text="Register a new credit card" Value="registerCreditCard"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
         </table>
-        <asp:Button ID="btnProceed" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
+        <asp:Button ID="btnProceed" class="btnProceed" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
     </div>
 </asp:Content>
 

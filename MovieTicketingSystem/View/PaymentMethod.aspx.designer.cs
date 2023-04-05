@@ -13,5 +13,14 @@ namespace MovieTicketingSystem.View
 
     public partial class PaymentMethod
     {
+
+        /// <summary>
+        /// btnPaymentConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPaymentConfirm;
     }
 }

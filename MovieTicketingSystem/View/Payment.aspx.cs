@@ -18,5 +18,20 @@ namespace MovieTicketingSystem.View
         {
             Server.Transfer("PaymentMethod.aspx");
         }
+
+        protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = ddlPaymentMethod.SelectedValue;
+            if (selectedValue == "registerCreditCard")
+            {
+                // Redirect the user to the page for registering a new credit card
+                Response.Redirect("PaymentMethod.aspx");
+            }
+            else if (!string.IsNullOrEmpty(selectedValue))
+            {
+                // Do something with the selected credit card value (e.g., retrieve more information from the database)
+                // ...
+            }
+        }
     }
 }
