@@ -141,6 +141,14 @@ td{
         text-align: center;
     }*/
 
+.heading{
+    max-width: 700px;
+}
+
+.cards{
+    left:10px;
+}
+
 .first-row {
     display: flex;
 }
