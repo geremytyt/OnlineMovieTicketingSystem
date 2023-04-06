@@ -79,6 +79,7 @@
     </Content>
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\MenuStyle.css" />
     <Content Include="Customer\Payment.aspx" />
     <Content Include="Customer\PaymentMethod.aspx" />
     <Content Include="Customer\PaymentSummary.aspx" />
