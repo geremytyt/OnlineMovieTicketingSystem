@@ -7,17 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.View
 {
-    public partial class PaymentMethod : System.Web.UI.Page
+    public partial class PaymentSummary : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-        protected void btnPaymentConfirm_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Payment.aspx");
-        }
-
     }
 }

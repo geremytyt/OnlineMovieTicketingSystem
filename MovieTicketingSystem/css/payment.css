@@ -60,13 +60,13 @@ td{
 
 
 /*Table css*/
-#transactionDetailTable {
+#transactionDetailTable, #paymentSummaryTable {
     border-collapse: collapse;
     width: 50%;
     margin: 0px auto
 }
 
-#transactionDetailTable tr td {
+#transactionDetailTable, #paymentSummaryTable tr td {
     font-size: 18px;
     padding-bottom: 8px;
 }
@@ -75,7 +75,7 @@ td{
 /*Button css*/
 
 
-.btnProceed {
+.btnProceed,.btnDone {
     width: 120px;
     height: 35px;
     margin: 0 50%;
@@ -93,17 +93,21 @@ td{
     line-height: 25px;
 }
 
-    .btnProceed:hover {
+    .btnProceed:hover, .btnDone:hover {
         background-color: white;
         color: rgb(244, 230, 24);
         transition: 0.5s ease-in-out;
     }
 
-    .btnProceed:disabled {
+    .btnProceed:disabled, .btnDone:hover {
         opacity: 0.5;
         cursor: default
     }
 
+.detailHeader {
+    text-decoration-line: underline;
+    font-weight:bold;
+}
 
 
 
@@ -116,22 +120,26 @@ td{
     justify-content: center;
     align-items: center;
     background-color: #343a40;
+    
 }
 
 .paymentContainer {
     width: 800px;
-    height: 550px;
+    height: 600px;
     border: 1px solid;
-    background-color: black;
+    /*background-color: black;*/
+    /*background-color: #343a40;*/
+    background-color: white;
     display: flex;
     flex-direction: column;
     padding: 50px;
     justify-content: space-around;
+    border-radius: 10px;
 }
 
-    .paymentContainer h1 {
+    /*.paymentContainer h1 {
         text-align: center;
-    }
+    }*/
 
 .first-row {
     display: flex;
@@ -143,19 +151,40 @@ td{
 }
 
 .paymentInput {
-    border: 1px solid #999;
+    /*border: 1px solid #999;*/
 }
 
-.paymentContainer h1,h3{
-    color:white;
+.paymentContainer h1 {
+    font-size: 35px;
+    /*color: rgb(244, 230, 24);*/
+    color: black;
+    font-weight:bold;
+    top: -10px;
 }
 
-    .paymentInput input {
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: 10px;
-    }
+
+
+.paymentContainer h3 {
+    font-size: 25px;
+    /*color:white;*/
+    color:gray;
+}
+
+.paymentInput input:focus {
+    outline: none;
+}
+
+
+.paymentInput input {
+    width: 100%;
+    border-style: none none solid none;
+    border-color: lightgray;
+    /*outline: none;*/
+    padding: 0px;
+    color: black;
+    /*background-color: #343a40;*/
+    background-color: white;
+}
 
 .selection {
     display: flex;
@@ -164,7 +193,7 @@ td{
 }
 
     .selection select {
-        padding: 10px 20px;
+        padding: 5px 10px;
     }
 
 .btnPaymentConfirm {

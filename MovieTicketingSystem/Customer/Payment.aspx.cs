@@ -16,7 +16,7 @@ namespace MovieTicketingSystem.View
 
         protected void btnProceed_Click(object sender, EventArgs e)
         {
-            Server.Transfer("PaymentMethod.aspx");
+            Server.Transfer("PaymentSummary.aspx");
         }
 
         protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)

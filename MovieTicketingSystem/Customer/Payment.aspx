@@ -49,13 +49,13 @@
                 </td>
             </tr>
             <tr>
-                <td>Transaction No:</td>
+                <td>Payment No:</td>
                 <td>
-                    <asp:Label ID="Label7" runat="server" Text="T01972"></asp:Label>
+                    <asp:Label ID="Label7" runat="server" Text="P01972"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td>Transaction Amount:</td>
+                <td>Payment Amount:</td>
                 <td>
                     <asp:Label ID="Label8" runat="server" Text="RM 130.50"></asp:Label>
                 </td>
@@ -65,7 +65,7 @@
                 <td>Payment Method:</td>
                 <td>
                     <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPaymentMethod_SelectedIndexChanged">
-                        <asp:ListItem Text="Select a credit card" Value=""></asp:ListItem>
+                        <asp:ListItem Text="Select a credit card" Value="" disabled="disabled"></asp:ListItem>
                         <asp:ListItem Text="Credit Card 1" Value="1"></asp:ListItem>
                         <asp:ListItem Text="Credit Card 2" Value="2"></asp:ListItem>
                         <asp:ListItem Text="Credit Card 3" Value="3"></asp:ListItem> 
@@ -74,6 +74,9 @@
                 </td>
             </tr>
         </table>
+        <br />
+        <br />
+
         <asp:Button ID="btnProceed" class="btnProceed" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
     </div>
 </asp:Content>
