@@ -73,6 +73,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MovieDB.mdf" />
+    <Content Include="App_Data\MovieDB_log.ldf">
+      <DependentUpon>MovieDB.mdf</DependentUpon>
+    </Content>
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
     <Content Include="Customer\Payment.aspx" />
