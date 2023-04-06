@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Customer.Master" CodeBehind="PaymentSummary.aspx.cs" Inherits="MovieTicketingSystem.View.PaymentSummary" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Customer.Master" CodeBehind="PaymentSummary.aspx.cs" Inherits="MovieTicketingSystem.View.PaymentSummary" %>
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
     <link href="../css/payment.css" rel="stylesheet" />
@@ -71,6 +71,8 @@
         </table>
         <br />
         <asp:Button ID="btnDone" class="btnDone" runat="server" Text="Done" />
+        <br />
+        <br />
         <!-- After press done generate receipt/ticket-->
     </div>
 </asp:Content>

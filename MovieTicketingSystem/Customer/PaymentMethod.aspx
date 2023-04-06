@@ -1,10 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Customer.Master" CodeBehind="PaymentMethod.aspx.cs" Inherits="MovieTicketingSystem.View.PaymentMethod" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Customer.Master" CodeBehind="PaymentMethod.aspx.cs" Inherits="MovieTicketingSystem.View.PaymentMethod" %>
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
     <link href="../css/payment.css" rel="stylesheet" />
     <div class="paymentBody">
     <div class="paymentContainer">
-        <h1>Add Credit Card</h1>
+        <div class="heading">
+            <h1>Add Credit Card</h1>
+            <div class="cards">
+                <img src="../Image/mastercard.png" />
+            </div>
+        </div>
+        
         <div class="first-row">
             <div class="owner">
                 <h3>Cardholder Name</h3>
@@ -57,11 +63,7 @@
                         <asp:ListItem Text="2015" Value="2015"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <div class="cards">
-                    <img src="mc.png" alt="">
-                    <img src="vi.png" alt="">
-                    <img src="pp.png" alt="">
-                </div>
+                
             </div>    
         </div>
         <asp:Button ID="btnPaymentConfirm" class="btnPaymentConfirm" runat="server" Text="Confirm" OnClick="btnPaymentConfirm_Click" />

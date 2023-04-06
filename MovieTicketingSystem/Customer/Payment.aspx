@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Customer.Master" CodeBehind="Payment.aspx.cs" Inherits="MovieTicketingSystem.View.Payment" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="../Customer.Master" CodeBehind="Payment.aspx.cs" Inherits="MovieTicketingSystem.View.Payment" %>
 
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
@@ -78,6 +78,8 @@
         <br />
 
         <asp:Button ID="btnProceed" class="btnProceed" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
+        <br />
+        <br />
     </div>
 </asp:Content>
 
