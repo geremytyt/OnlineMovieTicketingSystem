@@ -74,6 +74,7 @@
     <Content Include="View\Movie.aspx" />
     <Content Include="View\Payment.aspx" />
     <Content Include="View\PaymentMethod.aspx" />
+    <Content Include="View\PaymentSummary.aspx" />
     <Content Include="View\Register.aspx" />
     <Content Include="View\StaffMovie.aspx" />
     <Content Include="View\Staff.aspx" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="View\PaymentMethod.aspx.designer.cs">
       <DependentUpon>PaymentMethod.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaymentSummary.aspx.cs">
+      <DependentUpon>PaymentSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\PaymentSummary.aspx.designer.cs">
+      <DependentUpon>PaymentSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
