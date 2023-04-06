@@ -85,10 +85,13 @@
     <Content Include="Customer\PaymentSummary.aspx" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
+    <Content Include="Image\popcorn.png" />
     <Content Include="Staff\ManageSchedule.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
+    <Content Include="User\Cart.aspx" />
+    <Content Include="User\Food.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Customer\Movie.aspx" />
@@ -178,6 +181,20 @@
     </Compile>
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Food.aspx.cs">
+      <DependentUpon>Food.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Food.aspx.designer.cs">
+      <DependentUpon>Food.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

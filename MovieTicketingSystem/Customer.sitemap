@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="Home.aspx" title="Home"  description="">
     <siteMapNode url="User/Movie.aspx" title="Movie"  description=""/>
-    <siteMapNode url="Food.aspx" title="Food"  description=""/>
+    <siteMapNode url="User/Food.aspx" title="Food"  description=""/>
     <siteMapNode url="Customer/Profile.aspx" title="Profile"  description=""/>
     <siteMapNode url="User/Home.aspx" title="Logout"  description=""/>
   </siteMapNode>
