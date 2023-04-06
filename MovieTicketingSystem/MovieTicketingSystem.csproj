@@ -73,6 +73,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\movieDB.mdf" />
+    <Content Include="App_Data\movieDB_log.ldf">
+      <DependentUpon>movieDB.mdf</DependentUpon>
+    </Content>
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
     <Content Include="Customer\Payment.aspx" />
@@ -82,6 +86,7 @@
     <Content Include="Image\mastercard.png" />
     <Content Include="Staff\ManageSchedule.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
+    <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Customer\Movie.aspx" />
@@ -143,6 +148,13 @@
     </Compile>
     <Compile Include="Staff\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ViewMovie.aspx.cs">
+      <DependentUpon>ViewMovie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ViewMovie.aspx.designer.cs">
+      <DependentUpon>ViewMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
