@@ -13,5 +13,15 @@ namespace MovieTicketingSystem.View
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Movie.aspx");
+        }
+
+        protected void btnStaffLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StaffMovie.aspx");
+        }
     }
 }

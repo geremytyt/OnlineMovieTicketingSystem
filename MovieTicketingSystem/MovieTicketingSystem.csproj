@@ -69,11 +69,15 @@
   <ItemGroup>
     <Content Include="css\style.css" />
     <Content Include="Image\logo.png" />
-    <Content Include="View\Login.aspx" />
-    <Content Include="View\Movie.aspx" />
-    <Content Include="View\Register.aspx" />
-    <Content Include="View\StaffMovie.aspx" />
-    <Content Include="View\Staff.aspx" />
+    <Content Include="User\Home.aspx" />
+    <Content Include="User\Login.aspx" />
+    <Content Include="Customer\Movie.aspx" />
+    <Content Include="Customer\Profile.aspx" />
+    <Content Include="User\Register.aspx" />
+    <Content Include="User\ResetPassword1.aspx" />
+    <Content Include="User\ResetPassword2.aspx" />
+    <Content Include="Staff\StaffMovie.aspx" />
+    <Content Include="Manager\Staff.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +96,13 @@
     <Compile Include="Manager.Master.designer.cs">
       <DependentUpon>Manager.Master</DependentUpon>
     </Compile>
+    <Compile Include="User.Master.cs">
+      <DependentUpon>User.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User.Master.designer.cs">
+      <DependentUpon>User.Master</DependentUpon>
+    </Compile>
     <Compile Include="Staff.Master.cs">
       <DependentUpon>Staff.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -99,39 +110,67 @@
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
     </Compile>
-    <Compile Include="View\Login.aspx.cs">
+    <Compile Include="User\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Login.aspx.designer.cs">
+    <Compile Include="User\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Movie.aspx.cs">
+    <Compile Include="Customer\Movie.aspx.cs">
       <DependentUpon>Movie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Movie.aspx.designer.cs">
+    <Compile Include="Customer\Movie.aspx.designer.cs">
       <DependentUpon>Movie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Register.aspx.cs">
+    <Compile Include="Customer\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Register.aspx.designer.cs">
+    <Compile Include="User\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\StaffMovie.aspx.cs">
+    <Compile Include="User\ResetPassword1.aspx.cs">
+      <DependentUpon>ResetPassword1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ResetPassword1.aspx.designer.cs">
+      <DependentUpon>ResetPassword1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ResetPassword2.aspx.cs">
+      <DependentUpon>ResetPassword2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ResetPassword2.aspx.designer.cs">
+      <DependentUpon>ResetPassword2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\StaffMovie.aspx.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\StaffMovie.aspx.designer.cs">
+    <Compile Include="Staff\StaffMovie.aspx.designer.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Staff.aspx.cs">
+    <Compile Include="Manager\Staff.aspx.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Staff.aspx.designer.cs">
+    <Compile Include="Manager\Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -140,6 +179,8 @@
     <None Include="packages.config" />
     <Content Include="Manager.Master" />
     <Content Include="Staff.Master" />
+    <Content Include="User.Master" />
+    <Content Include="User.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

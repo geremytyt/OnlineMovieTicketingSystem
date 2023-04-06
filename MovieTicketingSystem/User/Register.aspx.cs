@@ -13,5 +13,10 @@ namespace MovieTicketingSystem.View
         {
 
         }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

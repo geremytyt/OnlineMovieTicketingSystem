@@ -11,7 +11,7 @@ namespace MovieTicketingSystem
 {
 
 
-    public partial class Customer
+    public partial class Site3
     {
 
         /// <summary>
