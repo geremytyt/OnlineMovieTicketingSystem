@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.View
 {
 
 
-    public partial class Register
+    public partial class Login
     {
 
         /// <summary>
@@ -22,15 +22,6 @@ namespace MovieTicketingSystem.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// txtName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// txtEmail control.
@@ -51,57 +42,102 @@ namespace MovieTicketingSystem.View
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// txtlblPassword control.
+        /// lblRemember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtlblPassword;
+        protected global::System.Web.UI.WebControls.Label lblRemember;
 
         /// <summary>
-        /// txtPhone control.
+        /// cbRemember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPhone;
+        protected global::System.Web.UI.WebControls.CheckBox cbRemember;
 
         /// <summary>
-        /// txtDob control.
+        /// btnLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDob;
+        protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
-        /// lblGender control.
+        /// hlForgetpwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGender;
+        protected global::System.Web.UI.WebControls.HyperLink hlForgetpwd;
 
         /// <summary>
-        /// rblGender control.
+        /// hlRegister control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblGender;
+        protected global::System.Web.UI.WebControls.HyperLink hlRegister;
 
         /// <summary>
-        /// btnRegister control.
+        /// txtEmail1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegister;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail1;
+
+        /// <summary>
+        /// txtPassword1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPassword1;
+
+        /// <summary>
+        /// lblRemember1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRemember1;
+
+        /// <summary>
+        /// cbRemember1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbRemember1;
+
+        /// <summary>
+        /// btnStaffLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnStaffLogin;
+
+        /// <summary>
+        /// hlForgetpwd1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlForgetpwd1;
     }
 }

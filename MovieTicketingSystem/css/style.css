@@ -4,18 +4,22 @@
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Trebuchet MS";
 }
 
 #content {
-    height: auto;
     min-height: 100%;
     background-color: #343a40;
     
+}
+
+#hlForgetpwd, #hlRegister, #hlForgetpwd1 {
+    text-decoration: none;
+    color: #f4e618;
 }
 
 .navbar-nav a {
@@ -30,15 +34,68 @@ body {
 }
 
 .btn-default {
+    border-color: #f4e618;
     background: #f4e618;
 }
 
 .btn-default:hover {
-    color: white;
-    background: #f4e618;
+    border-color: #f4e618;
+    color: #f4e618;
+    background: none;
 }
 
 .text-heading {
     color: #f4e618;
     text-transform: uppercase;
+}
+
+#nav-userLogin-tab, #nav-staffLogin-tab {
+    color: white;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+#nav-history-tab, #nav-logout-tab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab{
+    color: white;
+    background: none;
+    border: 1px solid white;
+    width: 250px;
+}
+
+#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active , #nav-logout-tab:focus{
+    color: black;
+    background: #f4e618;
+    border: 1px solid #f4e618;
+}
+
+.nav-tabs .nav-link.active {
+    transition: 0.5s ease;
+    border-bottom: 1px solid #f4e618;
+}
+
+#txtEmail, #main_txtEmail, #txtPassword, #main_txtPassword, #txtEmail1, #txtPassword1, #main_TextBox1, #main_TextBox2, #main_TextBox3, #txtName, #main_txtName, #txtDob, #main_txtDob, #txtCfmPassword, #txtPhone, #main_txtPhone {
+    border-radius: 0;
+    border: none;
+    background: none;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+#float::before, #float1::before, #float2::before, #float3::before, #float4::before, #float5::before, #float6::before, #float7::before, #float8::before {
+    background: none;
+}
+
+.nav-tabs {
+    border-bottom: 0px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(100%) hue-rotate(180deg) brightness(1000%);
+}
+
+.fieldLabel {
+    color:#808080;
+    font-size:12px;
 }

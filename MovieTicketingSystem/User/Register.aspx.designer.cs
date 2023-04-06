@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.View
 {
 
 
-    public partial class Login
+    public partial class Register
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace MovieTicketingSystem.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// txtName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// txtEmail control.
@@ -42,48 +51,57 @@ namespace MovieTicketingSystem.View
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// lblRemember control.
+        /// txtCfmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRemember;
+        protected global::System.Web.UI.WebControls.TextBox txtCfmPassword;
 
         /// <summary>
-        /// cbRemember control.
+        /// txtPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbRemember;
+        protected global::System.Web.UI.WebControls.TextBox txtPhone;
 
         /// <summary>
-        /// btnSubmit control.
+        /// txtDob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.TextBox txtDob;
 
         /// <summary>
-        /// hlRegister control.
+        /// lblGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlRegister;
+        protected global::System.Web.UI.WebControls.Label lblGender;
 
         /// <summary>
-        /// hlForgetpwd control.
+        /// rblGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlForgetpwd;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblGender;
+
+        /// <summary>
+        /// btnRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegister;
     }
 }

@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.master.cs" Inherits="MovieTicketingSystem.Customer" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.Master.cs" Inherits="MovieTicketingSystem.Site3" %>
+
 
 <!DOCTYPE html>
 
@@ -26,7 +27,7 @@
                         <StaticSelectedStyle CssClass="nav-item active" />
                         <StaticHoverStyle CssClass="nav-item active" />
                     </asp:Menu>
-                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Customer" />
+                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="User" />
                 </div>
                 <div class="d-flex">
                    <asp:TextBox ID="txtSearch" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
