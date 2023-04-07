@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewMovie.aspx.cs" MasterPageFile="~/Staff.Master" Inherits="MovieTicketingSystem.Staff.ViewMovie" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Title="View Movie" CodeBehind="ViewMovie.aspx.cs" MasterPageFile="~/Staff.Master" Inherits="MovieTicketingSystem.Staff.ViewMovie" %>
 
 <asp:Content ID="viewMovie" ContentPlaceHolderID="main" runat="server">
     <link href="../css/movie.css" rel="stylesheet" />

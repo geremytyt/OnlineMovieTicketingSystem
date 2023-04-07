@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffMovie.aspx.cs" Inherits="MovieTicketingSystem.View.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    
     <link href="../css/movie.css" rel="stylesheet" />
     <%--Gonna change to grid view when having database--%>
         <div class="container">
@@ -9,11 +8,11 @@
             <asp:TextBox ID="txtSearch" runat="server" TextMode="Search" class="form-control my-2" placeholder="Search"></asp:TextBox>
             <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-success my-2"/>            
             </div>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="movieNo" DataSourceID="SqlDataSource1" class="table table-striped bg-light my-3 table-bordered table-responsive table-hover">
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="movieNo" DataSourceID="SqlDataSource1" CssClass="table table-striped bg-light my-3 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="movieNo" HeaderText="Movie No." ReadOnly="True" SortExpression="movieNo" />
                     <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
-                    <asp:BoundField DataField="releaseDate" HeaderText="Release Date" SortExpression="releaseDate" DataFormatString="{0:MM/dd/yy}" />
+                    <asp:BoundField DataField="releaseDate" HeaderText="Release Date" SortExpression="releaseDate" DataFormatString="{0:MM/dd/yyyy}" />
                     <asp:BoundField DataField="genre" HeaderText="Genre" SortExpression="genre" />
                     <asp:BoundField DataField="synopsis" HeaderText="Synopsis" SortExpression="synopsis" />
                     <asp:TemplateField HeaderText="Action">
