@@ -6,7 +6,7 @@
         <div class="container">
             <asp:Button ID="btnAddMovie" runat="server" Text="Add Movie" class="btn btn-warning float-end my-1"/>
             <div class="input-group">
-            <asp:TextBox ID="txtSearch" runat="server" class="form-control my-2" placeholder="Search"></asp:TextBox>
+            <asp:TextBox ID="txtSearch" runat="server" TextMode="Search" class="form-control my-2" placeholder="Search"></asp:TextBox>
             <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-success my-2"/>            
             </div>
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="movieNo" DataSourceID="SqlDataSource1" class="table table-striped bg-light my-3 table-bordered table-responsive table-hover">
