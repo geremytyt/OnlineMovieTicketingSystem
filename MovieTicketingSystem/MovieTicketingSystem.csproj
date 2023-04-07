@@ -80,14 +80,25 @@
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\MenuStyle.css" />
     <Content Include="Customer\Payment.aspx" />
     <Content Include="Customer\PaymentMethod.aspx" />
+    <Content Include="Customer\PaymentSummary.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Image\230303_ThePope%27sExorcist_big.jpg" />
+	  
     <Content Include="Image\logo.png" />
+    <Content Include="Image\mastercard.png" />
+    <Content Include="Image\popcorn.png" />
+    <Content Include="Staff\FoodManagement.aspx" />
+    <Content Include="Staff\ManageSchedule.aspx" />
     <Content Include="Staff\AddMovie.aspx" />
     <Content Include="Staff\EditMovie.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
+    <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
+    <Content Include="User\Cart.aspx" />
+    <Content Include="User\Food.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Customer\Movie.aspx" />
@@ -121,6 +132,16 @@
     <Compile Include="Customer\PaymentMethod.aspx.designer.cs">
       <DependentUpon>PaymentMethod.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\PaymentSummary.aspx.cs">
+      <DependentUpon>PaymentSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\PaymentSummary.aspx.designer.cs">
+      <DependentUpon>PaymentSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Manager.Master.cs">
       <DependentUpon>Manager.Master</DependentUpon>
@@ -128,6 +149,20 @@
     </Compile>
     <Compile Include="Manager.Master.designer.cs">
       <DependentUpon>Manager.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\FoodManagement.aspx.cs">
+      <DependentUpon>FoodManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\FoodManagement.aspx.designer.cs">
+      <DependentUpon>FoodManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ManageSchedule.aspx.cs">
+      <DependentUpon>ManageSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ManageSchedule.aspx.designer.cs">
+      <DependentUpon>ManageSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\AddMovie.aspx.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
@@ -150,6 +185,13 @@
     <Compile Include="Staff\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\StaffProfile.aspx.cs">
+      <DependentUpon>StaffProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\StaffProfile.aspx.designer.cs">
+      <DependentUpon>StaffProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\ViewMovie.aspx.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,6 +212,20 @@
     </Compile>
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Food.aspx.cs">
+      <DependentUpon>Food.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Food.aspx.designer.cs">
+      <DependentUpon>Food.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

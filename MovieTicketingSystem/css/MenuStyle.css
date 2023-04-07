@@ -1,0 +1,259 @@
+﻿body {
+    vertical-align: middle;
+}
+
+.Menubackgound {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.card {
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    border-bottom: 2px black solid;
+    background-color: inherit;
+    width: 100%;
+    margin: 5px auto;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.card-header {
+    height: 10%;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: larger;
+    background-color: yellow;
+}
+
+.image-box {
+    height: 55%;
+    position: relative;
+    display: inline-block;
+    align-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-top {
+    align-content: start;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.textInImage {
+    position: absolute;
+    z-index: 999;
+    top: 90%;
+    bottom: 0%;
+    text-align: right;
+    padding-right: 5%;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    color: yellow;
+    text-shadow: 1px 1px 2px black;
+}
+
+.card-body {
+    height: 35%;
+    overflow: hidden;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-size: large;
+    color: yellow;
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+}
+
+.divPrice {
+    text-align: left;
+    width: 45%;
+    float: left;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.divRemarks {
+    text-align: right;
+    width: 45%;
+    float: right;
+    padding-left: 5px;
+}
+
+.card-footer {
+    background-color: yellow;
+    height: 50px;
+}
+
+.Qty {
+    width: 15%;
+}
+
+.btn_add_to_cart {
+    vertical-align: central;
+    background-color: black;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    float: right;
+    color: yellow;
+}
+
+    .btn_add_to_cart:hover {
+        font-weight: bolder;
+        background-color: white;
+        color: black;
+        transition-delay: 0.1s;
+        transition-duration: 0.5s;
+    }
+
+/* food management */
+.containerLeft {
+    padding-right: 2px;
+    width: 50%;
+    height: 100%;
+    vertical-align: top;
+    justify-content: start;
+    display: table-cell;
+    margin: 30px auto 0px auto;
+}
+
+.containerRight {
+    margin-top: 30px;
+    vertical-align: top;
+    width: 50%;
+    display: table-cell;
+    border: 1px yellow solid;
+}
+
+.GVmenu {
+    width: 100%;
+}
+
+.actionBar {
+    margin: 0px auto 5px auto;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .actionBar .actionButton {
+        margin: auto;
+        width: 25%;
+        margin: auto;
+        height: 100%;
+        background-color: yellow;
+        color: black;
+        border: 1px solid black;
+    }
+
+        .actionBar .actionButton:hover {
+            background-color: inherit;
+            color: yellow;
+            border: 1px solid yellow;
+            transition-delay: 0.1s;
+            transition-duration: 0.5s;
+        }
+
+h3 {
+    height: 32px;
+    width: 100%;
+    line-height: 1.9em;
+    font-size: 20px;
+    color: yellow;
+    background-color: black;
+    text-align: center;
+}
+
+.containerRight .form-floating {
+    color: white;
+}
+
+    .containerRight .form-floating:before {
+        display: none;
+    }
+
+.containerRight .form-control {
+    background: inherit;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+    .containerRight .form-control:focus {
+        background: inherit;
+        box-shadow: none;
+        border: none;
+        border-bottom: 2px solid yellow;
+        color: white;
+    }
+
+/* cart */
+#Cartbackground {
+    font-weight: bold;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartList {
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+}
+
+#Cartbackground h1 {
+    padding-top: 50px;
+    color: white;
+    font-weight: bolder;
+}
+
+.cartList th {
+    color: black;
+    background-color: yellow;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.cartList tr {
+    height: 30px;
+}
+
+.cartList td {
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 13px;
+}
+
+.cartList tr:nth-child(even) td {
+    background-color: lightyellow;
+}
+
+.cartList tr td:nth-child(4) {
+    text-align: center;
+}
+
+.cartList tr td:last-child {
+    text-align: right;
+    padding-right: 8%;
+}
+
+.btn_proceed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 40%;
+    min-width: 25%;
+    height: 50px;
+    margin: 25px auto 5px;
+    border-radius: 15px;
+}
