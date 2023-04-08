@@ -85,9 +85,14 @@
     <Content Include="Customer\PaymentMethod.aspx" />
     <Content Include="Customer\PaymentSummary.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Image\2 people Combo.jpg" />
     <Content Include="Image\230303_ThePope%27sExorcist_big.jpg" />
+    <Content Include="Image\Coca-cola.jpg" />
+    <Content Include="Image\Family Combo.jpg" />
+    <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
+    <Content Include="Image\Popcorn %28Orginal%29.jpg" />
     <Content Include="Image\popcorn.png" />
     <Content Include="Image\slide1.jpg" />
     <Content Include="Image\slide3.png" />

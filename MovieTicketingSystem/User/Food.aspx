@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Food.aspx.cs" Inherits="MovieTicketingSystem.User.Food" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Food.aspx.cs" Inherits="MovieTicketingSystem.View.Food" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Menu]"></asp:SqlDataSource>
     <link href="../css/MenuStyle.css" rel="stylesheet" />
@@ -15,12 +16,11 @@
                             <asp:Label ID="LblName" runat="server" Text=<%#Eval("MenuName") %>></asp:Label>
                         </div>
                         <div class="image-box">
-                            <img class="card-img-top" src="../Image/popcorn.png" alt="Food Image" >
+                            <img class="card-img-top" src='<%# Eval("menuUrl") %>' alt="Food Image" >
                             <div class ="textInImage"><%#Eval("menuCategory") %></div>
                         </div>
                         <div class="card-body">                
-                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0}")  %>></asp:Label>
-                            <asp:Label class="divRemarks" ID="LblRemarks" runat="server" Text=<%#Eval("remark") %>></asp:Label>
+                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0:n2}")  %>></asp:Label>
                             <br /><br /><%#Eval("menuDesc") %>
                        </div>
                        <div class="card-footer">

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.User
+namespace MovieTicketingSystem.View
 {
 
 
