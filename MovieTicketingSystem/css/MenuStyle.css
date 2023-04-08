@@ -196,64 +196,117 @@ h3 {
 
 /* cart */
 #Cartbackground {
-    font-weight: bold;
-    width: 60%;
+    width: 75%;
     margin: auto;
     justify-content: center;
     align-items: center;
 }
 
-.cartList {
-    width: 100%;
-    justify-content: center;
-    margin: auto;
+.cartItem {
+    color: black;
+    background-color: white;
 }
+
+
+    .cartItem:nth-child(even) {
+        background-color: lightyellow;
+    }
 
 #Cartbackground h1 {
     padding-top: 50px;
-    color: white;
+    color: yellow;
     font-weight: bolder;
 }
 
-.cartList th {
-    color: black;
-    background-color: yellow;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.cartList tr {
-    height: 30px;
-}
-
-.cartList td {
-    background-color: white;
-    font-family: 'Times New Roman', Times, serif;
-    padding: 13px;
-}
-
-.cartList tr:nth-child(even) td {
-    background-color: lightyellow;
-}
-
-.cartList tr td:nth-child(4) {
-    text-align: center;
-}
-
-.cartList tr td:last-child {
-    text-align: right;
-    padding-right: 8%;
+.cart-image-box {
+    margin: auto;
+    padding: 0px;
+    border: 2px black solid;
 }
 
 .btn_proceed {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 40%;
-    min-width: 25%;
+    width: 50%;
     height: 50px;
-    margin: 25px auto 5px;
+    margin: 25px auto 15px;
     border-radius: 15px;
+    border: 1px solid yellow;
+    background-color: inherit;
+    color: yellow;
+}
+
+    .btn_proceed:hover {
+        border: 1px solid black;
+        background-color: yellow;
+        color: black;
+        font-weight: 500;
+    }
+
+#Cartbackground .btnMinus, #Cartbackground .btnAdd {
+    width: 30px;
+    background-color: antiquewhite;
+    border: 0px solid black;
+    border-radius: 20px;
+    color: black;
+    margin: 0px auto;
+}
+
+/*Report*/
+#reportContainer {
+    background-color: inherit;
+    color: yellow;
+    padding: 0px;
+    height: 80%;
+}
+
+    #reportContainer ul {
+        border: none;
+    }
+
+.reportsetting {
+    margin: auto;
+    justify-content: center;
+    padding: 25px 0px;
+    width: 70%;
+    color: white;
+}
+
+#reportContainer .form-floating {
+    color: white;
+    width: 42%;
+}
+
+    #reportContainer .form-floating:before {
+        display: none;
+        width: 42%;
+    }
+
+#reportContainer .form-control {
+    background: inherit;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+    #reportContainer .form-control:focus {
+        background: inherit;
+        box-shadow: none;
+        border: none;
+        border-bottom: 2px solid yellow;
+        color: white;
+    }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(100%) hue-rotate(180deg) brightness(1000%);
+}
+
+
+input[type="number"]::-webkit-inner-spin-button {
+    filter: invert(100%) sepia(100%) saturate(10%) hue-rotate(305deg) brightness(103%) contrast(103%);
+}
+
+.foodreport {
+    margin: 10px auto 0 auto;
 }
