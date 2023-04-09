@@ -105,7 +105,6 @@
     <Content Include="Image\user.png" />
     <Content Include="Staff\ManageActiveStaff.aspx" />
     <Content Include="Staff\ManageActiveUser.aspx" />
-    <Content Include="Staff\ManagePayment.aspx" />
     <Content Include="Staff\ManageResignedStaff.aspx" />
     <Content Include="Staff\ManageSuspendedUser.aspx" />
     <Content Include="Staff\Report.aspx" />
@@ -150,7 +149,6 @@
     <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="Customer\Profile.aspx" />
     <Content Include="Staff\StaffMovie.aspx" />
-    <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -231,13 +229,6 @@
     </Compile>
     <Compile Include="Staff\ManageActiveUser.aspx.designer.cs">
       <DependentUpon>ManageActiveUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\ManagePayment.aspx.cs">
-      <DependentUpon>ManagePayment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\ManagePayment.aspx.designer.cs">
-      <DependentUpon>ManagePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\ManageResignedStaff.aspx.cs">
       <DependentUpon>ManageResignedStaff.aspx</DependentUpon>
@@ -372,13 +363,6 @@
     </Compile>
     <Compile Include="Staff\StaffMovie.aspx.designer.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\ViewPayment.aspx.cs">
-      <DependentUpon>ViewPayment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\ViewPayment.aspx.designer.cs">
-      <DependentUpon>ViewPayment.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

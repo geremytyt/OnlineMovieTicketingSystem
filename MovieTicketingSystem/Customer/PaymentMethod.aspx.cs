@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,7 +10,7 @@ namespace MovieTicketingSystem.View
 {
     public partial class PaymentMethod : System.Web.UI.Page
     {
-        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -39,8 +38,8 @@ namespace MovieTicketingSystem.View
             string custID = "C001";
 
             // Insert the card details into the Card table using SQL
-            
-            using (SqlConnection connection = new SqlConnection(cs))
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\gerem\\Downloads\\App_Data\\MovieDB.mdf;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("INSERT INTO Card (cardNo, custID, cvv, cardHolderName, expiryDate) VALUES (@cardNo, @custID, @cvv, @cardHolderName, @expiryDate)", connection))

@@ -13,8 +13,6 @@ namespace MovieTicketingSystem.View
     public partial class Payment : System.Web.UI.Page
     {
         private decimal paymentAmt = 0;
-
-        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             // Get the custID from session
@@ -36,66 +34,71 @@ namespace MovieTicketingSystem.View
             WHERE P.PurchaseNo = @purchaseNo";
 
 
-            // Create a new SqlConnection object to connect to the database 
-            SqlConnection conn = new SqlConnection(cs);
-
-            // Create a new SqlCommand object 
-            SqlCommand cmd = new SqlCommand(query, conn);
-                
-            // Add the purchaseNo parameter to the command
-            cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-
-            // Open the database connection
-            conn.Open();
-
-            // Execute the query and retrieve the results
-            SqlDataReader reader = cmd.ExecuteReader();
-                    
-            // Check if there is a row of data returned
-            if (reader.HasRows)
+            // Create a new SqlConnection object to connect to the database using the using statement
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString))
             {
-                // Read the row of data
-                reader.Read();
-
-                // Set the label
-                lblTicketTotal.Text = reader["ticketTotal"].ToString();                          
-                lblFoodTotal.Text = reader["foodTotal"].ToString();                           
-                string scheduleNo = reader["scheduleNo"].ToString();                          
-                //lblTicketCategory.Text = reader["ticketCategory"].ToString();                          
-                //lblTicketPrice.Text = reader["ticketPrice"].ToString();                          
-                lblSeat.Text = reader["seatNo"].ToString();
-
-                // Calculate the payment amount by adding the ticket total and food total
-                paymentAmt = Convert.ToDecimal(lblTicketTotal.Text) + Convert.ToDecimal(lblFoodTotal.Text);
-                lblPaymentAmt.Text = paymentAmt.ToString("C2");
-
-                lblHallNo.Text = reader["hallNo"].ToString();
-                lblShowingDate.Text = ((DateTime)reader["scheduleDateTime"]).ToString("d/M/yyyy");
-                lblShowingTime.Text = ((DateTime)reader["scheduleDateTime"]).ToString("H:m:ss");
-                lblTitle.Text = reader["movieName"].ToString();
-
-                //lblFoodPurchased.Text = reader["menuName"].ToString();
-
-                string foodPurchased = ""; // initialize an empty string to store the food purchased data
-                while (reader.Read())
+                // Create a new SqlCommand object using the using statement
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    // Get the menu name for the current row and add it to the foodPurchased string
-                    foodPurchased += reader["menuName"].ToString() + ", ";
+                    // Add the purchaseNo parameter to the command
+                    cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+
+                    // Open the database connection
+                    conn.Open();
+
+                    // Execute the query and retrieve the results
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check if there is a row of data returned
+                        if (reader.HasRows)
+                        {
+                            // Read the row of data
+                            reader.Read();
+
+                            // Set the label
+                            lblTicketTotal.Text = reader["ticketTotal"].ToString();                          
+                            lblFoodTotal.Text = reader["foodTotal"].ToString();                           
+                            string scheduleNo = reader["scheduleNo"].ToString();                          
+                            //lblTicketCategory.Text = reader["ticketCategory"].ToString();                          
+                            //lblTicketPrice.Text = reader["ticketPrice"].ToString();                          
+                            lblSeat.Text = reader["seatNo"].ToString();
+
+                            // Calculate the payment amount by adding the ticket total and food total
+                            paymentAmt = Convert.ToDecimal(lblTicketTotal.Text) + Convert.ToDecimal(lblFoodTotal.Text);
+                            lblPaymentAmt.Text = paymentAmt.ToString("C2");
+
+                            lblHallNo.Text = reader["hallNo"].ToString();
+                            lblShowingDate.Text = ((DateTime)reader["scheduleDateTime"]).ToString("d/M/yyyy");
+                            lblShowingTime.Text = ((DateTime)reader["scheduleDateTime"]).ToString("H:m:ss");
+                            lblTitle.Text = reader["movieName"].ToString();
+
+                            //lblFoodPurchased.Text = reader["menuName"].ToString();
+
+                            string foodPurchased = ""; // initialize an empty string to store the food purchased data
+                            while (reader.Read())
+                            {
+                                // Get the menu name for the current row and add it to the foodPurchased string
+                                foodPurchased += reader["menuName"].ToString() + ", ";
+                            }
+                            // Remove the trailing comma and space from the foodPurchased string
+                            if (foodPurchased.Length > 2)
+                            {
+                                foodPurchased = foodPurchased.Substring(0, foodPurchased.Length - 2);
+                            }
+                            lblFoodPurchased.Text = foodPurchased;
+                        }
+                    }
+                    
                 }
-                // Remove the trailing comma and space from the foodPurchased string
-                if (foodPurchased.Length > 2)
-                {
-                    foodPurchased = foodPurchased.Substring(0, foodPurchased.Length - 2);
-                }
-                lblFoodPurchased.Text = foodPurchased;
             }
+
 
 
             // CREDIT CARD
             if (!IsPostBack)
             {
                 // Create a SqlConnection object to connect to the database
-                using (SqlConnection conn2 = new SqlConnection(cs))
+                using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString))
                 {
                     
 
@@ -153,8 +156,8 @@ namespace MovieTicketingSystem.View
                 string formattedDateTime = paymentDateTime.ToString("d/M/yyyy H:m:s");
 
                 // Retrieve the last schedule ID from the database
-                
-                using (SqlConnection connection = new SqlConnection(cs))
+                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
                     string query = "SELECT MAX(paymentNo) FROM Payment";
