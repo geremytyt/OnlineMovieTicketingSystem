@@ -7,7 +7,7 @@
         <h2 class="pageTitle">Maintain Payment</h2>
         <hr />
         <div class="containerPayment" >
-            <asp:SqlDataSource ID="SqlDataSourcePayment" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourcePayment" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
             <asp:GridView ID="paymentGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" DataKeyNames="paymentNo" 
                 DataSourceID="SqlDataSourcePayment" AutoPostBack="True" AllowPaging="True" 
                 AllowSorting="True" PageSize="10" OnSelectedIndexChanged="paymentGridView_SelectedIndexChanged">

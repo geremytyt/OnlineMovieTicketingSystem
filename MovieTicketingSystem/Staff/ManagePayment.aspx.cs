@@ -12,6 +12,7 @@ namespace MovieTicketingSystem.Staff
 {
     public partial class ManagePayment : System.Web.UI.Page
     {
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             btnConfirm.Visible = false;
@@ -23,7 +24,7 @@ namespace MovieTicketingSystem.Staff
                 string paymentNo = Request.QueryString["paymentNo"];
                 if (!string.IsNullOrEmpty(paymentNo))
                 {
-                    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString);
+                    SqlConnection conn = new SqlConnection(cs);
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Payment WHERE paymentNo=@paymentNo", conn);
                     cmd.Parameters.AddWithValue("@paymentNo", paymentNo);
                     conn.Open();
@@ -53,23 +54,23 @@ namespace MovieTicketingSystem.Staff
                         }
                         reader.Close();
 
-                        cmd = new SqlCommand("SELECT * FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblTicketNo.Text = reader["ticketNo"].ToString();
-                        }
-                        reader.Close();
+                        //cmd = new SqlCommand("SELECT * FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
+                        //cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                        //reader = cmd.ExecuteReader();
+                        //if (reader.Read())
+                        //{
+                        //    lblTicketNo.Text = reader["ticketNo"].ToString();
+                        //}
+                        //reader.Close();
 
-                        cmd = new SqlCommand("SELECT * FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblMenuID.Text = reader["menuId"].ToString();
-                        }
-                        reader.Close();
+                        //cmd = new SqlCommand("SELECT * FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
+                        //cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                        //reader = cmd.ExecuteReader();
+                        //if (reader.Read())
+                        //{
+                        //    lblMenuID.Text = reader["menuId"].ToString();
+                        //}
+                        //reader.Close();
 
                     }
                     conn.Close();
@@ -106,8 +107,8 @@ namespace MovieTicketingSystem.Staff
             string newStatus = ddlStatus.SelectedValue; // Get the selected value from the dropdown list
 
             // Update the payment status in the database
-            string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            
+            using (SqlConnection connection = new SqlConnection(cs))
             {
                 connection.Open();
                 string updateQuery = "UPDATE Payment SET status = @newStatus WHERE paymentNo = @paymentNo";

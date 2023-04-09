@@ -64,7 +64,7 @@
                         <asp:Label ID="lblFoodTotal" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td>Ticket No:</td>
                     <td>
                         <asp:Label ID="lblTicketNo" runat="server" Text=""></asp:Label>
@@ -75,7 +75,7 @@
                     <td>
                         <asp:Label ID="lblMenuID" runat="server" Text=""></asp:Label>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td>Status:</td>
                     <td>
