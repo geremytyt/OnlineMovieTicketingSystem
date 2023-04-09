@@ -75,7 +75,7 @@ td{
 /*Button css*/
 
 
-.btnProceed,.btnDone {
+.btnProceed,.btnDone,.btnEdit {
     width: 120px;
     height: 35px;
     margin: 0 50%;
@@ -93,16 +93,16 @@ td{
     line-height: 25px;
 }
 
-    .btnProceed:hover, .btnDone:hover {
-        background-color: white;
-        color: rgb(244, 230, 24);
-        transition: 0.5s ease-in-out;
-    }
+.btnProceed:hover, .btnDone:hover, .btnEdit:hover {
+    background-color: white;
+    color: rgb(244, 230, 24);
+    transition: 0.5s ease-in-out;
+}
 
-    .btnProceed:disabled, .btnDone:hover {
-        opacity: 0.5;
-        cursor: default
-    }
+.btnProceed:disabled, .btnDone:hover {
+    opacity: 0.5;
+    cursor: default
+}
 
 .detailHeader {
     text-decoration-line: underline;
@@ -200,9 +200,9 @@ td{
     align-items: center;
 }
 
-    .selection select {
-        padding: 5px 10px;
-    }
+.selection select {
+    padding: 5px 10px;
+}
 
 .btnPaymentConfirm {
     font-weight: bold;
@@ -228,3 +228,5 @@ td{
 .cards img {
     width: 100px;
 }
+
+

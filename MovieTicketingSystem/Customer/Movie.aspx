@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Movie.aspx.cs" Inherits="Movie_Ticketing_System.View.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Movie.aspx.cs" Inherits="Movie_Ticketing_System.View.MoviePurchase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+    <link href="../css/movie.css" rel="stylesheet" />
     <div class="container">
         <div class="row">
             <div class="col-lg-3 my-2">
@@ -10,7 +11,7 @@
                 </div>
             </div>
             <div class="col-lg-9 my-2">
-                <table class="table table-stripped table-dark">
+                <table class="table table-striped table-dark table-borderless">
                     <tr>
                         <td>
                             <label class="form-label">Select Date</label>
@@ -18,7 +19,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList ID="ddlDate" runat="server" CssClass="form-control" ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDate" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="scheduleDateTime" DataValueField="scheduleNo"></asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Schedule WHERE movieId = @Id">
+                                <SelectParameters>
+                                    <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
                         </td>
                     </tr>
                 </table>

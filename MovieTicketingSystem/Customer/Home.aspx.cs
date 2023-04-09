@@ -22,7 +22,8 @@ namespace MovieTicketingSystem.View
 
         protected void btnBookNow_Command(object sender, CommandEventArgs e)
         {
-
+            string id = e.CommandArgument.ToString();
+            Response.Redirect("~/Customer/Movie.aspx?movieId=" + id);
         }
     }
 }

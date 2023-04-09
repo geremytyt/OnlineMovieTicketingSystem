@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.labelScedule{
+    width:100%;
+}
+
 .requiredField:after {
     color: red;
     content: "*";

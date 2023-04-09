@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Movie_Ticketing_System.View
+namespace MovieTicketingSystem
 {
 
 
-    public partial class MoviePurchase
+    public partial class MovieSeatSelection
     {
 
         /// <summary>
@@ -33,22 +33,58 @@ namespace Movie_Ticketing_System.View
         protected global::System.Web.UI.WebControls.Label lbMovieName;
 
         /// <summary>
-        /// ddlDate control.
+        /// lbHall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
+        protected global::System.Web.UI.WebControls.Label lbHall;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// lbDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Label lbDateTime;
+
+        /// <summary>
+        /// txtSeat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSeat;
+
+        /// <summary>
+        /// txtAdult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdult;
+
+        /// <summary>
+        /// txtKid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtKid;
+
+        /// <summary>
+        /// txtSenior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSenior;
 
         /// <summary>
         /// btnNext control.

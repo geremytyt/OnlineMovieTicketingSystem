@@ -1,0 +1,186 @@
+﻿.pageTitle {
+    color: #f4e618;
+    font-weight: bold;
+    padding: 10px;
+    width: 25%;
+    margin: 0px auto;
+    
+}
+
+hr {
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+#content {
+    height: auto;
+    min-height: 100%;
+    background-color: #343a40;
+}
+
+
+/* Style for the GridView header */
+.gridview-header {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+/* Style for the GridView rows */
+.gridview-row {
+    background-color: white;
+}
+
+/* Style for alternate rows */
+.gridview-row:nth-of-type(odd) {
+    background-color: #fffbda;
+}
+
+/* Style for the GridView rows on hover */
+.gridview-row:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+/* Style for the GridView Container */
+.container1 {
+    width: 60%;
+    margin: 0 auto;
+    float: left;
+    /*padding-top:3em;*/
+
+}
+
+.container2 {
+    width: 35%;
+    margin: 0 auto;
+    /*margin-top:50px;*/
+    float: right;
+    /*padding-top: 3em;*/
+    /*background-color: black;*/
+    /*height:100%;*/
+    /*border-radius: 10px;*/
+}
+
+/*Table css*/
+/*.manageScheduleTable {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0px auto;
+    overflow: scroll;
+    height: 400px;
+    align-items: center;*/
+    /*margin-right: 20%;*/
+    /*margin-top:20px;
+}
+
+.manageScheduleTable tr td {
+    font-size: 14px;*/
+    /*padding-bottom: 8px;*/
+    /*color:white;
+}
+
+.manageScheduleTable td:first-child {
+    text-align: left;
+    width: 200px;
+    vertical-align: top;
+}
+
+.manageScheduleTable td:not(:first-child) {
+    display: inline-block;
+    width: 200px;
+    vertical-align: top;
+}*/
+
+/*.manageScheduleTable td {
+    width: 120%;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+*/
+/*Button css*/
+
+.btnContainer {
+    flex: 3;
+    display: inline;
+    /*float: right;*/
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom:10px;
+
+}
+
+.btnAdd, .btnDelete, .btnEdit, .btnConfirm, .btnCancel {
+    width: 120px;
+    /*margin: 0 50%;*/
+    /*position: relative;*/
+    /*left: -53px;*/
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: rgb(244, 230, 24);
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    /*line-height: 25px;*/
+}
+
+.btnAdd:hover, .btnDelete:hover, btnEdit:hover, btnConfirm:hover, .btnCancel:hover {
+    background-color: white;
+    color: rgb(244, 230, 24);
+    transition: 0.5s ease-in-out;
+}
+
+    /*.btnProceed:disabled, .btnDone:hover {
+        opacity: 0.5;
+        cursor: default
+    }*/
+
+/*.manageScheduleTable select {
+    background-color: black;
+    color: white;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid white;
+}
+
+.txtInput {
+    background-color: black;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+.txtInput:focus{
+    outline:none;
+}*/
+
+
+
+#main_ddlMovieID, #main_ddlHall, #main_txtScheduleTime, #main_txtScheduleDate, #ddlMovieID, #ddlHall, #txtScheduleTime, #txtScheduleDate {
+    border-radius: 0;
+    border: none;
+    background: none;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.form-floating::before {
+    display: none;
+}
+
+.bg-dark.rounded-4.text-white.mb-2 {
+    height: 500px;
+}
