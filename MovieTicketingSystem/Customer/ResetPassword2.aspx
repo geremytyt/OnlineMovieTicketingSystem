@@ -19,7 +19,7 @@
                 <hr class="mx-2" style="border: 1px solid white"/>
                 <div class="form-floating mx-5 mb-3" id="float1">
                     <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder=" " TextMode="Password" />
-                    <label for="txtPassword">Password</label>
+                    <label for="txtPassword">New Password</label>
                 </div>
                 <div class="form-floating mx-5 mb-3" id="float2">
                     <asp:TextBox ID="txtCfmPassword" runat="server" CssClass="form-control" placeholder=" " TextMode="Password" />
