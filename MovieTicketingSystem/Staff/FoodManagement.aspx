@@ -1,12 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="FoodManagement.aspx.cs" Inherits="MovieTicketingSystem.Staff.FoodManagement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager.Master" AutoEventWireup="true" CodeBehind="FoodManagement.aspx.cs" Inherits="MovieTicketingSystem.View.FoodManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-<link href="../css/MenuStyle.css" rel="stylesheet" />
-        
+ <link href="../css/MenuStyle.css" rel="stylesheet" />
+ <script>
+        //saving file into
+        function uploadImg() {
+            var fileInput = document.getElementById("<%=FoodIMageUpload.ClientID%>");
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader(); 
+                reader.onload = function (e) {
+                    var fileUrl = e.target.result;
+                    var menuImg = document.getElementById("<%=menuImg.ClientID%>");
+                    menuImg.src = fileUrl;
+                    menuImg.style.display = "inherit";
+                };
+                reader.readAsDataURL(file); 
+            }
+        }
+    </script>
+    
     <div class="container" >
         <div class="row g-2">
             <div class="col containerLeft">
         <asp:GridView ID="GVMenu" class="GVmenu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="menuId" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="Horizontal" BackColor="Yellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Right" ShowHeaderWhenEmpty="True"  OnSelectedIndexChanged="GVMenu_SelectedIndexChanged" >
-            <AlternatingRowStyle BackColor="lightyellow" ForeColor="black" />
             <Columns>
                 <asp:BoundField DataField="menuId" HeaderText="Id" ReadOnly="True" SortExpression="menuId" />
                 <asp:BoundField DataField="menuName" HeaderText="Name" SortExpression="menuName"  ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Left">
@@ -16,16 +32,10 @@
                 <asp:BoundField DataField="menuPrice" HeaderText="Price (RM)" SortExpression="menuPrice" />
                 <asp:CommandField ShowSelectButton="True" ButtonType="Button" SelectText=">>" />
             </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="Yellow" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="Yellow" Font-Bold="True" ForeColor="Black" BorderColor="Black" BorderStyle="Groove" BorderWidth="2px" HorizontalAlign="Center" Font-Underline="False" VerticalAlign="Middle" Wrap="True" />
-            <PagerStyle BackColor="Yellow" ForeColor="Black" HorizontalAlign="Center" BorderColor="White" BorderStyle="Solid" Height="5px" VerticalAlign="Middle" Wrap="False" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Height="30px" />
-            <SelectedRowStyle BackColor="Yellow" Font-Bold="True" ForeColor="Black" BorderColor="Black" BorderStyle="Double" BorderWidth="1px" VerticalAlign="Middle" Font-Italic="True" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+            <RowStyle Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
+            <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
+            <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
         </asp:GridView>
           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [menuId], [menuName], [menuCategory], [menuPrice] FROM [Menu]"></asp:SqlDataSource>
       </div>
@@ -34,7 +44,8 @@
             <h3>Menu Details</h3>
             <div class="row g-2">
                 <div class="col-md">
-                    <img src="../Image/popcorn.png" class="image-box" style="height:200px; width:200px;" />
+                    <asp:Image ID="menuImg" style="height:200px; width:200px; display:none; " AlternateText="No Picture Uploaded" runat="server" />
+                    <asp:FileUpload ID="FoodIMageUpload" CssClass="uploadbtn" runat="server" Visible="false" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/>
                 </div>
                 <div class="form-floating m-auto col-md px-3">
                     <asp:Label id="lblMenuId" runat="server" class="form-control">Select An Item</asp:Label>        
@@ -49,15 +60,9 @@
                 <asp:TextBox ID="tbCategory" runat="server" class="form-control" placeholder="Category" autocomplete="off" ReadOnly="true" ></asp:TextBox>                            
                 <label for="tbCategory">Category</label> 
             </div>
-            <div class="row g-2">
-                <div class="form-floating col-md px-3">
-                    <asp:TextBox ID="tbPrice" runat="server" class="form-control" placeholder="Price"  autocomplete="off" ReadOnly="true"></asp:TextBox>                            
-                    <label for="tbPrice">Price</label> 
-                </div>
-                <div class="form-floating col-md px-3">
-                    <asp:TextBox ID="tbRemark" runat="server" class="form-control" placeholder="Remarks"  autocomplete="off"  ReadOnly="true"></asp:TextBox>                            
-                    <label for="tbRemark">Remarks</label> 
-                </div>
+            <div class="form-floating col-md px-3">
+                <asp:TextBox ID="tbPrice" runat="server" class="form-control" placeholder="Price"  autocomplete="off" ReadOnly="true"></asp:TextBox>                            
+                <label for="tbPrice">Price</label> 
             </div>
             <div class="form-floating mx-auto mb-3 px-3 w-100">
                 <asp:TextBox ID="tbDecs" runat="server" class="form-control" placeholder="Description"  autocomplete="off" ReadOnly="true" TextMode="MultiLine" ></asp:TextBox>                            
@@ -72,12 +77,7 @@
                 <asp:Button ID="btn_edit" runat="server" Text="Edit" OnClick="btn_edit_Click" class="actionButton" />
                 <asp:Button ID="btn_delete" runat="server" Text="Delete" OnClick="btn_delete_Click" class="actionButton" />
             </div>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM Menu WHERE Menu.Menu_Id = @Menu_Id" >
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="GVMenu" Name="Menu_Id" PropertyName="SelectedValue" />
-                    </SelectParameters>
-                </asp:SqlDataSource>
             </div>
-        </div>
-     </div>
+      </div>
+</div>
 </asp:Content>

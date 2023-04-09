@@ -15,13 +15,13 @@
                             <asp:Label ID="LblName" runat="server" Text=<%#Eval("MenuName") %>></asp:Label>
                         </div>
                         <div class="image-box">
-                            <img class="card-img-top" src="../Image/popcorn.png" alt="Food Image" >
+                            <img class="card-img-top" src='<%# Eval("menuUrl") %>' alt="Food Image" >
                             <div class ="textInImage"><%#Eval("menuCategory") %></div>
                         </div>
                         <div class="card-body">                
-                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0}")  %>></asp:Label>
-                            <asp:Label class="divRemarks" ID="LblRemarks" runat="server" Text=<%#Eval("remark") %>></asp:Label>
-                            <br /><br /><%#Eval("menuDesc") %>
+                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0:n2}")  %>></asp:Label>
+                            <br /><br />
+                            <asp:Label ID="tbdecs" runat="server" Text='<%#Eval("menuDesc") %>'></asp:Label>
                        </div>
                        <div class="card-footer">
                            <asp:TextBox ID="txtQty" CssClass="Qty" runat="server" TextMode="Number" ></asp:TextBox>
