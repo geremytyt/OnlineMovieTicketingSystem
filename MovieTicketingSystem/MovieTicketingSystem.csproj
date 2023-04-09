@@ -77,6 +77,8 @@
     <Content Include="App_Data\movieDB_log.ldf">
       <DependentUpon>movieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Manager\Report.aspx" />
+    <Content Include="User\Cart.aspx" />
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
@@ -103,9 +105,9 @@
     <Content Include="Staff\AddMovie.aspx" />
     <Content Include="Staff\EditMovie.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
+    <Content Include="Staff\Report.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
-    <Content Include="User\Cart.aspx" />
     <Content Include="User\Food.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Login.aspx" />
@@ -119,6 +121,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,6 +209,13 @@
     <Compile Include="Staff\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\StaffProfile.aspx.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,13 +243,6 @@
     </Compile>
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
-    </Compile>
-    <Compile Include="User\Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Food.aspx.cs">
       <DependentUpon>Food.aspx</DependentUpon>
