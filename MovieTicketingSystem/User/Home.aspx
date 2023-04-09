@@ -74,12 +74,8 @@
                                     <asp:Image ID="imgPoster" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                                     <h6 class="card-title"><%# Eval("movieName") %></h6>
                                     <div class="d-grid gap-2">
-                                        <button class="btn-default">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i>View More
-                                        </button>
-                                        <button class="btn-default">
-                                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Book Now
-                                        </button>
+                                        <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                        <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                     </div>
                                 </div>
                             </ItemTemplate>
@@ -96,12 +92,8 @@
                             <asp:Image ID="imgPoster" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                             <div class="d-grid gap-2">
-                                <button class="btn-default">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>View More
-                                </button>
-                                <button class="btn-default">
-                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Book Now
-                                </button>
+                                <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                             </div>
 
                         </div>

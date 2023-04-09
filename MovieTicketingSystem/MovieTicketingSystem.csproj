@@ -85,7 +85,19 @@
     <Content Include="App_Data\movieDB_log.ldf">
       <DependentUpon>movieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Image\Seat.png" />
     <Content Include="Manager\Report.aspx" />
+    <Content Include="Customer\MovieSeatSelection.aspx" />
+    <Content Include="Model\ScheduleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\ScheduleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleModel.cs</LastGenOutput>
+    </Content>
     <Content Include="User\Cart.aspx" />
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
@@ -126,7 +138,6 @@
     <Content Include="Staff\AddMovie.aspx" />
     <Content Include="Staff\EditMovie.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
-    <Content Include="Staff\Report.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="User\Food.aspx" />
@@ -149,6 +160,31 @@
     </Compile>
     <Compile Include="Manager\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\MovieSeatSelection.aspx.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\MovieSeatSelection.aspx.designer.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Schedule.cs">
+      <DependentUpon>ScheduleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ScheduleModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ScheduleModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ScheduleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="User\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
@@ -248,13 +284,6 @@
     </Compile>
     <Compile Include="Staff\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\Report.aspx.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\Report.aspx.designer.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\StaffProfile.aspx.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
@@ -371,6 +400,13 @@
     </EntityDeploy>
     <Content Include="Model\MovieModel.edmx.diagram">
       <DependentUpon>MovieModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model\ScheduleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\ScheduleModel.edmx.diagram">
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Manager.Master" />
