@@ -11,35 +11,89 @@ namespace MovieTicketingSystem.Staff
 {
 
 
-    public partial class ViewMovie
+    public partial class EditMovie
     {
 
         /// <summary>
-        /// btnModify control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModify;
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
-        /// btnEdit control.
+        /// btnReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Button btnReset;
 
         /// <summary>
-        /// posterImage control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image posterImage;
+        protected global::System.Web.UI.WebControls.Button btnBack;
+
+        /// <summary>
+        /// imageView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imageView;
+
+        /// <summary>
+        /// posterFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload posterFile;
+
+        /// <summary>
+        /// trailerContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel trailerContainer;
+
+        /// <summary>
+        /// iframeTrailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeTrailer;
+
+        /// <summary>
+        /// lbMovieURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMovieURL;
+
+        /// <summary>
+        /// txtMovieURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMovieURL;
 
         /// <summary>
         /// lbMovieId control.
@@ -114,6 +168,24 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.TextBox txtDuration;
 
         /// <summary>
+        /// lbSynopsis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSynopsis;
+
+        /// <summary>
+        /// txtSynopsis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSynopsis;
+
+        /// <summary>
         /// lbGenre control.
         /// </summary>
         /// <remarks>
@@ -132,22 +204,22 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.Label lbLanguage;
 
         /// <summary>
-        /// txtGenre control.
+        /// ddlGenre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGenre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenre;
 
         /// <summary>
-        /// txtLanguage control.
+        /// ddlLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLanguage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
 
         /// <summary>
         /// lbActor control.
@@ -195,57 +267,12 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.Label lbAge;
 
         /// <summary>
-        /// txtAge control.
+        /// ddlAge control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAge;
-
-        /// <summary>
-        /// lbSynopsis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSynopsis;
-
-        /// <summary>
-        /// txtSynopsis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSynopsis;
-
-        /// <summary>
-        /// lbMovieURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieURL;
-
-        /// <summary>
-        /// txtMovieURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMovieURL;
-
-        /// <summary>
-        /// pnlVideoPreview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVideoPreview;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAge;
     }
 }

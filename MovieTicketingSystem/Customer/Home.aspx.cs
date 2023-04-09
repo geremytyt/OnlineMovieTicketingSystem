@@ -13,5 +13,16 @@ namespace MovieTicketingSystem.View
         {
 
         }
+
+        protected void btnViewMore_Command(object sender, CommandEventArgs e)
+        {
+            string id = e.CommandArgument.ToString();
+            Response.Redirect("MovieDetails.aspx?movieId=" + id);
+        }
+
+        protected void btnBookNow_Command(object sender, CommandEventArgs e)
+        {
+
+        }
     }
 }

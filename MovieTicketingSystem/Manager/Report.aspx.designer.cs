@@ -7,101 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.View
+namespace MovieTicketingSystem.Manager
 {
 
 
-    public partial class Home
+    public partial class Report
     {
 
         /// <summary>
-        /// Slide1 control.
+        /// DDLFoodreport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide1;
+        protected global::System.Web.UI.WebControls.DropDownList DDLFoodreport;
 
         /// <summary>
-        /// Slide2 control.
+        /// topAmountDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl topAmountDiv;
 
         /// <summary>
-        /// Slide3 control.
+        /// tbtotalItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide3;
+        protected global::System.Web.UI.WebControls.TextBox tbtotalItem;
 
         /// <summary>
-        /// Slide4 control.
+        /// timeRangeDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl timeRangeDiv;
 
         /// <summary>
-        /// CurrentMovieRepeater control.
+        /// tbFoodReportStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CurrentMovieRepeater;
+        protected global::System.Web.UI.WebControls.TextBox tbFoodReportStartDate;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// tbFoodReportEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.TextBox tbFoodReportEndDate;
 
         /// <summary>
-        /// CommingSoonRepeater control.
+        /// lblFoodReporttitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CommingSoonRepeater;
+        protected global::System.Web.UI.WebControls.Label lblFoodReporttitle;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// ReportGenerator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
-
-        /// <summary>
-        /// topMovieRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater topMovieRepeater;
-
-        /// <summary>
-        /// SqlDataSource3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReportGenerator;
     }
 }
