@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="MovieTicketingSystem.Manager.Report" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="MovieTicketingSystem.Manager.Report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
     <link href="../css/MenuStyle.css" rel="stylesheet" />

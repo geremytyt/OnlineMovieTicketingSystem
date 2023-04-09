@@ -13,7 +13,7 @@ namespace MovieTicketingSystem.View
     public partial class FoodManagement : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
-        string cs = Global.CS;
+        string cs = Global.cs;
 
         protected void Page_Load(object sender, EventArgs e)
         {
