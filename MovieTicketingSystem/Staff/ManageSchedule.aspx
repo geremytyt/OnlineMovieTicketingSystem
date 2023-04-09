@@ -13,7 +13,7 @@
         <h2 class="pageTitle">Maintain Schedule</h2>
         <hr />
         <div class="container1">
-            <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>" SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
             <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" DataKeyNames="scheduleNo" 
                 DataSourceID="SqlDataSourceSchedule" OnSelectedIndexChanged="scheduleGridView_SelectedIndexChanged" AutoPostBack="True" AllowPaging="True" 
                 AllowSorting="True" PageSize="10">
@@ -94,9 +94,9 @@
         
 
                 
-            <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>"
+            <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>"
     SelectCommand="SELECT DISTINCT movieId FROM Schedule"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceSchedule3" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>"
+                <asp:SqlDataSource ID="SqlDataSourceSchedule3" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>"
     SelectCommand="SELECT DISTINCT hallNo FROM Schedule"></asp:SqlDataSource>
             
              

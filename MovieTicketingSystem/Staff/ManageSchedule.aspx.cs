@@ -13,6 +13,7 @@ namespace MovieTicketingSystem.Staff
 {
     public partial class ManageSchedule : System.Web.UI.Page
     {
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -72,8 +73,8 @@ namespace MovieTicketingSystem.Staff
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             // Retrieve the last schedule ID from the database
-            string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            
+            using (SqlConnection connection = new SqlConnection(cs))
             {
                 connection.Open();
                 string query = "SELECT MAX(scheduleNo) FROM Schedule";
@@ -204,8 +205,8 @@ namespace MovieTicketingSystem.Staff
             if (ViewState["mode"].ToString() == "add")
             {
                 // Insert a new record into the Schedule table
-                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
                     connection.Open();
                     string query = "INSERT INTO Schedule (scheduleNo, movieId, hallNo, scheduleDateTime) VALUES (@scheduleNo, @movieId, @hallNo, @scheduleDateTime)";
@@ -241,8 +242,8 @@ namespace MovieTicketingSystem.Staff
                 string hallNo = ddlHall.SelectedValue;
                 DateTime scheduleDateTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text, "d/M/yyyy H:m:s", CultureInfo.InvariantCulture);
 
-                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
                     string updateCommand = "UPDATE [Schedule] SET [movieId] = @movieId, [hallNo] = @hallNo, [scheduleDateTime] = @scheduleDateTime WHERE [scheduleNo] = @scheduleNo";
                     using (SqlCommand command = new SqlCommand(updateCommand, connection))
