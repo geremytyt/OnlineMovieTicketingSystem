@@ -7,38 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Movie_Ticketing_System.View
+namespace MovieTicketingSystem
 {
 
 
-    public partial class WebForm1
+    public partial class Cart
     {
 
         /// <summary>
-        /// imgPoster control.
+        /// cartList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPoster;
+        protected global::System.Web.UI.WebControls.Repeater cartList;
 
         /// <summary>
-        /// lbMovieName control.
+        /// btn_proceed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieName;
-
-        /// <summary>
-        /// ddlDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
+        protected global::System.Web.UI.WebControls.Button btn_proceed;
     }
 }
