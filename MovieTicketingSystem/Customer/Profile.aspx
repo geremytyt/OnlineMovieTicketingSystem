@@ -69,7 +69,7 @@
                         <h3 class="text-white">My Tickets</h3>
                         <hr style="border:1px solid white"/>
                         <div style="height:550px;overflow:auto;">
-                            <%--<asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
+                            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="mx-auto bg-white text-black rounded-4 w-75">
                                         <div class="container-fluid m-2 p-2 ">
@@ -114,7 +114,7 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
-                                SelectCommand="SELECT Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Ticket.ticketCategory, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Ticket.ticketCategory, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty">
+                                SelectCommand="SELECT Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty">
                                 <SelectParameters>
                                     <asp:Parameter Name="custId" DefaultValue="C001"></asp:Parameter>
                                 </SelectParameters>
@@ -129,7 +129,7 @@
                                 <SelectParameters>
                                     <asp:Parameter Name="paymentNo"></asp:Parameter>
                                 </SelectParameters>
-                            </asp:SqlDataSource>--%>
+                            </asp:SqlDataSource>
                         </div>  
                     </div>
                     <div class="tab-pane fade p-3" id="nav-myHistory" role="tabpanel" aria-labelledby="nav-history-tab">
@@ -145,9 +145,9 @@
                             <button class="btn btn-default" style="width:50px" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         <div style="height:450px;overflow:auto;overflow-x:hidden;">
-                           <%-- <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4" OnItemDataBound="Repeater4_ItemDataBound">
+                            <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4" OnItemDataBound="Repeater4_ItemDataBound">
                                 <ItemTemplate>
-                                     <div style="border: 1px solid white; border-radius:10px;">
+                                     <div style="border: 1px solid white; border-radius:10px;" class="mb-2">
                                         <div class="row">
                                             <div class="my-2" style="width:65%;">
                                                 <div class="row">
@@ -191,20 +191,25 @@
                                                 </ItemTemplate>                                
                                             </asp:Repeater>
                                             <asp:Repeater ID="Repeater6" runat="server" DataSourceID="SqlDataSource6">
-                                                <ItemTemplate>
-                                                    <div style="border-bottom: 1px solid white; width: 95%;" class="mx-auto"></div>
-                                                    <div class="row">
+                                                <HeaderTemplate>
+                                                        <div style="border-bottom: 1px solid white; width: 95%;" class="mx-auto"></div>
                                                         <label class="fieldLabel mx-2" style="width:45%">Menu Item</label>
                                                         <label class="fieldLabel w-25 text-center">Quantity</label>
                                                         <label class="fieldLabel w-25 text-center">Subtotal(RM)</label>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <div class="row">
                                                         <asp:Label ID="lblMenu" runat="server" Cssclass="mx-2" Width="45%" Text='<%#Eval("menuName") %>'></asp:Label>
                                                         <asp:Label ID="lblQty2" runat="server" Cssclass="w-25 text-center" Text='<%#Eval("menuQty") %>'></asp:Label>
                                                         <asp:Label ID="lblSubTotal" runat="server" Cssclass="w-25 text-center" Text='<%#Convert.ToDecimal(Eval("menuQty")) * Convert.ToDecimal(Eval("menuPrice"))%>'></asp:Label>
-                                                        <label class="mx-2" style="width:45%"></label>
-                                                        <label class="fieldLabel w-25 text-center">Total(RM):</label>
-                                                        <asp:Label ID="Label15" runat="server" Cssclass="w-25 text-center" Text='<%#Eval("foodTotal") %>'></asp:Label>
+                                                        
                                                     </div>
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <label class="mx-2" style="width:45%"></label>
+                                                        <label class="fieldLabel w-25 text-center">Total(RM):</label>
+                                                        <asp:Label ID="Label15" runat="server" Cssclass="w-25 text-center" Text='<%#Eval("foodTotal") %>'></asp:Label>
+                                                </FooterTemplate>
                                             </asp:Repeater>         
                                         </div>
                                     </div>    
@@ -215,7 +220,7 @@
                                     <asp:Parameter DefaultValue="C001" Name="custID"></asp:Parameter>
                                 </SelectParameters>
                             </asp:SqlDataSource>
-                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty, Ticket.ticketPrice FROM Schedule INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Payment.paymentNo = @paymentNo) GROUP BY Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty, Ticket.ticketPrice">
+                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty FROM Schedule INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Payment.paymentNo = @paymentNo) GROUP BY Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty">
                                 <SelectParameters>
                                     <asp:Parameter Name="paymentNo"></asp:Parameter>
                                 </SelectParameters>
@@ -224,7 +229,7 @@
                                 <SelectParameters>
                                     <asp:Parameter Name="paymentNo"></asp:Parameter>
                                 </SelectParameters>
-                            </asp:SqlDataSource>--%>
+                            </asp:SqlDataSource>
                         </div>
                         <div class="w-100 text-center">
                             <asp:Label ID="lblNo" runat="server" Text="2 Record(s) displayed"></asp:Label>

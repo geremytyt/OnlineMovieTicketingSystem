@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Food.aspx.cs" Inherits="MovieTicketingSystem.User.Food" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Menu]"></asp:SqlDataSource>
-    <link href="../css/MenuStyle.css" rel="stylesheet" />
-    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
-
-
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Menu]"></asp:SqlDataSource>
     <div class="container Menubackgound" >
         <div class="row" >
             <asp:Repeater ID="repMenu" runat="server" DataSourceID="SqlDataSource1" >

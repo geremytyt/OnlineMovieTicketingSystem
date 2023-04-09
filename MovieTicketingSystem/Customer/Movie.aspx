@@ -1,7 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Movie.aspx.cs" Inherits="Movie_Ticketing_System.View.MoviePurchase" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Movie.aspx.cs" Inherits="MovieTicketingSystem.User.Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="../css/movie.css" rel="stylesheet" />
     <div class="container">
         <div class="row">
             <div class="col-lg-3 my-2">

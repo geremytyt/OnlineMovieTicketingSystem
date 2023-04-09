@@ -16,10 +16,6 @@ body {
     height: 100%;
 }
 
-body {
-    font-family: "Roboto", sans-serif;
-}
-
 #content {
     height: auto;
     min-height: 100%;

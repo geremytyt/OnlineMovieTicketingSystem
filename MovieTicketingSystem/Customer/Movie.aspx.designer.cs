@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Movie_Ticketing_System.View
+namespace MovieTicketingSystem.User
 {
 
 
-    public partial class MoviePurchase
+    public partial class Movie
     {
 
         /// <summary>

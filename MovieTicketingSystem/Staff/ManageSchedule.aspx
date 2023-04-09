@@ -1,22 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Staff.Master" CodeBehind="ManageSchedule.aspx.cs" Inherits="MovieTicketingSystem.Staff.ManageSchedule" %>
-
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="../css/style.css" rel="stylesheet" />
     <link href="../css/manageSchedule.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <div class="container">
+    <div class="container" style="height:700px;">
         <h2 class="pageTitle">Maintain Schedule</h2>
         <hr />
         <div class="container1">
-            <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>" SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
-            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" DataKeyNames="scheduleNo" 
-                DataSourceID="SqlDataSourceSchedule" OnSelectedIndexChanged="scheduleGridView_SelectedIndexChanged" AutoPostBack="True" AllowPaging="True" 
-                AllowSorting="True" PageSize="10">
+            <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
+            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" DataKeyNames="scheduleNo"
+                DataSourceID="SqlDataSourceSchedule" OnSelectedIndexChanged="scheduleGridView_SelectedIndexChanged" AutoPostBack="True" AllowPaging="True"
+                AllowSorting="True">
                 <HeaderStyle CssClass="gridview-header" />
                 <RowStyle CssClass="gridview-row" />
                 <AlternatingRowStyle CssClass="gridview-row" />
@@ -88,19 +80,11 @@
                     <asp:Button ID="btnCancel"  runat="server" Text="Cancel" CssClass="btn btn-default" Width="40%" OnClick="btnCancel_Click" />
                 </div>
                 <br />
-                
-
             </div>
-        
-
-                
-            <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>"
-    SelectCommand="SELECT DISTINCT movieId FROM Schedule"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceSchedule3" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBConnectionString %>"
-    SelectCommand="SELECT DISTINCT hallNo FROM Schedule"></asp:SqlDataSource>
-            
-             
+            <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
+                SelectCommand="SELECT DISTINCT movieId FROM Schedule"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceSchedule3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
+                SelectCommand="SELECT DISTINCT hallNo FROM Schedule"></asp:SqlDataSource>
         </div>
-        
     </div>
 </asp:Content>

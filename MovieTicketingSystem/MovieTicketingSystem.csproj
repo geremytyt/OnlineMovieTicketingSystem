@@ -85,14 +85,24 @@
     <Content Include="App_Data\movieDB_log.ldf">
       <DependentUpon>movieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="css\manageSchedule.css" />
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Food.aspx" />
     <Content Include="Customer\Home.aspx" />
     <Content Include="Customer\Login.aspx" />
+    <Content Include="Customer\Movie.aspx" />
     <Content Include="Customer\MovieDetails.aspx" />
     <Content Include="Customer\Register.aspx" />
     <Content Include="Customer\ResetPassword1.aspx" />
     <Content Include="Customer\ResetPassword2.aspx" />
+    <Content Include="Image\c001.jpg" />
+    <Content Include="Image\c002.jpg" />
+    <Content Include="Image\c003.jpg" />
+    <Content Include="Image\c004.jpg" />
+    <Content Include="Image\c005.jpg" />
+    <Content Include="Image\qrcode.png" />
+    <Content Include="Image\Seat.png" />
+    <Content Include="Image\user.png" />
     <Content Include="Staff\ManageActiveStaff.aspx" />
     <Content Include="Staff\ManageActiveUser.aspx" />
     <Content Include="Staff\ManageResignedStaff.aspx" />
@@ -101,7 +111,6 @@
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
-    <Content Include="css\MenuStyle.css" />
     <Content Include="Customer\Payment.aspx" />
     <Content Include="Customer\PaymentMethod.aspx" />
     <Content Include="Customer\PaymentSummary.aspx" />
@@ -138,7 +147,6 @@
     <Content Include="Staff\EditMovie.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
-    <Content Include="Customer\Movie.aspx" />
     <Content Include="Customer\Profile.aspx" />
     <Content Include="Staff\StaffMovie.aspx" />
     <Content Include="Web.config" />
@@ -171,6 +179,13 @@
     </Compile>
     <Compile Include="Customer\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Movie.aspx.cs">
+      <DependentUpon>Movie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Movie.aspx.designer.cs">
+      <DependentUpon>Movie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\MovieDetails.aspx.cs">
       <DependentUpon>MovieDetails.aspx</DependentUpon>
@@ -334,13 +349,6 @@
     </Compile>
     <Compile Include="Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\Movie.aspx.cs">
-      <DependentUpon>Movie.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\Movie.aspx.designer.cs">
-      <DependentUpon>Movie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

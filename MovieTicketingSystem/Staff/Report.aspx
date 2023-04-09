@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="MovieTicketingSystem.Manager.Report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-    <link href="../css/MenuStyle.css" rel="stylesheet" />
-
-<div class="container" id="reportContainer">
+<div class="container" id="reportContainer" style="height:700px;">
   
         <!---report setting--->
          <div class="reportsetting">

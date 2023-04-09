@@ -6,7 +6,7 @@
             <asp:Button ID="btnAddMovie" runat="server" Text="Add Movie" class="btn btn-warning float-end my-1" OnClick="btnAddMovie_Click"/>
             <div class="input-group">
             <asp:TextBox ID="txtSearch" runat="server" TextMode="Search" class="form-control my-2" placeholder="Search"></asp:TextBox>
-            <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-success my-2"/>            
+            <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-default my-2"/>            
             </div>
             <asp:GridView ID="MovieGridView" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="movieId" DataSourceID="SqlDataSource1" CssClass="table table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
@@ -20,7 +20,7 @@
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <div class="d-grid gap-2 d-md-flex">
-                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-success" OnCommand="btns_Command"/>
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command"/>
                                 <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-warning" OnCommand="btns_Command"/>
                             </div>
                         </ItemTemplate>

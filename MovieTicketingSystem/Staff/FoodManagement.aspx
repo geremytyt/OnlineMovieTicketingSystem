@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager.Master" AutoEventWireup="true" CodeBehind="FoodManagement.aspx.cs" Inherits="MovieTicketingSystem.View.FoodManagement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="FoodManagement.aspx.cs" Inherits="MovieTicketingSystem.View.FoodManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
- <link href="../css/MenuStyle.css" rel="stylesheet" />
  <script>
         //saving file into
         function uploadImg() {

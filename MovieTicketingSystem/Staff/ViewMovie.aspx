@@ -8,7 +8,7 @@
             </h1>
             <div class="gap-2 d-flex my-2 col-lg-8">
                 <asp:Button ID="btnModify" runat="server" Text="Modify" class="btn btn-warning" OnClick="btnModify_Click" />
-                <asp:Button ID="btnEdit" runat="server" Text="Back" class="btn btn-danger" OnClick="btnEdit_Click" />
+                <asp:Button ID="btnEdit" runat="server" Text="Back" class="btn btn-default" OnClick="btnEdit_Click" />
             </div>
         </div>
         <hr style="width:100%; border-color:white;"/>

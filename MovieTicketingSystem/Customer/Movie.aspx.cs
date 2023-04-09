@@ -1,18 +1,15 @@
-﻿using MovieTicketingSystem.Model;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Movie_Ticketing_System.View
+namespace MovieTicketingSystem.User
 {
-    public partial class MoviePurchase : System.Web.UI.Page
+    public partial class Movie : System.Web.UI.Page
     {
         private List<DateTime> dates = new List<DateTime>();
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
@@ -34,7 +31,7 @@ namespace Movie_Ticketing_System.View
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    found= true;
+                    found = true;
                     lbMovieName.Text = dr["movieName"].ToString();
                     imgPoster.ImageUrl = dr["posterURL"].ToString();
                 }
@@ -44,12 +41,10 @@ namespace Movie_Ticketing_System.View
                 }
             }
         }
-
         protected void btnNext_Click(object sender, EventArgs e)
         {
             string url = String.Format("MovieSeatSelection.aspx?scheduleNo={0}&movieId={1}", ddlDate.SelectedValue, Request.QueryString["movieId"]);
-          Response.Redirect(url);
-
+            Response.Redirect(url);
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿* {
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 html,
@@ -11,9 +9,11 @@ body {
 
 body {
     font-family: "Trebuchet MS";
+    vertical-align: middle;
 }
 
 #content {
+    height: auto;
     min-height: 100%;
     background-color: #343a40;
 }
@@ -39,11 +39,11 @@ body {
     background: #f4e618;
 }
 
-.btn-default:hover {
-    border-color: #f4e618;
-    color: #f4e618;
-    background: none;
-}
+    .btn-default:hover {
+        border-color: #f4e618;
+        color: #f4e618;
+        background: none;
+    }
 
 .text-heading {
     color: #f4e618;
@@ -58,14 +58,14 @@ body {
     border-right: none;
 }
 
-#nav-history-tab, #main_deleteTab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab{
+#nav-history-tab, #main_deleteTab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab {
     color: white;
     background: none;
     border: 1px solid white;
     width: 250px;
 }
 
-#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active , #main_deleteTab:focus{
+#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active, #main_deleteTab:focus {
     color: black;
     background: #f4e618;
     border: 1px solid #f4e618;
@@ -84,8 +84,8 @@ body {
     border-bottom: 1px solid white;
 }
 
-.form-floating::before{
-    display:none;
+.form-floating::before {
+    display: none;
 }
 
 .nav-tabs {
@@ -97,6 +97,382 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .fieldLabel {
-    color:#808080;
-    font-size:12px;
+    color: #808080;
+    font-size: 12px;
 }
+
+
+/* Food Customer Side*/
+.Menubackgound {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.Menubackgound .card {
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    border-bottom: 2px black solid;
+    background-color: lightyellow;
+    width: 100%;
+    margin: 5px auto;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.Menubackgound .card-header {
+    height: 10%;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: larger;
+    background-color: yellow;
+}
+
+.image-box {
+    height: 55%;
+    position: relative;
+    display: inline-block;
+    align-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-top {
+    align-content: start;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.textInImage {
+    position: absolute;
+    z-index: 999;
+    top: 90%;
+    bottom: 0%;
+    text-align: right;
+    padding-right: 5%;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    color: yellow;
+    text-shadow: 1px 1px 2px black;
+}
+
+.Menubackgound .card-body {
+    height: 35%;
+    overflow: hidden;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-size: large;
+    color: black;
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+}
+
+.Menubackgound .divPrice {
+    text-align: left;
+    width: 45%;
+    float: left;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.Menubackgound .divRemarks {
+    text-align: right;
+    width: 45%;
+    float: right;
+    padding-left: 5px;
+}
+
+.Menubackgound .card-footer {
+    background-color: yellow;
+    height: 50px;
+}
+
+.Menubackgound .Qty {
+    width: 15%;
+}
+
+.Menubackgound .btn_add_to_cart {
+    vertical-align: central;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    float: right;
+    background-color: yellow;
+    color: black;
+    border: 1px solid black;
+}
+
+.Menubackgound .btn_add_to_cart:hover {
+    font-weight: bolder;
+    background-color: black;
+    color: yellow;
+    border: 1px solid yellow;
+    transition-delay: 0.1s;
+    transition-duration: 0.5s;
+}
+
+/* food management */
+.containerLeft {
+    padding-right: 2px;
+    width: 50%;
+    height: 100%;
+    vertical-align: top;
+    justify-content: start;
+    display: table-cell;
+    margin: 30px auto 0px auto;
+}
+
+.containerRight {
+    margin-top: 30px;
+    vertical-align: top;
+    width: 50%;
+    display: table-cell;
+    border: 1px yellow solid;
+}
+
+.GVmenu {
+    width: 100%;
+}
+
+.uploadbtn {
+    color: white;
+}
+
+.uploadbtn::target-text {
+    visibility: hidden;
+}
+
+.uploadbtn::file-selector-button {
+    background-color: yellow;
+    color: black;
+    border: 1px solid black;
+}
+
+.actionBar {
+    margin: 0px auto 5px auto;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actionButton {
+    margin: auto;
+    width: 25%;
+    margin: auto;
+    height: 100%;
+    background-color: yellow;
+    color: black;
+    border: 1px solid black;
+}
+
+.actionButton:hover, .uploadbtn::file-selector-button:hover {
+    background-color: inherit;
+    color: yellow;
+    border: 1px solid yellow;
+    transition-delay: 0.1s;
+    transition-duration: 0.5s;
+}
+
+.containerRight h3 {
+    height: 32px;
+    width: 100%;
+    line-height: 1.9em;
+    font-size: 20px;
+    color: yellow;
+    background-color: black;
+    text-align: center;
+}
+
+.containerRight .form-floating {
+    color: white;
+}
+
+    .containerRight .form-floating:before {
+        display: none;
+    }
+
+.containerRight .form-control {
+    background: inherit;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+    .containerRight .form-control:focus {
+        background: inherit;
+        box-shadow: none;
+        border: none;
+        border-bottom: 2px solid yellow;
+        color: white;
+    }
+
+/* cart */
+#Cartbackground {
+    width: 75%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartItem {
+    color: black;
+    background-color: white;
+}
+
+
+    .cartItem:nth-child(even) {
+        background-color: lightyellow;
+    }
+
+#Cartbackground h1 {
+    padding-top: 50px;
+    color: yellow;
+    font-weight: bolder;
+}
+
+.cart-image-box {
+    margin: auto;
+    padding: 0px;
+    border: 2px black solid;
+}
+
+.btn_proceed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50px;
+    margin: 25px auto 15px;
+    border-radius: 15px;
+    border: 1px solid yellow;
+    background-color: inherit;
+    color: yellow;
+}
+
+    .btn_proceed:hover {
+        border: 1px solid black;
+        background-color: yellow;
+        color: black;
+        font-weight: 500;
+    }
+
+#Cartbackground .btnMinus, #Cartbackground .btnAdd {
+    width: 30px;
+    background-color: antiquewhite;
+    border: 0px solid black;
+    border-radius: 20px;
+    color: black;
+    margin: 0px auto;
+}
+
+/*Report*/
+#reportContainer {
+    background-color: inherit;
+    color: yellow;
+    padding: 0px;
+    height: 80%;
+}
+
+#reportContainer ul {
+    border: none;
+}
+
+.reportsetting {
+    margin: auto;
+    justify-content: center;
+    padding: 25px 0px;
+    width: 70%;
+    color: white;
+}
+
+#reportContainer .form-floating {
+    color: white;
+    width: 42%;
+}
+
+#reportContainer .form-floating:before {
+    display: none;
+    width: 42%;
+}
+
+#reportContainer .form-control {
+    background: inherit;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+#reportContainer .form-control:focus {
+    background: inherit;
+    box-shadow: none;
+    border: none;
+    border-bottom: 2px solid yellow;
+    color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    filter: invert(100%) sepia(100%) saturate(10%) hue-rotate(305deg) brightness(103%) contrast(103%);
+}
+
+.foodreport {
+    margin: 10px auto 0 auto;
+}
+
+/**//
+.btnGroup {
+    display: flex;
+    justify-content: center;
+}
+
+.labelScedule {
+    width: 100%;
+}
+
+.requiredField:after {
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+}
+
+.container-poster {
+    width: fit-content;
+}
+
+.image-poster {
+    width: 100%;
+    height: 300px;
+    overflow: clip;
+}
+
+.borderNo {
+    border: 0px;
+}
+
+.slideImage {
+    width: 100%;
+    height: 460px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: transparent;
+    color: yellow;
+    opacity: 1 !important;
+}
+
+.nav-tabs .nav-link {
+    border: 0;
+    position: relative;
+    color: white;
+    padding: 0.5rem 0 0;
+    margin: 0 1rem;
+}
+
+
+/***/
+

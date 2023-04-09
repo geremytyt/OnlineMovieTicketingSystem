@@ -109,43 +109,43 @@ namespace MovieTicketingSystem.View
             Response.Redirect("Home.aspx");
         }
 
-        //protected void Repeater4_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        //    {
-        //        Repeater rpt5 = (Repeater)e.Item.FindControl("Repeater5");
-        //        Repeater rpt6 = (Repeater)e.Item.FindControl("Repeater6");
-        //        // Extract the value from the desired column of the data item
-        //        string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
+        protected void Repeater4_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Repeater rpt5 = (Repeater)e.Item.FindControl("Repeater5");
+                Repeater rpt6 = (Repeater)e.Item.FindControl("Repeater6");
+                // Extract the value from the desired column of the data item
+                string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
 
-        //        // Set the value of the ColumnValue parameter for sqlDataSource2
-        //        SqlDataSource5.SelectParameters["paymentNo"].DefaultValue = columnValue;
-        //        rpt5.DataBind();
+                // Set the value of the ColumnValue parameter for sqlDataSource2
+                SqlDataSource5.SelectParameters["paymentNo"].DefaultValue = columnValue;
+                rpt5.DataBind();
 
-        //        SqlDataSource6.SelectParameters["paymentNo"].DefaultValue = columnValue;
-        //        rpt6.DataBind();
+                SqlDataSource6.SelectParameters["paymentNo"].DefaultValue = columnValue;
+                rpt6.DataBind();
 
-        //    }
-        //}
+            }
+        }
 
-        //protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        //    {
-        //        Repeater rpt2 = (Repeater)e.Item.FindControl("Repeater2");
-        //        Repeater rpt3 = (Repeater)e.Item.FindControl("Repeater3");
-        //        // Extract the value from the desired column of the data item
-        //        string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Repeater rpt2 = (Repeater)e.Item.FindControl("Repeater2");
+                Repeater rpt3 = (Repeater)e.Item.FindControl("Repeater3");
+                // Extract the value from the desired column of the data item
+                string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
 
-        //        // Set the value of the ColumnValue parameter for sqlDataSource2
-        //        SqlDataSource2.SelectParameters["paymentNo"].DefaultValue = columnValue;
+                // Set the value of the ColumnValue parameter for sqlDataSource2
+                SqlDataSource2.SelectParameters["paymentNo"].DefaultValue = columnValue;
 
-        //        SqlDataSource3.SelectParameters["paymentNo"].DefaultValue = columnValue;
+                SqlDataSource3.SelectParameters["paymentNo"].DefaultValue = columnValue;
 
-        //        rpt2.DataBind();
+                rpt2.DataBind();
 
-        //        rpt3.DataBind();
-        //    }
-        //}
+                rpt3.DataBind();
+            }
+        }
     }
 }
