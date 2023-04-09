@@ -13,5 +13,32 @@ namespace Movie_Ticketing_System.View
 
     public partial class WebForm1
     {
+
+        /// <summary>
+        /// imgPoster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPoster;
+
+        /// <summary>
+        /// lbMovieName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMovieName;
+
+        /// <summary>
+        /// ddlDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
     }
 }

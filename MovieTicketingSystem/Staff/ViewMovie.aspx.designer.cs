@@ -15,6 +15,24 @@ namespace MovieTicketingSystem.Staff
     {
 
         /// <summary>
+        /// btnModify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModify;
+
+        /// <summary>
+        /// btnEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEdit;
+
+        /// <summary>
         /// posterImage control.
         /// </summary>
         /// <remarks>
@@ -24,13 +42,13 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.Image posterImage;
 
         /// <summary>
-        /// lbMovieNo control.
+        /// lbMovieId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieNo;
+        protected global::System.Web.UI.WebControls.Label lbMovieId;
 
         /// <summary>
         /// lbMovieName control.
@@ -42,13 +60,13 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.Label lbMovieName;
 
         /// <summary>
-        /// txtMovieNo control.
+        /// txtMovieId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMovieNo;
+        protected global::System.Web.UI.WebControls.TextBox txtMovieId;
 
         /// <summary>
         /// txtMovieName control.
@@ -186,24 +204,6 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.TextBox txtAge;
 
         /// <summary>
-        /// lbMovieURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieURL;
-
-        /// <summary>
-        /// txtMovieUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMovieUrl;
-
-        /// <summary>
         /// lbSynopsis control.
         /// </summary>
         /// <remarks>
@@ -222,21 +222,30 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.TextBox txtSynopsis;
 
         /// <summary>
-        /// btnView control.
+        /// lbMovieURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnView;
+        protected global::System.Web.UI.WebControls.Label lbMovieURL;
 
         /// <summary>
-        /// btnEdit control.
+        /// txtMovieURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtMovieURL;
+
+        /// <summary>
+        /// pnlVideoPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVideoPreview;
     }
 }
