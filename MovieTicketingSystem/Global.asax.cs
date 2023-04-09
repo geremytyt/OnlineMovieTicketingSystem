@@ -9,10 +9,7 @@ namespace MovieTicketingSystem
 {
     public class Global : System.Web.HttpApplication
     {
-        //declare global variable to hold connection string 
-        //login detail CS - conenection string
-        public const string CS = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Moviedb.mdf;Integrated Security=True";
-
+        public const string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\MovieTicketingSystem\MovieTicketingSystem\App_Data\movieDB.mdf;Integrated Security=True";
         protected void Application_Start(object sender, EventArgs e)
         {
 
