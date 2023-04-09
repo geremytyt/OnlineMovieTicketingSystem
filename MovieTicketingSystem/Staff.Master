@@ -39,7 +39,7 @@
             </div>
         </nav>
 
-     <div id="content" style="height:600px">
+     <div id="content" style="height:700px">
         <asp:ContentPlaceHolder ID="main" runat="server">        
         </asp:ContentPlaceHolder>       
     </div>

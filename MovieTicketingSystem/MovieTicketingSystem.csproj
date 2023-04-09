@@ -73,10 +73,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\movieDB.mdf" />
-    <Content Include="App_Data\movieDB_log.ldf">
-      <DependentUpon>movieDB.mdf</DependentUpon>
+    <Content Include="App_Data\MovieDB.mdf" />
+    <Content Include="App_Data\MovieDB_log.ldf">
+      <DependentUpon>MovieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="css\manageSchedule.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
     <Content Include="Customer\Payment.aspx" />
@@ -84,9 +85,11 @@
     <Content Include="Customer\PaymentSummary.aspx" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
+    <Content Include="Staff\ManagePayment.aspx" />
     <Content Include="Staff\ManageSchedule.aspx" />
     <Content Include="Staff\ManageUser.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
+    <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Customer\Movie.aspx" />
@@ -135,6 +138,13 @@
     <Compile Include="Manager.Master.designer.cs">
       <DependentUpon>Manager.Master</DependentUpon>
     </Compile>
+    <Compile Include="Staff\ManagePayment.aspx.cs">
+      <DependentUpon>ManagePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ManagePayment.aspx.designer.cs">
+      <DependentUpon>ManagePayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\ManageSchedule.aspx.cs">
       <DependentUpon>ManageSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +165,13 @@
     </Compile>
     <Compile Include="Staff\ViewMovie.aspx.designer.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ViewPayment.aspx.cs">
+      <DependentUpon>ViewPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ViewPayment.aspx.designer.cs">
+      <DependentUpon>ViewPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
