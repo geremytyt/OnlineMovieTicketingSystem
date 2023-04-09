@@ -40,8 +40,8 @@
                         </div>
                         <asp:Button class="btn btn-default mt-2 w-75" ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
                         <div class="row">
-                            <asp:HyperLink CssClass="mt-2 col-md-8" ID="hlForgetpwd" runat="server" NavigateUrl="~/User/ResetPassword1.aspx">Forget Password?</asp:HyperLink>
-                            <asp:HyperLink CssClass="mt-2 col-md-4" ID="hlRegister" runat="server" NavigateUrl="~/User/Register.aspx">Register</asp:HyperLink>
+                            <asp:HyperLink CssClass="mt-2 col-md-8" ID="hlForgetpwd" runat="server" NavigateUrl="ResetPassword1.aspx">Forget Password?</asp:HyperLink>
+                            <asp:HyperLink CssClass="mt-2 col-md-4" ID="hlRegister" runat="server" NavigateUrl="Register.aspx">Register</asp:HyperLink>
                         </div>
                         </div>
                     <div class="tab-pane fade p-3" id="nav-staffLogin" role="tabpanel" aria-labelledby="nav-staff Login-tab">
@@ -60,7 +60,7 @@
                         </div>
                         <asp:Button class="btn btn-default mt-2 w-75" ID="btnStaffLogin" runat="server" Text="Login" OnClick="btnStaffLogin_Click"/>
                         <div class="row">
-                            <asp:HyperLink CssClass="mt-2" ID="hlForgetpwd1" runat="server" >Forget Password?</asp:HyperLink>
+                            <asp:HyperLink CssClass="mt-2" ID="hlForgetpwd1" runat="server" NavigateUrl="ResetPassword1.aspx">Forget Password?</asp:HyperLink>
                         </div>
                     </div>
                 </div>

@@ -7,16 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.View
 {
-    public partial class Register : System.Web.UI.Page
+    public partial class ResetPassword : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnRegister_Click(object sender, EventArgs e)
+        protected void btnToken_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
+            Response.Redirect("ResetPassword2.aspx?email=" + txtEmail.Text);
         }
     }
 }
