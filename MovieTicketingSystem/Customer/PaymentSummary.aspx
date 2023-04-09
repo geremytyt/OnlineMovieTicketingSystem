@@ -35,16 +35,16 @@
             </tr>
 
             
-            <tr>
+            <%--<tr>
                 <td class="detailHeader">Purchase Details</td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>Purchase No:</td>
                 <td>
                     <asp:Label ID="lblPurchaseNo" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td>Ticket No:</td>
                 <td>
                     <asp:Label ID="lblTicketNo" runat="server" Text=""></asp:Label>
@@ -85,7 +85,7 @@
                 <td>
                     <asp:Label ID="lblMenuId" runat="server" Text=""></asp:Label>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <br />
         <asp:Button ID="btnDone" class="btnDone" runat="server" Text="Done" />

@@ -85,6 +85,7 @@
     <Content Include="App_Data\movieDB_log.ldf">
       <DependentUpon>movieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="css\manageSchedule.css" />
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Food.aspx" />
     <Content Include="Customer\Home.aspx" />

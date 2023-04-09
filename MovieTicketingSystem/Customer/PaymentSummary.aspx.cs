@@ -22,13 +22,13 @@ namespace MovieTicketingSystem.View
                 // Set the payment number label
                 //lblPaymentNo.Text = paymentNo;
 
-                // Retrieve payment details from database
-                //string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //Retrieve payment details from database
+
+                //using (SqlConnection connection = new SqlConnection(cs))
                 //{
                 //    connection.Open();
 
-                //    string query = @"SELECT Payment.paymentNo, Payment.paymentDateTime, Payment.paymentAmount, Payment.cardNo,
+                //    string query = @"SELECT Payment.paymentNo, Payment.purchaseNo, Payment.paymentDateTime, Payment.paymentAmount, Payment.cardNo,
                 //   Ticket.ticketNo, Schedule.scheduleDateTime, Hall.hallNo, Ticket.seatNo, Movie.movieName,
                 //   PurchaseMenu.menuId, Menu.menuName
                 //    FROM Payment
@@ -69,16 +69,15 @@ namespace MovieTicketingSystem.View
                 //    reader.Close();
                 //}
 
-                string paymentQuery = "SELECT paymentNo, paymentDateTime, paymentAmount, cardNo FROM Payment WHERE paymentNo = @paymentNo";
-                string purchaseQuery = "SELECT Purchase.purchaseNo, Ticket.ticketNo, Schedule.scheduleDateTime, Hall.hallNo, Ticket.seatNo, Movie.movieName, PurchaseMenu.menuId, Menu.menuName " +
-                                       "FROM Purchase " +
-                                       "INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo " +
-                                       "INNER JOIN Schedule ON Ticket.scheduleNo = Schedule.scheduleNo " +
-                                       "INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo " +
-                                       "INNER JOIN Movie ON Schedule.movieId = Movie.movieId " +
-                                       "LEFT JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo " +
-                                       "LEFT JOIN Menu ON PurchaseMenu.menuId = Menu.menuId " +
-                                       "WHERE Purchase.purchaseNo = @purchaseNo";
+                string paymentQuery = "SELECT paymentNo, purchaseNo, paymentDateTime, paymentAmount, cardNo FROM Payment WHERE paymentNo = @paymentNo";
+                string purchaseQuery = @"SELECT P.ticketTotal, P.foodTotal, T.scheduleNo, T.ticketCategory, T.ticketPrice, T.seatNo, S.movieId, S.hallNo, S.scheduleDateTime, M.movieName, M.movieDuration, PM.menuId, Menu.menuName
+                                        FROM Purchase P
+                                        JOIN Ticket T ON P.PurchaseNo = T.PurchaseNo
+                                        JOIN Schedule S ON T.scheduleNo = S.scheduleNo
+                                        JOIN Movie M ON S.movieId = M.movieId
+                                        JOIN PurchaseMenu PM ON P.PurchaseNo = PM.PurchaseNo
+                                        JOIN Menu ON PM.menuId = Menu.menuId
+                                        WHERE P.PurchaseNo = @purchaseNo";
 
                 using (SqlConnection connection = new SqlConnection(cs))
                 {
@@ -102,24 +101,24 @@ namespace MovieTicketingSystem.View
                         string purchaseNo = paymentReader["purchaseNo"].ToString();
                         paymentReader.Close();
 
-                        SqlCommand purchaseCommand = new SqlCommand(purchaseQuery, connection);
-                        purchaseCommand.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        SqlDataReader purchaseReader = purchaseCommand.ExecuteReader();
+                        //SqlCommand purchaseCommand = new SqlCommand(purchaseQuery, connection);
+                        //purchaseCommand.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                        //SqlDataReader purchaseReader = purchaseCommand.ExecuteReader();
 
-                        if (purchaseReader.Read())
-                        {
-                            // Populate the purchase details labels
-                            lblPurchaseNo.Text = purchaseReader["purchaseNo"].ToString();
-                            lblTicketNo.Text = purchaseReader["ticketNo"].ToString();
-                            lblTitle.Text = purchaseReader["movieName"].ToString();
-                            lblShowingDate.Text = DateTime.Parse(purchaseReader["scheduleDateTime"].ToString()).ToString("d/M/yyyy");
-                            lblShowingTime.Text = DateTime.Parse(purchaseReader["scheduleDateTime"].ToString()).ToString("H:m:ss");
-                            lblHallNo.Text = purchaseReader["hallNo"].ToString();
-                            lblSeat.Text = purchaseReader["seatNo"].ToString();
-                            lblMenuId.Text = purchaseReader["menuName"].ToString();
-                        }
+                        //if (purchaseReader.Read())
+                        //{
+                        //    // Populate the purchase details labels
+                        //    lblPurchaseNo.Text = purchaseReader["purchaseNo"].ToString();
+                        //    lblTicketNo.Text = purchaseReader["ticketNo"].ToString();
+                        //    lblTitle.Text = purchaseReader["movieName"].ToString();
+                        //    lblShowingDate.Text = DateTime.Parse(purchaseReader["scheduleDateTime"].ToString()).ToString("d/M/yyyy");
+                        //    lblShowingTime.Text = DateTime.Parse(purchaseReader["scheduleDateTime"].ToString()).ToString("H:m:ss");
+                        //    lblHallNo.Text = purchaseReader["hallNo"].ToString();
+                        //    lblSeat.Text = purchaseReader["seatNo"].ToString();
+                        //    lblMenuId.Text = purchaseReader["menuName"].ToString();
+                        //}
 
-                        purchaseReader.Close();
+                        //purchaseReader.Close();
                     }
                 }
             }
