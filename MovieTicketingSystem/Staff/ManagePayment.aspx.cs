@@ -54,23 +54,23 @@ namespace MovieTicketingSystem.Staff
                         }
                         reader.Close();
 
-                        cmd = new SqlCommand("SELECT * FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblTicketNo.Text = reader["ticketNo"].ToString();
-                        }
-                        reader.Close();
+                        //cmd = new SqlCommand("SELECT * FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
+                        //cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                        //reader = cmd.ExecuteReader();
+                        //if (reader.Read())
+                        //{
+                        //    lblTicketNo.Text = reader["ticketNo"].ToString();
+                        //}
+                        //reader.Close();
 
-                        cmd = new SqlCommand("SELECT * FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblMenuID.Text = reader["menuId"].ToString();
-                        }
-                        reader.Close();
+                        //cmd = new SqlCommand("SELECT * FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
+                        //cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                        //reader = cmd.ExecuteReader();
+                        //if (reader.Read())
+                        //{
+                        //    lblMenuID.Text = reader["menuId"].ToString();
+                        //}
+                        //reader.Close();
 
                     }
                     conn.Close();
