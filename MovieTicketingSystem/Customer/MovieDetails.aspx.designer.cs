@@ -7,101 +7,119 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.View
+namespace MovieTicketingSystem.User
 {
 
 
-    public partial class Home
+    public partial class MovieDetails
     {
 
         /// <summary>
-        /// Slide1 control.
+        /// imgMoviePoster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide1;
+        protected global::System.Web.UI.WebControls.Image imgMoviePoster;
 
         /// <summary>
-        /// Slide2 control.
+        /// lbMovieName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide2;
+        protected global::System.Web.UI.WebControls.Label lbMovieName;
 
         /// <summary>
-        /// Slide3 control.
+        /// lbReleaseDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide3;
+        protected global::System.Web.UI.WebControls.Label lbReleaseDate;
 
         /// <summary>
-        /// Slide4 control.
+        /// lbLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide4;
+        protected global::System.Web.UI.WebControls.Label lbLanguage;
 
         /// <summary>
-        /// CurrentMovieRepeater control.
+        /// lbDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CurrentMovieRepeater;
+        protected global::System.Web.UI.WebControls.Label lbDuration;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// lbGenre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Label lbGenre;
 
         /// <summary>
-        /// CommingSoonRepeater control.
+        /// lbClassification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CommingSoonRepeater;
+        protected global::System.Web.UI.WebControls.Label lbClassification;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// lbDirector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.Label lbDirector;
 
         /// <summary>
-        /// topMovieRepeater control.
+        /// lbActor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater topMovieRepeater;
+        protected global::System.Web.UI.WebControls.Label lbActor;
 
         /// <summary>
-        /// SqlDataSource3 control.
+        /// lbSynopsis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
+        protected global::System.Web.UI.WebControls.Label lbSynopsis;
+
+        /// <summary>
+        /// pnlVideoPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVideoPreview;
+
+        /// <summary>
+        /// btbBuy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btbBuy;
     }
 }
