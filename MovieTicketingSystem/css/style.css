@@ -1,5 +1,7 @@
 ﻿* {
-    margin: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 html,
@@ -56,14 +58,14 @@ body {
     border-right: none;
 }
 
-#nav-history-tab, #nav-logout-tab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab{
+#nav-history-tab, #main_deleteTab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab{
     color: white;
     background: none;
     border: 1px solid white;
     width: 250px;
 }
 
-#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active , #nav-logout-tab:focus{
+#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active , #main_deleteTab:focus{
     color: black;
     background: #f4e618;
     border: 1px solid #f4e618;
@@ -74,7 +76,7 @@ body {
     border-bottom: 1px solid #f4e618;
 }
 
-#txtEmail, #main_txtEmail, #txtPassword, #main_txtPassword, #txtEmail1, #txtPassword1, #main_TextBox1, #main_TextBox2, #main_TextBox3, #txtName, #main_txtName, #txtDob, #main_txtDob, #txtCfmPassword, #txtPhone, #main_txtPhone {
+#txtEmail, #main_txtEmail, #txtPassword, #main_txtPassword, #txtEmail1, #txtPassword1, #main_TextBox1, #main_TextBox2, #main_TextBox3, #txtName, #main_txtName, #txtDob, #main_txtDob, #txtCfmPassword, #txtPhone, #main_txtPhone, #main_txtIC, #main_txtPassword1, #main_txtCfmPassword, #main_txtPosition {
     border-radius: 0;
     border: none;
     background: none;
@@ -82,8 +84,8 @@ body {
     border-bottom: 1px solid white;
 }
 
-#float::before, #float1::before, #float2::before, #float3::before, #float4::before, #float5::before, #float6::before, #float7::before, #float8::before {
-    background: none;
+.form-floating::before{
+    display:none;
 }
 
 .nav-tabs {
