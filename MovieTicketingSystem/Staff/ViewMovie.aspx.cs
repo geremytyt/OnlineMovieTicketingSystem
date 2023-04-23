@@ -27,21 +27,24 @@ namespace MovieTicketingSystem.Staff
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    
+
                     found = true;
                     DateTime date = DateTime.Parse(dr["releaseDate"].ToString());
+                    DateTime endDate = DateTime.Parse(dr["endDate"].ToString());
                     txtMovieId.Text = id;
                     txtMovieName.Text = dr["movieName"].ToString();
                     txtDate.Text = date.ToString("dd/MM/yyyy");
+                    txtEndDate.Text = endDate.ToString("dd/MM/yyyy");
                     txtDuration.Text = String.Format("{0} hrs {1} mins", Convert.ToInt32(dr["movieDuration"]) / 60, Convert.ToInt32(dr["movieDuration"]) % 60);
-                    txtGenre.Text= dr["genre"].ToString();
-                    txtLanguage.Text= dr["language"].ToString();
-                    txtSynopsis.Text= dr["synopsis"].ToString();
-                    txtActor.Text= dr["actor"].ToString();
-                    txtDirector.Text= dr["director"].ToString();
-                    txtAge.Text= dr["ageRating"].ToString();
+                    txtGenre.Text = dr["genre"].ToString();
+                    txtLanguage.Text = dr["language"].ToString();
+                    txtSynopsis.Text = dr["synopsis"].ToString();
+                    txtActor.Text = dr["actor"].ToString();
+                    txtDirector.Text = dr["director"].ToString();
+                    txtAge.Text = dr["ageRating"].ToString();
                     posterImage.ImageUrl = ResolveUrl(dr["posterURL"].ToString());
                     txtMovieURL.Text = dr["trailerURL"].ToString();
+                    slideImageView.ImageUrl = ResolveUrl(dr["slideURL"].ToString());
                 }
                 dr.Close();
                 con.Close();

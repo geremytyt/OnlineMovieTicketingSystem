@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Title="View Movie" CodeBehind="ViewMovie.aspx.cs" MasterPageFile="~/Staff.Master" Inherits="MovieTicketingSystem.Staff.ViewMovie" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Staff.Master" CodeBehind="ViewMovie.aspx.cs" Inherits="MovieTicketingSystem.Staff.ViewMovie" %>
 
 <asp:Content ID="viewMovie" ContentPlaceHolderID="main" runat="server">
     <link href="../css/movie.css" rel="stylesheet" />
@@ -7,16 +7,16 @@
             <h1 class="text-light col-lg-4">Movie Details
             </h1>
             <div class="gap-2 d-flex my-2 col-lg-8">
-                <asp:Button ID="btnModify" runat="server" Text="Modify" class="btn btn-default" OnClick="btnModify_Click" />
+                <asp:Button ID="btnModify" runat="server" Text="Modify" class="btn btn-warning" OnClick="btnModify_Click" />
                 <asp:Button ID="btnEdit" runat="server" Text="Back" class="btn btn-default" OnClick="btnEdit_Click" />
             </div>
         </div>
         <hr style="width:100%; border-color:white;"/>
         <div class="row">
-            <div class="col-lg-4 col-md-5 my-3">
-                <asp:Image ID="posterImage" CssClass="card-img-top imgPoster" runat="server" />
+            <div class="col-lg-5 col-md-6 my-3">
+                <asp:Image ID="posterImage" CssClass="card-img-top h-auto" runat="server" />
             </div>
-            <div class="col-lg-8 col-md-7">
+            <div class="col-lg-7 col-md-6">
                 <table class="table table-borderless table-responsive text-light">
                     <tr>
                         <td> 
@@ -40,7 +40,7 @@
                             <asp:Label ID="lbReleaseDate" runat="server" Text="Release date" CssClass="form-label"></asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="lbDuration" runat="server" Text="Duration" CssClass="form-label"></asp:Label>
+                            <asp:Label ID="lbEndDate" runat="server" Text="End date" CssClass="form-label"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -48,7 +48,7 @@
                             <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDuration" runat="server" CssClass="form-control" Enabled="false" Text="test"></asp:TextBox>
+                            <asp:TextBox ID="txtEndDate" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
                         </td>
                     </tr>
 
@@ -89,10 +89,16 @@
                         <td>
                             <asp:Label ID="lbAge" runat="server" Text="Classification" CssClass="form-label"></asp:Label>
                         </td>
+                        <td>
+                            <asp:Label ID="lbDuration" runat="server" Text="Duration" CssClass="form-label"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <asp:TextBox ID="txtAge" runat="server" CssClass="form-control" Enabled="false" Text="test"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtDuration" runat="server" CssClass="form-control" Enabled="false" Text="test"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -123,5 +129,9 @@
                 </table>
             </div>
             </div>
+        <div class="text-light">
+            <asp:Label ID="lbSlide" runat="server" Text="Slide Image" CssClass="form-label fw-bold fs-3"></asp:Label>
+            <asp:Image ID="slideImageView" runat="server" CssClass="img-rounded my-2 ratio ratio-16x9" />
+        </div>
     </div>
 </asp:Content>

@@ -14,12 +14,8 @@ namespace MovieTicketingSystem.CustomerOnly
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool found=false;
-            string id = Request.QueryString["movieId"];
-            if (String.IsNullOrEmpty(id))
-            {
-                Response.Redirect("Home.aspx");
-            }
+            bool found = false;
+            string id = Request.QueryString["movieId"] ?? "";
             string scheduleNo = Request.QueryString["scheduleNo"];
             if (!IsPostBack)
             {
@@ -43,13 +39,13 @@ namespace MovieTicketingSystem.CustomerOnly
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    found= true;
+                    found = true;
                     lbHall.Text = dr["hallNo"].ToString();
                     lbDateTime.Text = dr["scheduleDateTime"].ToString();
                 }
                 if (!found)
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("~/Annonymous/Home.aspx");
                 }
                 dr.Close();
                 con.Close();
@@ -58,7 +54,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Food.aspx");
+            Response.Redirect("~/Annonymous/Food.aspx");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Customer.Master" CodeBehind="MovieDetails.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.MovieDetails" %>
 
 <asp:Content ID="movieDetails" ContentPlaceHolderID="main" runat="server">
-    <link href="../css/movie.css" rel="stylesheet" />
+    <link href="../css/movie.css" rel="stylesheet"/>
     <div class="container text-light">
         <div class="row">
             <%-- Poster image --%>
@@ -19,11 +19,6 @@
                         <td>
                                 <label>Language :  </label>
                                 <asp:Label ID="lbLanguage" runat="server"/>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -33,7 +28,6 @@
                         <td>
                                 <label>Genre :  </label>
                                 <asp:Label ID="lbGenre" runat="server"/>
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -41,19 +35,10 @@
                                 <asp:Label ID="lbClassification" runat="server"/>
                         </td>
                         <td>
+                            <label class="fw-bold">Director : </label>
+                            <asp:Label ID="lbDirector" runat="server" />
                         </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                                <label class="fw-bold">Director :</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                                <asp:Label ID="lbDirector" runat="server" />
-                        </td>
+
                     </tr>
                     <tr>
                         <td colspan="4">

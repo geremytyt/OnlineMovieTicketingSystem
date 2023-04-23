@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.Annonymous
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Movies : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
         protected void btnViewMore_Command(object sender, CommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();
@@ -22,11 +23,7 @@ namespace MovieTicketingSystem.Annonymous
         protected void btnBookNow_Command(object sender, CommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();
-            string slideIndex = id.Substring(id.Length - 3);
-            HttpCookie cookie = new HttpCookie("Slide", slideIndex);
-            cookie.Expires = DateTime.Now.AddHours(3);
-            Response.Cookies.Add(cookie);
-            Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
+            Response.Redirect("~/CustomerOnly/Movie.aspx?movieId=" + id);
         }
     }
 }
