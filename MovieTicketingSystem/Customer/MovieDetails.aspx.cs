@@ -43,7 +43,7 @@ namespace MovieTicketingSystem.User
                     lbClassification.Text = dr["ageRating"].ToString();
                     imgMoviePoster.ImageUrl = ResolveUrl(dr["posterURL"].ToString());
                     url = dr["trailerURL"].ToString();
-
+                    btnBuy.CommandArgument = id;
                 }
                 if (!found)
                 {
@@ -55,6 +55,12 @@ namespace MovieTicketingSystem.User
                 pnlVideoPreview.Controls.Add(iframecontrol);
             }
            
+        }
+
+        protected void btbBuy_Command(object sender, CommandEventArgs e)
+        {
+            string id = e.CommandArgument.ToString();
+            Response.Redirect("~/Customer/Movie.aspx?movieId=" + id);
         }
     }
 }

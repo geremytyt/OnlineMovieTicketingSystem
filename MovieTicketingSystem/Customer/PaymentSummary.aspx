@@ -3,8 +3,8 @@
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
     <link href="../css/payment.css" rel="stylesheet" />
-    <div class="container">
-        <h2 class="pageTitle">Payment Summary</h2> <hr />
+    <div class="container" style="overflow:hidden;">
+        <h2 class="text-white">Payment Summary</h2> <hr />
         <table id="paymentSummaryTable" class="paymentSummaryTable">
             <tr>
                 <td class="detailHeader">Payment Details</td>
@@ -88,7 +88,7 @@
             </tr>
         </table>
         <br />
-        <asp:Button ID="btnDone" class="btnDone" runat="server" Text="Done" />
+        <asp:Button ID="btnDone" class="btnDone" runat="server" Text="Done" OnClick="btnDone_Click" />
         <br />
         <br />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>

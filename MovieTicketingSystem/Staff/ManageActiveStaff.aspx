@@ -42,7 +42,7 @@
                     </div>
                     <div class="m-4">
                         <label>Staff ID:</label>
-                        <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
+                        <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2" ></asp:Label>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder=" " />
                             <label for="txtName">Name</label>

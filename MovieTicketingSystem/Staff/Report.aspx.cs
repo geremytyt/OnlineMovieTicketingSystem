@@ -49,7 +49,7 @@ namespace MovieTicketingSystem.Manager
 
                         if (tbtotalItem.Text != string.Empty && tbFoodReportStartDate.Text != string.Empty && tbFoodReportEndDate.Text != string.Empty)
                         {
-                            lblFoodReporttitle.Text = " Top " + tbtotalItem.Text + " Pruchase item Report \n" +
+                            lblFoodReporttitle.Text = " Top " + tbtotalItem.Text + " Purchase item Report \n" +
                                     "(" + tbFoodReportStartDate.Text + "-" + tbFoodReportEndDate.Text + ")";
                             ReportGenerator.InnerHtml = mostPurchaseTtemReport();
                         }
@@ -111,17 +111,17 @@ namespace MovieTicketingSystem.Manager
             stringBuilder.Append("");
 
             //MenuId, MenuName, orderMenu.qty * MenuPrice
-            String[,] topSales ={{ "M001","Pizza", "190"},
-                {"M003","Chezzy Widget", "150"},
-                {"M011","Fanta", "120"},
-                {"M017","Coca-cola", "94"},
-                {"M004","Double Set Combo", "70"}, };
+            String[,] topSales ={{ "M001","Pizza", "4"},
+                {"M003","Chezzy Widget", "3"},
+                {"M011","Fanta", "3"},
+                {"M017","Coca-cola", "2"},
+                {"M004","Double Set Combo", "1"}, };
 
             //Header
             stringBuilder.Append("<div class=\"row mx-auto my-0 py-2 border-bottom border-bottom-2 border-bottom-white align-middle\">\r\n" +
                "                               <div class=\"col-2 text-center\">ID</div>\r\n" +
                "                               <div class=\"col-6 text-start\">Name</div>\r\n" +
-               "                               <div class=\"col-4 text-end\">Sales</div>\r\n" +
+               "                               <div class=\"col-4 text-end\">Qty</div>\r\n" +
                "                           </div>");
 
             //data row
@@ -130,7 +130,7 @@ namespace MovieTicketingSystem.Manager
                 stringBuilder.Append("<div class=\"row mx-auto my-0 py-2 border-bottom border-bottom-2 border-bottom-white align-middle\">\r\n" +
                     "                               <div class=\"col-2 text-center \">" + topSales[i, 0] + "</div>\r\n" +
                     "                               <div class=\"col-6 text-start \">" + topSales[i, 1] + "</div>\r\n" +
-                    "                               <div class=\"col-4 text-end \"> RM " + topSales[i, 2] + "</div>\r\n" +
+                    "                               <div class=\"col-4 text-end \">" + topSales[i, 2] + "</div>\r\n" +
                     "                           </div>");
             }
 

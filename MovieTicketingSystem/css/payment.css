@@ -120,12 +120,13 @@ td{
     justify-content: center;
     align-items: center;
     background-color: #343a40;
+    margin-top: 2px;
     
 }
 
 .paymentContainer {
     width: 800px;
-    height: 600px;
+    height: 500px;
     border: 1px solid;
     /*background-color: black;*/
     /*background-color: #343a40;*/
@@ -163,19 +164,11 @@ td{
 }
 
 .paymentContainer h1 {
-    font-size: 35px;
+    font-size: 30px;
     /*color: rgb(244, 230, 24);*/
     color: black;
     font-weight:bold;
     top: -10px;
-}
-
-
-
-.paymentContainer h3 {
-    font-size: 25px;
-    /*color:white;*/
-    color:gray;
 }
 
 .paymentInput input:focus {
@@ -205,8 +198,6 @@ td{
 }
 
 .btnPaymentConfirm {
-    font-weight: bold;
-    font-size: 15px;
     cursor: pointer;
     background-color: rgb(244, 230, 24);
     color: black;
@@ -214,8 +205,7 @@ td{
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 10px;
-    font-size: 18px;
+    padding: 5px;
     transition: 0.5s;
 }
 

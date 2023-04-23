@@ -18,7 +18,7 @@ namespace MovieTicketingSystem
             string id = Request.QueryString["movieId"];
             if (String.IsNullOrEmpty(id))
             {
-                Response.Redirect("../User/Home.aspx");
+                Response.Redirect("Home.aspx");
             }
             string scheduleNo = Request.QueryString["scheduleNo"];
             if (!IsPostBack)
@@ -49,7 +49,7 @@ namespace MovieTicketingSystem
                 }
                 if (!found)
                 {
-                    Response.Redirect("../User/Home.aspx");
+                    Response.Redirect("Home.aspx");
                 }
                 dr.Close();
                 con.Close();
@@ -58,7 +58,7 @@ namespace MovieTicketingSystem
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Food.aspx");
         }
     }
 }

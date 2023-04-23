@@ -7,12 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PayPal.Api;
 
 namespace MovieTicketingSystem.View
 {
     public partial class Payment : System.Web.UI.Page
     {
         private decimal paymentAmt = 0;
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             // Get the custID from session
@@ -35,7 +37,7 @@ namespace MovieTicketingSystem.View
 
 
             // Create a new SqlConnection object to connect to the database using the using statement
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(cs))
             {
                 // Create a new SqlCommand object using the using statement
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -98,9 +100,9 @@ namespace MovieTicketingSystem.View
             if (!IsPostBack)
             {
                 // Create a SqlConnection object to connect to the database
-                using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString))
+                using (SqlConnection conn2 = new SqlConnection(cs))
                 {
-                    
+
 
                     // Define the SQL query to retrieve the credit cards associated with the custID
                     string query2 = "SELECT * FROM Card WHERE custId = @custId";
@@ -156,8 +158,7 @@ namespace MovieTicketingSystem.View
                 string formattedDateTime = paymentDateTime.ToString("d/M/yyyy H:m:s");
 
                 // Retrieve the last schedule ID from the database
-                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
                     connection.Open();
                     string query = "SELECT MAX(paymentNo) FROM Payment";

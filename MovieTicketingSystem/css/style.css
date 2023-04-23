@@ -10,10 +10,12 @@ body {
 body {
     font-family: "Trebuchet MS";
     vertical-align: middle;
+    min-height: 100%;
+    overflow: auto;
 }
 
 #content {
-    height: auto;
+    overflow: auto;
     min-height: 100%;
     background-color: #343a40;
 }
@@ -39,11 +41,11 @@ body {
     background: #f4e618;
 }
 
-    .btn-default:hover {
-        border-color: #f4e618;
-        color: #f4e618;
-        background: none;
-    }
+.btn-default:hover {
+    border-color: #f4e618;
+    color: #f4e618;
+    background: none;
+}
 
 .text-heading {
     color: #f4e618;
@@ -109,10 +111,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .Menubackgound .card {
-    border-left: 2px black solid;
-    border-right: 2px black solid;
-    border-bottom: 2px black solid;
-    background-color: lightyellow;
     width: 100%;
     margin: 5px auto;
     height: 500px;
@@ -127,7 +125,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
     font-size: larger;
-    background-color: yellow;
 }
 
 .image-box {
@@ -165,7 +162,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     overflow: hidden;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-size: large;
-    color: black;
     border-left: 2px black solid;
     border-right: 2px black solid;
 }
@@ -186,7 +182,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .Menubackgound .card-footer {
-    background-color: yellow;
+    background-color: black;
     height: 50px;
 }
 
@@ -230,7 +226,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     vertical-align: top;
     width: 50%;
     display: table-cell;
-    border: 1px yellow solid;
+    border: 1px solid white;
 }
 
 .GVmenu {

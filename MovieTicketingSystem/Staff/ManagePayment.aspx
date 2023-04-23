@@ -7,7 +7,7 @@
      <%--<link href="../css/manageSchedule.css" rel="stylesheet" />--%>
     <div class="container">
         <div class="containerPaymentDetails" id="containerPaymentDetails" runat="server">
-            <h2 class="pageTitle">Payment Details</h2> <hr />
+            <h2 class="text-white">Payment Details</h2> <hr />
             <table id="paymentSummaryTable" class="paymentSummaryTable">
                 <tr>
                     <td class="detailHeader">Payment Details</td>
@@ -87,16 +87,11 @@
                 </tr>
             </table>
             <br />
-            <div class="row">
-                <div class="d-flex justify-content-center">
-                    <asp:Button ID="btnEdit" class="btnPaymentEdit" runat="server" CssClass="btn btn-default" Width="10%" Text="Edit" OnClick="btnEdit_Click" />
-                    <asp:Button ID="btnConfirm" class="btnPaymentConfirm" runat="server" CssClass="btn btn-default" Width="10%" Text="Confirm" OnClick="btnConfirm_Click" />
-                    <asp:Button ID="btnCancel"  class="btnPaymentCancel" runat="server" Text="Cancel" CssClass="btn btn-default" Width="10%" OnClick="btnCancel_Click" />
-                    <asp:Button ID="btnDone" class="btnPaymentDone" runat="server" CssClass="btn btn-default" Width="10%" Text="Done" OnClick="btnDone_Click" />
-                </div>
-                
-            </div>
-            
+                <div class="d-flex justify-content-center align-items-center m-2">
+                    <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-default m-2" Width="10%" Text="Edit" OnClick="btnEdit_Click" />
+                    <asp:Button ID="btnConfirm" runat="server" CssClass="btn btn-default  m-2" Width="10%" Text="Confirm" OnClick="btnConfirm_Click" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default  m-2" Width="10%" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnDone" runat="server" CssClass="btn btn-default m-2" Width="10%" Text="Done" OnClick="btnDone_Click" />
             </div>
         
     </div>

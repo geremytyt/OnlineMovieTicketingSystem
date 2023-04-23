@@ -39,7 +39,7 @@
                 </div>
              </ItemTemplate>
             </asp:Repeater>
-        <asp:Button ID="btn_proceed" CssClass="btn_proceed" runat="server" Text="Proceed to Payment" />
+        <asp:Button ID="btn_proceed" CssClass="btn_proceed" runat="server" Text="Proceed to Payment" OnClick="btn_proceed_Click" />
     </div>
 
 

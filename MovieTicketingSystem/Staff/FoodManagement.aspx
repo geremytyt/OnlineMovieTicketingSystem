@@ -18,7 +18,7 @@
         }
     </script>
     
-    <div class="container" >
+    <div class="container" style="height:700px;">
         <div class="row g-2">
             <div class="col containerLeft">
         <asp:GridView ID="GVMenu" class="GVmenu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="menuId" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="Horizontal" BackColor="Yellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Right" ShowHeaderWhenEmpty="True"  OnSelectedIndexChanged="GVMenu_SelectedIndexChanged" >
@@ -36,7 +36,7 @@
             <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
         </asp:GridView>
-          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [menuId], [menuName], [menuCategory], [menuPrice] FROM [Menu]"></asp:SqlDataSource>
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT [menuId], [menuName], [menuCategory], [menuPrice] FROM [Menu]"></asp:SqlDataSource>
       </div>
 
         <div class="col containerRight"> 

@@ -73,12 +73,8 @@
                                     <asp:Image ID="imgPoster" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                                     <h6 class="card-title"><%# Eval("movieName") %></h6>
                                     <div class="d-grid gap-2">
-                                        <button class="btn-default">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i>View More
-                                        </button>
-                                        <button class="btn-default">
-                                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Book Now
-                                        </button>
+                                        <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                        <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                     </div>
                                 </div>
                             </ItemTemplate>
@@ -89,24 +85,21 @@
                 <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM movie WHERE releaseDate > GETDATE()"></asp:SqlDataSource>
             </div>
             <div class="tab-pane fade" id="top-selling" role="tabpanel" aria-labelledby="top-selling-tab">
+                <div class="row">
                 <asp:Repeater ID="topMovieRepeater" runat="server" DataSourceID="SqlDataSource3">
                     <ItemTemplate>
-                        <div class="bg-transparent card text-light text-center border-0" style="width: 15rem;">
+                        <div class="bg-transparent card text-light text-center border-0 col-lg-3" style="width: 15rem;">
                             <asp:Image ID="imgPoster" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                             <div class="d-grid gap-2">
-                                <button class="btn-default">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>View More
-                                </button>
-                                <button class="btn-default">
-                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Book Now
-                                </button>
+                                        <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                        <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                             </div>
 
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
+                </div>
                 <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT TOP (5) m.movieId, m.movieName, COUNT(*) AS ticketsSold, m.posterURL, m.trailerURL FROM Movie AS m INNER JOIN Schedule AS s ON m.movieId = s.movieId INNER JOIN Ticket AS t ON s.scheduleNo = t.scheduleNo INNER JOIN Purchase AS p ON t.purchaseNo = p.purchaseNo GROUP BY m.movieId, m.movieName, m.posterURL, m.trailerURL ORDER BY ticketsSold DESC"></asp:SqlDataSource>
             </div>
         </div>

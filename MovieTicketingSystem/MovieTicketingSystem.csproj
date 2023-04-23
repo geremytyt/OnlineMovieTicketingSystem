@@ -56,6 +56,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -85,6 +91,7 @@
     <Content Include="App_Data\movieDB_log.ldf">
       <DependentUpon>movieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Site.css" />
     <Content Include="css\manageSchedule.css" />
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Food.aspx" />
@@ -92,6 +99,7 @@
     <Content Include="Customer\Login.aspx" />
     <Content Include="Customer\Movie.aspx" />
     <Content Include="Customer\MovieDetails.aspx" />
+    <Content Include="Customer\MovieSeatSelection.aspx" />
     <Content Include="Customer\Register.aspx" />
     <Content Include="Customer\ResetPassword1.aspx" />
     <Content Include="Customer\ResetPassword2.aspx" />
@@ -105,6 +113,7 @@
     <Content Include="Image\user.png" />
     <Content Include="Staff\ManageActiveStaff.aspx" />
     <Content Include="Staff\ManageActiveUser.aspx" />
+    <Content Include="Staff\ManagePayment.aspx" />
     <Content Include="Staff\ManageResignedStaff.aspx" />
     <Content Include="Staff\ManageSuspendedUser.aspx" />
     <Content Include="Staff\Report.aspx" />
@@ -149,6 +158,7 @@
     <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="Customer\Profile.aspx" />
     <Content Include="Staff\StaffMovie.aspx" />
+    <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +204,13 @@
     <Compile Include="Customer\MovieDetails.aspx.designer.cs">
       <DependentUpon>MovieDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\MovieSeatSelection.aspx.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\MovieSeatSelection.aspx.designer.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,6 +246,13 @@
     </Compile>
     <Compile Include="Staff\ManageActiveUser.aspx.designer.cs">
       <DependentUpon>ManageActiveUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ManagePayment.aspx.cs">
+      <DependentUpon>ManagePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ManagePayment.aspx.designer.cs">
+      <DependentUpon>ManagePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\ManageResignedStaff.aspx.cs">
       <DependentUpon>ManageResignedStaff.aspx</DependentUpon>
@@ -364,6 +388,13 @@
     <Compile Include="Staff\StaffMovie.aspx.designer.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\ViewPayment.aspx.cs">
+      <DependentUpon>ViewPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\ViewPayment.aspx.designer.cs">
+      <DependentUpon>ViewPayment.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Customer.Master" />
@@ -377,6 +408,10 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="Staff.Master" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -387,7 +422,10 @@
     <Content Include="Staff.sitemap" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Data\" />
     <Folder Include="Image\posterImages\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

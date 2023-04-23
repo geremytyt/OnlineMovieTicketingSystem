@@ -59,5 +59,10 @@ namespace MovieTicketingSystem
                 //do ur rocessing here
             }
         }
+
+        protected void btn_proceed_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Payment.aspx");
+        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Customer.Master" CodeBehind="PaymentMethod.aspx.cs" Inherits="MovieTicketingSystem.View.PaymentMethod" %>
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
+   <div style="height:700px;">
     <link href="../css/payment.css" rel="stylesheet" />
-    <div class="paymentBody">
-    <div class="paymentContainer">
+    <div class="paymentContainer mx-auto mt-3">
         <div class="heading">
             <h1>Add Credit Card</h1>
             <div class="cards">
@@ -13,13 +13,13 @@
         
         <div class="first-row">
             <div class="owner">
-                <h3>Cardholder Name</h3>
+                <h6>Cardholder Name</h6>
                 <div class="paymentInput">    
                     <asp:TextBox ID="txtCardName" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="cvv">
-                <h3>CVV</h3>
+                <h6>CVV</h6>
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCvv" TextMode="Password" runat="server"></asp:TextBox>
                 </div>
@@ -27,14 +27,14 @@
         </div>
         <div class="second-row">
             <div class="card-number">
-                <h3>Card Number</h3>
+                <h6>Card Number</h6>
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
         <div class="third-row">
-            <h3>Card Number</h3>
+            <h6>Expiry Date</h6>
             <div class="selection">
                 <div class="date">
                     <asp:DropDownList ID="ddlMonths" runat="server">
@@ -65,4 +65,5 @@
         </div>
         <asp:Button ID="btnPaymentConfirm" class="btnPaymentConfirm" runat="server" Text="Confirm" OnClick="btnPaymentConfirm_Click" />
     </div>
+        </div>
 </asp:Content>

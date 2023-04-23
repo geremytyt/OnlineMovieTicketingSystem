@@ -19,7 +19,7 @@ namespace MovieTicketingSystem.User
             string id = Request.QueryString["movieId"];
             if (String.IsNullOrEmpty(id))
             {
-                Response.Redirect("../User/Home.aspx");
+                Response.Redirect("Home.aspx");
             }
             if (!IsPostBack)
             {
@@ -37,7 +37,7 @@ namespace MovieTicketingSystem.User
                 }
                 if (!found)
                 {
-                    Response.Redirect("../User/Home.aspx");
+                    Response.Redirect("Home.aspx");
                 }
             }
         }

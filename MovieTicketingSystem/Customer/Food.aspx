@@ -7,15 +7,15 @@
                 <ItemTemplate>
                     <div class= "col-12 col-sm-6 col-md-4 col-lg-3" >
                        <div class="card" >
-                        <div class="card-header">
+                        <div class="card-header bg-dark text-white">
                             <asp:Label ID="LblName" runat="server" Text=<%#Eval("MenuName") %>></asp:Label>
                         </div>
                         <div class="image-box">
                             <img class="card-img-top" src='<%# Eval("menuUrl") %>' alt="Food Image" >
                             <div class ="textInImage"><%#Eval("menuCategory") %></div>
                         </div>
-                        <div class="card-body">                
-                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0:n2}")  %>></asp:Label>
+                        <div class="card-body text-white bg-dark    ">                
+                            <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0:n2}")  %> ></asp:Label>
                             <br /><br />
                             <asp:Label ID="tbdecs" runat="server" Text='<%#Eval("menuDesc") %>'></asp:Label>
                        </div>

@@ -28,6 +28,7 @@
                     </asp:Menu>
                     <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Customer" />
                 </div>
+                <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" CssClass="btn btn-default me-2"/>
                 <div class="d-flex">
                    <asp:TextBox ID="txtSearch" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
@@ -57,9 +58,7 @@
                 </div>
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-heading">Location</h5>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.187509042364!2d100.43863541454988!3d5.233217196202966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304ab7f8c8d8febd%3A0x9b5254e29e148f89!2sIKEA%20Batu%20Kawan!5e0!3m2!1sen!2smy!4v1680531125481!5m2!1sen!2smy" 
-                    style="border:0; height:200px; width:auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127125.54468109953!2d100.17161715771482!3d5.31356600517866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304ac0f67252777f%3A0x4e9fc1cd4e41d821!2sGSC%20Queensbay%20Mall!5e0!3m2!1sen!2smy!4v1681099522353!5m2!1sen!2smy" width="auto" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>  
                 <div class="col-md-4 col-lg-3 col-xl-3 mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-heading">About Us</h5>
@@ -67,7 +66,7 @@
                         <i class="fas fa-briefcase mr-3"></i> 9:00a.m - 3:00a.m (Daily)
                     </p>
                     <p>
-                        <i class="fas fa-envelope mr-3"></i> cs@gsc.com.my
+                        <i class="fas fa-envelope mr-3"></i> cs@slc.com.my
                     </p>
                     <p>
                         <i class="fas fa-phone mr-3"></i> 04-646 1960

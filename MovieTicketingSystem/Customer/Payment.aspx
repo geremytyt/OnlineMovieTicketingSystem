@@ -3,8 +3,8 @@
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
     <link href="../css/payment.css" rel="stylesheet" />
-    <div class="container">
-        <h2 class="pageTitle">Transaction Detail</h2> <hr />
+    <div class="container" style="overflow:hidden;">
+        <h2 class="text-white">Transaction Detail</h2> <hr />
         <table id="transactionDetailTable">
             <tr>
                 <td>Movie Title:</td>
@@ -90,6 +90,7 @@
         <br />
         <br />
     </div>
+ 
 </asp:Content>
 
 

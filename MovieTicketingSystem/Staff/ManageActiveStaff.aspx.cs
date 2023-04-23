@@ -13,7 +13,7 @@ namespace MovieTicketingSystem.Staff
         string cs = Global.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblId.Text = generateID();
+ 
         }
 
         private string generateID()
@@ -81,11 +81,9 @@ namespace MovieTicketingSystem.Staff
             cmd.Parameters.AddWithValue("@Gender", gender);
             cmd.Parameters.AddWithValue("@ic", ic);
 
-
             cmd.ExecuteNonQuery();
 
             con.Close();
-
             Response.Redirect("ManageActiveStaff.aspx");
         }
 
@@ -116,9 +114,9 @@ namespace MovieTicketingSystem.Staff
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            string id = generateID();
             if (Page.IsValid)
             {
-                string id = lblId.Text;
                 string name = txtName.Text;
                 string email = txtEmail.Text;
                 string phone = txtPhone.Text;

@@ -87,7 +87,7 @@
                         </td>
                     </tr>
                 </table>
-                <asp:Button ID="btbBuy" runat="server" Text="Buy Now" CssClass="btn btn-default m-2 px-4"/>
+                <asp:Button ID="btnBuy" runat="server" Text="Buy Now" CssClass="btn btn-default m-2 px-4" OnCommand="btbBuy_Command"/>
             </div>
         </div>
 

@@ -232,7 +232,7 @@
                             </asp:SqlDataSource>
                         </div>
                         <div class="w-100 text-center">
-                            <asp:Label ID="lblNo" runat="server" Text="2 Record(s) displayed"></asp:Label>
+                            <asp:Label ID="lblNo" runat="server" Text="1 Record(s) displayed"></asp:Label>
                         </div>  
                     </div>
                     <div class="tab-pane fade p-3" id="nav-resetPwd" role="tabpanel" aria-labelledby="nav-resetpwd-tab">
