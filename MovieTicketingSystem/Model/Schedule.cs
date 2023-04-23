@@ -14,9 +14,20 @@ namespace MovieTicketingSystem.Model
     
     public partial class Schedule
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Schedule()
+        {
+            this.Tickets = new HashSet<Ticket>();
+        }
+    
         public string scheduleNo { get; set; }
         public string movieId { get; set; }
         public string hallNo { get; set; }
         public System.DateTime scheduleDateTime { get; set; }
+    
+        public virtual Hall Hall { get; set; }
+        public virtual Movie Movie { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

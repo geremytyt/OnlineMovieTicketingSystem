@@ -63,19 +63,19 @@
                         <label>Customer ID:</label>
                         <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
                         <div class="form-floating w-75" id="float">
-                            <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder=" " />
+                            <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtName">Name</label>
                         </div>
                         <div class="form-floating w-75" id="float1">
-                            <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control" placeholder=" " TextMode="Email" />
+                            <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                             <label for="txtEmail">Email</label>
                         </div>
                         <div class="form-floating w-75" id="float5">
-                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control" placeholder=" " TextMode="Date" />
+                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Date" />
                             <label for="txtDob">Date Of Birth</label>
                         </div>
                         <div class="form-floating w-75" id="float4">
-                            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" placeholder=" " TextMode="Phone" />
+                            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
                             <label for="txtPhone">Phone No</label>
                         </div>
                         <div class="row my-3 ms-1 align-items-center">

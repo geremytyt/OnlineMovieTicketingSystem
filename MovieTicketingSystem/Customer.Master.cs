@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem
 {
-    public partial class Customer : System.Web.UI.MasterPage
+    public partial class CustomerMaster : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

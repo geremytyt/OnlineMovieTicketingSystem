@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Staff.Master.cs" Inherits="MovieTicketingSystem.Site2" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Staff.Master.cs" Inherits="MovieTicketingSystem.StaffMaster" %>
 
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
                 <a class="navbar-brand" href="#">
                     <img src="../Image/logo.png" width="200" height="30"/>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse master" id="navbarNav">
                     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource2"
                         StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav ml-auto">
                         <StaticMenuItemStyle CssClass="nav-item" />
@@ -28,10 +28,6 @@
                     </asp:Menu>
                     <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" SiteMapProvider="Staff" />
                 </div>
-                <div class="d-flex">
-                   <asp:TextBox ID="TextBox1" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
-                   <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +35,7 @@
             </div>
         </nav>
 
-     <div id="content">
+     <div id="content"  style="height:800px">
         <asp:ContentPlaceHolder ID="main" runat="server">        
         </asp:ContentPlaceHolder>       
     </div>
@@ -47,7 +43,7 @@
         <div class="align-items-center">
             <div class="col-md-12 col-lg-12 text-center">
                 <p>Copyright ©  2023 All Rights Reserved by:
-                        <strong style="color:#f4e618;">Golden Screen Cinemas 195901000261 (3609-M)</strong>
+                        <strong style="color:#f4e618;">Starlight Cinema 1201901000005 (1312525-A)</strong>
                 </p>
             </div>
         </div>

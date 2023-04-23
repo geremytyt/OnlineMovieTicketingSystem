@@ -23,9 +23,9 @@
              <h1 class="text-light col-lg-4">Add New Movie
              </h1>
              <div class="gap-2 d-flex my-2 col-lg-8">
-                 <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-success" OnClick="btnSave_Click"  />
-                 <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-warning" OnClick="btnReset_Click"/>
-                 <asp:Button ID="btnBack" runat="server" Text="Back" class="btn btn-danger" OnClick="btnBack_Click" />
+                 <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-default" OnClick="btnSave_Click"  />
+                 <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click"/>
+                 <asp:Button ID="btnBack" runat="server" Text="Back" class="btn btn-default" OnClick="btnBack_Click" />
              </div>
          </div>
          <label style="color:red">* Required Field</label>

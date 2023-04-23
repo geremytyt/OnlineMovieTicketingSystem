@@ -14,6 +14,12 @@ namespace MovieTicketingSystem.Model
     
     public partial class Movie
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Movie()
+        {
+            this.Schedules = new HashSet<Schedule>();
+        }
+    
         public string movieId { get; set; }
         public string movieName { get; set; }
         public System.DateTime releaseDate { get; set; }
@@ -26,5 +32,8 @@ namespace MovieTicketingSystem.Model
         public string ageRating { get; set; }
         public string posterURL { get; set; }
         public string trailerURL { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

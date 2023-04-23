@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace MovieTicketingSystem.View
+namespace MovieTicketingSystem.Staff
 {
     public partial class FoodManagement : System.Web.UI.Page
     {
@@ -23,9 +23,9 @@ namespace MovieTicketingSystem.View
         protected void btn_insert_Click(object sender, EventArgs e)
         {
             String LastId = GVMenu.Rows[GVMenu.Rows.Count - 1].Cells[0].Text;
-            int IdNum = int.Parse(LastId.Substring(1)) + 1;
+            int IdNum = int.Parse(LastId.Substring(2)) + 1;
 
-            lblMenuId.Text = "M" + IdNum.ToString("000");
+            lblMenuId.Text = "MN" + IdNum.ToString("000");
             tbName.Text = "";
             tbCategory.Text = "";
             tbPrice.Text = "";
@@ -172,10 +172,10 @@ namespace MovieTicketingSystem.View
                 FoodIMageUpload.SaveAs(filePath);
                 string fileUrl = ResolveUrl("~/image/" + fileName);
                 menuImg.ImageUrl = ".." + fileUrl;
+            }
 
-
-                //step 2 update detail
-                string sql = "UPDATE Menu SET menuName=@menuName, menuCategory=@menuCategory, menuPrice=@menuPrice, menuDesc=@menuDesc, menuUrl=@menuUrl WHERE menuId=@menuId";
+            //step 2 update detail
+            string sql = "UPDATE Menu SET menuName=@menuName, menuCategory=@menuCategory, menuPrice=@menuPrice, menuDesc=@menuDesc, menuUrl=@menuUrl WHERE menuId=@menuId";
 
                 //step 3 establish connection
                 SqlConnection con = new SqlConnection(cs);
@@ -202,7 +202,7 @@ namespace MovieTicketingSystem.View
                 con.Close();
 
                 Response.Redirect("FoodManagement.aspx");
-            }
+
         }
 
         protected void btn_delete_Click(object sender, EventArgs e)

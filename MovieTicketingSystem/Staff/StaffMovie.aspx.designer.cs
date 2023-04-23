@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.View
+namespace MovieTicketingSystem.Staff
 {
 
 
-    public partial class WebForm3
+    public partial class StaffMovie
     {
 
         /// <summary>

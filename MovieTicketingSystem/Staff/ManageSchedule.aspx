@@ -2,16 +2,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/manageSchedule.css" rel="stylesheet" />
     <div class="container" style="height:700px;">
-        <h2 class="pageTitle">Maintain Schedule</h2>
+        <h2 class="text-white">Maintain Schedule</h2>
         <hr />
         <div class="container1">
             <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
-            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" DataKeyNames="scheduleNo"
+            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleNo" CssClass="text-white"
                 DataSourceID="SqlDataSourceSchedule" OnSelectedIndexChanged="scheduleGridView_SelectedIndexChanged" AutoPostBack="True" AllowPaging="True"
-                AllowSorting="True">
-                <HeaderStyle CssClass="gridview-header" />
-                <RowStyle CssClass="gridview-row" />
-                <AlternatingRowStyle CssClass="gridview-row" />
+                AllowSorting="True" Width="100%">
+                <RowStyle Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
+                <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
+                <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
                 <PagerStyle CssClass="gridview-pager" BackColor="black" ForeColor="white" HorizontalAlign="Center"/>
                 <Columns>
                     <asp:BoundField DataField="scheduleNo" HeaderText="Schedule No" ReadOnly="True" SortExpression="scheduleNo" />
@@ -20,7 +21,7 @@
                     <asp:BoundField DataField="scheduleDateTime" HeaderText="Schedule Date & Time" SortExpression="scheduleDateTime" />
                     <asp:TemplateField HeaderText="Actions">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnSelect" runat="server" Text="Select" CommandName="Select" />
+                            <asp:LinkButton ID="btnSelect" runat="server" Text="Select" CommandName="Select" CssClass="text-light" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -46,7 +47,7 @@
                 </div>
                 <div class="mx-4">
                     <asp:DropDownList ID="ddlMovieID" runat="server" DataSourceID="SqlDataSourceSchedule2"
-                            DataTextField="movieId" DataValueField="movieId"></asp:DropDownList>
+                            DataTextField="movieId" DataValueField="movieId"  Width="95%" CssClass="mt-3"></asp:DropDownList>
                 </div>
                 <br />
                 <div class="mx-4">
@@ -54,7 +55,7 @@
                 </div>
                 <div class="mx-4">
                     <asp:DropDownList ID="ddlHall" runat="server" DataSourceID="SqlDataSourceSchedule3"
-                            DataTextField="hallNo" DataValueField="hallNo"></asp:DropDownList>
+                            DataTextField="hallNo" DataValueField="hallNo" Width="95%" CssClass="mt-3"></asp:DropDownList>
                 </div>
 
                 <br />

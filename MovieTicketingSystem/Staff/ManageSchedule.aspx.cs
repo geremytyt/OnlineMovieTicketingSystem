@@ -13,6 +13,7 @@ namespace MovieTicketingSystem.Staff
 {
     public partial class ManageSchedule : System.Web.UI.Page
     {
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -29,18 +30,15 @@ namespace MovieTicketingSystem.Staff
             txtScheduleDate.Enabled = false;
             txtScheduleTime.Enabled = false;
 
-            //if (!IsPostBack)
-            //{
-            //    BindData();
-            //}
+            btnEdit.Enabled = false;
+
+            if (scheduleGridView.SelectedIndex >= 0)
+            {
+                btnEdit.Enabled = true;
+            }
+
         }
 
-        //private void BindData()
-        //{
-        //    // Bind the data from the SqlDataSourceSchedule to the GridView
-        //    scheduleGridView.DataSource = SqlDataSourceSchedule;
-        //    scheduleGridView.DataBind();
-        //}
 
         protected void scheduleGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -72,8 +70,8 @@ namespace MovieTicketingSystem.Staff
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             // Retrieve the last schedule ID from the database
-            string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            using (SqlConnection connection = new SqlConnection(cs))
             {
                 connection.Open();
                 string query = "SELECT MAX(scheduleNo) FROM Schedule";
@@ -143,60 +141,8 @@ namespace MovieTicketingSystem.Staff
                 ddlHall.Enabled = true;
                 txtScheduleDate.Enabled = false;
                 txtScheduleTime.Enabled = false;
-
-                //// Set the values of the editing controls based on the selected schedule
-                //SqlDataSourceSchedule2.SelectCommand = "SELECT * FROM [Schedule] WHERE [scheduleNo] = @scheduleNo";
-                //SqlDataSourceSchedule2.SelectParameters.Clear();
-                //SqlDataSourceSchedule2.SelectParameters.Add("scheduleNo", lblScheduleID.Text);
-                //DataView dv = (DataView)SqlDataSourceSchedule2.Select(DataSourceSelectArguments.Empty);
-                //if (dv != null && dv.Count > 0)
-                //{
-                //    DataRowView row = dv[0];
-                //    ddlMovieID.SelectedValue = row["movieId"].ToString();
-                //    ddlHall.SelectedValue = row["hallNo"].ToString();
-                //    txtScheduleDate.Text = ((DateTime)row["scheduleDateTime"]).ToString("yyyy-MM-dd");
-                //    txtScheduleTime.Text = ((DateTime)row["scheduleDateTime"]).ToString("HH:mm:ss");
-                //}
-
-
-                //// Store the original values of the editing controls in the ViewState
-                //ViewState["OriginalMovieID"] = ddlMovieID.SelectedValue;
-                //ViewState["OriginalHall"] = ddlHall.SelectedValue;
-                //ViewState["OriginalScheduleDate"] = txtScheduleDate.Text;
-                //ViewState["OriginalScheduleTime"] = txtScheduleTime.Text;
-
-                //// Store the selected scheduleNo in the ViewState
-                //ViewState["SelectedScheduleNo"] = lblScheduleID.Text;
-
-
             }
         }
-
-        //protected void btnDelete_Click(object sender, EventArgs e)
-        //{
-        //    // Get the selected row index of the GridView
-        //    int rowIndex = scheduleGridView.SelectedIndex;
-
-        //    if (rowIndex >= 0)
-        //    {
-        //        // Get the selected scheduleNo from the GridView's DataKeys collection
-        //        string scheduleNo = lblScheduleID.Text;
-
-        //        // Delete the selected schedule from the database
-        //        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString))
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = new SqlCommand("DELETE FROM Schedule WHERE scheduleNo = @scheduleNo", conn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@scheduleNo", scheduleNo);
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-
-        //        // Rebind the GridView to show the updated data
-        //        scheduleGridView.DataBind();
-        //    }
-        //}
 
 
         protected void btnConfirm_Click(object sender, EventArgs e)
@@ -204,8 +150,8 @@ namespace MovieTicketingSystem.Staff
             if (ViewState["mode"].ToString() == "add")
             {
                 // Insert a new record into the Schedule table
-                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
                     connection.Open();
                     string query = "INSERT INTO Schedule (scheduleNo, movieId, hallNo, scheduleDateTime) VALUES (@scheduleNo, @movieId, @hallNo, @scheduleDateTime)";
@@ -241,8 +187,8 @@ namespace MovieTicketingSystem.Staff
                 string hallNo = ddlHall.SelectedValue;
                 DateTime scheduleDateTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text, "d/M/yyyy H:m:s", CultureInfo.InvariantCulture);
 
-                string connectionString = ConfigurationManager.ConnectionStrings["MovieDBConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
                     string updateCommand = "UPDATE [Schedule] SET [movieId] = @movieId, [hallNo] = @hallNo, [scheduleDateTime] = @scheduleDateTime WHERE [scheduleNo] = @scheduleNo";
                     using (SqlCommand command = new SqlCommand(updateCommand, connection))
@@ -271,8 +217,8 @@ namespace MovieTicketingSystem.Staff
 
                             //// Set the button back to Add
                             //btnConfirm.Visible = false;
-                            //btnAdd.Visible = true;
-
+                            btnAdd.Visible = true;
+                            btnEdit.Visible = true;
 
                         }
                     }
