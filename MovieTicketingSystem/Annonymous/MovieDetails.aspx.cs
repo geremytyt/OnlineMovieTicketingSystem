@@ -1,5 +1,4 @@
-﻿using MovieTicketingSystem.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -12,7 +11,7 @@ namespace MovieTicketingSystem.Annonymous
 {
     public partial class MovieDetails : System.Web.UI.Page
     {
-        string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString; 
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,7 +29,7 @@ namespace MovieTicketingSystem.Annonymous
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    found= true;
+                    found = true;
                     DateTime date = DateTime.Parse(dr["releaseDate"].ToString());
                     lbMovieName.Text = dr["movieName"].ToString();
                     lbReleaseDate.Text = date.ToString("yyyy-MM-dd");
@@ -54,13 +53,13 @@ namespace MovieTicketingSystem.Annonymous
                 pnlVideoPreview.Controls.Clear();
                 pnlVideoPreview.Controls.Add(iframecontrol);
             }
-           
+
         }
 
         protected void btbBuy_Command(object sender, CommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();
-            Response.Redirect("~/Customer/Movie.aspx?movieId=" + id);
+            Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
         }
     }
 }

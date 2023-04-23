@@ -15,7 +15,6 @@ namespace MovieTicketingSystem.CustomerOnly
             if (User.Identity.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
-                Response.Redirect("Home.aspx");
             }
         }
     }

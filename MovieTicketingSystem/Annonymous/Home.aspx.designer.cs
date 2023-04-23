@@ -15,40 +15,13 @@ namespace MovieTicketingSystem.Annonymous
     {
 
         /// <summary>
-        /// Slide1 control.
+        /// slideItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide1;
-
-        /// <summary>
-        /// Slide2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide2;
-
-        /// <summary>
-        /// Slide3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide3;
-
-        /// <summary>
-        /// Slide4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Slide4;
+        protected global::System.Web.UI.WebControls.Repeater slideItem;
 
         /// <summary>
         /// CurrentMovieRepeater control.
@@ -69,13 +42,13 @@ namespace MovieTicketingSystem.Annonymous
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// CommingSoonRepeater control.
+        /// comingSoonRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CommingSoonRepeater;
+        protected global::System.Web.UI.WebControls.Repeater comingSoonRepeater;
 
         /// <summary>
         /// SqlDataSource2 control.
@@ -87,13 +60,13 @@ namespace MovieTicketingSystem.Annonymous
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
 
         /// <summary>
-        /// topMovieRepeater control.
+        /// topSwiper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater topMovieRepeater;
+        protected global::System.Web.UI.WebControls.Repeater topSwiper;
 
         /// <summary>
         /// SqlDataSource3 control.

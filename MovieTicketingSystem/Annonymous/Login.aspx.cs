@@ -1,4 +1,5 @@
-﻿using MovieTicketingSystem.Model;
+﻿using EllipticCurve.Utils;
+using MovieTicketingSystem.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace MovieTicketingSystem.Annonymous
                 string password = txtPassword.Text;
                 bool rememberMe = cbRemember.Checked;
                 // Login the user
-                String hash = Security.GetHash(password);
+                string hash = Security.GetHash(password);
                 User u = db.Users.SingleOrDefault(
                     user => user.Username == username &&
                     user.Hash == hash
@@ -41,34 +42,32 @@ namespace MovieTicketingSystem.Annonymous
                 {
                     if (u.Role == "Customer")
                     {
-                        //record found
-                        //FormsAuthentication.RedirectFromLoginPage
-                        //(u.Username, rememberMe);
-                        Security.LoginUser(u.Username, u.Role, rememberMe);
                         Customer cust = new Customer();
-                            string sql = "SELECT * FROM Customer WHERE custEmail = @email";
-                            SqlConnection con = new SqlConnection(cs);
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            con.Open();
-                            cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                            SqlDataReader dr = cmd.ExecuteReader();
+                        string sql = "SELECT * FROM Customer WHERE custEmail = @email";
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                        SqlDataReader dr = cmd.ExecuteReader();
 
-                            if (dr.Read())
-                            {
-                                cust.custId = dr[0].ToString();
-                                cust.custName = dr[1].ToString();
-                                cust.custEmail = dr[2].ToString();
-                                cust.custPassword = dr[3].ToString();
-                                cust.custDob = (Convert.ToDateTime(dr[4]));
-                                cust.custPhoneNo = dr[5].ToString();
-                                cust.custGender = dr[6].ToString();
-                                cust.custPhoto = dr[7].ToString();
-                                cust.custStatus = dr[8].ToString();
-                                cust.signature = dr[9].ToString();
-                                cust.loginNo = (int)dr[10];
-                            }
-                            con.Close();
+                        if (dr.Read())
+                        {
+                            cust.custId = dr[0].ToString();
+                            cust.custName = dr[1].ToString();
+                            cust.custEmail = dr[2].ToString();
+                            cust.custPassword = dr[3].ToString();
+                            cust.custDob = (Convert.ToDateTime(dr[4]));
+                            cust.custPhoneNo = dr[5].ToString();
+                            cust.custGender = dr[6].ToString();
+                            cust.custPhoto = dr[7].ToString();
+                            cust.custStatus = dr[8].ToString();
+                            cust.signature = dr[9].ToString();
+                            cust.loginNo = int.Parse(dr[10].ToString());
+                        }
+                        con.Close();
                         Session["Customer"] = cust;
+                        Security.LoginUser(u.Username, u.Role, rememberMe);
+                       
                     }
                     else
                     {

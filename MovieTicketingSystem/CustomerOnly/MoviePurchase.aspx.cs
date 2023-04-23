@@ -9,18 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
-    public partial class Movie : System.Web.UI.Page
+    public partial class MoviePurchase : System.Web.UI.Page
     {
-        private List<DateTime> dates = new List<DateTime>();
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             bool found = false;
-            string id = Request.QueryString["movieId"];
-            if (String.IsNullOrEmpty(id))
-            {
-                Response.Redirect("Home.aspx");
-            }
+            string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
             {
                 string sql = "SELECT * FROM movie WHERE movieId = @Id";
@@ -32,19 +27,34 @@ namespace MovieTicketingSystem.CustomerOnly
                 if (dr.Read())
                 {
                     found = true;
-                    lbMovieName.Text = dr["movieName"].ToString();
-                    imgPoster.ImageUrl = dr["posterURL"].ToString();
+                    txtMovie.Text = dr["movieName"].ToString();
                 }
                 if (!found)
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("~/Annonymous/Home.aspx");
                 }
             }
         }
         protected void btnNext_Click(object sender, EventArgs e)
         {
-            string url = String.Format("MovieSeatSelection.aspx?scheduleNo={0}&movieId={1}", ddlDate.SelectedValue, Request.QueryString["movieId"]);
-            Response.Redirect(url);
+            string id = Request.QueryString["movieId"] ?? "";
+            string number = ddlTime.SelectedValue;
+            Response.Redirect(String.Format("MovieSeatSelection.aspx?scheduleNo={0}&movieId={1}", number, id));
+        }
+
+        protected void btnSelect_Command(object sender, CommandEventArgs e)
+        {
+            string id = e.CommandArgument.ToString();
+            HttpCookie cookie = Request.Cookies["Slide"];
+            if (cookie != null)
+            {
+                string slideIndex = id.Substring(id.Length - 3);
+                cookie.Expires = DateTime.Now.AddHours(3);
+                cookie.Value = slideIndex;
+                Response.Cookies.Add(cookie);
+            }
+
+            Response.Redirect("MoviePurchase.aspx?movieId=" + id);
         }
     }
 }

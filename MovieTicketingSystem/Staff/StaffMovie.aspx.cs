@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +12,22 @@ namespace MovieTicketingSystem.Staff
 {
     public partial class StaffMovie : System.Web.UI.Page
     {
+        private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                string sql = "Select * FROM Movie";
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                MovieGridView.DataSource = dt;
+                MovieGridView.DataBind();
+                MovieGridView.UseAccessibleHeader = true;
+                MovieGridView.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
 
@@ -36,6 +52,5 @@ namespace MovieTicketingSystem.Staff
         {
             Response.Redirect("AddMovie.aspx");
         }
-    } 
-
+    }
 }

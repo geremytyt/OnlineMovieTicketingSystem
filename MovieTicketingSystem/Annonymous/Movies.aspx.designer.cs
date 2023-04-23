@@ -7,39 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.CustomerOnly
+namespace MovieTicketingSystem.Annonymous
 {
 
 
-    public partial class Movie
+    public partial class Movies
     {
 
         /// <summary>
-        /// imgPoster control.
+        /// CurrentMovieRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPoster;
-
-        /// <summary>
-        /// lbMovieName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieName;
-
-        /// <summary>
-        /// ddlDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
+        protected global::System.Web.UI.WebControls.Repeater CurrentMovieRepeater;
 
         /// <summary>
         /// SqlDataSource1 control.
@@ -51,12 +33,21 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// btnNext control.
+        /// CommingSoonRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.WebControls.Repeater CommingSoonRepeater;
+
+        /// <summary>
+        /// SqlDataSource2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
     }
 }

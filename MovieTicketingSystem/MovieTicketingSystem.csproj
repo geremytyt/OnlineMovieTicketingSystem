@@ -91,24 +91,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Annonymous\Home.aspx" />
     <Content Include="Annonymous\Login.aspx" />
+    <Content Include="Annonymous\MovieDetails.aspx" />
+    <Content Include="Annonymous\Movies.aspx" />
     <Content Include="Annonymous\Register.aspx" />
     <Content Include="Annonymous\StaffLogin.aspx" />
-    <Content Include="App_Data\movieDB.mdf" />
-    <Content Include="App_Data\movieDB_log.ldf">
-      <DependentUpon>movieDB.mdf</DependentUpon>
+    <Content Include="App_Data\MovieDB.mdf" />
+    <Content Include="App_Data\MovieDB_log.ldf">
+      <DependentUpon>MovieDB.mdf</DependentUpon>
     </Content>
     <Content Include="css\manageSchedule.css" />
     <Content Include="CustomerOnly\Cart.aspx" />
     <Content Include="Annonymous\Food.aspx" />
-    <Content Include="Annonymous\Home.aspx" />
     <Content Include="CustomerOnly\History.aspx" />
     <Content Include="CustomerOnly\Logout.aspx" />
-    <Content Include="CustomerOnly\Movie.aspx" />
-    <Content Include="Annonymous\MovieDetails.aspx" />
-    <Content Include="CustomerOnly\MovieSeatSelection.aspx" />
+    <Content Include="CustomerOnly\MoviePurchase.aspx" />
     <Content Include="Annonymous\ResetPassword1.aspx" />
     <Content Include="Annonymous\ResetPassword2.aspx" />
+    <Content Include="CustomerOnly\MovieSeatSelection.aspx" />
     <Content Include="CustomerOnly\ResetPassword.aspx" />
     <Content Include="CustomerOnly\Tickets.aspx" />
     <Content Include="Image\c001.jpg" />
@@ -131,6 +132,8 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Manager\ManageActiveStaff.aspx" />
+    <Content Include="Staff\AddMovie.aspx" />
+    <Content Include="Staff\EditMovie.aspx" />
     <Content Include="Staff\ManageActiveUser.aspx" />
     <Content Include="Staff\ManagePayment.aspx" />
     <Content Include="Manager\ManageResignedStaff.aspx" />
@@ -161,22 +164,41 @@
     <Content Include="Image\slide5.jpg" />
     <Content Include="Staff\FoodManagement.aspx" />
     <Content Include="Staff\ManageSchedule.aspx" />
-    <Content Include="Staff\AddMovie.aspx" />
-    <Content Include="Staff\EditMovie.aspx" />
-    <Content Include="Staff\StaffProfile.aspx" />
-    <Content Include="Staff\ViewMovie.aspx" />
-    <Content Include="CustomerOnly\Profile.aspx" />
     <Content Include="Staff\StaffMovie.aspx" />
+    <Content Include="Staff\StaffProfile.aspx" />
+    <Content Include="CustomerOnly\Profile.aspx" />
+    <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annonymous\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Annonymous\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Annonymous\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\Movies.aspx.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\Movies.aspx.designer.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Annonymous\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -206,13 +228,6 @@
     <Compile Include="Annonymous\Food.aspx.designer.cs">
       <DependentUpon>Food.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Annonymous\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CustomerOnly\History.aspx.cs">
       <DependentUpon>History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,26 +242,12 @@
     <Compile Include="CustomerOnly\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CustomerOnly\Movie.aspx.cs">
-      <DependentUpon>Movie.aspx</DependentUpon>
+    <Compile Include="CustomerOnly\MoviePurchase.aspx.cs">
+      <DependentUpon>MoviePurchase.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustomerOnly\Movie.aspx.designer.cs">
-      <DependentUpon>Movie.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Annonymous\MovieDetails.aspx.cs">
-      <DependentUpon>MovieDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\MovieDetails.aspx.designer.cs">
-      <DependentUpon>MovieDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerOnly\MovieSeatSelection.aspx.cs">
-      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CustomerOnly\MovieSeatSelection.aspx.designer.cs">
-      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+    <Compile Include="CustomerOnly\MoviePurchase.aspx.designer.cs">
+      <DependentUpon>MoviePurchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Annonymous\ResetPassword1.aspx.cs">
       <DependentUpon>ResetPassword1.aspx</DependentUpon>
@@ -261,6 +262,13 @@
     </Compile>
     <Compile Include="Annonymous\ResetPassword2.aspx.designer.cs">
       <DependentUpon>ResetPassword2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerOnly\MovieSeatSelection.aspx.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerOnly\MovieSeatSelection.aspx.designer.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerOnly\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
@@ -341,6 +349,20 @@
     </Compile>
     <Compile Include="Manager\ManageActiveStaff.aspx.designer.cs">
       <DependentUpon>ManageActiveStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\AddMovie.aspx.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\AddMovie.aspx.designer.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\EditMovie.aspx.cs">
+      <DependentUpon>EditMovie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\EditMovie.aspx.designer.cs">
+      <DependentUpon>EditMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\ManageActiveUser.aspx.cs">
       <DependentUpon>ManageActiveUser.aspx</DependentUpon>
@@ -423,19 +445,12 @@
     <Compile Include="Staff\ManageSchedule.aspx.designer.cs">
       <DependentUpon>ManageSchedule.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\AddMovie.aspx.cs">
-      <DependentUpon>AddMovie.aspx</DependentUpon>
+    <Compile Include="Staff\StaffMovie.aspx.cs">
+      <DependentUpon>StaffMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\AddMovie.aspx.designer.cs">
-      <DependentUpon>AddMovie.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\EditMovie.aspx.cs">
-      <DependentUpon>EditMovie.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\EditMovie.aspx.designer.cs">
-      <DependentUpon>EditMovie.aspx</DependentUpon>
+    <Compile Include="Staff\StaffMovie.aspx.designer.cs">
+      <DependentUpon>StaffMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\StaffProfile.aspx.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
@@ -443,13 +458,6 @@
     </Compile>
     <Compile Include="Staff\StaffProfile.aspx.designer.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\ViewMovie.aspx.cs">
-      <DependentUpon>ViewMovie.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\ViewMovie.aspx.designer.cs">
-      <DependentUpon>ViewMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff.Master.cs">
       <DependentUpon>Staff.Master</DependentUpon>
@@ -465,12 +473,12 @@
     <Compile Include="CustomerOnly\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\StaffMovie.aspx.cs">
-      <DependentUpon>StaffMovie.aspx</DependentUpon>
+    <Compile Include="Staff\ViewMovie.aspx.cs">
+      <DependentUpon>ViewMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\StaffMovie.aspx.designer.cs">
-      <DependentUpon>StaffMovie.aspx</DependentUpon>
+    <Compile Include="Staff\ViewMovie.aspx.designer.cs">
+      <DependentUpon>ViewMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\ViewPayment.aspx.cs">
       <DependentUpon>ViewPayment.aspx</DependentUpon>

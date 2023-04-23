@@ -29,50 +29,7 @@
                             <asp:Label ID="lbDateTime" runat="server" Text="Label"></asp:Label>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            <img src="../Image/Seat.png" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div>
-                                <label class="form-label">Select Seat</label>
-                                <asp:TextBox ID="txtSeat" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div>
-                                <label class="form-label fw-bold text-decoration-underline">Ticket</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="form-label">Adult</label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtAdult" runat="server" TextMode="Number" CssClass="form-control" Text="0"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="form-label">Child</label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtKid" runat="server" TextMode="Number" CssClass="form-control" Text="0"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="form-label">Senior Citizen</label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtSenior" runat="server" TextMode="Number" CssClass="form-control" Text="0"></asp:TextBox>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td colspan="2">
                             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
