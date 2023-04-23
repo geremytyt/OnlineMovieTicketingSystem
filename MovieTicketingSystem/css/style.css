@@ -2,37 +2,29 @@
     margin: 0;
 }
 
-html,
-body {
-    min-height: 100%;
-}
-
 body {
     font-family: "Trebuchet MS";
     vertical-align: middle;
-    min-height: 100%;
     overflow: auto;
 }
 
 #content {
+    min-height:600px;
     overflow: auto;
-    min-height: 100%;
     background-color: #343a40;
 }
 
-#hlForgetpwd, #hlRegister, #hlForgetpwd1 {
-    text-decoration: none;
-    color: #f4e618;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
 }
 
-.navbar-nav a {
-    font-family: "Sen", sans-serif;
-    margin: 5px 10px 5px 10px;
+/*yinwei part*/
+.loginLink {
     text-decoration: none;
-    color: white;
-}
-
-.nav-item:hover {
     color: #f4e618;
 }
 
@@ -52,7 +44,18 @@ body {
     text-transform: uppercase;
 }
 
-#nav-userLogin-tab, #nav-staffLogin-tab {
+.master .navbar-nav a {
+    font-family: "Sen", sans-serif;
+    margin: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.master .nav-item:hover {
+    color: #f4e618;
+}
+
+.loginTab.nav-link {
     color: white;
     background: none;
     border-top: none;
@@ -60,25 +63,29 @@ body {
     border-right: none;
 }
 
-#nav-history-tab, #main_deleteTab, #nav-profile-tab, #nav-resetpwd-tab, #nav-ticket-tab {
+.loginTab.nav-link.active {
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #f4e618;
+    border-bottom: 1px solid #f4e618;
+}
+
+.profileTab.nav-link {
     color: white;
     background: none;
     border: 1px solid white;
     width: 250px;
 }
 
-#nav-profile-tab.nav-link.active, #nav-resetpwd-tab.nav-link.active, #nav-ticket-tab.nav-link.active, #nav-history-tab.nav-link.active, #main_deleteTab:focus {
+.profileTab.nav-link.active{
     color: black;
     background: #f4e618;
     border: 1px solid #f4e618;
 }
 
-.nav-tabs .nav-link.active {
-    transition: 0.5s ease;
-    border-bottom: 1px solid #f4e618;
-}
-
-#txtEmail, #main_txtEmail, #txtPassword, #main_txtPassword, #txtEmail1, #txtPassword1, #main_TextBox1, #main_TextBox2, #main_TextBox3, #txtName, #main_txtName, #txtDob, #main_txtDob, #txtCfmPassword, #txtPhone, #main_txtPhone, #main_txtIC, #main_txtPassword1, #main_txtCfmPassword, #main_txtPosition {
+.userInput {
     border-radius: 0;
     border: none;
     background: none;
@@ -86,12 +93,16 @@ body {
     border-bottom: 1px solid white;
 }
 
-.form-floating::before {
-    display: none;
+.userInput:focus {
+    background: none;
+    outline: none !important;
+    -webkit-box-shadow: none;
+    color: white;
+    border-bottom: 1px solid #f4e618;
 }
 
-.nav-tabs {
-    border-bottom: 0px;
+.form-floating::before {
+    display: none;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -101,9 +112,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .fieldLabel {
     color: #808080;
     font-size: 12px;
-}
-
-
+}d {
+gound .cardd
 /* Food Customer Side*/
 .Menubackgound {
     padding-top: 50px;
@@ -288,9 +298,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: white;
 }
 
-    .containerRight .form-floating:before {
-        display: none;
-    }
+.containerRight .form-floating:before {
+    display: none;
+}
 
 .containerRight .form-control {
     background: inherit;
@@ -454,21 +464,6 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     height: 460px;
 }
-
-.nav-tabs .nav-link.active {
-    background-color: transparent;
-    color: yellow;
-    opacity: 1 !important;
-}
-
-.nav-tabs .nav-link {
-    border: 0;
-    position: relative;
-    color: white;
-    padding: 0.5rem 0 0;
-    margin: 0 1rem;
-}
-
 
 /***/
 

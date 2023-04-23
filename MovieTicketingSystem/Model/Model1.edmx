@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="movieDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="cardNo" />
+          </Key>
+          <Property Name="cardNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="custId" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="cvv" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="cardHolderName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="expiryDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="custId" />
+          </Key>
+          <Property Name="custId" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="custName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="custEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="custPassword" Type="varchar" MaxLength="44" Nullable="false" />
+          <Property Name="custDob" Type="date" Nullable="false" />
+          <Property Name="custPhoneNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="custGender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="custPhoto" Type="varchar" MaxLength="30" />
+          <Property Name="custStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="signature" Type="varchar" MaxLength="50" />
+          <Property Name="loginNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="hallNo" />
+          </Key>
+          <Property Name="hallNo" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="row" Type="int" Nullable="false" />
+          <Property Name="column" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menuId" />
+          </Key>
+          <Property Name="menuId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="menuName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="menuCategory" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="menuPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="menuDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="menuUrl" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="movieId" />
+          </Key>
+          <Property Name="movieId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="movieName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="releaseDate" Type="date" Nullable="false" />
+          <Property Name="movieDuration" Type="smallint" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="language" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="synopsis" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="actor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ageRating" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="posterURL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="trailerURL" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="paymentNo" />
+          </Key>
+          <Property Name="paymentNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="purchaseNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="paymentType" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="paymentDateTime" Type="datetime" Nullable="false" />
+          <Property Name="paymentAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="accEmail" Type="varchar" MaxLength="30" />
+          <Property Name="cardNo" Type="varchar" MaxLength="20" />
+          <Property Name="transactionNo" Type="varchar" MaxLength="30" />
+          <Property Name="status" Type="char" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseNo" />
+          </Key>
+          <Property Name="purchaseNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="custId" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ticketTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="foodTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="childrenQty" Type="int" />
+          <Property Name="adultQty" Type="int" />
+          <Property Name="seniorQty" Type="int" />
+        </EntityType>
+        <EntityType Name="PurchaseMenu">
+          <Key>
+            <PropertyRef Name="menuId" />
+            <PropertyRef Name="purchaseNo" />
+          </Key>
+          <Property Name="menuId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="purchaseNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="menuQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="scheduleNo" />
+          </Key>
+          <Property Name="scheduleNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="movieId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="hallNo" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="scheduleDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="staffName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="staffEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="staffPassword" Type="varchar" MaxLength="44" Nullable="false" />
+          <Property Name="staffIC" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="staffGender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="staffPhoneNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="staffPhoto" Type="varchar" MaxLength="30" />
+          <Property Name="position" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="staffStatus" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ticketNo" />
+          </Key>
+          <Property Name="ticketNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="purchaseNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="scheduleNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ticketCategory" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ticketPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="seatNo" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETICKETINGSYSTEM\APP_DATA\MOVIEDB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Hash" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Hash" Type="varchar" MaxLength="44" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Card__custId__160F4887">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="custId" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="custId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__purchas__6477ECF3">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purchase__custId__17036CC0">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="custId" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="custId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__hallNo__76969D2E">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="hallNo" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="hallNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__movieI__75A278F5">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="movieId" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="movieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__purchase__797309D9">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__schedule__7A672E12">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="scheduleNo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="scheduleNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseMenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PurchaseMenu" Type="Self.PurchaseMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="menuId" />
+            </Principal>
+            <Dependent Role="PurchaseMenu">
+              <PropertyRef Name="menuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseMenu_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseMenu" Type="Self.PurchaseMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="PurchaseMenu">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="movieDBModelStoreContainer">
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseMenu" EntityType="Self.PurchaseMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User].[Username] AS [Username], 
+    [User].[Hash] AS [Hash], 
+    [User].[Role] AS [Role]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Card__custId__160F4887" Association="Self.FK__Card__custId__160F4887">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__purchas__6477ECF3" Association="Self.FK__Payment__purchas__6477ECF3">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purchase__custId__17036CC0" Association="Self.FK__Purchase__custId__17036CC0">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__hallNo__76969D2E" Association="Self.FK__Schedule__hallNo__76969D2E">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__movieI__75A278F5" Association="Self.FK__Schedule__movieI__75A278F5">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__purchase__797309D9" Association="Self.FK__Ticket__purchase__797309D9">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__schedule__7A672E12" Association="Self.FK__Ticket__schedule__7A672E12">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseMenu_Menu" Association="Self.FK_PurchaseMenu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="PurchaseMenu" EntitySet="PurchaseMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseMenu_Purchase" Association="Self.FK_PurchaseMenu_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseMenu" EntitySet="PurchaseMenu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="movieDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="cardNo" />
+          </Key>
+          <Property Name="cardNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custId" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cardHolderName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="expiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Card__custId__160F4887" FromRole="Card" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="custId" />
+          </Key>
+          <Property Name="custId" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="custEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custPassword" Type="String" MaxLength="44" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custDob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="custPhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="custPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="custStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="signature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="loginNo" Type="Int32" />
+          <NavigationProperty Name="Cards" Relationship="Self.FK__Card__custId__160F4887" FromRole="Customer" ToRole="Card" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__custId__17036CC0" FromRole="Customer" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="hallNo" />
+          </Key>
+          <Property Name="hallNo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="row" Type="Int32" Nullable="false" />
+          <Property Name="column" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__hallNo__76969D2E" FromRole="Hall" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menuId" />
+          </Key>
+          <Property Name="menuId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuCategory" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="menuPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="menuDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PurchaseMenus" Relationship="Self.FK_PurchaseMenu_Menu" FromRole="Menu" ToRole="PurchaseMenu" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="movieId" />
+          </Key>
+          <Property Name="movieId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="movieName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="movieDuration" Type="Int16" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="synopsis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ageRating" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posterURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="trailerURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__movieI__75A278F5" FromRole="Movie" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="paymentNo" />
+          </Key>
+          <Property Name="paymentNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="purchaseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paymentType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="paymentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="paymentAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="accEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cardNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="transactionNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK__Payment__purchas__6477ECF3" FromRole="Payment" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseNo" />
+          </Key>
+          <Property Name="purchaseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custId" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="foodTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="childrenQty" Type="Int32" />
+          <Property Name="adultQty" Type="Int32" />
+          <Property Name="seniorQty" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Purchase__custId__17036CC0" FromRole="Purchase" ToRole="Customer" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__purchas__6477ECF3" FromRole="Purchase" ToRole="Payment" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__purchase__797309D9" FromRole="Purchase" ToRole="Ticket" />
+          <NavigationProperty Name="PurchaseMenus" Relationship="Self.FK_PurchaseMenu_Purchase" FromRole="Purchase" ToRole="PurchaseMenu" />
+        </EntityType>
+        <EntityType Name="PurchaseMenu">
+          <Key>
+            <PropertyRef Name="menuId" />
+            <PropertyRef Name="purchaseNo" />
+          </Key>
+          <Property Name="menuId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="purchaseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_PurchaseMenu_Menu" FromRole="PurchaseMenu" ToRole="Menu" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK_PurchaseMenu_Purchase" FromRole="PurchaseMenu" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="scheduleNo" />
+          </Key>
+          <Property Name="scheduleNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="movieId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hallNo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="scheduleDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Hall" Relationship="Self.FK__Schedule__hallNo__76969D2E" FromRole="Schedule" ToRole="Hall" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Schedule__movieI__75A278F5" FromRole="Schedule" ToRole="Movie" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__schedule__7A672E12" FromRole="Schedule" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="staffEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffPassword" Type="String" MaxLength="44" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffIC" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="staffPhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="staffStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ticketNo" />
+          </Key>
+          <Property Name="ticketNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="purchaseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="scheduleNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ticketPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="seatNo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK__Ticket__purchase__797309D9" FromRole="Ticket" ToRole="Purchase" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Ticket__schedule__7A672E12" FromRole="Ticket" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Hash" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Hash" Type="String" MaxLength="44" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Card__custId__160F4887">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="custId" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="custId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purchase__custId__17036CC0">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="custId" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="custId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__hallNo__76969D2E">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="hallNo" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="hallNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseMenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PurchaseMenu" Type="Self.PurchaseMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="menuId" />
+            </Principal>
+            <Dependent Role="PurchaseMenu">
+              <PropertyRef Name="menuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__movieI__75A278F5">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="movieId" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="movieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__purchas__6477ECF3">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__purchase__797309D9">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseMenu_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseMenu" Type="Self.PurchaseMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseNo" />
+            </Principal>
+            <Dependent Role="PurchaseMenu">
+              <PropertyRef Name="purchaseNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__schedule__7A672E12">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="scheduleNo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="scheduleNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="movieDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cards" EntityType="Self.Card" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Halls" EntityType="Self.Hall" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseMenus" EntityType="Self.PurchaseMenu" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Card__custId__160F4887" Association="Self.FK__Card__custId__160F4887">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Card" EntitySet="Cards" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purchase__custId__17036CC0" Association="Self.FK__Purchase__custId__17036CC0">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__hallNo__76969D2E" Association="Self.FK__Schedule__hallNo__76969D2E">
+            <End Role="Hall" EntitySet="Halls" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseMenu_Menu" Association="Self.FK_PurchaseMenu_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="PurchaseMenu" EntitySet="PurchaseMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__movieI__75A278F5" Association="Self.FK__Schedule__movieI__75A278F5">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__purchas__6477ECF3" Association="Self.FK__Payment__purchas__6477ECF3">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__purchase__797309D9" Association="Self.FK__Ticket__purchase__797309D9">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseMenu_Purchase" Association="Self.FK_PurchaseMenu_Purchase">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="PurchaseMenu" EntitySet="PurchaseMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__schedule__7A672E12" Association="Self.FK__Ticket__schedule__7A672E12">
+            <End Role="Schedule" EntitySet="Schedules" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="movieDBModelStoreContainer" CdmEntityContainer="movieDBEntities">
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="movieDBModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="cardNo" ColumnName="cardNo" />
+                <ScalarProperty Name="custId" ColumnName="custId" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="cardHolderName" ColumnName="cardHolderName" />
+                <ScalarProperty Name="expiryDate" ColumnName="expiryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="movieDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="custId" ColumnName="custId" />
+                <ScalarProperty Name="custName" ColumnName="custName" />
+                <ScalarProperty Name="custEmail" ColumnName="custEmail" />
+                <ScalarProperty Name="custPassword" ColumnName="custPassword" />
+                <ScalarProperty Name="custDob" ColumnName="custDob" />
+                <ScalarProperty Name="custPhoneNo" ColumnName="custPhoneNo" />
+                <ScalarProperty Name="custGender" ColumnName="custGender" />
+                <ScalarProperty Name="custPhoto" ColumnName="custPhoto" />
+                <ScalarProperty Name="custStatus" ColumnName="custStatus" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="loginNo" ColumnName="loginNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="movieDBModel.Hall">
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="hallNo" ColumnName="hallNo" />
+                <ScalarProperty Name="row" ColumnName="row" />
+                <ScalarProperty Name="column" ColumnName="column" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="movieDBModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="menuCategory" ColumnName="menuCategory" />
+                <ScalarProperty Name="menuPrice" ColumnName="menuPrice" />
+                <ScalarProperty Name="menuDesc" ColumnName="menuDesc" />
+                <ScalarProperty Name="menuUrl" ColumnName="menuUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="movieDBModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="movieId" ColumnName="movieId" />
+                <ScalarProperty Name="movieName" ColumnName="movieName" />
+                <ScalarProperty Name="releaseDate" ColumnName="releaseDate" />
+                <ScalarProperty Name="movieDuration" ColumnName="movieDuration" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+                <ScalarProperty Name="actor" ColumnName="actor" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="ageRating" ColumnName="ageRating" />
+                <ScalarProperty Name="posterURL" ColumnName="posterURL" />
+                <ScalarProperty Name="trailerURL" ColumnName="trailerURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="movieDBModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="paymentNo" ColumnName="paymentNo" />
+                <ScalarProperty Name="purchaseNo" ColumnName="purchaseNo" />
+                <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+                <ScalarProperty Name="paymentDateTime" ColumnName="paymentDateTime" />
+                <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
+                <ScalarProperty Name="accEmail" ColumnName="accEmail" />
+                <ScalarProperty Name="cardNo" ColumnName="cardNo" />
+                <ScalarProperty Name="transactionNo" ColumnName="transactionNo" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="movieDBModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="purchaseNo" ColumnName="purchaseNo" />
+                <ScalarProperty Name="custId" ColumnName="custId" />
+                <ScalarProperty Name="ticketTotal" ColumnName="ticketTotal" />
+                <ScalarProperty Name="foodTotal" ColumnName="foodTotal" />
+                <ScalarProperty Name="childrenQty" ColumnName="childrenQty" />
+                <ScalarProperty Name="adultQty" ColumnName="adultQty" />
+                <ScalarProperty Name="seniorQty" ColumnName="seniorQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseMenus">
+            <EntityTypeMapping TypeName="movieDBModel.PurchaseMenu">
+              <MappingFragment StoreEntitySet="PurchaseMenu">
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+                <ScalarProperty Name="purchaseNo" ColumnName="purchaseNo" />
+                <ScalarProperty Name="menuQty" ColumnName="menuQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="movieDBModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="scheduleNo" ColumnName="scheduleNo" />
+                <ScalarProperty Name="movieId" ColumnName="movieId" />
+                <ScalarProperty Name="hallNo" ColumnName="hallNo" />
+                <ScalarProperty Name="scheduleDateTime" ColumnName="scheduleDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="movieDBModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="staffName" ColumnName="staffName" />
+                <ScalarProperty Name="staffEmail" ColumnName="staffEmail" />
+                <ScalarProperty Name="staffPassword" ColumnName="staffPassword" />
+                <ScalarProperty Name="staffIC" ColumnName="staffIC" />
+                <ScalarProperty Name="staffGender" ColumnName="staffGender" />
+                <ScalarProperty Name="staffPhoneNo" ColumnName="staffPhoneNo" />
+                <ScalarProperty Name="staffPhoto" ColumnName="staffPhoto" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="staffStatus" ColumnName="staffStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="movieDBModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="ticketNo" ColumnName="ticketNo" />
+                <ScalarProperty Name="purchaseNo" ColumnName="purchaseNo" />
+                <ScalarProperty Name="scheduleNo" ColumnName="scheduleNo" />
+                <ScalarProperty Name="ticketCategory" ColumnName="ticketCategory" />
+                <ScalarProperty Name="ticketPrice" ColumnName="ticketPrice" />
+                <ScalarProperty Name="seatNo" ColumnName="seatNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="movieDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

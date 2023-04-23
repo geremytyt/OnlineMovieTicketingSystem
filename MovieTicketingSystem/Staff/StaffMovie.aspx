@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffMovie.aspx.cs" Inherits="MovieTicketingSystem.View.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffMovie.aspx.cs" Inherits="MovieTicketingSystem.Staff.StaffMovie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/movie.css" rel="stylesheet" />
     <%--Gonna change to grid view when having database--%>

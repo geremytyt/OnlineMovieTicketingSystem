@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace MovieTicketingSystem.View
+namespace MovieTicketingSystem.Staff
 {
     public partial class FoodManagement : System.Web.UI.Page
     {

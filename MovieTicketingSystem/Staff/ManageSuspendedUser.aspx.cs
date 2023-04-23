@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.Staff
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class ManageSuspendedUser : System.Web.UI.Page
     {
         string cs = Global.cs;
         protected void Page_Load(object sender, EventArgs e)
