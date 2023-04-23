@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,17 @@ namespace MovieTicketingSystem.CustomerOnly
 {
     public partial class Tickets : System.Web.UI.Page
     {
+        int count = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Customer cust = (Customer)Session["Customer"];
+            if (cust != null)
+            {
+                DateTime currentTime = DateTime.Now;
+                DateTime newTime = currentTime.AddHours(2);
+                SqlDataSource1.SelectParameters["custId"].DefaultValue = cust.custId.ToString();
+                SqlDataSource1.SelectParameters["scheduleDateTime"].DefaultValue = newTime.ToString("yyyy-MM-dd HH:mm:ss");
+            }
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -21,16 +30,17 @@ namespace MovieTicketingSystem.CustomerOnly
                 Repeater rpt2 = (Repeater)e.Item.FindControl("Repeater2");
                 Repeater rpt3 = (Repeater)e.Item.FindControl("Repeater3");
                 // Extract the value from the desired column of the data item
-                string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
 
+                string columnValue = DataBinder.Eval(e.Item.DataItem, "paymentNo").ToString(); // Replace "ColumnName" with the actual column name
+                count++;
                 // Set the value of the ColumnValue parameter for sqlDataSource2
                 SqlDataSource2.SelectParameters["paymentNo"].DefaultValue = columnValue;
-
-                SqlDataSource3.SelectParameters["paymentNo"].DefaultValue = columnValue;
-
+                rpt2.DataSource = SqlDataSource2;
                 rpt2.DataBind();
-
+                SqlDataSource3.SelectParameters["paymentNo"].DefaultValue = columnValue;
+                rpt3.DataSource = SqlDataSource3;
                 rpt3.DataBind();
+
             }
         }
 

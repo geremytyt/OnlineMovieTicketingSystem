@@ -4,7 +4,6 @@
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
                 <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
-                <asp:FileUpload ID="fileUpload" runat="server" CssClass="d-block mx-auto w-75 mt-2" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/>
                 <hr class="mx-auto w-75" style="border:1px solid white;"/>
                 <div class="row ">
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
@@ -21,7 +20,7 @@
                             <asp:Button ID="btnResetPwd" runat="server" Text="Reset Password" class="profileTab nav-link" type="button" OnClick="btnResetPwd_Click"/>
                         </li>
                     </ul>
-            </div>
+                </div>
             <hr class="mx-auto w-75" style="border:1px solid white;"/>
             </div>
             <div class="col-md-8" style="height:650px;">
@@ -41,7 +40,7 @@
                         <div style="height:450px;overflow:auto;overflow-x:hidden;">
                             <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4" OnItemDataBound="Repeater4_ItemDataBound">
                                 <ItemTemplate>
-                                     <div style="border: 1px solid white; border-radius:10px;" class="mb-2">
+                                     <div style="border: 1px solid white; border-radius:10px;" class="my-3">
                                         <div class="row">
                                             <div class="my-2" style="width:65%;">
                                                 <div class="row">
@@ -56,7 +55,7 @@
                                             </div>
                                         </div>
                                         <div class="collapse" id="showMore">
-                                            <asp:Repeater ID="Repeater5" runat="server" DataSourceID="SqlDataSource5">
+                                            <asp:Repeater ID="Repeater5" runat="server">
                                                 <ItemTemplate>
                                                     <div style="border-bottom: 1px solid white; width: 95%;" class="mx-auto"></div>
                                                         <div class="row">
@@ -84,7 +83,7 @@
                                                         </div>  
                                                 </ItemTemplate>                                
                                             </asp:Repeater>
-                                            <asp:Repeater ID="Repeater6" runat="server" DataSourceID="SqlDataSource6">
+                                            <asp:Repeater ID="Repeater6" runat="server" OnItemDataBound="Repeater6_ItemDataBound">
                                                 <HeaderTemplate>
                                                         <div style="border-bottom: 1px solid white; width: 95%;" class="mx-auto"></div>
                                                         <label class="fieldLabel mx-2" style="width:45%">Menu Item</label>
@@ -96,13 +95,14 @@
                                                         <asp:Label ID="lblMenu" runat="server" Cssclass="mx-2" Width="45%" Text='<%#Eval("menuName") %>'></asp:Label>
                                                         <asp:Label ID="lblQty2" runat="server" Cssclass="w-25 text-center" Text='<%#Eval("menuQty") %>'></asp:Label>
                                                         <asp:Label ID="lblSubTotal" runat="server" Cssclass="w-25 text-center" Text='<%#Convert.ToDecimal(Eval("menuQty")) * Convert.ToDecimal(Eval("menuPrice"))%>'></asp:Label>
-                                                        
                                                     </div>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <label class="mx-2" style="width:45%"></label>
+                                                    <div class="row">
+                                                        <label class="mx-2" style="width:45%"></label>
                                                         <label class="fieldLabel w-25 text-center">Total(RM):</label>
-                                                        <asp:Label ID="Label15" runat="server" Cssclass="w-25 text-center" Text='<%#Eval("foodTotal") %>'></asp:Label>
+                                                        <asp:Label ID="Label15" runat="server" class="w-25 text-center"></asp:Label>
+                                                      </div>
                                                 </FooterTemplate>
                                             </asp:Repeater>         
                                         </div>
@@ -132,15 +132,16 @@
                 </div>
             </div>
         </div>
-        <script>
-            function change(sender) {
-                var id = sender.id;
-                var text = document.getElementById(id).innerHTML;
-                if (text == "Show More") {
-                    document.getElementById(id).innerHTML = "Show Less";
-                } else {
-                    document.getElementById(id).innerHTML = "Show More";
-                }
+    </div>
+    <script>
+        function change(sender) {
+            var id = sender.id;
+            var text = document.getElementById(id).innerHTML;
+            if (text == "Show More") {
+                document.getElementById(id).innerHTML = "Show Less";
+            } else {
+                document.getElementById(id).innerHTML = "Show More";
             }
-        </script>
+        }
+    </script>
 </asp:Content>

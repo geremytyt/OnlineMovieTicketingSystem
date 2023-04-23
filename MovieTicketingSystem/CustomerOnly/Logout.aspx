@@ -4,6 +4,6 @@
 
 
     <script>
-        setTimeout("location='~/Annonymous/Home.aspx'", 3000);
+        setTimeout("location='../Annonymous/Home.aspx'", 3000);
     </script>
 </asp:Content>
