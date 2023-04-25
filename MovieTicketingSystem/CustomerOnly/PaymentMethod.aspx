@@ -1,18 +1,20 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Customer.Master" CodeBehind="PaymentMethod.aspx.cs" Inherits="MovieTicketingSystem.CustomerOnly.PaymentMethod" %>
 
 <asp:Content ID="Payment" ContentPlaceHolderID="main" runat="server">
-   <div style="height:700px;">
-    <link href="../css/payment.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <div style="height:700px;">
+        <br />
     <div class="paymentContainer mx-auto mt-3">
-        <div class="heading">
+        <div class="paymentHeading">
             <h1>Add Credit Card</h1>
-            <div class="cards">
+            <div class="paymentCards">
                 <img src="../Image/mastercard.png" />
             </div>
         </div>
         
-        <div class="first-row">
-            <div class="owner">
+        <div class="cardFirst-row">
+            <div class="cardOwner">
                 <h6>Cardholder Name</h6>
                 <div class="paymentInput">    
                     <asp:TextBox ID="txtCardName" runat="server"></asp:TextBox>
@@ -25,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="second-row">
+        <div class="cardSecond-row">
             <div class="card-number">
                 <h6>Card Number</h6>
                 <div class="paymentInput">
@@ -33,9 +35,9 @@
                 </div>
             </div>
         </div>
-        <div class="third-row">
+        <div class="cardThird-row">
             <h6>Expiry Date</h6>
-            <div class="selection">
+            <div class="cardDateSelection">
                 <div class="date">
                     <asp:DropDownList ID="ddlMonths" runat="server">
                         <asp:ListItem Text="Jan" Value="Jan"></asp:ListItem>
@@ -63,7 +65,8 @@
                 
             </div>    
         </div>
-        <asp:Button ID="btnPaymentConfirm" class="btnPaymentConfirm" runat="server" Text="Confirm" OnClick="btnPaymentConfirm_Click" />
+        <asp:Button ID="btnCardConfirm" class="btnCardConfirm" runat="server" Text="Confirm" OnClick="btnCardConfirm_Click" />
     </div>
-        </div>
+   
+   </div>
 </asp:Content>

@@ -60,7 +60,7 @@
                     <asp:DropDownList ID="ddlHall" runat="server" DataSourceID="SqlDataSourceSchedule3"
                             DataTextField="hallNo" DataValueField="hallNo" Width="95%" CssClass="mt-3"></asp:DropDownList>
                 </div>
-
+                
                 <br />
                 <div class="mx-4">
                     <label for="txtScheduleDate">Schedule Date</label>
