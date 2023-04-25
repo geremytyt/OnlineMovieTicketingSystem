@@ -29,18 +29,16 @@
                         <h3 class="text-white">My History</h3>
                         <hr style="border:1px solid white"/>
                         <div class="row justify-content-end mb-3">
-                            <asp:DropDownList ID="DropDownList1" class="w-50 mx-2" runat="server" BackColor="Black" ForeColor="White">
+                            <asp:DropDownList ID="ddlTime" class="w-50 mx-2 p-2" runat="server" BackColor="Black" ForeColor="White" OnSelectedIndexChanged="ddlTime_SelectedIndexChanged"  AutoPostBack="True">
                                 <asp:ListItem>All</asp:ListItem>
                                 <asp:ListItem>Past 3 months</asp:ListItem>
                                 <asp:ListItem>Past 4-12 months</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:TextBox ID="txtSearch" runat="server"  class="form-control w-25 mx-2" placeholder="Search"></asp:TextBox>
-                            <button class="btn btn-default" style="width:50px" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         <div style="height:450px;overflow:auto;overflow-x:hidden;">
-                            <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4" OnItemDataBound="Repeater4_ItemDataBound">
+                            <asp:Repeater ID="Repeater4" runat="server" OnItemDataBound="Repeater4_ItemDataBound">
                                 <ItemTemplate>
-                                     <div style="border: 1px solid white; border-radius:10px;" class="my-3">
+                                     <div style="border: 1px solid white; border-radius:10px;" class="my-2">
                                         <div class="row">
                                             <div class="my-2" style="width:65%;">
                                                 <div class="row">
@@ -51,10 +49,10 @@
                                                 </div>
                                             </div>    
                                             <div style="width:35%">
-                                                <button class="btn btn-default mt-3 ms-3 w-75" type="button" data-bs-toggle="collapse" data-bs-target="#showMore" aria-expanded="false" aria-controls="showMore" onclick="change(this)" id="btnShow">Show More</button>
+                                                <button id="btnShow" Text="Show More" class="btn btn-default mt-3 ms-3 w-75" type="button" data-bs-toggle="collapse" data-bs-target="#<%#Eval("paymentNo") %>" aria-expanded="false" aria-controls="<%#Eval("paymentNo") %>">Details</button>
                                             </div>
                                         </div>
-                                        <div class="collapse" id="showMore">
+                                        <div class="collapse" id="<%#Eval("paymentNo") %>">
                                             <asp:Repeater ID="Repeater5" runat="server">
                                                 <ItemTemplate>
                                                     <div style="border-bottom: 1px solid white; width: 95%;" class="mx-auto"></div>
@@ -109,11 +107,6 @@
                                     </div>    
                                 </ItemTemplate>
                             </asp:Repeater>    
-                            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo">
-                                <SelectParameters>
-                                    <asp:Parameter DefaultValue="C001" Name="custID"></asp:Parameter>
-                                </SelectParameters>
-                            </asp:SqlDataSource>
                             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty FROM Schedule INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Payment.paymentNo = @paymentNo) GROUP BY Movie.movieName, Schedule.scheduleDateTime, Purchase.ticketTotal, Purchase.seniorQty, Purchase.adultQty, Purchase.childrenQty">
                                 <SelectParameters>
                                     <asp:Parameter Name="paymentNo"></asp:Parameter>
@@ -126,7 +119,7 @@
                             </asp:SqlDataSource>
                         </div>
                         <div class="w-100 text-center">
-                            <asp:Label ID="lblNo" runat="server" Text="1 Record(s) displayed"></asp:Label>
+                            <asp:Label ID="lblNo" runat="server"></asp:Label>
                         </div>  
                     </div>
                 </div>
@@ -134,14 +127,6 @@
         </div>
     </div>
     <script>
-        function change(sender) {
-            var id = sender.id;
-            var text = document.getElementById(id).innerHTML;
-            if (text == "Show More") {
-                document.getElementById(id).innerHTML = "Show Less";
-            } else {
-                document.getElementById(id).innerHTML = "Show More";
-            }
-        }
+
     </script>
 </asp:Content>

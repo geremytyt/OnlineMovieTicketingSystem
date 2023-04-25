@@ -20,12 +20,12 @@
                     <div class="form-floating mb-3 " style="width:60%;" id="float2">
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password"/>
                         <label for="txtPassword">Password</label>
-                        <asp:CustomValidator ID="cvLogin" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password"></asp:CustomValidator>
-                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cvLogin" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password" SetFocusOnError="true"></asp:CustomValidator>
+                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password" SetFocusOnError="true"></asp:RequiredFieldValidator>
                     </div>
                 <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:10%;margin-top:30px"></i>
                 </div>
-                <div class="g-recaptcha text-center" data-sitekey="6LdtHKwlAAAAAN07Moo4spWHNegef1-5HSdjiBMl"></div>
+                <div class="g-recaptcha d-flex justify-content-center align-items-center" data-sitekey="6LdtHKwlAAAAAN07Moo4spWHNegef1-5HSdjiBMl"></div>
                 <div class="checkbox mt-3 text-center">
                     <asp:Label ID="lblRemember" runat="server">
                         <asp:CheckBox ID="cbRemember" runat="server" /> Remember me

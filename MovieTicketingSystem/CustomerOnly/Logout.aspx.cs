@@ -15,6 +15,7 @@ namespace MovieTicketingSystem.CustomerOnly
             if (User.Identity.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
+                Response.Cookies.Remove("ASPXAUTH");
             }
         }
     }

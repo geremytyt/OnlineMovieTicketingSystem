@@ -20,7 +20,7 @@
                     <div class="form-floating mb-3" style="width:60%;" id="float">
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                         <label for="txtEmail">Email</label>
-                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your email"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your email" SetFocusOnError="true"></asp:RequiredFieldValidator>
                     </div>
                 <i style="width:10%;margin-top:30px"></i>
                 </div>
@@ -29,8 +29,8 @@
                     <div class="form-floating mb-3 " style="width:60%;" id="float2">
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password"/>
                         <label for="txtPassword">Password</label>
-                        <asp:CustomValidator ID="cvLogin" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password"></asp:CustomValidator>
-                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cvLogin" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password" SetFocusOnError="true"></asp:CustomValidator>
+                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password" SetFocusOnError="true"></asp:RequiredFieldValidator>
                     </div>
                 <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:10%;margin-top:30px"></i>
                 </div>
