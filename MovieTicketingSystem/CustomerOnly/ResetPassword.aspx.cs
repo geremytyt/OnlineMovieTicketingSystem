@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
@@ -13,25 +16,23 @@ namespace MovieTicketingSystem.CustomerOnly
         string cs = Global.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["Customer"];
+            if (cookie != null)
+            {
+                string sql = "SELECT * FROM Customer WHERE custId = @id";
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                SqlDataReader dr = cmd.ExecuteReader();
 
-        }
-
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            string password = Security.GetHash(txtCfmPwd.Text);
-            string sql = "UPDATE Customer SET custPassword=@Password WHERE custId=@Id";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", "C001");
-            cmd.Parameters.AddWithValue("@Password", password);
-
-            cmd.ExecuteNonQuery();
-
-            con.Close();
+                if (dr.Read())
+                {
+                    imgPreview.ImageUrl = dr[7].ToString();
+                }
+                dr.Close();
+                con.Close();
+            }
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)

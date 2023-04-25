@@ -19,7 +19,7 @@
     </script>
         <div class="container">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end my-2">
-                <asp:Button ID="btnAddMovie" runat="server" Text="Add Movie" class="btn btn-warning float-end my-1" OnClick="btnAddMovie_Click" />
+                <asp:Button ID="btnAddMovie" runat="server" Text="Add Movie" class="btn btn-default float-end my-1" OnClick="btnAddMovie_Click" />
             </div>
 
             <div class="text-white row">

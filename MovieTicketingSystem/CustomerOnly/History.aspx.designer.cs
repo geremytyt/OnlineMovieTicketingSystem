@@ -60,22 +60,13 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.Button btnResetPwd;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-
-        /// <summary>
-        /// txtSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTime;
 
         /// <summary>
         /// Repeater4 control.
@@ -85,15 +76,6 @@ namespace MovieTicketingSystem.CustomerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater4;
-
-        /// <summary>
-        /// SqlDataSource4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
 
         /// <summary>
         /// SqlDataSource5 control.

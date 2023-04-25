@@ -32,7 +32,6 @@ namespace MovieTicketingSystem
         public static void LoginUser(string username, string role, bool rememberMe)
         {
             HttpContext ctx = HttpContext.Current;
-
             HttpCookie authCookie = FormsAuthentication.GetAuthCookie(username, rememberMe);
             FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(authCookie.Value);
             FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(
@@ -43,6 +42,7 @@ namespace MovieTicketingSystem
                 oldTicket.IsPersistent,
                 role
             );
+            authCookie.Expires = DateTime.Now.AddDays(14);
             authCookie.Value = FormsAuthentication.Encrypt(newTicket);
             ctx.Response.Cookies.Add(authCookie);
 

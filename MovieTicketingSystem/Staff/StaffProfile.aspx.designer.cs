@@ -33,6 +33,24 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
 
         /// <summary>
+        /// btnProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnProfile;
+
+        /// <summary>
+        /// btnResetPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetPwd;
+
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace MovieTicketingSystem.Staff
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+
+        /// <summary>
+        /// rfvName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
 
         /// <summary>
         /// txtEmail control.
@@ -60,6 +87,33 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
 
         /// <summary>
+        /// cvExistPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvExistPhone;
+
+        /// <summary>
+        /// rfvPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhone;
+
+        /// <summary>
+        /// revPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPhone;
+
+        /// <summary>
         /// txtIC control.
         /// </summary>
         /// <remarks>
@@ -69,6 +123,15 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.TextBox txtIC;
 
         /// <summary>
+        /// rfvIC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIC;
+
+        /// <summary>
         /// rblGender control.
         /// </summary>
         /// <remarks>
@@ -76,6 +139,15 @@ namespace MovieTicketingSystem.Staff
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblGender;
+
+        /// <summary>
+        /// rfvGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGender;
 
         /// <summary>
         /// txtPosition control.
@@ -94,41 +166,5 @@ namespace MovieTicketingSystem.Staff
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEdit;
-
-        /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-
-        /// <summary>
-        /// TextBox3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
-
-        /// <summary>
-        /// TextBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
     }
 }

@@ -2,41 +2,42 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/movie.css" rel="stylesheet" />
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 my-2">
-                <div class="bg-transparent card text-light text-center border-0" style="width: 15rem;">
-                    <asp:Image ID="imgPoster" CssClass="card-img-top image-fluid" runat="server" ImageAlign="Middle" />
-                    <asp:Label ID="lbMovieName" runat="server"></asp:Label>
-                </div>
-            </div>
-            <div class="col-lg-9 my-2">
-                <table class="table table-dark table-borderless">
-                    <tr>
-                        <td>
-                             <label class="form-label">Hall : </label>
-                        </td>
-                        <td>
-                                <asp:Label ID="lbHall" runat="server" Text="Label"></asp:Label>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="form-label">Date & Time : </label>
-                        </td>
-                        <td>
-                            <asp:Label ID="lbDateTime" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="2">
-                            <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
-                        </td>
-                    </tr>
-                </table>
+    <div class="container bg-dark my-2">
+        <div class="text-light mt-2 pt-2 border-bottom d-flex flex-column">
+            <asp:Label ID="lbMovieName" runat="server"  CssClass="text-center fs-4"></asp:Label>
+            <asp:Label ID="lbMovieInfo" runat="server"  CssClass="text-center fw-light"></asp:Label>
+        </div>
+        <div class="text-light pt-2 border-bottom d-flex flex-column">
+            <asp:Label ID="lbHall" runat="server"  CssClass="text-center"></asp:Label>
+            <asp:Label ID="lbDateTime" runat="server"  CssClass="text-center"></asp:Label>
+        </div>
+        <div> 
+            <ul class="showcase text-light">
+                <li>
+                    <div class="seat"></div>
+                    <small>Available</small>
+                </li>
+                <li>
+                    <div class="seat selected"></div>
+                    <small>Selected</small>
+                </li>
+                <li>
+                    <div class="seat sold"></div>
+                    <small>Sold</small>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-center outer-container">
+            <div class="seat-container w-75 justify-content-center" runat="server" id="seatContainer">
+                <div class="screen"></div>
+
             </div>
         </div>
+        <div class="d-grid">
+            <asp:Button ID="btnConfirm" CssClass="btn btn-default p-2 m-2" runat="server" Text="Confirm" OnClick="btnNext_Click"/>
+        </div>
+
     </div>
+    <script src="../js/Script.js"></script>
 </asp:Content>
+

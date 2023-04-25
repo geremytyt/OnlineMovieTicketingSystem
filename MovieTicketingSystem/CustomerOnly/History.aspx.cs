@@ -1,7 +1,12 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,11 +15,44 @@ namespace MovieTicketingSystem.CustomerOnly
 {
     public partial class History : System.Web.UI.Page
     {
+        string cs = Global.cs;
         private string foodTotal;
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["Customer"];
+            if (cookie != null)
+            {
+                string sql = "SELECT * FROM Customer WHERE custId = @id";
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                SqlDataReader dr = cmd.ExecuteReader();
 
+                if (dr.Read())
+                {
+                    imgPreview.ImageUrl = dr[7].ToString();
+
+                }
+                dr.Close();
+                con.Close();
+            }
+
+            string sql2 = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo";
+            SqlConnection con2 = new SqlConnection(cs);
+            SqlCommand cmd2 = new SqlCommand(sql2, con2);
+            con2.Open();
+            cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            if (!dr2.HasRows) {
+                lblNo.Text = "No Records Found";
+            }
+            Repeater4.DataSource = dr2;
+            Repeater4.DataBind();
+            dr2.Close();
+            con2.Close();
         }
+
         protected void Repeater4_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -32,7 +70,6 @@ namespace MovieTicketingSystem.CustomerOnly
                 SqlDataSource6.SelectParameters["paymentNo"].DefaultValue = columnValue;
                 rpt6.DataSource = SqlDataSource6;
                 rpt6.DataBind();
-
             }
         }
 
@@ -69,6 +106,47 @@ namespace MovieTicketingSystem.CustomerOnly
                ((Label)e.Item.FindControl("Label15")).Text = foodTotal;
   
 
+            }
+        }
+
+        protected void ddlTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sql = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) AND (Payment.paymentDateTime BETWEEN @start AND @end) GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo";
+
+            HttpCookie cookie = Request.Cookies["Customer"];
+            if (ddlTime.SelectedIndex == 1) {
+             
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                cmd.Parameters.AddWithValue("@start", DateTime.Now.AddMonths(-3));
+                cmd.Parameters.AddWithValue("@end", DateTime.Now);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (!dr.HasRows)
+                {
+                    lblNo.Text = "No Records Found";
+                }
+                Repeater4.DataSource = dr;
+                Repeater4.DataBind();
+                dr.Close();
+                con.Close();
+            } else if (ddlTime.SelectedIndex == 2) {
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                cmd.Parameters.AddWithValue("@start", DateTime.Now.AddYears(-1));
+                cmd.Parameters.AddWithValue("@end", DateTime.Now.AddMonths(-4));
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (!dr.HasRows)
+                {
+                    lblNo.Text = "No Records Found";
+                }
+                Repeater4.DataSource = dr;
+                Repeater4.DataBind();
+                dr.Close();
+                con.Close();
             }
         }
     }

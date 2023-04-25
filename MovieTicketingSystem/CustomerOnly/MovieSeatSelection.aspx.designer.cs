@@ -15,15 +15,6 @@ namespace MovieTicketingSystem.CustomerOnly
     {
 
         /// <summary>
-        /// imgPoster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPoster;
-
-        /// <summary>
         /// lbMovieName control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace MovieTicketingSystem.CustomerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbMovieName;
+
+        /// <summary>
+        /// lbMovieInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMovieInfo;
 
         /// <summary>
         /// lbHall control.
@@ -51,12 +51,21 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.Label lbDateTime;
 
         /// <summary>
-        /// btnNext control.
+        /// seatContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seatContainer;
+
+        /// <summary>
+        /// btnConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirm;
     }
 }

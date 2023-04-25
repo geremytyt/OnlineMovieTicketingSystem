@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -26,60 +27,81 @@ namespace MovieTicketingSystem.Annonymous
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
-            if (Page.IsValid)
+            if (IsReCaptchValid())
             {
-                string username = txtEmail.Text;
-                string password = txtPassword.Text;
-                bool rememberMe = cbRemember.Checked;
-                // Login the user
-                string hash = Security.GetHash(password);
-                User u = db.Users.SingleOrDefault(
-                    user => user.Username == username &&
-                    user.Hash == hash
-                    );
-                if (u != null)
+                if (Page.IsValid)
                 {
-                    if (u.Role == "Customer")
+                    string id = "";
+                    string username = txtEmail.Text;
+                    string password = txtPassword.Text;
+                    bool rememberMe = cbRemember.Checked;
+                    // Login the user
+                    string hash = Security.GetHash(password);
+                    User u = db.Users.SingleOrDefault(
+                        user => user.Username == username &&
+                        user.Hash == hash
+                        );
+                    if (u != null)
                     {
-                        Customer cust = new Customer();
-                        string sql = "SELECT * FROM Customer WHERE custEmail = @email";
-                        SqlConnection con = new SqlConnection(cs);
-                        SqlCommand cmd = new SqlCommand(sql, con);
-                        con.Open();
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                        SqlDataReader dr = cmd.ExecuteReader();
-
-                        if (dr.Read())
+                        if (u.Role == "Customer")
                         {
-                            cust.custId = dr[0].ToString();
-                            cust.custName = dr[1].ToString();
-                            cust.custEmail = dr[2].ToString();
-                            cust.custPassword = dr[3].ToString();
-                            cust.custDob = (Convert.ToDateTime(dr[4]));
-                            cust.custPhoneNo = dr[5].ToString();
-                            cust.custGender = dr[6].ToString();
-                            cust.custPhoto = dr[7].ToString();
-                            cust.custStatus = dr[8].ToString();
-                            cust.signature = dr[9].ToString();
-                            cust.loginNo = int.Parse(dr[10].ToString());
+                            string sql = "SELECT * FROM Customer WHERE custEmail = @email";
+                            SqlConnection con = new SqlConnection(cs);
+                            SqlCommand cmd = new SqlCommand(sql, con);
+                            con.Open();
+                            cmd.Parameters.AddWithValue("@email", username);
+                            SqlDataReader dr = cmd.ExecuteReader();
+
+                            if (dr.Read())
+                            {
+                                id = dr[0].ToString();
+                            }
+                            dr.Close();
+                            con.Close();
+                            HttpCookie cookie = new HttpCookie("Customer", id);
+                            cookie.Expires = DateTime.Now.AddDays(14);
+                            Response.Cookies.Add(cookie);
+                            Security.LoginUser(u.Username, u.Role, rememberMe);
+
                         }
-                        con.Close();
-                        Session["Customer"] = cust;
-                        Security.LoginUser(u.Username, u.Role, rememberMe);
-                       
+                        else
+                        {
+                            cvLogin.IsValid = false;
+                        }
                     }
                     else
                     {
                         cvLogin.IsValid = false;
                     }
-                }
-                else
-                {
-                    cvLogin.IsValid = false;
-                }
 
+                }
             }
+            else
+            {
+                cvCaptcha.IsValid = false;
+            }
+           
+        }
+
+        public bool IsReCaptchValid()
+        {
+            var result = false;
+            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var secretKey = "6LdtHKwlAAAAAE4wCBTRkwOSAS3dle2MSfw7D3kM";
+            var apiUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + captchaResponse;
+            var requestUri = string.Format(apiUrl, secretKey, captchaResponse);
+            var request = (HttpWebRequest)WebRequest.Create(requestUri);
+
+            using (WebResponse response = request.GetResponse())
+            {
+                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                {
+                    JObject jResponse = JObject.Parse(stream.ReadToEnd());
+                    var isSuccess = jResponse.Value<bool>("success");
+                    result = (isSuccess) ? true : false;
+                }
+            }
+            return result;
         }
     }
 }

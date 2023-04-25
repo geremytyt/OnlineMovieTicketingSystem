@@ -12,9 +12,27 @@ namespace MovieTicketingSystem.CustomerOnly
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Annonymous/Home.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
             if (User.Identity.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
+                Session.Abandon();
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if(authCookie != null)
+                {
+                    authCookie.Expires = DateTime.Now.AddDays(-1);
+                }
+                Response.Cookies.Remove("Customer");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('You have been logged out successfully'); window.location.href='../Annonymous/Home.aspx';", true);
+
             }
         }
     }
