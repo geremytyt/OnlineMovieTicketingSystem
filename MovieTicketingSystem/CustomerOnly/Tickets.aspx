@@ -29,7 +29,8 @@
                         <h3 class="text-white">My Tickets</h3>
                         <hr style="border:1px solid white"/>
                         <div style="height:550px;overflow:auto;">
-                            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
+                            <asp:Label ID="lblNo" runat="server"></asp:Label>
+                            <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="mx-auto bg-white text-black rounded-4 w-75 my-2">
                                         <div class="container-fluid m-2 p-2 ">
@@ -73,13 +74,6 @@
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
-                                SelectCommand="SELECT Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) AND (Schedule.scheduleDateTime > @scheduleDateTime) GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty">
-                                <SelectParameters>
-                                    <asp:Parameter Name="custId"></asp:Parameter>
-                                    <asp:Parameter Name="scheduleDateTime"></asp:Parameter>
-                                </SelectParameters>
-                            </asp:SqlDataSource>
                             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
                                 SelectCommand="SELECT Ticket.seatNo FROM Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo WHERE (Payment.paymentNo = @paymentNo)">
                                 <SelectParameters>

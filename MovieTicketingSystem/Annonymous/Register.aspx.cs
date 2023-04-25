@@ -36,21 +36,16 @@ namespace MovieTicketingSystem.Annonymous
                 count = int.Parse((dr[0].ToString().Substring(1, 3))) + 1;
                 id = "C" + count.ToString("000");
             }
-
+            dr.Close();
             con.Close();
 
             return id;
         }
 
         private void validateAll() {
-            Regex passwordRegex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$");
             if (txtCfmPassword.Text != txtPassword.Text)
             {
                 cvCfmPassword.IsValid = false;
-            }
-            if (!passwordRegex.IsMatch(txtPassword.Text))
-            {
-                cvPassword.IsValid = false;
             }
             //Check for duplicated email
             if (db.Users.Any(u => u.Username == txtEmail.Text))

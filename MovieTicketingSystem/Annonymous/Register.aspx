@@ -8,7 +8,7 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float">
                     <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
                     <label for="txtName">Name</label>
-                    <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Please enter your name" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Please enter your name" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtName" SetFocusOnError="true"></asp:RequiredFieldValidator>
                 </div>
                 <i style="width:5%;margin-top:30px"></i>
             </div>
@@ -17,8 +17,8 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float1">
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                     <label for="txtEmail">Email</label>
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Please enter your email" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtEmail" ></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered"></asp:CustomValidator> 
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Please enter your email" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtEmail" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered" SetFocusOnError="true"></asp:CustomValidator> 
                 </div>
                 <i style="width:5%;margin-top:30px"></i>
             </div>
@@ -27,8 +27,8 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float2">
                     <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control userInput" placeholder=" " onInput="updateStrength()" TextMode="Password"/>
                     <label for="txtPassword">Password</label>
-                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please enter your password" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvPassword" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak"></asp:CustomValidator> 
+                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please enter your password" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPassword" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="revPassword" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
                 </div>
                 <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:5%;margin-top:30px"></i>
                 <div style="border: 1px solid white;width:70%;">
@@ -48,8 +48,8 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float3">
                     <asp:TextBox ID="txtCfmPassword" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password" />
                     <label for="txtCfmPassword">Confirm Password</label>
-                    <asp:RequiredFieldValidator ID="rfvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please confirm your password" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Password does not match" ControlToValidate="txtCfmPassword"></asp:CustomValidator>
+                    <asp:RequiredFieldValidator ID="rfvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please confirm your password" ControlToValidate="txtPassword" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Password does not match" ControlToValidate="txtCfmPassword" SetFocusOnError="true"></asp:CustomValidator>
                 </div>
                 <i id="cfmpasswordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility2()"  style="width:5%;margin-top:30px"></i>
             </div>
@@ -58,8 +58,9 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float4">
                     <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
                     <label for="txtPhone">Phone No</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter your phone no" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" ControlToValidate="txtPhone"></asp:CustomValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter your phone no" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:CustomValidator>
+                    <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                 </div>
                 <i style="width:5%;margin-top:30px"></i>
             </div>                                                     
@@ -68,7 +69,7 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float5">
                     <asp:TextBox ID="txtDob" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Date"/>
                     <label for="txtDob">Date Of Birth</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter your date of birth" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtDob"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter your date of birth" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtDob" SetFocusOnError="true"></asp:RequiredFieldValidator>
                 </div>
                 <i style="width:5%;margin-top:30px"></i>
             </div>
@@ -84,7 +85,7 @@
                             <asp:ListItem>Female</asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select your gender" CssClass="text-danger" Display="Dynamic" ControlToValidate="rblGender"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select your gender" CssClass="text-danger" Display="Dynamic" ControlToValidate="rblGender" SetFocusOnError="true"></asp:RequiredFieldValidator>
                 </div>
                 <i style="width:5%;margin-top:30px"></i>
             </div>

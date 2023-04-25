@@ -33,9 +33,9 @@ namespace MovieTicketingSystem.Annonymous
                 {
                     if (u.Role == "Staff" || u.Role == "Manager")
                     {
-                        //record found
-                        //FormsAuthentication.RedirectFromLoginPage
-                        //(u.Username, rememberMe);
+                        HttpCookie cookie = new HttpCookie("Staff", username);
+                        cookie.Expires = DateTime.Now.AddDays(14);
+                        Response.Cookies.Add(cookie);
                         Security.LoginUser(u.Username, u.Role, rememberMe);
                     }
                     else {
