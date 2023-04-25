@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MiddlePage.aspx.cs" Inherits="MovieTicketingSystem.MiddlePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MiddlePage.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.MiddlePage" %>
 
 <!DOCTYPE html>
 

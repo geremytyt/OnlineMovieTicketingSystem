@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.CustomerOnly
+namespace MovieTicketingSystem.Staff
 {
 
 
-    public partial class ResetPassword
+    public partial class StaffResetPassword
     {
 
         /// <summary>
@@ -31,24 +31,6 @@ namespace MovieTicketingSystem.CustomerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnProfile;
-
-        /// <summary>
-        /// btnTicket control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTicket;
-
-        /// <summary>
-        /// btnHistory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHistory;
 
         /// <summary>
         /// btnResetPwd control.

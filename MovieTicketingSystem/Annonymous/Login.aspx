@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdtHKwlAAAAAN07Moo4spWHNegef1-5HSdjiBMl"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=renderRecaptcha&render=explicit" async defer></script>
     <div id="content" class="text-light d-flex align-items-center justify-content-center">
         <div class="bg-black rounded col-md-5 col-lg-3 col-sm-6">                  
             <div class="nav-link active flex-grow-1 loginTab p-3 text-center">User Login</div>    
@@ -25,7 +24,11 @@
                     </div>
                 <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:10%;margin-top:30px"></i>
                 </div>
-                <div class="g-recaptcha d-flex justify-content-center align-items-center" data-sitekey="6LdtHKwlAAAAAN07Moo4spWHNegef1-5HSdjiBMl"></div>
+                <div id="googleRecaptcha" class="d-flex justify-content-center align-items-center" ></div>
+                <div class="text-center">
+                    <asp:CustomValidator ID="cvCaptcha" runat="server" CssClass="text-danger" ErrorMessage="Please retry the captcha challenge"></asp:CustomValidator>
+                </div>
+                <asp:Label ID="lblCaptcha" runat="server"></asp:Label>
                 <div class="checkbox mt-3 text-center">
                     <asp:Label ID="lblRemember" runat="server">
                         <asp:CheckBox ID="cbRemember" runat="server" /> Remember me
@@ -56,6 +59,19 @@
                 iconPasswordVisibility.classList.add("fa-eye-slash");
             }
         }
-
+        var renderRecaptcha = function () {
+            grecaptcha.render('googleRecaptcha', {
+                'sitekey': '6LdtHKwlAAAAAN07Moo4spWHNegef1-5HSdjiBMl',
+                'callback': reCaptchaCallback,
+                theme: 'dark',
+                type: 'image',
+                size: 'normal'
+            });
+        };
+        var reCaptchaCallback = function (response) {
+            if (response !== '') {
+                document.getElementById('lblCaptcha').innerHTML = "";
+            }
+        };
     </script>
 </asp:Content>

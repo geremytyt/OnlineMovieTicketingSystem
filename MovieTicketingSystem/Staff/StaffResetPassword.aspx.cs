@@ -1,25 +1,22 @@
-﻿using MovieTicketingSystem.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
-namespace MovieTicketingSystem.CustomerOnly
+namespace MovieTicketingSystem.Staff
 {
-    public partial class ResetPassword : System.Web.UI.Page
+    public partial class StaffResetPassword : System.Web.UI.Page
     {
         string cs = Global.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["Customer"];
+            HttpCookie cookie = Request.Cookies["Staff"];
             if (cookie != null)
             {
-                string sql = "SELECT * FROM Customer WHERE custId = @id";
+                string sql = "SELECT * FROM Staff WHERE staffId = @id";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
@@ -34,25 +31,14 @@ namespace MovieTicketingSystem.CustomerOnly
                 con.Close();
             }
         }
-
         protected void btnProfile_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Profile.aspx");
-        }
-
-        protected void btnTicket_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Tickets.aspx");
-        }
-
-        protected void btnHistory_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("History.aspx");
+            Response.Redirect("StaffProfile.aspx");
         }
 
         protected void btnResetPwd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ResetPassword.aspx");
+            Response.Redirect("StaffResetPassword.aspx");
         }
     }
 }
