@@ -214,6 +214,7 @@
     <Compile Include="Annonymous\StaffLogin.aspx.designer.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CartItem.cs" />
     <Compile Include="CustomerOnly\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

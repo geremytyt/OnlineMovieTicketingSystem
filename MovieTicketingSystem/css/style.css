@@ -112,8 +112,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .fieldLabel {
     color: #808080;
     font-size: 12px;
-}d {
-gound .cardd
+}
+
+d {
+    gound .cardd
+}
+
 /* Food Customer Side*/
 .Menubackgound {
     padding-top: 50px;
@@ -125,16 +129,6 @@ gound .cardd
     margin: 5px auto;
     height: 500px;
     border-radius: 20px;
-}
-
-.Menubackgound .card-header {
-    height: 10%;
-    overflow: hidden;
-    vertical-align: middle;
-    display: inline-block;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
-    font-size: larger;
 }
 
 .image-box {
@@ -169,49 +163,62 @@ gound .cardd
 
 .Menubackgound .card-body {
     height: 35%;
-    overflow: hidden;
+    overflow: scroll;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-size: large;
     border-left: 2px black solid;
     border-right: 2px black solid;
 }
 
+.Menubackgound .card-body::-webkit-scrollbar{
+    display:none;
+}
+
 .Menubackgound .divPrice {
     text-align: left;
-    width: 45%;
     float: left;
     font-size: 20px;
     padding-right: 5px;
 }
 
-.Menubackgound .divRemarks {
-    text-align: right;
-    width: 45%;
-    float: right;
-    padding-left: 5px;
-}
-
 .Menubackgound .card-footer {
     background-color: black;
-    height: 50px;
+    border: 1px white solid;
+    border-radius: 0px 0px 20px 20px;
+    color: white;
+    margin: auto;
 }
 
+
+.Menubackgound .lblQty{
+    color:white;
+}
+
+
 .Menubackgound .Qty {
-    width: 15%;
+    margin-right: 0px;
+    margin-left: auto;
+    float:right;
+    width: 40%;
+    background:black;
+    color:white;
+    border:1px solid white;
 }
 
 .Menubackgound .btn_add_to_cart {
+    
     vertical-align: central;
-    margin: auto;
-    width: 80%;
-    height: 100%;
+    margin: 5px auto;
+    width: 95%;
+    height: 30%;
     float: right;
     background-color: yellow;
     color: black;
     border: 1px solid black;
+    border: 3px;
 }
 
-.Menubackgound .btn_add_to_cart:hover {
+.Menubackgound .btn_add_to_cart:hover {    
     font-weight: bolder;
     background-color: black;
     color: yellow;
@@ -309,13 +316,13 @@ gound .cardd
     color: white;
 }
 
-    .containerRight .form-control:focus {
-        background: inherit;
-        box-shadow: none;
-        border: none;
-        border-bottom: 2px solid yellow;
-        color: white;
-    }
+.containerRight .form-control:focus {
+    background: inherit;
+    box-shadow: none;
+    border: none;
+    border-bottom: 2px solid yellow;
+    color: white;
+}
 
 /* cart */
 #Cartbackground {

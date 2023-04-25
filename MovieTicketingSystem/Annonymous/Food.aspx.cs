@@ -10,6 +10,9 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Runtime.Remoting.Messaging;
 using System.ComponentModel;
+using MovieTicketingSystem.CustomerOnly;
+using MovieTicketingSystem.Manager;
+using System.Security.Policy;
 
 namespace MovieTicketingSystem.Annonymous
 {
@@ -27,15 +30,43 @@ namespace MovieTicketingSystem.Annonymous
         {
             Button btn = (Button)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+            Label lblId = (Label)item.FindControl("LBlId");
             Label lblName = (Label)item.FindControl("LblName");
             Label LblPrice = (Label)item.FindControl("LblPrice");
-            Label LblRemarks = (Label)item.FindControl("LblRemarks");
+            Image Foodimage = (Image)item.FindControl("foodImage");
             TextBox txtQty = (TextBox)item.FindControl("txtQty");
 
+            double price = double.Parse(LblPrice.Text.ToString().Substring(2));
+            
+            String id = lblId.Text.ToString();
+            String name = lblName.Text.ToString();
+            int qty = int.Parse( txtQty.Text.ToString());
+            String url = Foodimage.ImageUrl.ToString();
 
-            Console.Write("Hello");
-            Response.Redirect("cart.aspx");
+            if (Session["Cart"] == null)
+            {
+                List<CartItem> cart = new List<CartItem>();
+
+                cart.Add(new CartItem(id, name, price, qty, url));
+                Session["Cart"] = cart;
+            }
+            else
+            {
+                List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                cart.Add(new CartItem(id, name, price, qty, url));
+                Session["Cart"] = cart;
+            }
+
+            Response.Redirect("../CustomerOnly/Cart.aspx");
         }
 
+        protected void repMenu_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                ((RequiredFieldValidator)e.Item.FindControl("RFVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+                ((Button)e.Item.FindControl("btn_add_to_cart")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+            }
+        }
     }
 }
