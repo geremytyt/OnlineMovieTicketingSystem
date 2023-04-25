@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Staff.Master" CodeBehind="ManageSchedule.aspx.cs" Inherits="MovieTicketingSystem.Staff.ManageSchedule" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/manageSchedule.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
     <div class="container" style="height:700px;">
         <h2 class="text-white">Maintain Schedule</h2>
         <hr />
@@ -33,7 +36,7 @@
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
                     <div>
-                        <asp:TextBox ID="txtSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
+                        <asp:TextBox ID="txtScheduleSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
                         <button class="btn btn-default my-2" style="width:40px" type="submit" onclick="btnSearch_Click" ><i class="fas fa-search"></i></button>
                     </div>
                 </div>
@@ -63,7 +66,7 @@
                     <label for="txtScheduleDate">Schedule Date</label>
                 </div>
                 <div class="mx-4">
-                    <asp:TextBox ID="txtScheduleDate" runat="server" CssClass="form-control" placeholder=" " />
+                    <asp:TextBox ID="txtScheduleDate" runat="server" CssClass="form-control" placeholder=" " TextMode="Date"/>
                 </div>
 
                 <br />
@@ -71,7 +74,7 @@
                     <label for="txtScheduleTime">Schedule Time</label>
                 </div>
                 <div class="mx-4">
-                    <asp:TextBox ID="txtScheduleTime" runat="server" CssClass="form-control" placeholder=" " TextMode="Time" Pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"/>
+                    <asp:TextBox ID="txtScheduleTime" runat="server" CssClass="form-control" placeholder=" " TextMode="Time" Pattern="[0-9]{1,2}:[0-9]{1,2}:[0-9]{2}"/>
                 </div>
                 
                 <div class="m-4">
@@ -81,6 +84,8 @@
                     <asp:Button ID="btnCancel"  runat="server" Text="Cancel" CssClass="btn btn-default" Width="40%" OnClick="btnCancel_Click" />
                 </div>
                 <br />
+                <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlHall" CssClass="error" Display="Dynamic" ErrorMessage="CustomValidator" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>--%>
+                <asp:Label ID="lblInvalid" runat="server" CssClass="error" Display="Dynamic" Text="Hall is not available at the selected time. Please choose a different time or hall."></asp:Label>
             </div>
             <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
                 SelectCommand="SELECT DISTINCT movieId FROM Schedule"></asp:SqlDataSource>
@@ -89,3 +94,4 @@
         </div>
     </div>
 </asp:Content>
+

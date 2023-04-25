@@ -33,13 +33,13 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.GridView scheduleGridView;
 
         /// <summary>
-        /// txtSearch control.
+        /// txtScheduleSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.TextBox txtScheduleSearch;
 
         /// <summary>
         /// lblScheduleID control.
@@ -121,6 +121,15 @@ namespace MovieTicketingSystem.Staff
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+
+        /// <summary>
+        /// lblInvalid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInvalid;
 
         /// <summary>
         /// SqlDataSourceSchedule2 control.

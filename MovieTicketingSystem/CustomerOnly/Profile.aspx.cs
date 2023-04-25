@@ -25,6 +25,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 txtPhone.Text = cust.custPhoneNo.ToString();
                 txtDob.Text = (Convert.ToDateTime(cust.custDob).ToString("yyyy-MM-dd"));
                 rblGender.SelectedValue = cust.custDob.ToString();
+                imgPreview.ImageUrl = cust.custPhoto.ToString();
             }
         }
 

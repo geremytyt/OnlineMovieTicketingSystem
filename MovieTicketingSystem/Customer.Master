@@ -28,6 +28,7 @@
                     </asp:Menu>
                     <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Customer" />
                 </div>
+                <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" CssClass="btn btn-default me-2"/>
                 <div class="d-flex">
                    <asp:TextBox ID="txtSearch" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
