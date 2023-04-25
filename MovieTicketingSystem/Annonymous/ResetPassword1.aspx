@@ -20,7 +20,7 @@
                         <div class="form-floating" id="float" style="width:60%;">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtEmail">Email</label>
-                            <asp:CustomValidator ID="cvEmail" CssClass="text-danger" runat="server" ErrorMessage="Invalid Email" Display="Dynamic"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cvEmail" CssClass="text-danger" runat="server" ErrorMessage="Invalid Email" Display="Dynamic" SetFocusOnError="true"></asp:CustomValidator>
                         </div>
                     </div>
                 <div class="text-center">

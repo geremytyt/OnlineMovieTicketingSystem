@@ -4,7 +4,7 @@
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
                 <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
-                <asp:FileUpload ID="fileUpload" runat="server" CssClass="d-block mx-auto w-75 mt-2" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/>
+                <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control d-block mx-auto w-75 mt-2" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/>
                 <hr class="mx-auto w-75" style="border:1px solid white;"/>
                 <div class="row ">
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
@@ -32,6 +32,7 @@
                             <div class="my-4 mx-auto d-flex">
                                 <h6 class="w-25 align-self-end">Name</h6>
                                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control w-75 userInput" placeholder=" "/>
+                                <asp:RequiredFieldValidator ID="rfvName" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="Please enter your name" SetFocusOnError="true" ControlToValidate="txtName"></asp:RequiredFieldValidator>
                             </div>
                             <div class="my-4 mx-auto d-flex">
                                 <h6 class="w-25 align-self-end">Email</h6>
@@ -40,10 +41,14 @@
                             <div class="my-4 mx-auto d-flex">
                                 <h6 class="w-25 align-self-end">Phone No</h6>
                                 <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control w-75 userInput" placeholder=" " TextMode="Phone"/>
+                                <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" SetFocusOnError="true"></asp:CustomValidator>
+                                <asp:RequiredFieldValidator ID="rfvPhone" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="Please enter your phone no" SetFocusOnError="true" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revPhone" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                             </div>
                             <div class="my-4 mx-auto d-flex">
                                 <h6 class="w-25 align-self-end">Date Of Birth</h6>
                                 <asp:TextBox ID="txtDob" runat="server" CssClass="form-control w-75 userInput" placeholder=" " TextMode="Date"/>
+                                <asp:RequiredFieldValidator ID="rfvDob" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="Please enter your date of birth" SetFocusOnError="true" ControlToValidate="txtDob"></asp:RequiredFieldValidator>
                             </div>
                             <div class="my-4 mx-auto d-flex">
                                 <h6 class="w-25 align-self-end">Gender</h6>
@@ -51,6 +56,7 @@
                                     <asp:ListItem Value="M">Male</asp:ListItem>
                                     <asp:ListItem Value="F">Female</asp:ListItem>
                                 </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="rfvGender" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="Please select your gender" SetFocusOnError="true" ControlToValidate="rblGender"></asp:RequiredFieldValidator>
                             </div>
                         <asp:Button class="btn btn-default btn-block w-25 my-3 float-end" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" />
                     </div>

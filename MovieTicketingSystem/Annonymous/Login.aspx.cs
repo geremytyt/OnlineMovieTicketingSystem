@@ -29,6 +29,7 @@ namespace MovieTicketingSystem.Annonymous
 
             if (Page.IsValid)
             {
+                string id = "";
                 string username = txtEmail.Text;
                 string password = txtPassword.Text;
                 bool rememberMe = cbRemember.Checked;
@@ -42,30 +43,22 @@ namespace MovieTicketingSystem.Annonymous
                 {
                     if (u.Role == "Customer")
                     {
-                        Customer cust = new Customer();
                         string sql = "SELECT * FROM Customer WHERE custEmail = @email";
                         SqlConnection con = new SqlConnection(cs);
                         SqlCommand cmd = new SqlCommand(sql, con);
                         con.Open();
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@email", username);
                         SqlDataReader dr = cmd.ExecuteReader();
 
                         if (dr.Read())
                         {
-                            cust.custId = dr[0].ToString();
-                            cust.custName = dr[1].ToString();
-                            cust.custEmail = dr[2].ToString();
-                            cust.custPassword = dr[3].ToString();
-                            cust.custDob = (Convert.ToDateTime(dr[4]));
-                            cust.custPhoneNo = dr[5].ToString();
-                            cust.custGender = dr[6].ToString();
-                            cust.custPhoto = dr[7].ToString();
-                            cust.custStatus = dr[8].ToString();
-                            cust.signature = dr[9].ToString();
-                            cust.loginNo = int.Parse(dr[10].ToString());
+                            id = dr[0].ToString();
                         }
+                        dr.Close();
                         con.Close();
-                        Session["Customer"] = cust;
+                        HttpCookie cookie = new HttpCookie("Customer", id);
+                        cookie.Expires = DateTime.Now.AddDays(14);
+                        Response.Cookies.Add(cookie);
                         Security.LoginUser(u.Username, u.Role, rememberMe);
                        
                     }
