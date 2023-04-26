@@ -11,8 +11,26 @@ namespace MovieTicketingSystem.StaffOnly
 {
 
 
-    public partial class FoodManagement
+    public partial class AvailabbleFoodManagement
     {
+
+        /// <summary>
+        /// btnAvailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAvailable;
+
+        /// <summary>
+        /// btnUnAvailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUnAvailable;
 
         /// <summary>
         /// GVMenu control.
