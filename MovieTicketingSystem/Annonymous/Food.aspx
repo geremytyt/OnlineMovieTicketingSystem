@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Food.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.Food" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="../css/style.css" rel="stylesheet" />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Menu] Where available = 'true'"></asp:SqlDataSource>
+    
     <div class="container Menubackgound" >
+        <div class="row w-100 p-20" >
+            <asp:TextBox CssClass="col-10 rounded" ID="SearchBox" runat="server" autocomplete="off" > </asp:TextBox>
+            <asp:Button CssClass="col-2 btn btn-default" ID="SerachButton" runat="server" Text="Search" OnClick="SerachButton_Click" />
+        </div>
+        <br />
         <div class="row" >
-            <asp:Repeater ID="repMenu" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="repMenu_ItemDataBound" >
+            <asp:Repeater ID="repMenu" runat="server" OnItemDataBound="repMenu_ItemDataBound" >
                 <ItemTemplate>
                     <div class= "col-12 col-sm-6 col-md-4 col-lg-3" >
                        <div class="card" >

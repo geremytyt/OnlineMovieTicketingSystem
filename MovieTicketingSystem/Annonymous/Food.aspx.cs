@@ -13,6 +13,7 @@ using System.ComponentModel;
 using MovieTicketingSystem.CustomerOnly;
 using MovieTicketingSystem.ManagerOnly;
 using System.Security.Policy;
+using System.Data;
 
 namespace MovieTicketingSystem.Annonymous
 {
@@ -23,7 +24,20 @@ namespace MovieTicketingSystem.Annonymous
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string name = Request.QueryString["search"] ?? "";
+                SearchBox.Text = name;
 
+                string sql = "Select * FROM Menu Where available = 'true' And menuName LIKE '%" + name + "%'";
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                repMenu.DataSource = dt;
+                repMenu.DataBind();
+            }            
         }
 
         protected void btn_addToCart_Click(object sender, EventArgs e)
@@ -86,6 +100,12 @@ namespace MovieTicketingSystem.Annonymous
                 ((RequiredFieldValidator)e.Item.FindControl("RFVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
                 ((Button)e.Item.FindControl("btn_add_to_cart")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
             }
+        }
+
+        protected void SerachButton_Click(object sender, EventArgs e)
+        {
+            String search = SearchBox.Text;
+            Response.Redirect("Food.aspx?search=" + search);
         }
     }
 }

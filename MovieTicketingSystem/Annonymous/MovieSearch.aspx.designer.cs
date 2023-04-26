@@ -11,34 +11,25 @@ namespace MovieTicketingSystem.Annonymous
 {
 
 
-    public partial class Food
+    public partial class MovieSearch
     {
 
         /// <summary>
-        /// SearchBox control.
+        /// CurrentMovieRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchBox;
+        protected global::System.Web.UI.WebControls.Repeater CurrentMovieRepeater;
 
         /// <summary>
-        /// SerachButton control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SerachButton;
-
-        /// <summary>
-        /// repMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repMenu;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

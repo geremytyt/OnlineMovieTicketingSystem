@@ -69,6 +69,15 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.FileUpload FoodIMageUpload;
 
         /// <summary>
+        /// RVUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RVUpload;
+
+        /// <summary>
         /// lblMenuId control.
         /// </summary>
         /// <remarks>
@@ -87,13 +96,22 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox tbName;
 
         /// <summary>
-        /// tbCategory control.
+        /// RVtbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCategory;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RVtbName;
+
+        /// <summary>
+        /// DDLCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDLCategory;
 
         /// <summary>
         /// tbPrice control.
@@ -105,6 +123,24 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox tbPrice;
 
         /// <summary>
+        /// CVPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CVPrice;
+
+        /// <summary>
+        /// RVPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RVPrice;
+
+        /// <summary>
         /// tbDecs control.
         /// </summary>
         /// <remarks>
@@ -112,6 +148,15 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDecs;
+
+        /// <summary>
+        /// RVtbDecs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RVtbDecs;
 
         /// <summary>
         /// btn_add control.
@@ -168,12 +213,12 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.Button btn_edit;
 
         /// <summary>
-        /// btn_delete control.
+        /// btn_Discontinue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_delete;
+        protected global::System.Web.UI.WebControls.Button btn_Discontinue;
     }
 }
