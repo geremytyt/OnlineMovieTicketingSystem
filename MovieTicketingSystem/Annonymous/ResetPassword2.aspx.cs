@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.EnterpriseServices;
@@ -13,14 +14,33 @@ namespace MovieTicketingSystem.Annonymous
     public partial class ResetPassword2 : System.Web.UI.Page
     {
         string cs = Global.cs;
+        movieDBEntities db = new movieDBEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            string token = Request.QueryString["token"];
+            if (token != null)
+            {
+                string hash = Security.GetHash(token);
+                Customer c = db.Customers.SingleOrDefault(
+                customer => customer.signature == hash);
+                if (c != null) {
+                    string[] details = token.Split('/');
+                    if (Convert.ToDateTime(token[2]) < DateTime.Now)
+                    {
+                        Response.Redirect("ResetPassword1.aspx");
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');", true);
+                    }
+                }
 
+            }
+            else { 
+            
+            }
         }
 
         protected void btnToken_Click(object sender, EventArgs e)
         {
-            string email = Request.QueryString["email"] ?? "";
+            string email = Request.QueryString["token"].Split('/')[1];
             string text = txtPassword.Text;
             string password = Security.GetHash(text);
             string sql = "UPDATE Customer SET custPassword=@Password WHERE custEmail=@email";
@@ -38,6 +58,7 @@ namespace MovieTicketingSystem.Annonymous
             con.Close();
 
             Response.Redirect("Login.aspx");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
         }
     }
 }

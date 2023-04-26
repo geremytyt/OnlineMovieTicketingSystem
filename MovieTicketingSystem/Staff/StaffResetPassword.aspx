@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="MovieTicketingSystem.CustomerOnly.ResetPassword" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffResetPassword.aspx.cs" Inherits="MovieTicketingSystem.Staff.StaffResetPassword" %>
 <%@ Register TagPrefix="ResetPwdControl" TagName="resetPwd" Src="../User Control/ResetPwdControl.ascx" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-       <div class="col-md-10 py-5 mx-auto text-white">
+    <div class="col-md-10 py-5 mx-auto text-white">
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
                 <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px" ImageUrl="~/Image/default.jpeg"/>
@@ -11,12 +10,6 @@
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
                         <li class="nav-item mb-3">
                             <asp:Button ID="btnProfile" runat="server" Text="My Profile" class="profileTab nav-link" type="button" OnClick="btnProfile_Click" CausesValidation="false"/>
-                        </li>
-                        <li class="nav-item mb-3">
-                            <asp:Button ID="btnTicket" runat="server" Text="My Tickets" class="profileTab nav-link" type="button" OnClick="btnTicket_Click" CausesValidation="false"/>
-                        </li>
-                        <li class="nav-item mb-3">
-                            <asp:Button ID="btnHistory" runat="server" Text="My History" class="profileTab nav-link" type="button" OnClick="btnHistory_Click" CausesValidation="false"/>
                         </li>
                         <li class="nav-item mb-3">
                             <asp:Button ID="btnResetPwd" runat="server" Text="Reset Password" class="profileTab nav-link active" type="button" OnClick="btnResetPwd_Click" CausesValidation="false"/>
@@ -36,5 +29,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>

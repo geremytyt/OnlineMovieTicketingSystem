@@ -60,6 +60,7 @@ namespace MovieTicketingSystem.Annonymous
                 {
                     // Email failed to send
                     Response.Redirect("ResetPassword1.aspx");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is not sent. Please retry.');", true);
                 }
             }
             else {
@@ -73,10 +74,8 @@ namespace MovieTicketingSystem.Annonymous
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var randomString = new string(Enumerable.Repeat(chars, 6)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
-            string sessionId = HttpContext.Current.Session.SessionID;
             string expiryDate = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            // Append session ID and expiry date
             string token = randomString + "/" + txtEmail.Text + "/" + expiryDate;
 
             string email = txtEmail.Text;

@@ -27,9 +27,9 @@ namespace MovieTicketingSystem.Manager
 
             btnDelete.Enabled = true;
             btnEdit.Enabled = true;
-            foreach (GridViewRow row in GridView1.Rows)
+            foreach (GridViewRow row in gvStaff.Rows)
             {
-                if (row.RowIndex == GridView1.SelectedIndex)
+                if (row.RowIndex == gvStaff.SelectedIndex)
                 {
                     lblId.Text = row.Cells[0].Text;
                     txtName.Text = row.Cells[1].Text;
@@ -90,6 +90,23 @@ namespace MovieTicketingSystem.Manager
             con.Close();
 
             Response.Redirect("ManageResignedStaff.aspx");
+        }
+
+        protected void btns_Command(object sender, CommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow selectedRow = gvStaff.Rows[index];
+            string id = selectedRow.Cells[0].Text;
+            switch (e.CommandName)
+            {
+                case "View":
+                    Response.Redirect("ViewMovie.aspx?movieId=" + id);
+                    break;
+
+                case "Edit":
+                    Response.Redirect("EditMovie.aspx?movieId=" + id);
+                    break;
+            }
         }
     }
 }

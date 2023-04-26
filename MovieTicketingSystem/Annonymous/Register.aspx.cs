@@ -43,10 +43,6 @@ namespace MovieTicketingSystem.Annonymous
         }
 
         private void validateAll() {
-            if (txtCfmPassword.Text != txtPassword.Text)
-            {
-                cvCfmPassword.IsValid = false;
-            }
             //Check for duplicated email
             if (db.Users.Any(u => u.Username == txtEmail.Text))
             {

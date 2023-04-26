@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -70,9 +71,9 @@ namespace MovieTicketingSystem.Staff
         {
             btnDelete.Enabled = true;
             btnEdit.Enabled = true;
-            foreach (GridViewRow row in GridView2.Rows)
+            foreach (GridViewRow row in gvUser.Rows)
             {
-                if (row.RowIndex == GridView2.SelectedIndex)
+                if (row.RowIndex == gvUser.SelectedIndex)
                 {
                     lblId.Text = row.Cells[0].Text;
                     txtName.Text = row.Cells[1].Text;
@@ -89,6 +90,23 @@ namespace MovieTicketingSystem.Staff
         protected void btnActive_Click(object sender, EventArgs e)
         {
             Response.Redirect("ManageActiveUser.aspx");
+        }
+
+        protected void btns_Command(object sender, CommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow selectedRow = gvUser.Rows[index];
+            string id = selectedRow.Cells[0].Text;
+            switch (e.CommandName)
+            {
+                case "View":
+                    Response.Redirect("ViewMovie.aspx?movieId=" + id);
+                    break;
+
+                case "Edit":
+                    Response.Redirect("EditMovie.aspx?movieId=" + id);
+                    break;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieTicketingSystem
+namespace MovieTicketingSystem.Annonymous
 {
     public partial class MiddlePage : System.Web.UI.Page
     {
@@ -18,11 +18,11 @@ namespace MovieTicketingSystem
                 // Get the current user's role
                 if (HttpContext.Current.User.IsInRole("Customer"))
                 {
-                    Response.Redirect("Annonymous/Home.aspx");
+                    Response.Redirect("Home.aspx");
                 }
                 else if (HttpContext.Current.User.IsInRole("Staff") || HttpContext.Current.User.IsInRole("Manager"))
                 {
-                    Response.Redirect("Staff/AddMovie.aspx");
+                    Response.Redirect("../Staff/StaffMovie.aspx");
                 }
             }
         }

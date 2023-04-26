@@ -93,6 +93,7 @@
   <ItemGroup>
     <Content Include="Annonymous\Home.aspx" />
     <Content Include="Annonymous\Login.aspx" />
+    <Content Include="Annonymous\MiddlePage.aspx" />
     <Content Include="Annonymous\MovieDetails.aspx" />
     <Content Include="Annonymous\Movies.aspx" />
     <Content Include="Annonymous\Register.aspx" />
@@ -113,16 +114,50 @@
     <Content Include="CustomerOnly\MovieTicket.aspx" />
     <Content Include="CustomerOnly\ResetPassword.aspx" />
     <Content Include="CustomerOnly\Tickets.aspx" />
+    <Content Include="Image\2 people Combo.jpg" />
+    <Content Include="Image\230222_JohnWickChapter4_big.png" />
+    <Content Include="Image\230222_SHAZAMFuryOfTheGods_big.png" />
+    <Content Include="Image\230228_DungeonsDragonsHonorAmongThieves_big.jpg" />
     <Content Include="Image\c001.jpg" />
     <Content Include="Image\c002.jpg" />
     <Content Include="Image\c003.jpg" />
     <Content Include="Image\c004.jpg" />
     <Content Include="Image\c005.jpg" />
+    <Content Include="Image\Coca-cola.jpg" />
+    <Content Include="Image\default.jpeg" />
+    <Content Include="Image\Family Combo.jpg" />
+    <Content Include="Image\Hotdog.jpg" />
+    <Content Include="Image\logo.png" />
+    <Content Include="Image\mastercard.png" />
+    <Content Include="Image\no-video.png" />
+    <Content Include="Image\NoImage.png" />
+    <Content Include="Image\Popcorn %28Orginal%29.jpg" />
+    <Content Include="Image\popcorn.png" />
+    <Content Include="Image\posterImages\230222_JohnWickChapter4_big.png" />
+    <Content Include="Image\posterImages\230222_SHAZAMFuryOfTheGods_big.png" />
+    <Content Include="Image\posterImages\230228_DungeonsDragonsHonorAmongThieves_big.jpg" />
+    <Content Include="Image\posterImages\230228_Suzume_big.png" />
+    <Content Include="Image\posterImages\230303_RideOn_big.png" />
+    <Content Include="Image\posterImages\230303_ThePope%27sExorcist_big.jpg" />
+    <Content Include="Image\posterImages\230303_ThePope%27sExorcist_big.png" />
+    <Content Include="Image\posterImages\230303_TheSuperMarioBrosMovie_big.png" />
+    <Content Include="Image\posterImages\230303_TransformersRiseOfTheBeasts_big.png" />
+    <Content Include="Image\posterImages\230306_Renfield_big.png" />
+    <Content Include="Image\posterImages\Air.jpg" />
+    <Content Include="Image\posterImages\DeliciousRomance_big.png" />
     <Content Include="Image\qrcode.png" />
-    <Content Include="Image\Seat.png" />
+    <Content Include="Image\slideImages\230228_Suzume_big.png" />
+    <Content Include="Image\slideImages\AirSlide.jpg" />
+    <Content Include="Image\slideImages\DeliciousRomance.jpeg" />
+    <Content Include="Image\slideImages\DungeonSlide.jpg" />
+    <Content Include="Image\slideImages\JohnWickChapter4.png" />
+    <Content Include="Image\slideImages\RenfieldSlide.jpg" />
+    <Content Include="Image\slideImages\RideOn.jpg" />
+    <Content Include="Image\slideImages\slide1.jpg" />
+    <Content Include="Image\slideImages\slide5.jpg" />
+    <Content Include="Image\slideImages\TheSuperMarioBros.jpg" />
     <Content Include="Image\user.png" />
     <Content Include="js\Script.js" />
-    <Content Include="MiddlePage.aspx" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -148,27 +183,12 @@
     <Content Include="CustomerOnly\PaymentMethod.aspx" />
     <Content Include="CustomerOnly\PaymentSummary.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Image\2 people Combo.jpg" />
-    <Content Include="Image\230303_ThePope%27sExorcist_big.jpg" />
-    <Content Include="Image\Coca-cola.jpg" />
-    <Content Include="Image\Family Combo.jpg" />
-    <Content Include="Image\Hotdog.jpg" />
-    <Content Include="Image\default.jpeg" />
-    <Content Include="Image\logo.png" />
-    <Content Include="Image\mastercard.png" />
-    <Content Include="Image\Popcorn %28Orginal%29.jpg" />
-    <Content Include="Image\no-video.png" />
-    <Content Include="Image\popcorn.png" />
-    <Content Include="Image\slide1.jpg" />
-    <Content Include="Image\slide1_2.jpg" />
-    <Content Include="Image\slide3.png" />
-    <Content Include="Image\slide4.jpg" />
-    <Content Include="Image\slide5.jpg" />
     <Content Include="Staff\FoodManagement.aspx" />
     <Content Include="Staff\ManageSchedule.aspx" />
     <Content Include="Staff\StaffMovie.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="CustomerOnly\Profile.aspx" />
+    <Content Include="Staff\StaffResetPassword.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="Web.config" />
@@ -187,6 +207,13 @@
     </Compile>
     <Compile Include="Annonymous\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\MiddlePage.aspx.cs">
+      <DependentUpon>MiddlePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\MiddlePage.aspx.designer.cs">
+      <DependentUpon>MiddlePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Annonymous\MovieDetails.aspx.cs">
       <DependentUpon>MovieDetails.aspx</DependentUpon>
@@ -293,13 +320,6 @@
     </Compile>
     <Compile Include="CustomerOnly\Tickets.aspx.designer.cs">
       <DependentUpon>Tickets.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MiddlePage.aspx.cs">
-      <DependentUpon>MiddlePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MiddlePage.aspx.designer.cs">
-      <DependentUpon>MiddlePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\Card.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -483,6 +503,13 @@
     <Compile Include="CustomerOnly\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\StaffResetPassword.aspx.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\StaffResetPassword.aspx.designer.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\ViewMovie.aspx.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -525,9 +552,9 @@
     <Content Include="Staff.sitemap" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Image\foodImage\" />
-    <Folder Include="Image\posterImages\" />
-    <Folder Include="Image\userImage\" />
+    <Folder Include="Image\customerImages\" />
+    <Folder Include="Image\foodImages\" />
+    <Folder Include="Image\staffImages\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

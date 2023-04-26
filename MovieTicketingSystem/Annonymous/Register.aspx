@@ -28,7 +28,7 @@
                     <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control userInput" placeholder=" " onInput="updateStrength()" TextMode="Password"/>
                     <label for="txtPassword">Password</label>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please enter your password" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPassword" SetFocusOnError="true"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revPassword" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revPassword" runat="server" ControlToValidate="txtPassword" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
                 </div>
                 <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:5%;margin-top:30px"></i>
                 <div style="border: 1px solid white;width:70%;">
@@ -49,7 +49,7 @@
                     <asp:TextBox ID="txtCfmPassword" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password" />
                     <label for="txtCfmPassword">Confirm Password</label>
                     <asp:RequiredFieldValidator ID="rfvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please confirm your password" ControlToValidate="txtPassword" SetFocusOnError="true"></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvCfmPassword" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Password does not match" ControlToValidate="txtCfmPassword" SetFocusOnError="true"></asp:CustomValidator>
+                    <asp:CompareValidator ID="cvCfmPassword" runat="server" ErrorMessage="Password does not match"  CssClass="text-danger" Display="Dynamic" ControlToValidate="txtCfmPassword" ControlToCompare="txtPassword" SetFocusOnError="true"></asp:CompareValidator>
                 </div>
                 <i id="cfmpasswordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility2()"  style="width:5%;margin-top:30px"></i>
             </div>

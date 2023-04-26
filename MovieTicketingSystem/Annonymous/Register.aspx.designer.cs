@@ -111,7 +111,7 @@ namespace MovieTicketingSystem.Annonymous
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvCfmPassword;
+        protected global::System.Web.UI.WebControls.CompareValidator cvCfmPassword;
 
         /// <summary>
         /// txtPhone control.
