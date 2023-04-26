@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,20 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string name = Request.QueryString["search"] ?? "";
+                SearchBox.Text = name;
 
+                string sql = "Select * FROM Menu Where available = 'false' And menuName LIKE '%" + name + "%'";
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                GVMenu.DataSource = dt;
+                GVMenu.DataBind();
+            }
         }
 
         protected void btn_Continue_Click(object sender, EventArgs e)
@@ -100,6 +114,12 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnAvailable_Click(object sender, EventArgs e)
         {
             Response.Redirect("AvailableFoodManagement.aspx");
+        }
+
+        protected void SerachButton_Click(object sender, EventArgs e)
+        {
+            String search = SearchBox.Text;
+            Response.Redirect("UnavailableFoodManagement.aspx?search=" + search);
         }
     }
 }
