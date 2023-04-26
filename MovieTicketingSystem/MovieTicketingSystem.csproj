@@ -128,6 +128,11 @@
     <Content Include="Image\Coca-cola.jpg" />
     <Content Include="Image\default.jpeg" />
     <Content Include="Image\Family Combo.jpg" />
+    <Content Include="Image\foodImages\MN001.jpg" />
+    <Content Include="Image\foodImages\MN002.jpg" />
+    <Content Include="Image\foodImages\MN003.jpg" />
+    <Content Include="Image\foodImages\MN004.jpg" />
+    <Content Include="Image\foodImages\MN005.jpg" />
     <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
@@ -172,6 +177,7 @@
     </Content>
     <Content Include="ManagerOnly\ManageActiveStaff.aspx" />
     <Content Include="StaffOnly\AddMovie.aspx" />
+    <Content Include="StaffOnly\AvailableFoodManagement.aspx" />
     <Content Include="StaffOnly\EditMovie.aspx" />
     <Content Include="StaffOnly\ManageActiveUser.aspx" />
     <Content Include="StaffOnly\ManagePayment.aspx" />
@@ -185,7 +191,6 @@
     <Content Include="CustomerOnly\PaymentMethod.aspx" />
     <Content Include="CustomerOnly\PaymentSummary.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="StaffOnly\FoodManagement.aspx" />
     <Content Include="StaffOnly\ManageSchedule.aspx" />
     <Content Include="StaffOnly\StaffHome.aspx" />
     <Content Include="StaffOnly\StaffLogout.aspx" />
@@ -408,6 +413,13 @@
     <Compile Include="StaffOnly\AddMovie.aspx.designer.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.designer.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StaffOnly\EditMovie.aspx.cs">
       <DependentUpon>EditMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,13 +494,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaffOnly\FoodManagement.aspx.cs">
-      <DependentUpon>FoodManagement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StaffOnly\FoodManagement.aspx.designer.cs">
-      <DependentUpon>FoodManagement.aspx</DependentUpon>
-    </Compile>
     <Compile Include="StaffOnly\ManageSchedule.aspx.cs">
       <DependentUpon>ManageSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -613,7 +618,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\customerImages\" />
-    <Folder Include="Image\foodImages\" />
     <Folder Include="Image\staffImages\" />
   </ItemGroup>
   <ItemGroup>

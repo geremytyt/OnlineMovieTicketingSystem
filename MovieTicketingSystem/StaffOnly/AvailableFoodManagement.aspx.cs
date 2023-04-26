@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-//Step 1 : import library, use classes given in the library to access DB
-using System.Data.SqlClient;
-using System.IO;
 
 namespace MovieTicketingSystem.StaffOnly
 {
-    public partial class FoodManagement : System.Web.UI.Page
+    public partial class AvailableFoodManagement : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
         string cs = Global.cs;
@@ -177,31 +176,31 @@ namespace MovieTicketingSystem.StaffOnly
             //step 2 update detail
             string sql = "UPDATE Menu SET menuName=@menuName, menuCategory=@menuCategory, menuPrice=@menuPrice, menuDesc=@menuDesc, menuUrl=@menuUrl WHERE menuId=@menuId";
 
-                //step 3 establish connection
-                SqlConnection con = new SqlConnection(cs);
+            //step 3 establish connection
+            SqlConnection con = new SqlConnection(cs);
 
-                //step 4 open connection
-                con.Open();
+            //step 4 open connection
+            con.Open();
 
-                //step 5 sql command
-                SqlCommand cmd = new SqlCommand(sql, con);
+            //step 5 sql command
+            SqlCommand cmd = new SqlCommand(sql, con);
 
-                //step 5.1 supply parameter to sql
-                cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
-                cmd.Parameters.AddWithValue("@menuName", tbName.Text);
-                cmd.Parameters.AddWithValue("@menuCategory", tbCategory.Text);
-                cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
-                cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
-                cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
+            //step 5.1 supply parameter to sql
+            cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
+            cmd.Parameters.AddWithValue("@menuName", tbName.Text);
+            cmd.Parameters.AddWithValue("@menuCategory", tbCategory.Text);
+            cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
+            cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
+            cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
 
-                //step 6 execute sql
+            //step 6 execute sql
 
-                int rowaffected = cmd.ExecuteNonQuery();
+            int rowaffected = cmd.ExecuteNonQuery();
 
-                //step 8 close dr and close con
-                con.Close();
+            //step 8 close dr and close con
+            con.Close();
 
-                Response.Redirect("FoodManagement.aspx");
+            Response.Redirect("FoodManagement.aspx");
 
         }
 
@@ -279,6 +278,5 @@ namespace MovieTicketingSystem.StaffOnly
             dr.Close();
             con.Close();
         }
-
     }
 }
