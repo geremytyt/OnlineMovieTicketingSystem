@@ -28,7 +28,7 @@ namespace MovieTicketingSystem.Annonymous
             if (u != null)
             {
                 string token = generateToken();
-                string destination = "https://localhost:44377/Annonymous/ResetPassword2.aspx?token=" + token;
+                string destination = "https://localhost:44377/Annonymous/StaffResetPwd2.aspx?token=" + token;
                 var apiKey = "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";
 
                 // Create a new SendGrid client
@@ -36,7 +36,7 @@ namespace MovieTicketingSystem.Annonymous
 
                 // Create a new email message
                 var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
-                var to = new EmailAddress(txtEmail.Text, "Customer");
+                var to = new EmailAddress("yinwei911@gmail.com", "Staff");
                 var subject = "Reset your Password";
                 var plainTextContent = "Here is your token";
                 var htmlContent = "Reset your password " + "<a href=" + destination + ">here</a>";
@@ -77,7 +77,7 @@ namespace MovieTicketingSystem.Annonymous
 
             string email = txtEmail.Text;
             string hash = Security.GetHash(token);
-            string sql = "UPDATE Customer SET signature=@signature WHERE custEmail=@email";
+            string sql = "UPDATE Staff SET staffSignature=@signature WHERE staffEmail=@email";
 
             SqlConnection con = new SqlConnection(cs);
 

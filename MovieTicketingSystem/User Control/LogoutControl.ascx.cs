@@ -23,7 +23,7 @@ namespace MovieTicketingSystem.User_Control
                 Response.Redirect("../Annonymous/Home.aspx");
             }
             else if (Page.User.IsInRole("Staff") || Page.User.IsInRole("Manager")) {
-                Response.Redirect("../Staff/StaffHome.aspx");
+                Response.Redirect("../StaffOnly/StaffHome.aspx");
             }
         }
 

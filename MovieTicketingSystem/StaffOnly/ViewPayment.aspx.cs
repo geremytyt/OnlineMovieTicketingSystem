@@ -14,11 +14,6 @@ namespace MovieTicketingSystem.StaffOnly
 
         }
 
-        protected void paymentGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnView_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;

@@ -18,7 +18,7 @@ namespace MovieTicketingSystem.CustomerOnly
             bool found = false;
             string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
-            {
+            {    
                 string sql = "SELECT * FROM movie WHERE movieId = @Id";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);

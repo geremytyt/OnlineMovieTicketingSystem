@@ -80,7 +80,7 @@ namespace MovieTicketingSystem.User_Control
                             if (dr.Read())
                             {
                                 id = dr[0].ToString();
-                                status = dr[8].ToString();
+                                status = dr[9].ToString().Trim();
                             }
                             dr.Close();
                             con.Close();
@@ -103,7 +103,7 @@ namespace MovieTicketingSystem.User_Control
                     {
                         cvLogin.IsValid = false;
                     }
-
+                    
                 }
             }
             else

@@ -23,43 +23,41 @@
                 <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618"/>
                 <asp:Button ID="btnResigned" runat="server" Text="Resigned" CssClass="nav-link w-25 text-white mb-2" OnClick="btnResigned_Click" BorderColor="White"/>
             </div>
-            <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+            <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" ClientIDMode="Static"
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="staffId" HeaderText="ID" ReadOnly="True" SortExpression="staffId"></asp:BoundField>
                     <asp:BoundField DataField="staffName" HeaderText="Name" SortExpression="staffName"></asp:BoundField>
                     <asp:BoundField DataField="staffEmail" HeaderText="Email" SortExpression="staffEmail"></asp:BoundField>
                     <asp:BoundField DataField="staffIC" HeaderText="IC" SortExpression="staffIC"></asp:BoundField>
                     <asp:BoundField DataField="staffPhoneNo" HeaderText="PhoneNo" SortExpression="staffPhoneNo"></asp:BoundField>
-                    <asp:BoundField DataField="staffGender" HeaderText="Gender" SortExpression="staffGender">
-                    </asp:BoundField>
+                    <asp:BoundField DataField="staffGender" HeaderText="Gender" SortExpression="staffGender"></asp:BoundField>
+                    <asp:BoundField DataField="position" HeaderText="Position" SortExpression="position"></asp:BoundField>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <div class="d-grid gap-2 d-md-flex">
-                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btnView_Command" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT [staffId], [staffName], [staffEmail], [staffIC], [staffPhoneNo], [staffGender] FROM [Staff] WHERE ([staffStatus] = @staffStatus)">
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="Active" Name="staffStatus" Type="String"></asp:Parameter>
-                </SelectParameters>
-            </asp:SqlDataSource>
         </div>
         <div class="col-md-4">
             <div class="bg-dark rounded-4 text-white mb-2">
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div>
-                        <asp:TextBox ID="txtSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
-                        <button class="btn btn-default my-2" style="width:40px" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
                     <div class="m-4">
-                        <label>Staff ID:</label>
-                        <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2" ></asp:Label>
+                        <div class="row">
+                            <div class="w-50">
+                                <label>Staff ID:</label>
+                                <asp:Label ID="lblId" runat="server" Text=""></asp:Label>
+                            </div>
+                            <div class="w-50">
+                                <label class="">Position:</label>
+                                <asp:Label ID="lblPosition" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtName">Name</label>

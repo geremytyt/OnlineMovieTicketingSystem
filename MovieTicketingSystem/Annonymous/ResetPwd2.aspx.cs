@@ -20,7 +20,7 @@ namespace MovieTicketingSystem.Annonymous
             {
                 string hash = Security.GetHash(token);
                 Customer c = db.Customers.SingleOrDefault(
-                customer => customer.signature == hash);
+                customer => customer.custSignature == hash);
                 if (c != null)
                 {
                     string[] details = token.Split('/');
@@ -39,25 +39,29 @@ namespace MovieTicketingSystem.Annonymous
         }
         protected void btnToken_Click(object sender, EventArgs e)
         {
-            string email = Request.QueryString["token"].Split('/')[1];
-            string text = txtPassword.Text;
-            string password = Security.GetHash(text);
-            string sql = "UPDATE Customer SET custPassword=@Password WHERE custEmail=@email";
+            if (Page.IsValid)
+            {
+                string email = Request.QueryString["token"].Split('/')[1];
+                string text = txtNewPwd.Text;
+                string password = Security.GetHash(text);
+                string sql = "UPDATE Customer SET custPassword=@Password, custSignature=@signature WHERE custEmail=@email";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
+                con.Open();
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.Parameters.AddWithValue("@Password", password);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@signature", null);
+                cmd.Parameters.AddWithValue("@Password", password);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
 
-            Response.Redirect("Login.aspx");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
+                Response.Redirect("Login.aspx");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
+            }
         }
 
     }
