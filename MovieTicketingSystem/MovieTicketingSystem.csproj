@@ -49,22 +49,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
-      <HintPath>..\packages\BouncyCastle.Cryptography.2.1.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.4.0.0\lib\net47\MailKit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MimeKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.4.0.0\lib\net47\MimeKit.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -74,25 +65,9 @@
     <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b2e6337a5d77bfbc, processorArchitecture=MSIL">
       <HintPath>..\packages\starkbank-ecdsa.1.3.3\lib\net452\StarkbankEcdsa.dll</HintPath>
     </Reference>
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -109,12 +84,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net47\zxing.dll</HintPath>
-    </Reference>
-    <Reference Include="zxing.presentation, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net47\zxing.presentation.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -127,8 +96,13 @@
     <Content Include="Annonymous\MiddlePage.aspx" />
     <Content Include="Annonymous\MovieDetails.aspx" />
     <Content Include="Annonymous\Movies.aspx" />
+    <Content Include="Annonymous\MovieSearch.aspx" />
     <Content Include="Annonymous\Register.aspx" />
+    <Content Include="Annonymous\ResetPwd1.aspx" />
+    <Content Include="Annonymous\ResetPwd2.aspx" />
     <Content Include="Annonymous\StaffLogin.aspx" />
+    <Content Include="Annonymous\StaffResetPwd1.aspx" />
+    <Content Include="Annonymous\StaffResetPwd2.aspx" />
     <Content Include="App_Data\MovieDB.mdf" />
     <Content Include="App_Data\MovieDB_log.ldf">
       <DependentUpon>MovieDB.mdf</DependentUpon>
@@ -139,8 +113,6 @@
     <Content Include="CustomerOnly\History.aspx" />
     <Content Include="CustomerOnly\Logout.aspx" />
     <Content Include="CustomerOnly\MoviePurchase.aspx" />
-    <Content Include="Annonymous\ResetPassword1.aspx" />
-    <Content Include="Annonymous\ResetPassword2.aspx" />
     <Content Include="CustomerOnly\MovieSeatSelection.aspx" />
     <Content Include="CustomerOnly\MovieTicket.aspx" />
     <Content Include="CustomerOnly\ResetPassword.aspx" />
@@ -156,9 +128,12 @@
     <Content Include="Image\c005.jpg" />
     <Content Include="Image\Coca-cola.jpg" />
     <Content Include="Image\default.jpeg" />
-    <Content Include="Image\eye-solid.svg" />
     <Content Include="Image\Family Combo.jpg" />
-    <Content Include="Image\hall.png" />
+    <Content Include="Image\foodImages\MN001.jpg" />
+    <Content Include="Image\foodImages\MN002.jpg" />
+    <Content Include="Image\foodImages\MN003.jpg" />
+    <Content Include="Image\foodImages\MN004.jpg" />
+    <Content Include="Image\foodImages\MN005.jpg" />
     <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
@@ -179,7 +154,6 @@
     <Content Include="Image\posterImages\Air.jpg" />
     <Content Include="Image\posterImages\DeliciousRomance_big.png" />
     <Content Include="Image\qrcode.png" />
-    <Content Include="Image\seat.png" />
     <Content Include="Image\slideImages\230228_Suzume_big.png" />
     <Content Include="Image\slideImages\AirSlide.jpg" />
     <Content Include="Image\slideImages\DeliciousRomance.jpeg" />
@@ -202,14 +176,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Manager\ManageActiveStaff.aspx" />
-    <Content Include="Staff\AddMovie.aspx" />
-    <Content Include="Staff\EditMovie.aspx" />
-    <Content Include="Staff\ManageActiveUser.aspx" />
-    <Content Include="Staff\ManagePayment.aspx" />
-    <Content Include="Manager\ManageResignedStaff.aspx" />
-    <Content Include="Staff\ManageSuspendedUser.aspx" />
-    <Content Include="Manager\Report.aspx" />
+    <Content Include="ManagerOnly\ManageActiveStaff.aspx" />
+    <Content Include="StaffOnly\AddMovie.aspx" />
+    <Content Include="StaffOnly\AvailableFoodManagement.aspx" />
+    <Content Include="StaffOnly\EditMovie.aspx" />
+    <Content Include="StaffOnly\ManageActiveUser.aspx" />
+    <Content Include="StaffOnly\ManagePayment.aspx" />
+    <Content Include="ManagerOnly\ManageResignedStaff.aspx" />
+    <Content Include="StaffOnly\ManageSuspendedUser.aspx" />
+    <Content Include="ManagerOnly\Report.aspx" />
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
@@ -217,13 +192,19 @@
     <Content Include="CustomerOnly\PaymentMethod.aspx" />
     <Content Include="CustomerOnly\PaymentSummary.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Staff\FoodManagement.aspx" />
-    <Content Include="Staff\ManageSchedule.aspx" />
-    <Content Include="Staff\StaffMovie.aspx" />
-    <Content Include="Staff\StaffProfile.aspx" />
+    <Content Include="StaffOnly\ManageSchedule.aspx" />
+    <Content Include="StaffOnly\StaffHome.aspx" />
+    <Content Include="StaffOnly\StaffLogout.aspx" />
+    <Content Include="StaffOnly\StaffMovie.aspx" />
+    <Content Include="StaffOnly\StaffProfile.aspx" />
     <Content Include="CustomerOnly\Profile.aspx" />
-    <Content Include="Staff\ViewMovie.aspx" />
-    <Content Include="Staff\ViewPayment.aspx" />
+    <Content Include="StaffOnly\StaffResetPassword.aspx" />
+    <Content Include="StaffOnly\UnavailableFoodManagement.aspx" />
+    <Content Include="StaffOnly\ViewMovie.aspx" />
+    <Content Include="StaffOnly\ViewPayment.aspx" />
+    <Content Include="User Control\LoginControl.ascx" />
+    <Content Include="User Control\LogoutControl.ascx" />
+    <Content Include="User Control\ResetPwdControl.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +243,13 @@
     <Compile Include="Annonymous\Movies.aspx.designer.cs">
       <DependentUpon>Movies.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Annonymous\MovieSearch.aspx.cs">
+      <DependentUpon>MovieSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\MovieSearch.aspx.designer.cs">
+      <DependentUpon>MovieSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Annonymous\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -269,12 +257,40 @@
     <Compile Include="Annonymous\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Annonymous\ResetPwd1.aspx.cs">
+      <DependentUpon>ResetPwd1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd1.aspx.designer.cs">
+      <DependentUpon>ResetPwd1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd2.aspx.cs">
+      <DependentUpon>ResetPwd2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd2.aspx.designer.cs">
+      <DependentUpon>ResetPwd2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Annonymous\StaffLogin.aspx.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Annonymous\StaffLogin.aspx.designer.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd1.aspx.cs">
+      <DependentUpon>StaffResetPwd1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd1.aspx.designer.cs">
+      <DependentUpon>StaffResetPwd1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd2.aspx.cs">
+      <DependentUpon>StaffResetPwd2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd2.aspx.designer.cs">
+      <DependentUpon>StaffResetPwd2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CartItem.cs" />
     <Compile Include="CustomerOnly\Cart.aspx.cs">
@@ -311,20 +327,6 @@
     </Compile>
     <Compile Include="CustomerOnly\MoviePurchase.aspx.designer.cs">
       <DependentUpon>MoviePurchase.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword1.aspx.cs">
-      <DependentUpon>ResetPassword1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword1.aspx.designer.cs">
-      <DependentUpon>ResetPassword1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword2.aspx.cs">
-      <DependentUpon>ResetPassword2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword2.aspx.designer.cs">
-      <DependentUpon>ResetPassword2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerOnly\MovieSeatSelection.aspx.cs">
       <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
@@ -405,62 +407,68 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="QrCode.cs" />
     <Compile Include="Security.cs" />
-    <Compile Include="Manager\ManageActiveStaff.aspx.cs">
+    <Compile Include="ManagerOnly\ManageActiveStaff.aspx.cs">
       <DependentUpon>ManageActiveStaff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Manager\ManageActiveStaff.aspx.designer.cs">
+    <Compile Include="ManagerOnly\ManageActiveStaff.aspx.designer.cs">
       <DependentUpon>ManageActiveStaff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\AddMovie.aspx.cs">
+    <Compile Include="StaffOnly\AddMovie.aspx.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\AddMovie.aspx.designer.cs">
+    <Compile Include="StaffOnly\AddMovie.aspx.designer.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\EditMovie.aspx.cs">
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.designer.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\EditMovie.aspx.cs">
       <DependentUpon>EditMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\EditMovie.aspx.designer.cs">
+    <Compile Include="StaffOnly\EditMovie.aspx.designer.cs">
       <DependentUpon>EditMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\ManageActiveUser.aspx.cs">
+    <Compile Include="StaffOnly\ManageActiveUser.aspx.cs">
       <DependentUpon>ManageActiveUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ManageActiveUser.aspx.designer.cs">
+    <Compile Include="StaffOnly\ManageActiveUser.aspx.designer.cs">
       <DependentUpon>ManageActiveUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\ManagePayment.aspx.cs">
+    <Compile Include="StaffOnly\ManagePayment.aspx.cs">
       <DependentUpon>ManagePayment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ManagePayment.aspx.designer.cs">
+    <Compile Include="StaffOnly\ManagePayment.aspx.designer.cs">
       <DependentUpon>ManagePayment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Manager\ManageResignedStaff.aspx.cs">
+    <Compile Include="ManagerOnly\ManageResignedStaff.aspx.cs">
       <DependentUpon>ManageResignedStaff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Manager\ManageResignedStaff.aspx.designer.cs">
+    <Compile Include="ManagerOnly\ManageResignedStaff.aspx.designer.cs">
       <DependentUpon>ManageResignedStaff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\ManageSuspendedUser.aspx.cs">
+    <Compile Include="StaffOnly\ManageSuspendedUser.aspx.cs">
       <DependentUpon>ManageSuspendedUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ManageSuspendedUser.aspx.designer.cs">
+    <Compile Include="StaffOnly\ManageSuspendedUser.aspx.designer.cs">
       <DependentUpon>ManageSuspendedUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Manager\Report.aspx.cs">
+    <Compile Include="ManagerOnly\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Manager\Report.aspx.designer.cs">
+    <Compile Include="ManagerOnly\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer.Master.cs">
@@ -495,32 +503,39 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Staff\FoodManagement.aspx.cs">
-      <DependentUpon>FoodManagement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\FoodManagement.aspx.designer.cs">
-      <DependentUpon>FoodManagement.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\ManageSchedule.aspx.cs">
+    <Compile Include="StaffOnly\ManageSchedule.aspx.cs">
       <DependentUpon>ManageSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ManageSchedule.aspx.designer.cs">
+    <Compile Include="StaffOnly\ManageSchedule.aspx.designer.cs">
       <DependentUpon>ManageSchedule.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\StaffMovie.aspx.cs">
+    <Compile Include="StaffOnly\StaffHome.aspx.cs">
+      <DependentUpon>StaffHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\StaffHome.aspx.designer.cs">
+      <DependentUpon>StaffHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\StaffLogout.aspx.cs">
+      <DependentUpon>StaffLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\StaffLogout.aspx.designer.cs">
+      <DependentUpon>StaffLogout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\StaffMovie.aspx.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\StaffMovie.aspx.designer.cs">
+    <Compile Include="StaffOnly\StaffMovie.aspx.designer.cs">
       <DependentUpon>StaffMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\StaffProfile.aspx.cs">
+    <Compile Include="StaffOnly\StaffProfile.aspx.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\StaffProfile.aspx.designer.cs">
+    <Compile Include="StaffOnly\StaffProfile.aspx.designer.cs">
       <DependentUpon>StaffProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff.Master.cs">
@@ -537,19 +552,54 @@
     <Compile Include="CustomerOnly\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\ViewMovie.aspx.cs">
+    <Compile Include="StaffOnly\StaffResetPassword.aspx.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\StaffResetPassword.aspx.designer.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\UnavailableFoodManagement.aspx.cs">
+      <DependentUpon>UnavailableFoodManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\UnavailableFoodManagement.aspx.designer.cs">
+      <DependentUpon>UnavailableFoodManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\ViewMovie.aspx.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ViewMovie.aspx.designer.cs">
+    <Compile Include="StaffOnly\ViewMovie.aspx.designer.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Staff\ViewPayment.aspx.cs">
+    <Compile Include="StaffOnly\ViewPayment.aspx.cs">
       <DependentUpon>ViewPayment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\ViewPayment.aspx.designer.cs">
+    <Compile Include="StaffOnly\ViewPayment.aspx.designer.cs">
       <DependentUpon>ViewPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\LoginControl.ascx.cs">
+      <DependentUpon>LoginControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\LoginControl.ascx.designer.cs">
+      <DependentUpon>LoginControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\LogoutControl.ascx.cs">
+      <DependentUpon>LogoutControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\LogoutControl.ascx.designer.cs">
+      <DependentUpon>LogoutControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\ResetPwdControl.ascx.cs">
+      <DependentUpon>ResetPwdControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\ResetPwdControl.ascx.designer.cs">
+      <DependentUpon>ResetPwdControl.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -564,11 +614,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Annonymous\Web.config" />
-    <Content Include="Manager\Web.config" />
+    <Content Include="ManagerOnly\Web.config" />
     <Content Include="libman.json" />
     <None Include="packages.config" />
     <Content Include="Staff.Master" />
-    <Content Include="Staff\Web.config" />
+    <Content Include="StaffOnly\Web.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -580,8 +634,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\customerImages\" />
-    <Folder Include="Image\foodImages\" />
-    <Folder Include="Image\qrCodes\" />
     <Folder Include="Image\staffImages\" />
   </ItemGroup>
   <ItemGroup>

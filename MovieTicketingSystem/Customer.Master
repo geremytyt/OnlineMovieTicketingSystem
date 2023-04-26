@@ -30,7 +30,7 @@
                 </div>
                 <div class="d-flex">
                    <asp:TextBox ID="txtSearch" runat="server"  class="form-control me-2" placeholder="Search"></asp:TextBox>
-                   <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                   <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click"/>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">

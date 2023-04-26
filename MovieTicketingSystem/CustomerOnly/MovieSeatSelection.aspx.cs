@@ -17,9 +17,13 @@ namespace MovieTicketingSystem.CustomerOnly
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool found = false;
             string id = Request.QueryString["movieId"] ?? "";
-            string scheduleNo = Request.QueryString["scheduleNo"] ?? "";
+            Schedule schedule = (Schedule)Session["schedule"];
+            if(schedule== null)
+            {
+                Response.Redirect("~/Annonymous/Home.aspx");
+            }
+            string scheduleNo = schedule.scheduleNo;
             string sql = "SELECT * FROM movie WHERE movieId = @Id";
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -28,7 +32,6 @@ namespace MovieTicketingSystem.CustomerOnly
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                found = true;
                 string movieName = dr["movieName"].ToString();
                 lbMovieName.Text = movieName;
                 string duration = String.Format("{0} hrs {1} mins", Convert.ToInt32(dr["movieDuration"]) / 60, Convert.ToInt32(dr["movieDuration"]) % 60);
@@ -42,34 +45,8 @@ namespace MovieTicketingSystem.CustomerOnly
                 Response.Cookies.Add(cookieInfo);
             }
             dr.Close();
-            sql = "SELECT Schedule.hallNo, Schedule.scheduleDateTime, Hall.row, Hall.[column] FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo WHERE (Schedule.scheduleNo = @Num)";
-            cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Num", scheduleNo);
-            dr = cmd.ExecuteReader();
-            int row = 0;
-            int column = 0;
-            string hallId;
-            if (dr.Read())
-            {
-                hallId = dr["hallNo"].ToString();
-                found = true;
-                lbHall.Text = "Hall : " + hallId;
-                DateTime schedule = DateTime.Parse(dr["scheduleDateTime"].ToString());
-                lbDateTime.Text = schedule.ToString("ddd dd MMMM hh:mm tt");
-                row = Convert.ToInt32(dr["row"].ToString());
-                column = Convert.ToInt32(dr["column"].ToString());
-                HttpCookie cookieHall = new HttpCookie("hallInfo", lbHall.Text);
-                HttpCookie cookieInfo = new HttpCookie("scheduleInfo", lbDateTime.Text);
-                cookieHall.Expires = DateTime.Now.AddHours(2);
-                cookieInfo.Expires = DateTime.Now.AddHours(2);
-                Response.Cookies.Add(cookieHall);
-                Response.Cookies.Add(cookieInfo);
-            }
-            if (!found)
-            {
-                Response.Redirect("~/Annonymous/Home.aspx");
-            }
-            dr.Close();
+            lbHall.Text = "Hall : " + schedule.Hall.hallNo;
+            lbDateTime.Text = schedule.scheduleDateTime.ToString("ddd dd MMMM hh:mm tt");
             List<string> soldSeatNo = new List<string>();
             sql = "SELECT seatNo FROM Ticket WHERE scheduleNo = @Num";
             cmd = new SqlCommand(sql, con);
@@ -81,7 +58,8 @@ namespace MovieTicketingSystem.CustomerOnly
             }
             dr.Close();
             con.Close();
-
+            int row = schedule.Hall.row;
+            int column = schedule.Hall.column;
             for (int i = 0; i < row; i++)
             {
                 char c = (char)(i + 65);
@@ -100,7 +78,7 @@ namespace MovieTicketingSystem.CustomerOnly
             }
         }
 
-        protected void btnNext_Click(object sender, EventArgs e)
+        protected void btnConfirm_Click(object sender, EventArgs e)
         {
             Response.Redirect("MovieTicket.aspx");
         }

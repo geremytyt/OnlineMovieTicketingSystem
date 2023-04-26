@@ -23,7 +23,7 @@ namespace MovieTicketingSystem.Annonymous
         protected void btnBookNow_Command(object sender, CommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();
-            Response.Redirect("~/CustomerOnly/Movie.aspx?movieId=" + id);
+            Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
         }
     }
 }

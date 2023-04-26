@@ -5,6 +5,7 @@
         <asp:TextBox ID="txtOldPwd" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password"/>
         <label for="txtOldPwd">Old Password</label>
         <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please enter your password" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtOldPwd" SetFocusOnError="true"></asp:RequiredFieldValidator>
+        <asp:CustomValidator ID="cvNotFound" runat="server" ErrorMessage="Incorrect Password" SetFocusOnError="true" Display="Static" CssClass="text-danger"></asp:CustomValidator>
     </div>
     <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:5%;margin-top:30px"></i>
 </div>
@@ -13,8 +14,8 @@
     <div class="form-floating mb-3" style="width:60%;" id="float3">
         <asp:TextBox ID="txtNewPwd" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password" onInput="updateStrength()" />
         <label for="txtNewPwd">New Password</label>
-        <asp:RequiredFieldValidator ID="rfvNewPwd" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please confirm your password" ControlToValidate="txtNewPwd" SetFocusOnError="true"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtNewPwd" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
+        <asp:RequiredFieldValidator ID="rfvNewPwd" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password" ControlToValidate="txtNewPwd" SetFocusOnError="true"></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ID="revNewPwd" runat="server" ControlToValidate="txtNewPwd" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
     </div>
     <i id="cfmpasswordVisibility2" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility2()"  style="width:5%;margin-top:30px"></i>
     <div style="border: 1px solid white;width:70%;">

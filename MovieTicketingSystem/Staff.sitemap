@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="Staff/StaffMovie.aspx" title="Movie" >
-    <siteMapNode url="Staff/ManageActiveUser.aspx" title="User" roles="Staff,Manager"/>
-    <siteMapNode url="Manager/ManageActiveStaff.aspx" title="Staff" roles="Manager"/>
-    <siteMapNode url="Staff/FoodManagement.aspx" title="Food" roles="Staff,Manager"/>
-    <siteMapNode url="Staff/ManageSchedule.aspx" title="Schedule" roles="Staff,Manager"/>
-    <siteMapNode url="Staff/ViewPayment.aspx" title="Payment" roles="Staff,Manager"/>
-    <siteMapNode url="Manager/Report.aspx" title="Report" roles="Manager"/>
-    <siteMapNode url="Staff/StaffProfile.aspx" title="Profile" roles="Staff,Manager"/>
-    <siteMapNode url="Annonymous/StaffLogin.aspx" title="Logout" roles="Staff,Manager"/>
+  <siteMapNode url="StaffOnly/StaffHome.aspx" title="Home" >
+    <siteMapNode url="StaffOnly/StaffMovie.aspx" title="Movie" />
+    <siteMapNode url="StaffOnly/ManageActiveUser.aspx" title="User" roles="Staff,Manager"/>
+    <siteMapNode url="ManagerOnly/ManageActiveStaff.aspx" title="Staff" roles="Manager"/>
+    <siteMapNode url="StaffOnly/AvailableFoodManagement.aspx" title="Food" roles="Staff,Manager"/>
+    <siteMapNode url="StaffOnly/ManageSchedule.aspx" title="Schedule" roles="Staff,Manager"/>
+    <siteMapNode url="StaffOnly/ViewPayment.aspx" title="Payment" roles="Staff,Manager"/>
+    <siteMapNode url="ManagerOnly/Report.aspx" title="Report" roles="Manager"/>
+    <siteMapNode url="StaffOnly/StaffProfile.aspx" title="Profile" roles="Staff,Manager"/>
+    <siteMapNode url="StaffOnly/StaffLogout.aspx" title="Logout" roles="Staff,Manager"/>
   </siteMapNode>
 </siteMap>

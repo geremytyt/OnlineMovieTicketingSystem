@@ -166,7 +166,6 @@ namespace MovieTicketingSystem.Staff
 
             if (FoodIMageUpload.HasFile)
             {
-
                 string fileName = Path.GetFileName(FoodIMageUpload.FileName);
                 string filePath = Server.MapPath("~/image/" + fileName);
                 FoodIMageUpload.SaveAs(filePath);
