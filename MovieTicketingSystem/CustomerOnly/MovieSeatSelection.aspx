@@ -32,7 +32,7 @@
                 <div class="screen justify-content-center"></div>
 
             </div>
-        </div>
+        </div>  
         <div class="d-grid">
             <asp:Button ID="btnConfirm" CssClass="btn btn-default p-2 m-2" runat="server" Text="Confirm" OnClick="btnConfirm_Click"/>
         </div>

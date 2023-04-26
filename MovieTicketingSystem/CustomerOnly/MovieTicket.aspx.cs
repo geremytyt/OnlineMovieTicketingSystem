@@ -154,7 +154,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 Ticket t;
                 for (int i = 0; i < total; i++)
                 {
-                    if (i + 1 < adultCount)
+                    if (i + 1 <= adultCount)
                     {
                         t = new Ticket
                         {
@@ -166,7 +166,7 @@ namespace MovieTicketingSystem.CustomerOnly
                         };
                         tickets.Add(t);
                     }
-                    else if(i+1 > adultCount && i+1 < adultCount + childrenCount)
+                    else if(i+1 > adultCount && i+1 <= adultCount + childrenCount)
                     {
                         t = new Ticket
                         {
@@ -178,7 +178,7 @@ namespace MovieTicketingSystem.CustomerOnly
                         };
                         tickets.Add(t);
                     }
-                    else if (i + 1 > adultCount + childrenCount && i + 1 < total)
+                    else if (i + 1 > adultCount + childrenCount && i + 1 <= total)
                     {
                         t = new Ticket
                         {
