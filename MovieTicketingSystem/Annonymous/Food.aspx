@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Food.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.Food" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/style.css" rel="stylesheet" />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Menu]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Menu] Where available = 'true'"></asp:SqlDataSource>
     <div class="container Menubackgound" >
         <div class="row" >
             <asp:Repeater ID="repMenu" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="repMenu_ItemDataBound" >

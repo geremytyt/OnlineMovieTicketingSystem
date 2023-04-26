@@ -1,5 +1,5 @@
 ﻿using MovieTicketingSystem.Annonymous;
-using MovieTicketingSystem.Manager;
+using MovieTicketingSystem.ManagerOnly;
 using System;
 using System.Collections.Generic;
 using System.EnterpriseServices;

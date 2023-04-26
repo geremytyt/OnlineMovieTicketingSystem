@@ -126,6 +126,11 @@
     <Content Include="Image\Coca-cola.jpg" />
     <Content Include="Image\default.jpeg" />
     <Content Include="Image\Family Combo.jpg" />
+    <Content Include="Image\foodImages\MN001.jpg" />
+    <Content Include="Image\foodImages\MN002.jpg" />
+    <Content Include="Image\foodImages\MN003.jpg" />
+    <Content Include="Image\foodImages\MN004.jpg" />
+    <Content Include="Image\foodImages\MN005.jpg" />
     <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
@@ -597,7 +602,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\customerImages\" />
-    <Folder Include="Image\foodImages\" />
     <Folder Include="Image\staffImages\" />
   </ItemGroup>
   <ItemGroup>

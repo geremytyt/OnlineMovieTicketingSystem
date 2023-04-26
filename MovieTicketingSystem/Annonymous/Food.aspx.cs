@@ -11,7 +11,7 @@ using System.Text;
 using System.Runtime.Remoting.Messaging;
 using System.ComponentModel;
 using MovieTicketingSystem.CustomerOnly;
-using MovieTicketingSystem.Manager;
+using MovieTicketingSystem.ManagerOnly;
 using System.Security.Policy;
 
 namespace MovieTicketingSystem.Annonymous
