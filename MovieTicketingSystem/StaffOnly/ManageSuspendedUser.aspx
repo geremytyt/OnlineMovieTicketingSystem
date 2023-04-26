@@ -23,8 +23,8 @@
                 <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link w-25 text-white mb-2" OnClick="btnActive_Click" BorderColor="White"/>
                 <asp:Button ID="btnSuspended" runat="server" Text="Suspended" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618" />
             </div>
-            <asp:GridView ID="gvUser" runat="server" AutoGenerateColumns="False" DataKeyNames="custId" DataSourceID="SqlDataSource2"  ClientIDMode="Static"
-                OnSelectedIndexChanged="GridView2_SelectedIndexChanged"  CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+            <asp:GridView ID="gvUser" runat="server" AutoGenerateColumns="False" DataKeyNames="custId" ClientIDMode="Static"
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="custId" HeaderText="ID" ReadOnly="True" SortExpression="custId"></asp:BoundField>
                     <asp:BoundField DataField="custName" HeaderText="Name" SortExpression="custName"></asp:BoundField>
@@ -36,28 +36,17 @@
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <div class="d-grid gap-2 d-md-flex">
-                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btnView_Command" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT DISTINCT [custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender] FROM [Customer] WHERE ([custStatus] = @custStatus)">
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="Suspended" Name="custStatus" Type="String"></asp:Parameter>
-                </SelectParameters>
-
-            </asp:SqlDataSource>
         </div>     
         <div class="col-md-4">
             <div class="bg-dark rounded-4 text-white mb-2">
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div>
-                        <asp:TextBox ID="txtSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
-                        <button class="btn btn-default my-2" style="width:40px" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
                     <div class="m-4">
                         <label>Customer ID:</label>
                         <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>

@@ -6,9 +6,9 @@
         <div class="bg-black rounded col-md-5 col-lg-3 col-sm-6">                  
             <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Staff Login</div>    
             <LoginControl:login runat="server" /> 
+            <div class="text-center mb-4">
+            <asp:HyperLink CssClass="mt-2 loginLink" ID="HyperLink1" runat="server" NavigateUrl="StaffResetPwd1.aspx">Forget Password?</asp:HyperLink>
         </div>
-        <div class="text-center">
-            <asp:HyperLink CssClass="mt-2 loginLink" ID="hlForgetpwd" runat="server" NavigateUrl="StaffResetPwd1.aspx">Forget Password?</asp:HyperLink>
         </div>
     </div>
 </asp:Content>

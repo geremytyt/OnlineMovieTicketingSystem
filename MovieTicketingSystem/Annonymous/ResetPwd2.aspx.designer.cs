@@ -15,22 +15,58 @@ namespace MovieTicketingSystem.Annonymous
     {
 
         /// <summary>
-        /// txtPassword control.
+        /// txtNewPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPwd;
 
         /// <summary>
-        /// txtCfmPassword control.
+        /// rfvPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCfmPassword;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPwd;
+
+        /// <summary>
+        /// revPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPwd;
+
+        /// <summary>
+        /// txtCfmPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCfmPwd;
+
+        /// <summary>
+        /// rfvCfmPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCfmPassword;
+
+        /// <summary>
+        /// cvCfmPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvCfmPassword;
 
         /// <summary>
         /// btnToken control.

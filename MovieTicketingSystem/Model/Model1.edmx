@@ -28,8 +28,7 @@
           <Property Name="custGender" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="custPhoto" Type="varchar" MaxLength="30" />
           <Property Name="custStatus" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="signature" Type="varchar" MaxLength="50" />
-          <Property Name="loginNo" Type="int" Nullable="false" />
+          <Property Name="custSignature" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -129,6 +128,7 @@
           <Property Name="staffPhoto" Type="varchar" MaxLength="30" />
           <Property Name="position" Type="nchar" MaxLength="30" Nullable="false" />
           <Property Name="staffStatus" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="staffSignature" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -143,7 +143,7 @@
           <Property Name="seatNo" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MOVIETICKETINGSYSTEM\APP_DATA\MOVIEDB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM\MOVIETICKETINGSYSTEM\APP_DATA\MOVIEDB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Username" />
@@ -346,10 +346,9 @@ warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MO
           <Property Name="custGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="custPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="custStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="signature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="loginNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cards" Relationship="Self.FK__Card__custId__160F4887" FromRole="Customer" ToRole="Card" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__custId__17036CC0" FromRole="Customer" ToRole="Purchase" />
+          <Property Name="custSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -462,6 +461,7 @@ warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MO
           <Property Name="staffPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="position" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="staffStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -665,6 +665,7 @@ warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MO
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="movieDBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="custSignature" ColumnName="custSignature" />
                 <ScalarProperty Name="custId" ColumnName="custId" />
                 <ScalarProperty Name="custName" ColumnName="custName" />
                 <ScalarProperty Name="custEmail" ColumnName="custEmail" />
@@ -674,8 +675,6 @@ warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MO
                 <ScalarProperty Name="custGender" ColumnName="custGender" />
                 <ScalarProperty Name="custPhoto" ColumnName="custPhoto" />
                 <ScalarProperty Name="custStatus" ColumnName="custStatus" />
-                <ScalarProperty Name="signature" ColumnName="signature" />
-                <ScalarProperty Name="loginNo" ColumnName="loginNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -772,6 +771,7 @@ warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MO
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="movieDBModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="staffSignature" ColumnName="staffSignature" />
                 <ScalarProperty Name="staffId" ColumnName="staffId" />
                 <ScalarProperty Name="staffName" ColumnName="staffName" />
                 <ScalarProperty Name="staffEmail" ColumnName="staffEmail" />

@@ -132,6 +132,15 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIC;
 
         /// <summary>
+        /// revIC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revIC;
+
+        /// <summary>
         /// rblGender control.
         /// </summary>
         /// <remarks>

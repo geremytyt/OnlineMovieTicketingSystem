@@ -46,6 +46,7 @@
                                 <asp:TextBox ID="txtIC" runat="server" CssClass="form-control w-75 userInput" placeholder=" "/>
                                 <i class="w-25"></i>
                                 <asp:RequiredFieldValidator ID="rfvIC" CssClass="text-danger w-75" Display="Dynamic" runat="server" ErrorMessage="Please enter your IC" SetFocusOnError="true" ControlToValidate="txtIC"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revIC" runat="server" ErrorMessage="Incorrect format of IC" CssClass="text-danger w-75" Display="Dynamic" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="/d{12}"></asp:RegularExpressionValidator>
                             </div>
                             <div class="my-4 mx-auto row">
                                 <h6 class="w-25 align-self-end">Gender</h6>

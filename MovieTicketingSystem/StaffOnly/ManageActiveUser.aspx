@@ -23,8 +23,8 @@
                 <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618"/>
                 <asp:Button ID="btnSuspended" runat="server" Text="Suspended" CssClass="nav-link w-25 text-white mb-2" BorderColor="White" OnClick="btnSuspended_Click"/>
             </div>
-            <asp:GridView ID="gvUser" runat="server" DataKeyNames="custId" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" ClientIDMode="Static"
-                OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+            <asp:GridView ID="gvUser" runat="server" DataKeyNames="custId" AutoGenerateColumns="False" ClientIDMode="Static"
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="custId" HeaderText="ID" ReadOnly="True" SortExpression="custId"></asp:BoundField>
                     <asp:BoundField DataField="custName" HeaderText="Name" SortExpression="custName"></asp:BoundField>
@@ -36,46 +36,17 @@
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <div class="d-grid gap-2 d-md-flex">
-                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btnView_Command" />
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT [custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender] FROM [Customer] WHERE ([custStatus] <> @custStatus)" DeleteCommand="DELETE FROM [Customer] WHERE [custId] = @custId" InsertCommand="INSERT INTO [Customer] ([custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender]) VALUES (@custId, @custName, @custEmail, @custDob, @custPhoneNo, @custGender)" UpdateCommand="UPDATE [Customer] SET [custName] = @custName, [custEmail] = @custEmail, [custDob] = @custDob, [custPhoneNo] = @custPhoneNo, [custGender] = @custGender WHERE [custId] = @custId">
-                <DeleteParameters>
-                    <asp:Parameter Name="custId" Type="String" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="custId" Type="String" />
-                    <asp:Parameter Name="custName" Type="String" />
-                    <asp:Parameter Name="custEmail" Type="String" />
-                    <asp:Parameter Name="custDob" DbType="Date" />
-                    <asp:Parameter Name="custPhoneNo" Type="String" />
-                    <asp:Parameter Name="custGender" Type="String" />
-                </InsertParameters>
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="Suspended" Name="custStatus" Type="String"></asp:Parameter>
-                </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="custName" Type="String" />
-                    <asp:Parameter Name="custEmail" Type="String" />
-                    <asp:Parameter Name="custDob" DbType="Date" />
-                    <asp:Parameter Name="custPhoneNo" Type="String" />
-                    <asp:Parameter Name="custGender" Type="String" />
-                    <asp:Parameter Name="custId" Type="String" />
-                </UpdateParameters>
-            </asp:SqlDataSource>
         </div>
         <div class="col-md-4">
             <div class="bg-dark rounded-4 text-white mb-2">
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div>
-                        <asp:TextBox ID="txtSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
-                        <button class="btn btn-default my-2" style="width:40px" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
                     <div class="m-4">
                         <label>Customer ID:</label>
                         <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
