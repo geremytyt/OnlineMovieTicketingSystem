@@ -5,6 +5,7 @@
         <asp:TextBox ID="txtOldPwd" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password"/>
         <label for="txtOldPwd">Old Password</label>
         <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please enter your password" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtOldPwd" SetFocusOnError="true"></asp:RequiredFieldValidator>
+        <asp:CustomValidator ID="cvNotFound" runat="server" ErrorMessage="Incorrect Password" SetFocusOnError="true" Display="Static" CssClass="text-danger"></asp:CustomValidator>
     </div>
     <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:5%;margin-top:30px"></i>
 </div>

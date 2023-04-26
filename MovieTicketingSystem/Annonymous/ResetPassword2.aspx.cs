@@ -25,10 +25,10 @@ namespace MovieTicketingSystem.Annonymous
                 customer => customer.signature == hash);
                 if (c != null) {
                     string[] details = token.Split('/');
-                    if (Convert.ToDateTime(token[2]) < DateTime.Now)
+                    if (Convert.ToDateTime(details[2]) < DateTime.Now)
                     {
                         Response.Redirect("ResetPassword1.aspx");
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');", true);
+                        ScriptManager.RegisterClientScriptBlock(this,   this.GetType(), "Notification", "alert('Your token has      expired. Please try again.');", true);
                     }
                 }
 

@@ -31,6 +31,7 @@ namespace MovieTicketingSystem.Model
         public string custPhoto { get; set; }
         public string custStatus { get; set; }
         public string signature { get; set; }
+        public int loginNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Card> Cards { get; set; }
