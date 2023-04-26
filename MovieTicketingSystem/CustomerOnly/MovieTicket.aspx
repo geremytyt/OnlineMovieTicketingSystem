@@ -65,8 +65,9 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
-         <div class="d-grid">
-            <asp:Button ID="btnNext" CssClass="btn btn-default p-2 m-2" runat="server" Text="Next" OnClick="btnNext_Click"/>
+         <div class="d-grid gap-2 col-6 mx-auto">
+            <asp:Button ID="btnFood" CssClass="btn btn-default p-2 m-2" runat="server" Text="Proceed to food" CommandArgument="Food" OnCommand="NextPage_Command"/>
+            <asp:Button ID="btnPayment" CssClass="btn btn-default p-2 m-2" runat="server" Text="Proceed to payment" CommandArgument="Payment" OnCommand="NextPage_Command"/>
         </div>
     </div>
 </asp:Content>

@@ -140,7 +140,7 @@ namespace MovieTicketingSystem.CustomerOnly
             lbTotalTicket.Text = "Total : RM " + price.ToString();
         }
 
-        protected void btnNext_Click(object sender, EventArgs e)
+        protected void NextPage_Command(object sender, CommandEventArgs e)
         {
             string[] seatNum = lbSeatIndex.Text.Split(' ');
             int adultCount = Convert.ToInt32(lbAdultCount.Text);
@@ -149,7 +149,7 @@ namespace MovieTicketingSystem.CustomerOnly
             int total = adultCount + childrenCount + seniorCount;
             Schedule s = (Schedule)Session["schedule"];
             List<Ticket> tickets = new List<Ticket>();
-            if(seatNum.Length == total)
+            if (seatNum.Length == total)
             {
                 Ticket t;
                 for (int i = 0; i < total; i++)
@@ -166,7 +166,7 @@ namespace MovieTicketingSystem.CustomerOnly
                         };
                         tickets.Add(t);
                     }
-                    else if(i+1 > adultCount && i+1 <= adultCount + childrenCount)
+                    else if (i + 1 > adultCount && i + 1 <= adultCount + childrenCount)
                     {
                         t = new Ticket
                         {
@@ -192,7 +192,14 @@ namespace MovieTicketingSystem.CustomerOnly
                     }
                 }
                 Session["Tickets"] = tickets;
-                Response.Redirect("~/Annonymous/Food.aspx");
+                if(e.CommandArgument.ToString() == "Food")
+                {
+                    Response.Redirect("~/Annonymous/Food.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/CustomerOnly/Payment.aspx");
+                }
             }
             else
             {

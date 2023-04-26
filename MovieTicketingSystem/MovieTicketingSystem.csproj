@@ -96,6 +96,7 @@
     <Content Include="Annonymous\MiddlePage.aspx" />
     <Content Include="Annonymous\MovieDetails.aspx" />
     <Content Include="Annonymous\Movies.aspx" />
+    <Content Include="Annonymous\MovieSearch.aspx" />
     <Content Include="Annonymous\Register.aspx" />
     <Content Include="Annonymous\ResetPwd1.aspx" />
     <Content Include="Annonymous\ResetPwd2.aspx" />
@@ -240,6 +241,13 @@
     </Compile>
     <Compile Include="Annonymous\Movies.aspx.designer.cs">
       <DependentUpon>Movies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\MovieSearch.aspx.cs">
+      <DependentUpon>MovieSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\MovieSearch.aspx.designer.cs">
+      <DependentUpon>MovieSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Annonymous\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
