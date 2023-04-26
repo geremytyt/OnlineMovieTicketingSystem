@@ -7,13 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.Annonymous
 {
-    public partial class Movies : System.Web.UI.Page
+    public partial class MovieSearch : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string name = Request.QueryString["movieName"] ?? "";
+            if(name == "")
+            {
+                Response.Redirect("Home.aspx");
+            }
         }
-
         protected void btnViewMore_Command(object sender, CommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();

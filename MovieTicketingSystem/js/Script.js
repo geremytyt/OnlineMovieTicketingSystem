@@ -19,10 +19,7 @@ function updateSelectedCount() {
     function getText(item, index) {
         text += item.innerText + " ";
     }
-
-    const selectedSeatsCount = selectedSeats.length;
     document.cookie = "seatNum=" + text;
-    document.cookie = "ticket=" + selectedSeatsCount;
 }
 
 
@@ -43,11 +40,17 @@ function populateUI() {
 console.log(populateUI())
 
 container.addEventListener("click", (e) => {
+    const selectedSeats = document.querySelectorAll(".seat-row .seat.selected");
     if (
         e.target.classList.contains("seat") &&
-        !e.target.classList.contains("sold")
+        !e.target.classList.contains("sold") 
+
     ) {
-        e.target.classList.toggle("selected");
+        if (e.target.classList.contains("selected") || selectedSeats.length < 12)
+            e.target.classList.toggle("selected");
+        else {
+            alert("You are not allowed to select more than 12 seat");
+        }
 
         updateSelectedCount();
     }

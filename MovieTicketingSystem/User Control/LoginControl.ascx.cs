@@ -28,6 +28,7 @@ namespace MovieTicketingSystem.User_Control
                 if (Page.IsValid)
                 {
                     string id = "";
+                    string status = "";
                     string username = txtEmail.Text;
                     string password = txtPassword.Text;
                     bool rememberMe = cbRemember.Checked;
@@ -51,13 +52,20 @@ namespace MovieTicketingSystem.User_Control
                             if (dr.Read())
                             {
                                 id = dr[0].ToString();
+                                status = dr[8].ToString().Trim();
                             }
                             dr.Close();
                             con.Close();
-                            HttpCookie cookie = new HttpCookie("Customer", id);
-                            cookie.Expires = DateTime.Now.AddDays(14);
-                            Response.Cookies.Add(cookie);
-                            Security.LoginUser(u.Username, u.Role, rememberMe);
+                            if (status == "Active")
+                            {
+                                HttpCookie cookie = new HttpCookie("Customer", id);
+                                cookie.Expires = DateTime.Now.AddDays(14);
+                                Response.Cookies.Add(cookie);
+                                Security.LoginUser(u.Username, u.Role, rememberMe);
+                            }
+                            else {
+                                cvLogin.IsValid = false;
+                            }
 
                         }
                         else if (u.Role == "Staff" || u.Role =="Manager")
@@ -72,13 +80,20 @@ namespace MovieTicketingSystem.User_Control
                             if (dr.Read())
                             {
                                 id = dr[0].ToString();
+                                status = dr[8].ToString();
                             }
                             dr.Close();
                             con.Close();
-                            HttpCookie cookie = new HttpCookie("Staff", id);
-                            cookie.Expires = DateTime.Now.AddDays(14);
-                            Response.Cookies.Add(cookie);
-                            Security.LoginUser(u.Username, u.Role, rememberMe);
+                            if (status == "Active")
+                            {
+                                HttpCookie cookie = new HttpCookie("Staff", id);
+                                cookie.Expires = DateTime.Now.AddDays(14);
+                                Response.Cookies.Add(cookie);
+                                Security.LoginUser(u.Username, u.Role, rememberMe);
+                            }
+                            else {
+                                cvLogin.IsValid = false;
+                            }
                         }
                         else {
                             cvLogin.IsValid = false;
