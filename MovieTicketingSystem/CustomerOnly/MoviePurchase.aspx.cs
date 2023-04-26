@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -33,13 +34,29 @@ namespace MovieTicketingSystem.CustomerOnly
                 {
                     Response.Redirect("~/Annonymous/Home.aspx");
                 }
+                dr.Close();
+                con.Close();
             }
         }
         protected void btnNext_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["movieId"] ?? "";
             string number = ddlTime.SelectedValue;
-            Response.Redirect(String.Format("MovieSeatSelection.aspx?scheduleNo={0}&movieId={1}", number, id));
+            string sql = "SELECT Hall.hallNo, Hall.row, Hall.[column], Schedule.movieId, Schedule.scheduleDateTime FROM  Schedule INNER JOIN   Hall ON Schedule.hallNo = Hall.hallNo WHERE  (Schedule.scheduleNo = @Num)";
+            Schedule schedule;
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@Num", number);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                Hall hall = new Hall {hallNo = dr["hallNo"].ToString(), row = Convert.ToInt32(dr["row"].ToString()),column= Convert.ToInt32(dr["column"].ToString()) };
+                schedule = new Schedule { Hall=hall,movieId=id,scheduleNo=number,scheduleDateTime=DateTime.Parse(dr["scheduleDateTime"].ToString()) };
+                Session["schedule"] = schedule;
+            }
+
+            Response.Redirect(String.Format("MovieSeatSelection.aspx?movieId={0}", id));
         }
 
         protected void btnSelect_Command(object sender, CommandEventArgs e)

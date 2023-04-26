@@ -28,13 +28,13 @@
             </ul>
         </div>
         <div class="d-flex justify-content-center outer-container">
-            <div class="seat-container w-75 justify-content-center" runat="server" id="seatContainer">
-                <div class="screen"></div>
+            <div class="seat-container justify-content-center" runat="server" id="seatContainer">
+                <div class="screen justify-content-center"></div>
 
             </div>
         </div>
         <div class="d-grid">
-            <asp:Button ID="btnConfirm" CssClass="btn btn-default p-2 m-2" runat="server" Text="Confirm" OnClick="btnNext_Click"/>
+            <asp:Button ID="btnConfirm" CssClass="btn btn-default p-2 m-2" runat="server" Text="Confirm" OnClick="btnConfirm_Click"/>
         </div>
 
     </div>

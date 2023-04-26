@@ -465,5 +465,9 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 460px;
 }
 
+.btn-yellow{
+    color:yellow;
+}
+
 /***/
 
