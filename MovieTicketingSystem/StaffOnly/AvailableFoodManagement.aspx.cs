@@ -34,6 +34,7 @@ namespace MovieTicketingSystem.StaffOnly
             menuImg.Attributes.CssStyle.Add("display", "none");
 
             //enable validation
+            CVPrice.Enabled = true;
             RVUpload.Enabled = true;
             RVtbName.Enabled = true;
             RVPrice.Enabled = true;
@@ -50,7 +51,7 @@ namespace MovieTicketingSystem.StaffOnly
             FoodIMageUpload.Visible = true;
 
             btn_insert.Visible = false;
-            btn_delete.Visible = false;
+            btn_Discontinue.Visible = false;
             btn_edit.Visible = false;
 
         }
@@ -123,6 +124,7 @@ namespace MovieTicketingSystem.StaffOnly
             RVtbName.Enabled = false;
             RVPrice.Enabled = false;
             RVtbDecs.Enabled = false;
+            CVPrice.Enabled = false;
 
             lblMenuId.Text = "Select An Item";
             tbName.ReadOnly = true;
@@ -136,7 +138,7 @@ namespace MovieTicketingSystem.StaffOnly
             FoodIMageUpload.Visible = false;
 
             btn_insert.Visible = true;
-            btn_delete.Visible = true;
+            btn_Discontinue.Visible = true;
             btn_edit.Visible = true;
 
             Response.Redirect("AvailableFoodManagement.aspx");
@@ -146,6 +148,7 @@ namespace MovieTicketingSystem.StaffOnly
         {
             //enable validation
             //RVUpload.Enabled = true;
+            CVPrice.Enabled = true;
             RVtbName.Enabled = true;
             RVPrice.Enabled = true;
             RVtbDecs.Enabled = true;
@@ -156,36 +159,18 @@ namespace MovieTicketingSystem.StaffOnly
             tbPrice.ReadOnly = false;
             tbDecs.ReadOnly = false;
 
+            GVMenu.Columns[4].Visible = false;
 
             btn_update.Visible = true;
             btn_cancel.Visible = true;
             FoodIMageUpload.Visible = true;
             btn_insert.Visible = false;
-            btn_delete.Visible = false;
+            btn_Discontinue.Visible = false;
             btn_edit.Visible = false;
         }
 
         protected void btn_cancel_Click(object sender, EventArgs e)
         {
-            //disenable validation
-            RVUpload.Enabled = false;
-            RVtbName.Enabled = false;
-            RVPrice.Enabled = false;
-            RVtbDecs.Enabled = false;
-
-            tbName.ReadOnly = true;
-            DDLCategory.Enabled = false;
-            tbPrice.ReadOnly = true;
-            tbDecs.ReadOnly = true;
-
-            btn_update.Visible = false;
-            btn_cancel.Visible = false;
-            FoodIMageUpload.Visible = false;
-
-            btn_insert.Visible = true;
-            btn_delete.Visible = true;
-            btn_edit.Visible = true;
-
             Response.Redirect("AvailableFoodManagement.aspx");
         }
 
@@ -233,7 +218,7 @@ namespace MovieTicketingSystem.StaffOnly
 
         }
 
-        protected void btn_delete_Click(object sender, EventArgs e)
+        protected void btn_Discontinue_Click(object sender, EventArgs e)
         {
             //step 2 load detail
             string sql = "UPDATE Menu SET Available=@available WHERE menuId=@menuId";
@@ -263,6 +248,9 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void GVMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btn_Discontinue.Visible = true;
+            btn_edit.Visible = true;
+
             var selectedIndex = GVMenu.SelectedIndex;
 
             var selectedID = GVMenu.SelectedRow.Cells[0].Text;
@@ -309,6 +297,11 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             dr.Close();
             con.Close();
+        }
+
+        protected void btnUnAvailable_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UnavailableFoodManagement.aspx");
         }
     }
 }

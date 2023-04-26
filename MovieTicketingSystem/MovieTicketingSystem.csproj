@@ -199,6 +199,7 @@
     <Content Include="StaffOnly\StaffProfile.aspx" />
     <Content Include="CustomerOnly\Profile.aspx" />
     <Content Include="StaffOnly\StaffResetPassword.aspx" />
+    <Content Include="StaffOnly\UnavailableFoodManagement.aspx" />
     <Content Include="StaffOnly\ViewMovie.aspx" />
     <Content Include="StaffOnly\ViewPayment.aspx" />
     <Content Include="User Control\LoginControl.ascx" />
@@ -557,6 +558,13 @@
     </Compile>
     <Compile Include="StaffOnly\StaffResetPassword.aspx.designer.cs">
       <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffOnly\UnavailableFoodManagement.aspx.cs">
+      <DependentUpon>UnavailableFoodManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffOnly\UnavailableFoodManagement.aspx.designer.cs">
+      <DependentUpon>UnavailableFoodManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="StaffOnly\ViewMovie.aspx.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
