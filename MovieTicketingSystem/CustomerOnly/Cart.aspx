@@ -61,8 +61,7 @@
                           <%--      <i class="fas fa-trash-alt" ></i>--%>
 
                           <asp:Button ID="btnConfirm" runat="server" OnClick="btnConfirm_Click" Visible="false" Text="Confirm" CssClass="cartbtn mx-3"/>
-                           <%-- <i class="fa fa-check"></i>--%>
-                           
+                           <%-- <i class="fa fa-check"></i>--%>                           
                           
                           <asp:Button ID="btnCancel" runat="server" OnClientClick="this.form.reset()" OnClick="btnCancel_Click" Visible="false" Text="Cancel" CssClass="cartbtn mx-3 "/>
                                 <%--<i class="fa fa-close"></i>--%>

@@ -26,16 +26,22 @@ namespace MovieTicketingSystem.StaffOnly
 
             lblMenuId.Text = "MN" + IdNum.ToString("000");
             tbName.Text = "";
-            tbCategory.Text = "";
+            DDLCategory.ClearSelection();
             tbPrice.Text = "";
             tbDecs.Text = "";
             GVMenu.SelectedIndex = -1;
             menuImg.ImageUrl = " ";
             menuImg.Attributes.CssStyle.Add("display", "none");
 
+            //enable validation
+            RVUpload.Enabled = true;
+            RVtbName.Enabled = true;
+            RVPrice.Enabled = true;
+            RVtbDecs.Enabled = true;
+
             //allow user to edit the textbox
             tbName.ReadOnly = false;
-            tbCategory.ReadOnly = false;
+            DDLCategory.Enabled = true;
             tbPrice.ReadOnly = false;
             tbDecs.ReadOnly = false;
 
@@ -54,13 +60,14 @@ namespace MovieTicketingSystem.StaffOnly
             if (FoodIMageUpload.HasFile)
             {
                 string fileName = Path.GetFileName(FoodIMageUpload.FileName);
-                string filePath = Server.MapPath("~/image/" + fileName);
+                fileName = lblMenuId.Text + fileName.Substring(fileName.IndexOf("."));
+                string filePath = Server.MapPath("~/Image/foodImages/" + fileName);
                 FoodIMageUpload.SaveAs(filePath);
-                string fileUrl = ResolveUrl("~/image/" + fileName);
+                string fileUrl = ResolveUrl("~/Image/foodImages/" + fileName);
                 menuImg.ImageUrl = ".." + fileUrl;
 
                 //step 2 load detail
-                string sql = "INSERT INTO Menu VALUES (@menuId, @menuName, @menuCategory, @menuPrice, @menuDesc, @menuUrl)";
+                string sql = "INSERT INTO Menu VALUES (@menuId, @menuName, @menuCategory, @menuPrice, @menuDesc, @menuUrl, @available)";
 
                 //step 3 establish connection
                 SqlConnection con = new SqlConnection(cs);
@@ -75,10 +82,11 @@ namespace MovieTicketingSystem.StaffOnly
                 //step 5.1 supply parameter to sql
                 cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
                 cmd.Parameters.AddWithValue("@menuName", tbName.Text);
-                cmd.Parameters.AddWithValue("@menuCategory", tbCategory.Text);
+                cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
                 cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text);
                 cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
                 cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
+                cmd.Parameters.AddWithValue("@available", true);
 
                 //step 6 execute sql
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -88,15 +96,15 @@ namespace MovieTicketingSystem.StaffOnly
                 {
                     lblMenuId.Text = dr[0].ToString().Trim();
                     tbName.Text = dr[1].ToString().Trim();
-                    tbCategory.Text = dr[2].ToString().Trim();
-                    tbPrice.Text = "RM " + dr[3].ToString().Trim();
+                    DDLCategory.SelectedItem.Value = dr[2].ToString().Trim();
+                    tbPrice.Text = dr[3].ToString().Trim();
                     tbDecs.Text = dr[4].ToString().Trim();
                 }
                 else
                 {
                     lblMenuId.Text = " No Record Found";
                     tbName.Text = " ";
-                    tbCategory.Text = " ";
+                    DDLCategory.ClearSelection();
                     tbPrice.Text = " ";
                 }
 
@@ -104,15 +112,21 @@ namespace MovieTicketingSystem.StaffOnly
                 dr.Close();
                 con.Close();
 
-                Response.Redirect("FoodManagement.aspx");
+                Response.Redirect("AvailableFoodManagement.aspx");
             }
         }
 
         protected void btn_back_Click(object sender, EventArgs e)
         {
+            //disenable validation
+            RVUpload.Enabled = false;
+            RVtbName.Enabled = false;
+            RVPrice.Enabled = false;
+            RVtbDecs.Enabled = false;
+
             lblMenuId.Text = "Select An Item";
             tbName.ReadOnly = true;
-            tbCategory.ReadOnly = true;
+            DDLCategory.Enabled = false;
             tbPrice.ReadOnly = true;
             tbDecs.ReadOnly = true;
             menuImg.Attributes.CssStyle.Add("display", "none");
@@ -124,13 +138,21 @@ namespace MovieTicketingSystem.StaffOnly
             btn_insert.Visible = true;
             btn_delete.Visible = true;
             btn_edit.Visible = true;
+
+            Response.Redirect("AvailableFoodManagement.aspx");
         }
 
         protected void btn_edit_Click(object sender, EventArgs e)
         {
+            //enable validation
+            //RVUpload.Enabled = true;
+            RVtbName.Enabled = true;
+            RVPrice.Enabled = true;
+            RVtbDecs.Enabled = true;
+
             //allow user to edit the textbox
             tbName.ReadOnly = false;
-            tbCategory.ReadOnly = false;
+            DDLCategory.Enabled = true;
             tbPrice.ReadOnly = false;
             tbDecs.ReadOnly = false;
 
@@ -145,9 +167,14 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void btn_cancel_Click(object sender, EventArgs e)
         {
+            //disenable validation
+            RVUpload.Enabled = false;
+            RVtbName.Enabled = false;
+            RVPrice.Enabled = false;
+            RVtbDecs.Enabled = false;
 
             tbName.ReadOnly = true;
-            tbCategory.ReadOnly = true;
+            DDLCategory.Enabled = false;
             tbPrice.ReadOnly = true;
             tbDecs.ReadOnly = true;
 
@@ -158,6 +185,8 @@ namespace MovieTicketingSystem.StaffOnly
             btn_insert.Visible = true;
             btn_delete.Visible = true;
             btn_edit.Visible = true;
+
+            Response.Redirect("AvailableFoodManagement.aspx");
         }
 
         protected void btn_update_Click(object sender, EventArgs e)
@@ -165,11 +194,11 @@ namespace MovieTicketingSystem.StaffOnly
 
             if (FoodIMageUpload.HasFile)
             {
-
                 string fileName = Path.GetFileName(FoodIMageUpload.FileName);
-                string filePath = Server.MapPath("~/image/" + fileName);
+                fileName = lblMenuId.Text + fileName.Substring(fileName.IndexOf("."));
+                string filePath = Server.MapPath("~/Image/foodImages/" + fileName);
                 FoodIMageUpload.SaveAs(filePath);
-                string fileUrl = ResolveUrl("~/image/" + fileName);
+                string fileUrl = ResolveUrl("~/Image/foodImages/" + fileName);
                 menuImg.ImageUrl = ".." + fileUrl;
             }
 
@@ -188,7 +217,7 @@ namespace MovieTicketingSystem.StaffOnly
             //step 5.1 supply parameter to sql
             cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
             cmd.Parameters.AddWithValue("@menuName", tbName.Text);
-            cmd.Parameters.AddWithValue("@menuCategory", tbCategory.Text);
+            cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
             cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
             cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
             cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
@@ -200,14 +229,14 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             con.Close();
 
-            Response.Redirect("FoodManagement.aspx");
+            Response.Redirect("AvailableFoodManagement.aspx");
 
         }
 
         protected void btn_delete_Click(object sender, EventArgs e)
         {
             //step 2 load detail
-            string sql = "DELETE FROM Menu WHERE menuId=@menuId";
+            string sql = "UPDATE Menu SET Available=@available WHERE menuId=@menuId";
 
             //step 3 establish connection
             SqlConnection con = new SqlConnection(cs);
@@ -219,6 +248,7 @@ namespace MovieTicketingSystem.StaffOnly
             SqlCommand cmd = new SqlCommand(sql, con);
 
             //step 5.1 supply parameter to sql
+            cmd.Parameters.AddWithValue("@available", false);
             cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
 
             //step 6 execute sql
@@ -228,7 +258,7 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             con.Close();
 
-            Response.Redirect("FoodManagement.aspx");
+            Response.Redirect("AvailableFoodManagement.aspx");
         }
 
         protected void GVMenu_SelectedIndexChanged(object sender, EventArgs e)
@@ -262,15 +292,17 @@ namespace MovieTicketingSystem.StaffOnly
                 menuImg.ImageUrl = dr[5].ToString().Trim();
                 lblMenuId.Text = dr[0].ToString().Trim();
                 tbName.Text = dr[1].ToString().Trim();
-                tbCategory.Text = dr[2].ToString().Trim();
-                tbPrice.Text = "RM " + dr[3].ToString().Trim();
+                DDLCategory.SelectedItem.Text = dr[2].ToString().Trim();
+                
+
+                tbPrice.Text = dr[3].ToString().Trim();
                 tbDecs.Text = dr[4].ToString().Trim();
             }
             else
             {
                 lblMenuId.Text = " No Record Found";
                 tbName.Text = " ";
-                tbCategory.Text = " ";
+                DDLCategory.ClearSelection();
                 tbPrice.Text = " ";
             }
 
