@@ -24,9 +24,16 @@ namespace MovieTicketingSystem
             this.menuUrl = menuUrl;
         }
 
-        private CartItem()
+        public CartItem()
         {
 
         }
+
+        public void update(int qty)
+        {
+            this.qty = qty;
+            this.totalPrice = menuPrice * qty;
+        } 
+
     }
 }

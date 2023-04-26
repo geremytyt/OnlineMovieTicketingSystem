@@ -33,7 +33,7 @@ namespace MovieTicketingSystem.Annonymous
             Label lblId = (Label)item.FindControl("LBlId");
             Label lblName = (Label)item.FindControl("LblName");
             Label LblPrice = (Label)item.FindControl("LblPrice");
-            Image Foodimage = (Image)item.FindControl("foodImage");
+            Label lblUrl = (Label)item.FindControl("lblUrl");
             TextBox txtQty = (TextBox)item.FindControl("txtQty");
 
             double price = double.Parse(LblPrice.Text.ToString().Substring(2));
@@ -41,7 +41,9 @@ namespace MovieTicketingSystem.Annonymous
             String id = lblId.Text.ToString();
             String name = lblName.Text.ToString();
             int qty = int.Parse( txtQty.Text.ToString());
-            String url = Foodimage.ImageUrl.ToString();
+            String url = lblUrl.Text.ToString();
+           
+            System.Diagnostics.Debug.WriteLine(url);
 
             if (Session["Cart"] == null)
             {
@@ -53,7 +55,22 @@ namespace MovieTicketingSystem.Annonymous
             else
             {
                 List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                cart.Add(new CartItem(id, name, price, qty, url));
+                Boolean found = false;
+                
+                foreach (var cartItem in cart)
+                {
+                    if(cartItem.menuID.Equals(id))
+                    {
+                        cartItem.qty += qty;
+                        found = true;
+                    }                    
+                }
+
+                if (found == false)
+                {
+                    cart.Add(new CartItem(id, name, price, qty, url));
+                }
+
                 Session["Cart"] = cart;
             }
 
@@ -64,6 +81,8 @@ namespace MovieTicketingSystem.Annonymous
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                ((RangeValidator)e.Item.FindControl("RVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+                ((ValidationSummary)e.Item.FindControl("VS1")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
                 ((RequiredFieldValidator)e.Item.FindControl("RFVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
                 ((Button)e.Item.FindControl("btn_add_to_cart")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
             }

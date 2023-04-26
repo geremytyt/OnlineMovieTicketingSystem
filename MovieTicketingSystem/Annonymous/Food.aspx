@@ -14,7 +14,9 @@
                         </div>
                         <div class="image-box" >
                             <asp:Image runat="server" id="foodImage" class="card-img-top" src='<%# Eval("menuUrl") %>' alt="Food Image" height="300"></asp:Image>
-                            <div class ="textInImage"><%#Eval("menuCategory") %></div>
+                            <div class ="textInImage"><%#Eval("menuCategory") %>
+                            <asp:Label ID="lblUrl" runat="server" Text='<%# Eval("menuUrl") %>' Visible="false" ></asp:Label>  
+                                </div>
                         </div>
                         <div class="text-white bg-dark card-body">                
                             <asp:Label class="divPrice" ID="LblPrice" runat="server" Text=<%#Eval("menuPrice","RM {0:n2}")  %> ></asp:Label>
@@ -25,8 +27,10 @@
                            <div>
                                 Quantity
                                 <asp:TextBox ID="txtQty" CssClass="Qty" runat="server" TextMode="Number" ></asp:TextBox>
+                               <asp:RequiredFieldValidator ID="RFVQty" runat="server" ErrorMessage="Please Enter the Quantity" ControlToValidate="txtQty" ForeColor="Red" >*</asp:RequiredFieldValidator>
+                           <asp:RangeValidator ID="RVQty" runat="server" ErrorMessage="Only Values 1 to 10 are accepted" ControlToValidate="txtQty" MaximumValue="10"  MinimumValue="1" Type="Integer" ForeColor="Red" >*</asp:RangeValidator>         
+                           <asp:ValidationSummary ID="VS1" runat="server" ForeColor="Red" />
                                </div>
-                           <asp:RequiredFieldValidator ID="RFVQty" runat="server" ErrorMessage="Please Enter the Quantity" ControlToValidate="txtQty" ></asp:RequiredFieldValidator>
                            <asp:Button ID="btn_add_to_cart" CssClass="btn_add_to_cart" runat="server" Text="Add to Cart >>" OnClick='btn_addToCart_Click'/>
                       </div>
                      </div>
