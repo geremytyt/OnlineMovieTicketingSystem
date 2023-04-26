@@ -18,12 +18,12 @@
     <h1 class="text-white pt-2">Users Account</h1>
     <hr width="100%" style="border: 1px solid white"/>
     <div class="row">
-        <div class="text-white col-md-8" style="height:600px;">
+        <div class="text-white col-md-8">
             <div class="nav nav-tabs border-0"id="nav-tab" role="tablist">
                 <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618"/>
                 <asp:Button ID="btnSuspended" runat="server" Text="Suspended" CssClass="nav-link w-25 text-white mb-2" BorderColor="White" OnClick="btnSuspended_Click"/>
             </div>
-            <asp:GridView ID="gvUser" runat="server" DataKeyNames="custId" DataSourceID="SqlDataSource1"
+            <asp:GridView ID="gvUser" runat="server" DataKeyNames="custId" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" ClientIDMode="Static"
                 OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="custId" HeaderText="ID" ReadOnly="True" SortExpression="custId"></asp:BoundField>

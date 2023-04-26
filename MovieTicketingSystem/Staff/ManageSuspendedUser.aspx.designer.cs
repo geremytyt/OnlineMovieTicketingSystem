@@ -33,13 +33,13 @@ namespace MovieTicketingSystem.Staff
         protected global::System.Web.UI.WebControls.Button btnSuspended;
 
         /// <summary>
-        /// GridView2 control.
+        /// gvUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView gvUser;
 
         /// <summary>
         /// SqlDataSource2 control.

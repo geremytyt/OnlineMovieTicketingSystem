@@ -6,10 +6,11 @@ body {
     font-family: "Trebuchet MS";
     vertical-align: middle;
     overflow: auto;
+    min-height: 100%;
 }
 
 #content {
-    min-height:600px;
+    min-height:100%;
     overflow: auto;
     background-color: #343a40;
 }

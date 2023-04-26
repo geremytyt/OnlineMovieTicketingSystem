@@ -125,7 +125,6 @@
     <Content Include="Image\c005.jpg" />
     <Content Include="Image\Coca-cola.jpg" />
     <Content Include="Image\default.jpeg" />
-    <Content Include="Image\eye-solid.svg" />
     <Content Include="Image\Family Combo.jpg" />
     <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
@@ -189,6 +188,7 @@
     <Content Include="Staff\StaffMovie.aspx" />
     <Content Include="Staff\StaffProfile.aspx" />
     <Content Include="CustomerOnly\Profile.aspx" />
+    <Content Include="Staff\StaffResetPassword.aspx" />
     <Content Include="Staff\ViewMovie.aspx" />
     <Content Include="Staff\ViewPayment.aspx" />
     <Content Include="Web.config" />
@@ -502,6 +502,13 @@
     </Compile>
     <Compile Include="CustomerOnly\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\StaffResetPassword.aspx.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\StaffResetPassword.aspx.designer.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\ViewMovie.aspx.cs">
       <DependentUpon>ViewMovie.aspx</DependentUpon>
