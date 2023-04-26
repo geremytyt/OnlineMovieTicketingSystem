@@ -175,7 +175,7 @@
     </Content>
     <Content Include="ManagerOnly\ManageActiveStaff.aspx" />
     <Content Include="StaffOnly\AddMovie.aspx" />
-    <Content Include="StaffOnly\AvailabbleFoodManagement.aspx" />
+    <Content Include="StaffOnly\AvailableFoodManagement.aspx" />
     <Content Include="StaffOnly\EditMovie.aspx" />
     <Content Include="StaffOnly\ManageActiveUser.aspx" />
     <Content Include="StaffOnly\ManagePayment.aspx" />
@@ -397,12 +397,12 @@
     <Compile Include="StaffOnly\AddMovie.aspx.designer.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StaffOnly\AvailabbleFoodManagement.aspx.cs">
-      <DependentUpon>AvailabbleFoodManagement.aspx</DependentUpon>
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StaffOnly\AvailabbleFoodManagement.aspx.designer.cs">
-      <DependentUpon>AvailabbleFoodManagement.aspx</DependentUpon>
+    <Compile Include="StaffOnly\AvailableFoodManagement.aspx.designer.cs">
+      <DependentUpon>AvailableFoodManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="StaffOnly\EditMovie.aspx.cs">
       <DependentUpon>EditMovie.aspx</DependentUpon>

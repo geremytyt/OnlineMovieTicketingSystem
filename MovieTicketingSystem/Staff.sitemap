@@ -3,7 +3,7 @@
   <siteMapNode url="StaffOnly/StaffMovie.aspx" title="Movie" >
     <siteMapNode url="StaffOnly/ManageActiveUser.aspx" title="User" roles="Staff,Manager"/>
     <siteMapNode url="ManagerOnly/ManageActiveStaff.aspx" title="Staff" roles="Manager"/>
-    <siteMapNode url="StaffOnly/AvailabbleFoodManagement.aspx" title="Food" roles="Staff,Manager"/>
+    <siteMapNode url="StaffOnly/AvailableFoodManagement.aspx" title="Food" roles="Staff,Manager"/>
     <siteMapNode url="StaffOnly/ManageSchedule.aspx" title="Schedule" roles="Staff,Manager"/>
     <siteMapNode url="StaffOnly/ViewPayment.aspx" title="Payment" roles="Staff,Manager"/>
     <siteMapNode url="ManagerOnly/Report.aspx" title="Report" roles="Manager"/>

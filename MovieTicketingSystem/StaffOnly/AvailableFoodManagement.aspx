@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="AvailabbleFoodManagement.aspx.cs" Inherits="MovieTicketingSystem.StaffOnly.AvailabbleFoodManagement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="AvailableFoodManagement.aspx.cs" Inherits="MovieTicketingSystem.StaffOnly.AvailableFoodManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <script>
+   <script>
         //saving file into
         function uploadImg() {
             var fileInput = document.getElementById("<%=FoodIMageUpload.ClientID%>");
@@ -16,7 +16,7 @@
                 reader.readAsDataURL(file); 
             }
         }
-    </script>
+   </script>
     
     <div class="container" style="height:700px;">
         <div class="row g-2">
@@ -83,4 +83,5 @@
             </div>
       </div>
 </div>
+
 </asp:Content>

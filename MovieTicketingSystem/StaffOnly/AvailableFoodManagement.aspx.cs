@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.StaffOnly
 {
-    public partial class AvailabbleFoodManagement : System.Web.UI.Page
+    public partial class AvailableFoodManagement : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
         string cs = Global.cs;

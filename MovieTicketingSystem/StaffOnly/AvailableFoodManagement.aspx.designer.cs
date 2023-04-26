@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.StaffOnly
 {
 
 
-    public partial class AvailabbleFoodManagement
+    public partial class AvailableFoodManagement
     {
 
         /// <summary>
