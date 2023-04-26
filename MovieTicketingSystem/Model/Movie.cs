@@ -23,7 +23,7 @@ namespace MovieTicketingSystem.Model
         public string movieId { get; set; }
         public string movieName { get; set; }
         public System.DateTime releaseDate { get; set; }
-        public short movieDuration { get; set; }
+        public Nullable<short> movieDuration { get; set; }
         public string genre { get; set; }
         public string language { get; set; }
         public string synopsis { get; set; }
@@ -32,6 +32,9 @@ namespace MovieTicketingSystem.Model
         public string ageRating { get; set; }
         public string posterURL { get; set; }
         public string trailerURL { get; set; }
+        public short id { get; set; }
+        public Nullable<System.DateTime> endDate { get; set; }
+        public string slideURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }

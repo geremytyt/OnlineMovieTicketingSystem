@@ -42,6 +42,7 @@ namespace MovieTicketingSystem
                 oldTicket.IsPersistent,
                 role
             );
+            authCookie.Expires = DateTime.Now.AddDays(14);
             authCookie.Value = FormsAuthentication.Encrypt(newTicket);
             ctx.Response.Cookies.Add(authCookie);
 

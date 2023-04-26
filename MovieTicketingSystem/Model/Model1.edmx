@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="movieDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="movieDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="cardNo" />
@@ -29,7 +29,7 @@
           <Property Name="custPhoto" Type="varchar" MaxLength="30" />
           <Property Name="custStatus" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="signature" Type="varchar" MaxLength="50" />
-          <Property Name="loginNo" Type="int" />
+          <Property Name="loginNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -54,18 +54,21 @@
           <Key>
             <PropertyRef Name="movieId" />
           </Key>
-          <Property Name="movieId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="movieId" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="movieName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="releaseDate" Type="date" Nullable="false" />
-          <Property Name="movieDuration" Type="smallint" Nullable="false" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="movieDuration" Type="smallint" />
           <Property Name="genre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="language" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="synopsis" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="synopsis" Type="nvarchar(max)" Nullable="false" />
           <Property Name="actor" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="director" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ageRating" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="posterURL" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="trailerURL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="slideURL" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -106,7 +109,8 @@
           <Key>
             <PropertyRef Name="scheduleNo" />
           </Key>
-          <Property Name="scheduleNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scheduleNo" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="movieId" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="hallNo" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="scheduleDateTime" Type="datetime" Nullable="false" />
@@ -130,7 +134,8 @@
           <Key>
             <PropertyRef Name="ticketNo" />
           </Key>
-          <Property Name="ticketNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ticketNo" Type="varchar" MaxLength="11" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="purchaseNo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="scheduleNo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="ticketCategory" Type="nchar" MaxLength="10" Nullable="false" />
@@ -138,16 +143,16 @@
           <Property Name="seatNo" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETICKETINGSYSTEM\APP_DATA\MOVIEDB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\MOVIETICKETINGSYSTEM\MOVIETICKETINGSYSTEM\APP_DATA\MOVIEDB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Username" />
             <PropertyRef Name="Hash" />
             <PropertyRef Name="Role" />
           </Key>
-          <Property Name="Username" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Hash" Type="varchar" MaxLength="44" Nullable="false" />
-          <Property Name="Role" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <Association Name="FK__Card__custId__160F4887">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -185,7 +190,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Schedule__hallNo__76969D2E">
+        <Association Name="FK__Schedule__hallNo__09746778">
           <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,7 +202,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Schedule__movieI__75A278F5">
+        <Association Name="FK__Schedule__movieI__0880433F">
           <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,7 +214,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__purchase__797309D9">
+        <Association Name="FK__Ticket__purchase__2F9A1060">
           <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,7 +226,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__schedule__7A672E12">
+        <Association Name="FK__Ticket__schedule__2EA5EC27">
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -288,19 +293,19 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Purchase" EntitySet="Purchase" />
           </AssociationSet>
-          <AssociationSet Name="FK__Schedule__hallNo__76969D2E" Association="Self.FK__Schedule__hallNo__76969D2E">
+          <AssociationSet Name="FK__Schedule__hallNo__09746778" Association="Self.FK__Schedule__hallNo__09746778">
             <End Role="Hall" EntitySet="Hall" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Schedule__movieI__75A278F5" Association="Self.FK__Schedule__movieI__75A278F5">
+          <AssociationSet Name="FK__Schedule__movieI__0880433F" Association="Self.FK__Schedule__movieI__0880433F">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__purchase__797309D9" Association="Self.FK__Ticket__purchase__797309D9">
+          <AssociationSet Name="FK__Ticket__purchase__2F9A1060" Association="Self.FK__Ticket__purchase__2F9A1060">
             <End Role="Purchase" EntitySet="Purchase" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__schedule__7A672E12" Association="Self.FK__Ticket__schedule__7A672E12">
+          <AssociationSet Name="FK__Ticket__schedule__2EA5EC27" Association="Self.FK__Ticket__schedule__2EA5EC27">
             <End Role="Schedule" EntitySet="Schedule" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
@@ -313,8 +318,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             <End Role="PurchaseMenu" EntitySet="PurchaseMenu" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="movieDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -343,7 +347,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <Property Name="custPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="custStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="signature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="loginNo" Type="Int32" />
+          <Property Name="loginNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cards" Relationship="Self.FK__Card__custId__160F4887" FromRole="Customer" ToRole="Card" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__custId__17036CC0" FromRole="Customer" ToRole="Purchase" />
         </EntityType>
@@ -375,16 +379,19 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <Property Name="movieId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="movieName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="movieDuration" Type="Int16" Nullable="false" />
+          <Property Name="movieDuration" Type="Int16" />
           <Property Name="genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="language" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="synopsis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="synopsis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="actor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ageRating" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="posterURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="trailerURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__movieI__75A278F5" FromRole="Movie" ToRole="Schedule" />
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="slideURL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -439,6 +446,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <NavigationProperty Name="Hall" Relationship="Self.FK__Schedule__hallNo__76969D2E" FromRole="Schedule" ToRole="Hall" />
           <NavigationProperty Name="Movie" Relationship="Self.FK__Schedule__movieI__75A278F5" FromRole="Schedule" ToRole="Movie" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__schedule__7A672E12" FromRole="Schedule" ToRole="Ticket" />
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -459,7 +467,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <Key>
             <PropertyRef Name="ticketNo" />
           </Key>
-          <Property Name="ticketNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="purchaseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="scheduleNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ticketCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -467,6 +475,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <Property Name="seatNo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Purchase" Relationship="Self.FK__Ticket__purchase__797309D9" FromRole="Ticket" ToRole="Purchase" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK__Ticket__schedule__7A672E12" FromRole="Ticket" ToRole="Schedule" />
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -474,9 +483,9 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
             <PropertyRef Name="Hash" />
             <PropertyRef Name="Role" />
           </Key>
-          <Property Name="Username" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Hash" Type="String" MaxLength="44" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK__Card__custId__160F4887">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -694,6 +703,9 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <EntitySetMapping Name="Movies">
             <EntityTypeMapping TypeName="movieDBModel.Movie">
               <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="slideURL" ColumnName="slideURL" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="movieId" ColumnName="movieId" />
                 <ScalarProperty Name="movieName" ColumnName="movieName" />
                 <ScalarProperty Name="releaseDate" ColumnName="releaseDate" />
@@ -749,6 +761,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <EntitySetMapping Name="Schedules">
             <EntityTypeMapping TypeName="movieDBModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="scheduleNo" ColumnName="scheduleNo" />
                 <ScalarProperty Name="movieId" ColumnName="movieId" />
                 <ScalarProperty Name="hallNo" ColumnName="hallNo" />
@@ -775,6 +788,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DESKTOP\MOVIETICKETINGSYSTEM\MOVIETIC
           <EntitySetMapping Name="Tickets">
             <EntityTypeMapping TypeName="movieDBModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="ticketNo" ColumnName="ticketNo" />
                 <ScalarProperty Name="purchaseNo" ColumnName="purchaseNo" />
                 <ScalarProperty Name="scheduleNo" ColumnName="scheduleNo" />

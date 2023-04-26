@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -32,24 +33,6 @@ namespace MovieTicketingSystem.CustomerOnly
                 dr.Close();
                 con.Close();
             }
-        }
-
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            string password = Security.GetHash(txtCfmPwd.Text);
-            string sql = "UPDATE Customer SET custPassword=@Password WHERE custId=@Id";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", "C001");
-            cmd.Parameters.AddWithValue("@Password", password);
-
-            cmd.ExecuteNonQuery();
-
-            con.Close();
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)

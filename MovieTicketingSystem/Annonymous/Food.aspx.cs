@@ -10,6 +10,9 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Runtime.Remoting.Messaging;
 using System.ComponentModel;
+using MovieTicketingSystem.CustomerOnly;
+using MovieTicketingSystem.ManagerOnly;
+using System.Security.Policy;
 
 namespace MovieTicketingSystem.Annonymous
 {
@@ -27,15 +30,62 @@ namespace MovieTicketingSystem.Annonymous
         {
             Button btn = (Button)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+            Label lblId = (Label)item.FindControl("LBlId");
             Label lblName = (Label)item.FindControl("LblName");
             Label LblPrice = (Label)item.FindControl("LblPrice");
-            Label LblRemarks = (Label)item.FindControl("LblRemarks");
+            Label lblUrl = (Label)item.FindControl("lblUrl");
             TextBox txtQty = (TextBox)item.FindControl("txtQty");
 
+            double price = double.Parse(LblPrice.Text.ToString().Substring(2));
+            
+            String id = lblId.Text.ToString();
+            String name = lblName.Text.ToString();
+            int qty = int.Parse( txtQty.Text.ToString());
+            String url = lblUrl.Text.ToString();
+           
+            System.Diagnostics.Debug.WriteLine(url);
 
-            Console.Write("Hello");
-            Response.Redirect("cart.aspx");
+            if (Session["Cart"] == null)
+            {
+                List<CartItem> cart = new List<CartItem>();
+
+                cart.Add(new CartItem(id, name, price, qty, url));
+                Session["Cart"] = cart;
+            }
+            else
+            {
+                List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                Boolean found = false;
+                
+                foreach (var cartItem in cart)
+                {
+                    if(cartItem.menuID.Equals(id))
+                    {
+                        cartItem.qty += qty;
+                        found = true;
+                    }                    
+                }
+
+                if (found == false)
+                {
+                    cart.Add(new CartItem(id, name, price, qty, url));
+                }
+
+                Session["Cart"] = cart;
+            }
+
+            Response.Redirect("../CustomerOnly/Cart.aspx");
         }
 
+        protected void repMenu_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                ((RangeValidator)e.Item.FindControl("RVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+                ((ValidationSummary)e.Item.FindControl("VS1")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+                ((RequiredFieldValidator)e.Item.FindControl("RFVQty")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+                ((Button)e.Item.FindControl("btn_add_to_cart")).ValidationGroup = ((TextBox)e.Item.FindControl("txtQty")).UniqueID;
+            }
+        }
     }
 }

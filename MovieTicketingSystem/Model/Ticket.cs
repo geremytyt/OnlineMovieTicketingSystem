@@ -20,6 +20,7 @@ namespace MovieTicketingSystem.Model
         public string ticketCategory { get; set; }
         public decimal ticketPrice { get; set; }
         public string seatNo { get; set; }
+        public short id { get; set; }
     
         public virtual Purchase Purchase { get; set; }
         public virtual Schedule Schedule { get; set; }

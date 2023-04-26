@@ -32,7 +32,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
                 if (dr.Read())
                 {
-                    txtName.Text = dr[1].ToString();
+                    txtName.Text = dr[1].ToString().Trim();
                     txtEmail.Text = dr[2].ToString();
                     txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
                     txtPhone.Text = dr[5].ToString();
@@ -51,13 +51,14 @@ namespace MovieTicketingSystem.CustomerOnly
                 //display error msg
                 cvExistPhone.IsValid = false;
             }
-            HttpCookie cookie = Request.Cookies["Customer"];
-            string fileUrl = null;
             if (Page.IsValid) {
+                HttpCookie cookie = Request.Cookies["Customer"];
+                string fileUrl = null;
                 if (fileUpload.HasFile)
                 {
                     string fileName = Path.GetFileName(fileUpload.FileName);
-                    string filePath = Server.MapPath("~/Image/" + fileName);
+                    fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
+                    string filePath = Server.MapPath("~/Image/customerImages" + fileName);
                     fileUpload.SaveAs(filePath);
                     fileUrl = ResolveUrl("~/Image/" + fileName);
                 }
@@ -69,7 +70,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 string phone = txtPhone.Text.Trim();
                 string gender = rblGender.SelectedValue.Trim();
                 DateTime dob = DateTime.Parse(txtDob.Text);
-                string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob, custPhoto=@Photo WHERE custEmail=@email";
+                string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob, custPhoto=@Photo WHERE custId=@Id";
 
                 SqlConnection con = new SqlConnection(cs);
 

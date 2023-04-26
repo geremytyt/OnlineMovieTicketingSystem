@@ -24,6 +24,7 @@ namespace MovieTicketingSystem.Model
         public string movieId { get; set; }
         public string hallNo { get; set; }
         public System.DateTime scheduleDateTime { get; set; }
+        public short id { get; set; }
     
         public virtual Hall Hall { get; set; }
         public virtual Movie Movie { get; set; }
