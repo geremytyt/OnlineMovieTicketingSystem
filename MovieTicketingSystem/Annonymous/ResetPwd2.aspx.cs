@@ -2,16 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace MovieTicketingSystem.Annonymous
 {
-    public partial class ResetPassword2 : System.Web.UI.Page
+    public partial class ResetPwd2 : System.Web.UI.Page
     {
         string cs = Global.cs;
         movieDBEntities db = new movieDBEntities();
@@ -23,21 +21,22 @@ namespace MovieTicketingSystem.Annonymous
                 string hash = Security.GetHash(token);
                 Customer c = db.Customers.SingleOrDefault(
                 customer => customer.signature == hash);
-                if (c != null) {
+                if (c != null)
+                {
                     string[] details = token.Split('/');
                     if (Convert.ToDateTime(details[2]) < DateTime.Now)
                     {
-                        Response.Redirect("ResetPassword1.aspx");
-                        ScriptManager.RegisterClientScriptBlock(this,   this.GetType(), "Notification", "alert('Your token has      expired. Please try again.');", true);
+                        Response.Redirect("ResetPwd1.aspx");
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');", true);
                     }
                 }
 
             }
-            else { 
-            
+            else
+            {
+
             }
         }
-
         protected void btnToken_Click(object sender, EventArgs e)
         {
             string email = Request.QueryString["token"].Split('/')[1];
@@ -60,5 +59,6 @@ namespace MovieTicketingSystem.Annonymous
             Response.Redirect("Login.aspx");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
         }
+
     }
 }

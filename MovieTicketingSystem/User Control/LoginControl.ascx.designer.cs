@@ -51,6 +51,15 @@ namespace MovieTicketingSystem.User_Control
         protected global::System.Web.UI.WebControls.CustomValidator cvLogin;
 
         /// <summary>
+        /// CustomValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+
+        /// <summary>
         /// rfvPassword control.
         /// </summary>
         /// <remarks>
@@ -103,14 +112,5 @@ namespace MovieTicketingSystem.User_Control
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
-
-        /// <summary>
-        /// hlForgetpwd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlForgetpwd;
     }
 }

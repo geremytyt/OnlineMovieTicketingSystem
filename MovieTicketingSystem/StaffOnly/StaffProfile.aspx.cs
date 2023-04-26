@@ -58,7 +58,8 @@ namespace MovieTicketingSystem.StaffOnly
                 string fileUrl = null;
                 if (fileUpload.HasFile)
                 {
-                    string fileName = cookie.Value.ToString();
+                    string fileName = Path.GetFileName(fileUpload.FileName);
+                    fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
                     string filePath = Server.MapPath("~/Image/staffImages" + fileName);
                     fileUpload.SaveAs(filePath);
                     fileUrl = ResolveUrl("~/Image/" + fileName);

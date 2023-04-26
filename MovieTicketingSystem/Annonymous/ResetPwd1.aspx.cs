@@ -1,35 +1,30 @@
 ﻿using MovieTicketingSystem.Model;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Security.Policy;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SendGrid;
-using SendGrid.Helpers.Mail;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Data.SqlClient;
 
 namespace MovieTicketingSystem.Annonymous
 {
-    public partial class ResetPassword : System.Web.UI.Page
+    public partial class ResetPwd1 : System.Web.UI.Page
     {
-        movieDBEntities db = new movieDBEntities();
         string cs = Global.cs;
+        movieDBEntities db = new movieDBEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
 
+        }
         protected void btnToken_Click(object sender, EventArgs e)
         {
 
             string email = txtEmail.Text;
             User u = db.Users.SingleOrDefault(
-            user => user.Username == email);
+            user => user.Username == email && user.Role == "Customer");
             if (u != null)
             {
                 string token = generateToken();
@@ -63,13 +58,15 @@ namespace MovieTicketingSystem.Annonymous
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is not sent. Please retry.');", true);
                 }
             }
-            else {
+            else
+            {
                 cvEmail.IsValid = false;
             }
 
         }
 
-        private string generateToken() {
+        private string generateToken()
+        {
             var random = new Random();
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var randomString = new string(Enumerable.Repeat(chars, 6)
@@ -96,5 +93,6 @@ namespace MovieTicketingSystem.Annonymous
 
             return token;
         }
+
     }
 }

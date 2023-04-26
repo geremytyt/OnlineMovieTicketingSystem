@@ -97,7 +97,11 @@
     <Content Include="Annonymous\MovieDetails.aspx" />
     <Content Include="Annonymous\Movies.aspx" />
     <Content Include="Annonymous\Register.aspx" />
+    <Content Include="Annonymous\ResetPwd1.aspx" />
+    <Content Include="Annonymous\ResetPwd2.aspx" />
     <Content Include="Annonymous\StaffLogin.aspx" />
+    <Content Include="Annonymous\StaffResetPwd1.aspx" />
+    <Content Include="Annonymous\StaffResetPwd2.aspx" />
     <Content Include="App_Data\MovieDB.mdf" />
     <Content Include="App_Data\MovieDB_log.ldf">
       <DependentUpon>MovieDB.mdf</DependentUpon>
@@ -108,8 +112,6 @@
     <Content Include="CustomerOnly\History.aspx" />
     <Content Include="CustomerOnly\Logout.aspx" />
     <Content Include="CustomerOnly\MoviePurchase.aspx" />
-    <Content Include="Annonymous\ResetPassword1.aspx" />
-    <Content Include="Annonymous\ResetPassword2.aspx" />
     <Content Include="CustomerOnly\MovieSeatSelection.aspx" />
     <Content Include="CustomerOnly\MovieTicket.aspx" />
     <Content Include="CustomerOnly\ResetPassword.aspx" />
@@ -241,12 +243,40 @@
     <Compile Include="Annonymous\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Annonymous\ResetPwd1.aspx.cs">
+      <DependentUpon>ResetPwd1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd1.aspx.designer.cs">
+      <DependentUpon>ResetPwd1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd2.aspx.cs">
+      <DependentUpon>ResetPwd2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\ResetPwd2.aspx.designer.cs">
+      <DependentUpon>ResetPwd2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Annonymous\StaffLogin.aspx.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Annonymous\StaffLogin.aspx.designer.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd1.aspx.cs">
+      <DependentUpon>StaffResetPwd1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd1.aspx.designer.cs">
+      <DependentUpon>StaffResetPwd1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd2.aspx.cs">
+      <DependentUpon>StaffResetPwd2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Annonymous\StaffResetPwd2.aspx.designer.cs">
+      <DependentUpon>StaffResetPwd2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CartItem.cs" />
     <Compile Include="CustomerOnly\Cart.aspx.cs">
@@ -283,20 +313,6 @@
     </Compile>
     <Compile Include="CustomerOnly\MoviePurchase.aspx.designer.cs">
       <DependentUpon>MoviePurchase.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword1.aspx.cs">
-      <DependentUpon>ResetPassword1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword1.aspx.designer.cs">
-      <DependentUpon>ResetPassword1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword2.aspx.cs">
-      <DependentUpon>ResetPassword2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Annonymous\ResetPassword2.aspx.designer.cs">
-      <DependentUpon>ResetPassword2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerOnly\MovieSeatSelection.aspx.cs">
       <DependentUpon>MovieSeatSelection.aspx</DependentUpon>

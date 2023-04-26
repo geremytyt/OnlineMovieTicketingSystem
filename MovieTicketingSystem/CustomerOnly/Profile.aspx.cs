@@ -56,7 +56,8 @@ namespace MovieTicketingSystem.CustomerOnly
                 string fileUrl = null;
                 if (fileUpload.HasFile)
                 {
-                    string fileName = cookie.Value.ToString();
+                    string fileName = Path.GetFileName(fileUpload.FileName);
+                    fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
                     string filePath = Server.MapPath("~/Image/customerImages" + fileName);
                     fileUpload.SaveAs(filePath);
                     fileUrl = ResolveUrl("~/Image/" + fileName);

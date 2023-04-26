@@ -15,6 +15,7 @@
             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Password"/>
             <label for="txtPassword">Password</label>
             <asp:CustomValidator ID="cvLogin" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password" SetFocusOnError="true"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid Email and Password" SetFocusOnError="true"></asp:CustomValidator>
             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password" SetFocusOnError="true"></asp:RequiredFieldValidator>
         </div>
     <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"  style="width:10%;margin-top:30px"></i>
@@ -31,9 +32,6 @@
     </div>
     <div class="text-center">
         <asp:Button class="btn btn-default w-50 mt-3 " ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
-    </div>
-    <div class="text-center">
-        <asp:HyperLink CssClass="mt-2 loginLink" ID="hlForgetpwd" runat="server" NavigateUrl="ResetPassword1.aspx">Forget Password?</asp:HyperLink>
     </div>
 </div>
 <script>

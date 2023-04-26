@@ -7,5 +7,8 @@
             <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Staff Login</div>    
             <LoginControl:login runat="server" /> 
         </div>
+        <div class="text-center">
+            <asp:HyperLink CssClass="mt-2 loginLink" ID="hlForgetpwd" runat="server" NavigateUrl="StaffResetPwd1.aspx">Forget Password?</asp:HyperLink>
+        </div>
     </div>
 </asp:Content>
