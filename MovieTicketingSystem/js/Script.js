@@ -49,7 +49,7 @@ container.addEventListener("click", (e) => {
         if (e.target.classList.contains("selected") || selectedSeats.length < 12)
             e.target.classList.toggle("selected");
         else {
-            alert("You are not allowed to select more than 15 seat");
+            alert("You are not allowed to select more than 12 seat");
         }
 
         updateSelectedCount();
