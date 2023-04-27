@@ -107,17 +107,17 @@ namespace MovieTicketingSystem.StaffOnly
             string newStatus = ddlStatus.SelectedValue; // Get the selected value from the dropdown list
 
             // Update the payment status in the database
-            using (SqlConnection connection = new SqlConnection(cs))
+            SqlConnection connection = new SqlConnection(cs);
+            
+            connection.Open();
+            string updateQuery = "UPDATE Payment SET status = @newStatus WHERE paymentNo = @paymentNo";
+            using (SqlCommand command = new SqlCommand(updateQuery, connection))
             {
-                connection.Open();
-                string updateQuery = "UPDATE Payment SET status = @newStatus WHERE paymentNo = @paymentNo";
-                using (SqlCommand command = new SqlCommand(updateQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@newStatus", newStatus);
-                    command.Parameters.AddWithValue("@paymentNo", paymentNo);
-                    command.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@newStatus", newStatus);
+                command.Parameters.AddWithValue("@paymentNo", paymentNo);
+                command.ExecuteNonQuery();
             }
+            
 
             btnEdit.Visible = true;
             btnConfirm.Visible = false;

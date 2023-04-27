@@ -58,7 +58,7 @@
                 <div class="form-floating mb-3" style="width:60%;" id="float4">
                     <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
                     <label for="txtPhone">Phone No</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter your phone no" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ErrorMessage="Please enter your phone no" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:CustomValidator>
                     <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                 </div>

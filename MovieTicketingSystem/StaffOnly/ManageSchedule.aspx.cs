@@ -14,12 +14,29 @@ namespace MovieTicketingSystem.StaffOnly
     public partial class ManageSchedule : System.Web.UI.Page
     {
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string sql = "Select * FROM Schedule";
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                scheduleGridView.DataSource = dt;
+                scheduleGridView.DataBind();
+                
 
-            scheduleGridView.PageSize = 10;
-            scheduleGridView.AllowPaging = true;
-            scheduleGridView.DataBind();
+            }
+
+            scheduleGridView.UseAccessibleHeader = true;
+            scheduleGridView.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            //scheduleGridView.PageSize = 10;
+            //scheduleGridView.AllowPaging = true;
+            //scheduleGridView.DataBind();
 
             btnConfirm.Visible = false;
             btnCancel.Visible = false;
@@ -30,28 +47,58 @@ namespace MovieTicketingSystem.StaffOnly
             ddlHall.Enabled = false;
             txtScheduleDate.Enabled = false;
             txtScheduleTime.Enabled = false;
+            ddlStatus.Enabled = false;
 
             btnEdit.Enabled = false;
 
-            if (scheduleGridView.SelectedIndex >= 0)
-            {
-                btnEdit.Enabled = true;
-            }
+            //if (scheduleGridView.SelectedIndex >= 0)
+            //{
+            //    btnEdit.Enabled = true;
+            //}
 
-            if (txtScheduleSearch.Text.Length > 0)
-                SqlDataSourceSchedule.SelectCommand = "SELECT * FROM Schedule WHERE scheduleNo LIKE N'%" + txtScheduleSearch.Text + "%' OR movieId LIKE N'%" + txtScheduleSearch.Text + 
-                    "%' OR hallNo LIKE N'%" + txtScheduleSearch.Text + "%' OR scheduleDateTime LIKE N'%" + txtScheduleSearch.Text + "%'";
-            else
-                SqlDataSourceSchedule.SelectCommand = "SELECT * FROM Schedule ";
+            //if (txtScheduleSearch.Text.Length > 0)
+            //    SqlDataSourceSchedule.SelectCommand = "SELECT * FROM Schedule WHERE scheduleNo LIKE N'%" + txtScheduleSearch.Text + "%' OR movieId LIKE N'%" + txtScheduleSearch.Text + 
+            //        "%' OR hallNo LIKE N'%" + txtScheduleSearch.Text + "%' OR scheduleDateTime LIKE N'%" + txtScheduleSearch.Text + "%'";
+            //else
+            //    SqlDataSourceSchedule.SelectCommand = "SELECT * FROM Schedule ";
 
 
         }
 
-        protected void scheduleGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Get the selected row
-            GridViewRow row = scheduleGridView.SelectedRow;
+        //protected void scheduleGridView_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    // Get the selected row
+        //    GridViewRow row = scheduleGridView.SelectedRow;
 
+        //    lblScheduleID.Text = row.Cells[0].Text;
+
+        //    // Fill the MovieID dropdownlist with the selected value
+        //    ddlMovieID.SelectedValue = row.Cells[1].Text;
+
+        //    // Fill the Hall dropdownlist with the selected value
+        //    ddlHall.SelectedValue = row.Cells[2].Text;
+
+        //    // Get the scheduleDateTime value
+        //    string scheduleDateTime = row.Cells[3].Text;
+
+        //    // Get status
+        //    ddlStatus.SelectedValue = row.Cells[4].Text;
+
+        //    // Split the scheduleDateTime value into date and time
+        //    string[] dateTimeParts = scheduleDateTime.Split(' ');
+        //    string datePart = dateTimeParts[0];
+        //    string timePart = dateTimeParts[1];
+
+        //    // Set the values of the scheduleDate and scheduleTime textboxes
+        //    txtScheduleDate.Text = (Convert.ToDateTime(datePart).ToString("yyyy-MM-dd"));
+        //    DateTime timeValue = DateTime.ParseExact(timePart, "H:mm:ss", CultureInfo.InvariantCulture);
+        //    txtScheduleTime.Text = timeValue.ToString("HH:mm:ss");
+        //}
+
+        protected void btnSelect_Command(object sender, CommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = scheduleGridView.Rows[index];
             lblScheduleID.Text = row.Cells[0].Text;
 
             // Fill the MovieID dropdownlist with the selected value
@@ -63,6 +110,9 @@ namespace MovieTicketingSystem.StaffOnly
             // Get the scheduleDateTime value
             string scheduleDateTime = row.Cells[3].Text;
 
+            // Get status
+            ddlStatus.SelectedValue = row.Cells[4].Text;
+
             // Split the scheduleDateTime value into date and time
             string[] dateTimeParts = scheduleDateTime.Split(' ');
             string datePart = dateTimeParts[0];
@@ -72,6 +122,7 @@ namespace MovieTicketingSystem.StaffOnly
             txtScheduleDate.Text = (Convert.ToDateTime(datePart).ToString("yyyy-MM-dd"));
             DateTime timeValue = DateTime.ParseExact(timePart, "H:mm:ss", CultureInfo.InvariantCulture);
             txtScheduleTime.Text = timeValue.ToString("HH:mm:ss");
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -98,6 +149,7 @@ namespace MovieTicketingSystem.StaffOnly
 
             int newScheduleId = lastScheduleId + 1;
             string formattedScheduleId = string.Format("SC{0:D4}", newScheduleId);
+
             lblScheduleID.Text = formattedScheduleId;
             
 
@@ -128,6 +180,7 @@ namespace MovieTicketingSystem.StaffOnly
             // Edit buttons
             btnAdd.Visible = false;
             btnEdit.Visible = false;
+
             //btnDelete.Enabled = false;
             btnConfirm.Visible = true;
             btnCancel.Visible = true;
@@ -145,6 +198,7 @@ namespace MovieTicketingSystem.StaffOnly
                 ddlHall.Enabled = true;
                 txtScheduleDate.Enabled = false;
                 txtScheduleTime.Enabled = false;
+                ddlStatus.Enabled = true;
             }
         }
 
@@ -159,16 +213,19 @@ namespace MovieTicketingSystem.StaffOnly
 
                 if (checkSchedule() == true)
                 {
+                    string status = "Active";
                     SqlConnection connection = new SqlConnection(cs);
 
                     connection.Open();
-                    string query = "INSERT INTO Schedule (scheduleNo, movieId, hallNo, scheduleDateTime) VALUES (@scheduleNo, @movieId, @hallNo, @scheduleDateTime)";
+                    string query = "INSERT INTO Schedule (movieId, hallNo, scheduleDateTime, status) VALUES (@movieId, @hallNo, @scheduleDateTime, @status)";
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@scheduleNo", lblScheduleID.Text);
+                    //command.Parameters.AddWithValue("@id", newId);
+                    //command.Parameters.AddWithValue("@scheduleNo", lblScheduleID.Text);
                     command.Parameters.AddWithValue("@movieId", ddlMovieID.SelectedValue);
                     command.Parameters.AddWithValue("@hallNo", ddlHall.SelectedValue);
                     DateTime scheduleDateTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text + ":00", "yyyy-MM-dd H:m:s", CultureInfo.InvariantCulture);
                     command.Parameters.AddWithValue("@scheduleDateTime", scheduleDateTime);
+                    command.Parameters.AddWithValue("@status", status);
                     command.ExecuteNonQuery();
 
                     // Reset the form
@@ -188,6 +245,7 @@ namespace MovieTicketingSystem.StaffOnly
                     ddlHall.Enabled = false;
                     txtScheduleDate.Enabled = false;
                     txtScheduleTime.Enabled = false;
+                    ddlStatus.Enabled = false;
 
                     // Refresh the GridView
                     scheduleGridView.DataBind();
@@ -207,20 +265,34 @@ namespace MovieTicketingSystem.StaffOnly
                 string movieId = ddlMovieID.SelectedValue;
                 string hallNo = ddlHall.SelectedValue;
                 DateTime scheduleDateTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text, "d/M/yyyy H:m:s", CultureInfo.InvariantCulture);
-
+                string status = ddlStatus.ToString();
 
                 SqlConnection connection = new SqlConnection(cs);
                 
-                string updateCommand = "UPDATE [Schedule] SET [movieId] = @movieId, [hallNo] = @hallNo, [scheduleDateTime] = @scheduleDateTime WHERE [scheduleNo] = @scheduleNo";
-                using (SqlCommand command = new SqlCommand(updateCommand, connection))
-                {
-                    command.Parameters.AddWithValue("@movieId", movieId);
-                    command.Parameters.AddWithValue("@hallNo", hallNo);
-                    command.Parameters.AddWithValue("@scheduleDateTime", scheduleDateTime);
-                    command.Parameters.AddWithValue("@scheduleNo", scheduleNo);
+                string updateCommand = "UPDATE [Schedule] SET [movieId] = @movieId, [hallNo] = @hallNo, [scheduleDateTime] = @scheduleDateTime, [status] = @status WHERE [scheduleNo] = @scheduleNo";
+                SqlCommand command = new SqlCommand(updateCommand, connection);
+                
+                command.Parameters.AddWithValue("@movieId", movieId);
+                command.Parameters.AddWithValue("@hallNo", hallNo);
+                command.Parameters.AddWithValue("@scheduleDateTime", scheduleDateTime);
+                command.Parameters.AddWithValue("@scheduleNo", scheduleNo);
+                command.Parameters.AddWithValue("@status", status);
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
 
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
+                string getTicket = "Select purchaseNo FROM Ticket WHERE [scheduleNo] = @scheduleNo";
+
+                    //if (status == "Cancelled")
+                    //{
+                    //    string updateQuery = "UPDATE Payment SET status = @newStatus WHERE paymentNo = @paymentNo";
+                    //    SqlCommand command2 = new SqlCommand(updateQuery, connection);
+                        
+                    //    command2.Parameters.AddWithValue("@newStatus", status);
+                    //    command2.Parameters.AddWithValue("@paymentNo", paymentNo);
+                    //    command2.ExecuteNonQuery();
+                        
+                    //}
+
                     if (rowsAffected > 0)
                     {
                         // Update the grid view
@@ -235,7 +307,7 @@ namespace MovieTicketingSystem.StaffOnly
                         ddlHall.SelectedIndex = 0;
                         txtScheduleDate.Text = string.Empty;
                         txtScheduleTime.Text = string.Empty;
-
+                        
                         //// Set the button back to Add
                         //btnConfirm.Visible = false;
                         btnAdd.Visible = true;
@@ -246,9 +318,9 @@ namespace MovieTicketingSystem.StaffOnly
                         ddlHall.Enabled = false;
                         txtScheduleDate.Enabled = false;
                         txtScheduleTime.Enabled = false;
-
+                        ddlStatus.Enabled = false;
                     }
-                }     
+                     
 
             }
 
@@ -282,10 +354,10 @@ namespace MovieTicketingSystem.StaffOnly
             txtScheduleTime.Enabled = false;
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            scheduleGridView.DataBind();
-        }
+        //protected void btnSearch_Click(object sender, EventArgs e)
+        //{
+        //    scheduleGridView.DataBind();
+        //}
 
         protected bool checkSchedule()
         {
@@ -306,9 +378,11 @@ namespace MovieTicketingSystem.StaffOnly
 
             int movieDuration = Convert.ToInt32(result);
 
-            DateTime scheduleEndTime = scheduleStartTime.AddMinutes(movieDuration + 60);
+            DateTime scheduleEndTime = scheduleStartTime.AddMinutes(movieDuration + 30);
 
+         
             con.Close();
+
 
             //get schedule and compare the time and date based on the hallNo and movieId
             //count number of schedule that overlaps with the current schedule
@@ -316,16 +390,16 @@ namespace MovieTicketingSystem.StaffOnly
                 "WHERE hallNo = @hallNo AND CONVERT(date, scheduleDateTime) = CONVERT(date, @scheduleDate) " +
                 "AND((scheduleDateTime >= @scheduleStartTime AND scheduleDateTime < @scheduleEndTime) " +
                 "OR(@scheduleEndTime > CONVERT(datetime, scheduleDateTime) AND @scheduleEndTime <= DATEADD(minute, @movieDuration, CONVERT(datetime, scheduleDateTime))))";
-
+            //must also get test to see if the previous schedule will go over the now schedule
             SqlConnection con2 = new SqlConnection(cs);
+            con2.Open();
             SqlCommand cmd2 = new SqlCommand(sql2, con2);
             cmd2.Parameters.AddWithValue("@hallNo", hallNo);
             cmd2.Parameters.AddWithValue("@scheduleDate", txtScheduleDate.Text);
             cmd2.Parameters.AddWithValue("@scheduleStartTime", scheduleStartTime);
             cmd2.Parameters.AddWithValue("@scheduleEndTime", scheduleEndTime);
             cmd2.Parameters.AddWithValue("@movieDuration", movieDuration);
-
-            con2.Open();
+   
             object result2 = cmd2.ExecuteScalar();
             con2.Close();
 

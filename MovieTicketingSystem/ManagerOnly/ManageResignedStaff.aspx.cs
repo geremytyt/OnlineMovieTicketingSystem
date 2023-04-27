@@ -26,9 +26,9 @@ namespace MovieTicketingSystem.ManagerOnly
                 sda.Fill(dt);
                 gvStaff.DataSource = dt;
                 gvStaff.DataBind();
-                gvStaff.UseAccessibleHeader = true;
-                gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            gvStaff.UseAccessibleHeader = true;
+            gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
 
@@ -98,7 +98,7 @@ namespace MovieTicketingSystem.ManagerOnly
             txtPhone.Text = selectedRow.Cells[4].Text;
             txtIC.Text = selectedRow.Cells[3].Text;
             rblGender.SelectedValue = selectedRow.Cells[5].Text;
-            lblPosition.Text = selectedRow.Cells[6].Text;
+            ddlPosition.SelectedValue = selectedRow.Cells[6].Text;
         }
     }
 }
