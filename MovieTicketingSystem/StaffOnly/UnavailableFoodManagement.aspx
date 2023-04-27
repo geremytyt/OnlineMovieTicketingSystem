@@ -1,14 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="UnavailableFoodManagement.aspx.cs" Inherits="MovieTicketingSystem.StaffOnly.UnavailableFoodManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+    <script>
+       $(function () {
+           $("[id*=GVMenu]").DataTable(
+               {
+                   bLengthChange: true,
+                   bFilter: true,
+                   bSort: true,
+                   bPaginate: true
+               });
+       });
+    </script>
     <div class="container" style="height:700px;">
+         <h1 class="text-white pt-2">Food Management</h1>
+        <hr width="100%" style="border: 1px solid white"/>
         <div class="row g-2">
-            <div class="col containerLeft">
+            <div class="col containerLeft text-white">
                 <div class="nav nav-tabs border-0"id="nav-tab" role="tablist">
                 <asp:Button ID="btnAvailable" runat="server" Text="Available" CssClass="nav-link w-50 text-white mb-2" BorderColor="White" OnClick="btnAvailable_Click" />
                 <asp:Button ID="btnUnAvailable" runat="server" Text="Unavailable" CssClass="nav-link active w-50 text-black mb-2 border-0" BackColor="#F4E618" />
             </div>
-        <asp:GridView ID="GVMenu" class="GVmenu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="menuId" ForeColor="#333333" GridLines="Horizontal" BackColor="Yellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Right" ShowHeaderWhenEmpty="True"  OnSelectedIndexChanged="GVMenu_SelectedIndexChanged" >
+        <asp:GridView ID="GVMenu" class="GVmenu" runat="server" DataKeyNames="menuId" AutoGenerateColumns="False" ClientIDMode="Static"
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover" >
             <Columns>
                 <asp:BoundField DataField="menuId" HeaderText="Id" ReadOnly="True" SortExpression="menuId" />
                 <asp:BoundField DataField="menuName" HeaderText="Name" SortExpression="menuName"  ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Left">
@@ -16,12 +32,14 @@
                 </asp:BoundField>
                 <asp:BoundField DataField="menuCategory" HeaderText="Category" SortExpression="menuCategory" />
                 <asp:BoundField DataField="menuPrice" HeaderText="Price (RM)" SortExpression="menuPrice" />
-                <asp:CommandField ShowSelectButton="True" ButtonType="Button" SelectText=">>" />
+                 <asp:TemplateField HeaderText="Action">
+                        <ItemTemplate>
+                            <div class="d-grid gap-2 d-md-flex">
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btnView_Command" CausesValidation="false"/>
+                            </div>
+                        </ItemTemplate>
+                 </asp:TemplateField>
             </Columns>
-            <RowStyle Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
-            <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
-            <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-            <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
         </asp:GridView>
       </div>
 
