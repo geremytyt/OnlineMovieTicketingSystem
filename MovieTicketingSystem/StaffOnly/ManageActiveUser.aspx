@@ -10,6 +10,8 @@
                     bLengthChange: true,
                     bFilter: true,
                     bSort: true,
+                    "stateSave": true,
+                    "stateDuration": 60 * 10,
                     bPaginate: true
                 });
         });

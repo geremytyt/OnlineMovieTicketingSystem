@@ -26,9 +26,9 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 gvUser.DataSource = dt;
                 gvUser.DataBind();
-                gvUser.UseAccessibleHeader = true;
-                gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            gvUser.UseAccessibleHeader = true;
+            gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {

@@ -26,9 +26,10 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 gvUser.DataSource = dt;
                 gvUser.DataBind();
-                gvUser.UseAccessibleHeader = true;
-                gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
+
             }
+            gvUser.UseAccessibleHeader = true;
+            gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -89,16 +90,18 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void btnView_Command(object sender, CommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow selectedRow = gvUser.Rows[index];
-            btnDelete.Enabled = true;
-            btnEdit.Enabled = true;
-            lblId.Text = selectedRow.Cells[0].Text;
-            txtName.Text = selectedRow.Cells[1].Text;
-            txtEmail.Text = selectedRow.Cells[2].Text;
-            txtPhone.Text = selectedRow.Cells[4].Text;
-            txtDob.Text = (Convert.ToDateTime(selectedRow.Cells[3].Text).ToString("yyyy-MM-dd"));
-            rblGender.SelectedValue = selectedRow.Cells[5].Text;
+
+        int index = Convert.ToInt32(e.CommandArgument);
+        GridViewRow selectedRow = gvUser.Rows[index];
+        btnDelete.Enabled = true;
+        btnEdit.Enabled = true;
+        lblId.Text = selectedRow.Cells[0].Text;
+        txtName.Text = selectedRow.Cells[1].Text;
+        txtEmail.Text = selectedRow.Cells[2].Text;
+        txtPhone.Text = selectedRow.Cells[4].Text;
+        txtDob.Text = (Convert.ToDateTime(selectedRow.Cells[3].Text).ToString("yyyy-MM-dd"));
+        rblGender.SelectedValue = selectedRow.Cells[5].Text;
+
         }
     }
 }
