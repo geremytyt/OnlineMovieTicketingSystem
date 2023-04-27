@@ -4,13 +4,9 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using MailKit.Net.Smtp;
-using MailKit;
-using MimeKit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MailKit.Security;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
@@ -78,36 +74,6 @@ namespace MovieTicketingSystem.CustomerOnly
             //    con.Close();
             //}
 
-            // Generate the QR code byte array
-            var qrCodeBytes = QrCode.GenerateQrCode("P0002");
-
-            // Attach the QR code to an email and send it
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("StarLight Cinema", "geremytyt-pm20@student.tarc.edu.my"));
-            message.To.Add(new MailboxAddress(custName, "geremytanyentsen@gmail.com"));
-            message.Subject = "Purchase Summary";
-
-            var builder = new BodyBuilder();
-            builder.HtmlBody = $@"<p>Thank you for your purchase! Here are your payment details.</p>
-                              <p>Payment Number: {lblPaymentNo.Text}</p>
-                              <p>Purchase Number: {lblPurchaseNo.Text}</p>
-                              <p>Payment Date and Time: {lblPaymentDateTime.Text}</p>
-                              <p>Payment Amount: {lblPaymentAmount.Text}</p>
-                              <p>Card Number: {lblCardNo.Text}</p>
-                              <br>
-                              <p><em>Scan the QR code for purchase number</em></p>";
-
-            builder.Attachments.Add("qrCode.png", qrCodeBytes, new ContentType("image", "png"));
-
-            message.Body = builder.ToMessageBody();
-
-            using (var client = new SmtpClient())
-            {
-                client.Connect("smtp-relay.sendinblue.com", 587, false);
-                client.Authenticate("geremytanyentsen@gmail.com", "yXs5nbHImU4VJkEh");
-                client.Send(message);
-                client.Disconnect(true);
-            }
 
             //Reset Ticket and Cart Session
             Session.Remove("Cart");
