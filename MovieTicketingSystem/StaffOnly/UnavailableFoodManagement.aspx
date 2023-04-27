@@ -8,7 +8,7 @@
                 <asp:Button ID="btnAvailable" runat="server" Text="Available" CssClass="nav-link w-50 text-white mb-2" BorderColor="White" OnClick="btnAvailable_Click" />
                 <asp:Button ID="btnUnAvailable" runat="server" Text="Unavailable" CssClass="nav-link active w-50 text-black mb-2 border-0" BackColor="#F4E618" />
             </div>
-        <asp:GridView ID="GVMenu" class="GVmenu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="menuId" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="Horizontal" BackColor="Yellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Right" ShowHeaderWhenEmpty="True"  OnSelectedIndexChanged="GVMenu_SelectedIndexChanged" >
+        <asp:GridView ID="GVMenu" class="GVmenu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="menuId" ForeColor="#333333" GridLines="Horizontal" BackColor="Yellow" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Right" ShowHeaderWhenEmpty="True"  OnSelectedIndexChanged="GVMenu_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField DataField="menuId" HeaderText="Id" ReadOnly="True" SortExpression="menuId" />
                 <asp:BoundField DataField="menuName" HeaderText="Name" SortExpression="menuName"  ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Left">
@@ -23,10 +23,14 @@
             <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
         </asp:GridView>
-          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT [menuId], [menuName], [menuCategory], [menuPrice] FROM [Menu] Where available = 'false'"></asp:SqlDataSource>
       </div>
 
         <div class="col containerRight"> 
+            <div class="row w-100 m-0 pl-20 pr-20" >
+                <asp:TextBox CssClass="col-8 rounded" ID="SearchBox" runat="server" autocomplete="off" > </asp:TextBox>
+                <asp:Button CssClass="col-4 btn btn-default" ID="SerachButton" runat="server" Text="Search" OnClick="SerachButton_Click" />
+            </div>
+            <div class="detailsView">
             <h3>Menu Details</h3>
             <div class="row g-2">
                 <div class="col-md">
@@ -59,6 +63,7 @@
             </div>
             <div class="actionBar">
                 <asp:Button ID="btn_Continue" runat="server" Text="Continue" OnClick="btn_Continue_Click" class="actionButton"/>
+            </div>
             </div>
             </div>
       </div>

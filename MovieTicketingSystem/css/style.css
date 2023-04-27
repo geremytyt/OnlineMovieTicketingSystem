@@ -242,7 +242,11 @@ d {
     vertical-align: top;
     width: 50%;
     display: table-cell;
+}
+
+.containerRight .detailsView{
     border: 1px solid white;
+    margin-top:5px;
 }
 
 .GVmenu {
