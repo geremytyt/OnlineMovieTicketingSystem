@@ -7,101 +7,119 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.User_Control
+namespace MovieTicketingSystem.StaffOnly
 {
 
 
-    public partial class ResetPwdControl
+    public partial class UnavailableFoodManagement
     {
 
         /// <summary>
-        /// txtOldPwd control.
+        /// btnAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOldPwd;
+        protected global::System.Web.UI.WebControls.Button btnAvailable;
 
         /// <summary>
-        /// rfvPassword control.
+        /// btnUnAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
+        protected global::System.Web.UI.WebControls.Button btnUnAvailable;
 
         /// <summary>
-        /// cvNotFound control.
+        /// GVMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvNotFound;
+        protected global::System.Web.UI.WebControls.GridView GVMenu;
 
         /// <summary>
-        /// txtNewPwd control.
+        /// SearchBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewPwd;
+        protected global::System.Web.UI.WebControls.TextBox SearchBox;
 
         /// <summary>
-        /// rfvNewPwd control.
+        /// SerachButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPwd;
+        protected global::System.Web.UI.WebControls.Button SerachButton;
 
         /// <summary>
-        /// revNewPwd control.
+        /// menuImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNewPwd;
+        protected global::System.Web.UI.WebControls.Image menuImg;
 
         /// <summary>
-        /// txtCfmPwd control.
+        /// lblMenuId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCfmPwd;
+        protected global::System.Web.UI.WebControls.Label lblMenuId;
 
         /// <summary>
-        /// rfvCfmPassword control.
+        /// tbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCfmPassword;
+        protected global::System.Web.UI.WebControls.TextBox tbName;
 
         /// <summary>
-        /// cvCfmPassword control.
+        /// DDLCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cvCfmPassword;
+        protected global::System.Web.UI.WebControls.DropDownList DDLCategory;
 
         /// <summary>
-        /// btnReset control.
+        /// tbPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::System.Web.UI.WebControls.TextBox tbPrice;
+
+        /// <summary>
+        /// tbDecs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDecs;
+
+        /// <summary>
+        /// btn_Continue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Continue;
     }
 }

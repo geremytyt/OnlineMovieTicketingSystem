@@ -18,7 +18,7 @@ namespace MovieTicketingSystem.CustomerOnly
         }
 
 
-        protected void btnPaymentConfirm_Click(object sender, EventArgs e)
+        protected void btnCardConfirm_Click(object sender, EventArgs e)
         {
             // Get the values of the card details
             string cardHolderName = txtCardName.Text;

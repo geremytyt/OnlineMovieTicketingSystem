@@ -77,7 +77,7 @@ namespace MovieTicketingSystem.Annonymous
 
             string email = txtEmail.Text;
             string hash = Security.GetHash(token);
-            string sql = "UPDATE Customer SET signature=@signature WHERE custEmail=@email";
+            string sql = "UPDATE Customer SET custSignature=@signature WHERE custEmail=@email";
 
             SqlConnection con = new SqlConnection(cs);
 

@@ -20,60 +20,58 @@
     <div class="row">
         <div class="text-white col-md-8" style="height:600px;">
             <div class="nav nav-tabs border-0"id="nav-tab" role="tablist">
-                <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link w-25 text-white mb-2" OnClick="btnActive_Click" BorderColor="White"/>
-                <asp:Button ID="btnResigned" runat="server" Text="Resigned" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618"/>
+                <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="nav-link w-25 text-white mb-2" OnClick="btnActive_Click" BorderColor="White" CausesValidation="false"/>
+                <asp:Button ID="btnResigned" runat="server" Text="Resigned" CssClass="nav-link active w-25 text-black mb-2 border-0" BackColor="#F4E618" CausesValidation="false"/>
             </div>
-            <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                OnSelectedIndexChanged="GridView1_SelectedIndexChanged"  CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+            <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" ClientIDMode="Static"
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="staffId" HeaderText="ID" SortExpression="staffId" ReadOnly="True"></asp:BoundField>
                     <asp:BoundField DataField="staffName" HeaderText="Name" SortExpression="staffName"></asp:BoundField>
-                    <asp:BoundField DataField="staffEmail" HeaderText="sEmail" SortExpression="staffEmail"></asp:BoundField>
+                    <asp:BoundField DataField="staffEmail" HeaderText="Email" SortExpression="staffEmail"></asp:BoundField>
                     <asp:BoundField DataField="staffIC" HeaderText="IC" SortExpression="staffIC"></asp:BoundField>
                     <asp:BoundField DataField="staffPhoneNo" HeaderText="Phone No" SortExpression="staffPhoneNo"></asp:BoundField>
                     <asp:BoundField DataField="staffGender" HeaderText="Gender" SortExpression="staffGender"></asp:BoundField>
+                    <asp:BoundField DataField="position" HeaderText="Position" SortExpression="position"></asp:BoundField>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <div class="d-grid gap-2 d-md-flex">
-                                <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btns_Command" />
+                                <asp:Button ID="btnView" runat="server" Text="View" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default"  OnCommand="btnView_Command" CausesValidation="false"/>
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT [staffId], [staffName], [staffEmail], [staffIC], [staffPhoneNo], [staffGender] FROM [Staff] WHERE ([staffStatus] = @staffStatus)">
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="Resigned" Name="staffStatus" Type="String"></asp:Parameter>
-                </SelectParameters>
-            </asp:SqlDataSource>
         </div>
         <div class="col-md-4">
             <div class="bg-dark rounded-4 text-white mb-2">
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div>
-                        <asp:TextBox ID="txtSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
-                        <button class="btn btn-default my-2" style="width:40px" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
                     <div class="m-4">
-                        <label>Staff ID:</label>
+                        <label class="">Staff ID:</label>
                         <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtName">Name</label>
+                            <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Please enter name" SetFocusOnError="true" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-floating w-75" id="float1">
-                            <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                             <label for="txtEmail">Email</label>
+                            <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered" SetFocusOnError="true"></asp:CustomValidator> 
                         </div>
                         <div class="form-floating w-75" id="float5">
                             <asp:TextBox ID="txtIC" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtDob">IC</label>
+                            <asp:RequiredFieldValidator ID="rfvIC" runat="server" ErrorMessage="Please enter IC" SetFocusOnError="true" ControlToValidate="txtIC" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="/d{12}"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-floating w-75" id="float4">
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
                             <label for="txtPhone">Phone No</label>
+                            <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ErrorMessage="Please enter phone no" SetFocusOnError="true" ControlToValidate="txtPhone" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:CustomValidator>
+                            <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="row my-3 ms-1 align-items-center">
                             <div class="w-25">
@@ -85,11 +83,21 @@
                                     <asp:ListItem Value="F">Female</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
+                            <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select gender" SetFocusOnError="true" ControlToValidate="rblGender" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-floating w-75" id="float6">
+                            <asp:DropDownList ID="ddlPosition" runat="server">
+                                <asp:ListItem>Cashier</asp:ListItem>
+                                <asp:ListItem>Usher</asp:ListItem>
+                                <asp:ListItem>Cleaner</asp:ListItem>
+                                <asp:ListItem>Projectionist</asp:ListItem>
+                                <asp:ListItem>Mechanic</asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvPosition" runat="server" ErrorMessage="Please select position" SetFocusOnError="true" ControlToValidate="ddlPosition" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </div>
                         <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
                         <asp:Button ID="btnDelete" runat="server" Text="Unresign" CssClass="btn btn-default" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                     </div>
-                </div>  
             </div>
         </div>
         </div>

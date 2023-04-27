@@ -42,15 +42,6 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.Label lblShowingTime;
 
         /// <summary>
-        /// lblHallNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHallNo;
-
-        /// <summary>
         /// lblSeat control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace MovieTicketingSystem.CustomerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSeat;
+
+        /// <summary>
+        /// lblHallNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHallNo;
 
         /// <summary>
         /// lblTotalAdultTicket control.
@@ -69,6 +69,15 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.Label lblTotalAdultTicket;
 
         /// <summary>
+        /// lblAdultTicketPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdultTicketPrice;
+
+        /// <summary>
         /// lblTotalChildTicket control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,33 @@ namespace MovieTicketingSystem.CustomerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalChildTicket;
+
+        /// <summary>
+        /// lblChildTicketPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChildTicketPrice;
+
+        /// <summary>
+        /// lblTotalSeniorTicket control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalSeniorTicket;
+
+        /// <summary>
+        /// lblSeniorTicketPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSeniorTicketPrice;
 
         /// <summary>
         /// lblTicketTotal control.
@@ -87,13 +123,13 @@ namespace MovieTicketingSystem.CustomerOnly
         protected global::System.Web.UI.WebControls.Label lblTicketTotal;
 
         /// <summary>
-        /// lblFoodPurchased control.
+        /// rptCartItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFoodPurchased;
+        protected global::System.Web.UI.WebControls.Repeater rptCartItems;
 
         /// <summary>
         /// lblFoodTotal control.

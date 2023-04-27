@@ -19,9 +19,9 @@ namespace MovieTicketingSystem.Annonymous
             if (token != null)
             {
                 string hash = Security.GetHash(token);
-                Customer c = db.Customers.SingleOrDefault(
-                customer => customer.signature == hash);
-                if (c != null)
+                Staff s = db.Staffs.SingleOrDefault(
+                staff => staff.staffSignature == hash);
+                if (s != null)
                 {
                     string[] details = token.Split('/');
                     if (Convert.ToDateTime(details[2]) < DateTime.Now)
@@ -39,25 +39,29 @@ namespace MovieTicketingSystem.Annonymous
         }
         protected void btnToken_Click(object sender, EventArgs e)
         {
-            string email = Request.QueryString["token"].Split('/')[1];
-            string text = txtPassword.Text;
-            string password = Security.GetHash(text);
-            string sql = "UPDATE Staff SET staffPassword=@Password WHERE staffEmail=@email";
+            if (Page.IsValid)
+            {
+                string email = Request.QueryString["token"].Split('/')[1];
+                string text = txtNewPwd.Text;
+                string password = Security.GetHash(text);
+                string sql = "UPDATE Staff SET staffPassword=@Password, staffSignature=@signature WHERE staffEmail=@email";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
+                con.Open();
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.Parameters.AddWithValue("@Password", password);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@signature", null);
+                cmd.Parameters.AddWithValue("@Password", password);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
 
-            Response.Redirect("StaffLogin.aspx");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
+                Response.Redirect("StaffLogin.aspx");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
+            }
         }
     }
 }

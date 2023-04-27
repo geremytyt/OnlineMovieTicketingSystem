@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="StaffOnly/StaffMovie.aspx" title="Movie" >
+  <siteMapNode url="StaffOnly/StaffHome.aspx" title="Home" >
+    <siteMapNode url="StaffOnly/StaffMovie.aspx" title="Movie" />
     <siteMapNode url="StaffOnly/ManageActiveUser.aspx" title="User" roles="Staff,Manager"/>
     <siteMapNode url="ManagerOnly/ManageActiveStaff.aspx" title="Staff" roles="Manager"/>
     <siteMapNode url="StaffOnly/AvailableFoodManagement.aspx" title="Food" roles="Staff,Manager"/>

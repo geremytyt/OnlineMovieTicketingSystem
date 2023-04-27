@@ -22,7 +22,7 @@ namespace MovieTicketingSystem.Annonymous
                 }
                 else if (HttpContext.Current.User.IsInRole("Staff") || HttpContext.Current.User.IsInRole("Manager"))
                 {
-                    Response.Redirect("../StaffOnly/StaffMovie.aspx");
+                    Response.Redirect("../StaffOnly/StaffHome.aspx");
                 }
             }
         }
