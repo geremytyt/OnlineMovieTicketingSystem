@@ -16,7 +16,7 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Movie WHERE (movieName LIKE @name + '%')">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Movie WHERE (movieName LIKE @name + '%') AND endDate > GETDATE()">
             <SelectParameters>
                 <asp:QueryStringParameter QueryStringField="movieName" Name="name"></asp:QueryStringParameter>
             </SelectParameters>
