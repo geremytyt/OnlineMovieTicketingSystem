@@ -4,14 +4,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=scheduleGridView]").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true
+                });
+        });
+    </script>
     <div class="container" style="height:700px;">
         <h2 class="text-white">Maintain Schedule</h2>
         <hr />
-        <div class="container1">
-            <asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>
-            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleNo" CssClass="text-white"
-                DataSourceID="SqlDataSourceSchedule" OnSelectedIndexChanged="scheduleGridView_SelectedIndexChanged" AutoPostBack="True" AllowPaging="True"
-                AllowSorting="True" Width="100%">
+        <div class="container1 text-white">
+            <%--<asp:SqlDataSource ID="SqlDataSourceSchedule" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM [Schedule]"></asp:SqlDataSource>--%>
+            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleNo" ClientIDMode="Static" CssClass="text-white"
+                  Width="100%">
                 <RowStyle Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
                 <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
                 <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
@@ -22,9 +36,10 @@
                     <asp:BoundField DataField="movieId" HeaderText="Movie Id" SortExpression="movieId" />
                     <asp:BoundField DataField="hallNo" HeaderText="Hall No" SortExpression="hallNo" />
                     <asp:BoundField DataField="scheduleDateTime" HeaderText="Schedule Date & Time" SortExpression="scheduleDateTime" />
+                    <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                     <asp:TemplateField HeaderText="Actions">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnSelect" runat="server" Text="Select" CommandName="Select" CssClass="text-light" />
+                            <asp:Button ID="btnSelect" runat="server" Text="Select" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-default" OnCommand="btnSelect_Command"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -35,10 +50,10 @@
             <div class="bg-dark rounded-4 text-white ">
                 <div class="row">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div>
+                    <%--<div>
                         <asp:TextBox ID="txtScheduleSearch" runat="server" style="width:70%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
                         <button class="btn btn-default my-2" style="width:40px" type="submit" onclick="btnSearch_Click" ><i class="fas fa-search"></i></button>
-                    </div>
+                    </div>--%>
                 </div>
                 <div class="m-4">
                     <label >Customer ID:</label>
@@ -67,6 +82,7 @@
                 </div>
                 <div class="mx-4">
                     <asp:TextBox ID="txtScheduleDate" runat="server" CssClass="form-control" placeholder=" " TextMode="Date"/>
+                    <%--<asp:RequiredFieldValidator ID="rfvScheduleDate" runat="server" ControlToValidate="txtScheduleDate" CssClass="error" Display="Dynamic" ErrorMessage="Please enter schedule date"></asp:RequiredFieldValidator>--%>
                 </div>
 
                 <br />
@@ -75,7 +91,20 @@
                 </div>
                 <div class="mx-4">
                     <asp:TextBox ID="txtScheduleTime" runat="server" CssClass="form-control" placeholder=" " TextMode="Time" Pattern="[0-9]{1,2}:[0-9]{1,2}:[0-9]{2}"/>
+                    <%--<asp:RequiredFieldValidator ID="rfvScheduleTime" runat="server" ControlToValidate="txtScheduleTime" CssClass="error" Display="Dynamic" ErrorMessage="Please enter time date"></asp:RequiredFieldValidator>--%>
                 </div>
+                <br />
+                <div class="mx-4">
+                    <label>Status</label>
+                </div>
+                <div class="mx-4">
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
+                            <asp:ListItem Text="Active" Value="Active" />
+                            <asp:ListItem Text="Cancelled" Value="Cancelled" />
+                    </asp:DropDownList>
+                </div>
+
+                <br />
                 
                 <div class="m-4">
                     <asp:Button ID="btnAdd"  runat="server" Text="Add" CssClass="btn btn-default" Width="40%" OnClick="btnAdd_Click"/>
@@ -86,6 +115,7 @@
                 <br />
                 <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlHall" CssClass="error" Display="Dynamic" ErrorMessage="CustomValidator" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>--%>
                 <asp:Label ID="lblInvalid" runat="server" CssClass="error" Display="Dynamic" Text="Hall is not available at the selected time. Please choose a different time or hall."></asp:Label>
+                
             </div>
             <asp:SqlDataSource ID="SqlDataSourceSchedule2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>'
                 SelectCommand="SELECT DISTINCT movieId FROM Schedule"></asp:SqlDataSource>

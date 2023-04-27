@@ -19,7 +19,7 @@ namespace MovieTicketingSystem.CustomerOnly
             string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
             {    
-                string sql = "SELECT * FROM movie WHERE movieId = @Id";
+                string sql = "SELECT movieName FROM Movie WHERE movieId = @Id";  //specify the column name and sequence
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Id", id);
