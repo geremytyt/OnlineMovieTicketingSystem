@@ -18,10 +18,8 @@ namespace MovieTicketingSystem.StaffOnly
         {
             if (!IsPostBack)
             {
-                string name = Request.QueryString["search"] ?? "";
-                SearchBox.Text = name;
-
-                string sql = "Select * FROM Menu Where available = 'false' And menuName LIKE '%" + name + "%'";
+               
+                string sql = "Select * FROM Menu Where available = 'false'";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
                 SqlDataAdapter sda = new SqlDataAdapter(sql, con);
@@ -30,6 +28,8 @@ namespace MovieTicketingSystem.StaffOnly
                 GVMenu.DataSource = dt;
                 GVMenu.DataBind();
             }
+            GVMenu.UseAccessibleHeader = true;
+            GVMenu.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btn_Continue_Click(object sender, EventArgs e)
@@ -60,12 +60,24 @@ namespace MovieTicketingSystem.StaffOnly
             Response.Redirect("UnavailableFoodManagement.aspx");
         }
 
-        protected void GVMenu_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnAvailable_Click(object sender, EventArgs e)
         {
-            
-            var selectedIndex = GVMenu.SelectedIndex;
+            Response.Redirect("AvailableFoodManagement.aspx");
+        }
 
-            var selectedID = GVMenu.SelectedRow.Cells[0].Text;
+        protected void SerachButton_Click(object sender, EventArgs e)
+        {
+            String search = SearchBox.Text;
+            Response.Redirect("UnavailableFoodManagement.aspx?search=" + search);
+        }
+
+        protected void btnView_Command(object sender, CommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow selectedRow = GVMenu.Rows[index];
+
+            var selectedID = selectedRow.Cells[0].Text;
+
             menuImg.Attributes.CssStyle.Add("display", "initial");
 
             //step 2 load detail
@@ -109,17 +121,6 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             dr.Close();
             con.Close();
-        }
-
-        protected void btnAvailable_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AvailableFoodManagement.aspx");
-        }
-
-        protected void SerachButton_Click(object sender, EventArgs e)
-        {
-            String search = SearchBox.Text;
-            Response.Redirect("UnavailableFoodManagement.aspx?search=" + search);
         }
     }
 }

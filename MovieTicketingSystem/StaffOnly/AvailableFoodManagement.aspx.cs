@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,11 +19,8 @@ namespace MovieTicketingSystem.StaffOnly
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                string name = Request.QueryString["search"] ?? "";
-                SearchBox.Text = name;
-
-                string sql = "Select * FROM Menu Where available = 'true' And menuName LIKE '%" + name + "%'";
+            {            
+                string sql = "Select * FROM Menu Where available = 'true' ";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
                 SqlDataAdapter sda = new SqlDataAdapter(sql, con);
@@ -31,6 +29,8 @@ namespace MovieTicketingSystem.StaffOnly
                 GVMenu.DataSource = dt;
                 GVMenu.DataBind();
             }
+            GVMenu.UseAccessibleHeader = true;
+            GVMenu.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btn_insert_Click(object sender, EventArgs e)
@@ -260,14 +260,18 @@ namespace MovieTicketingSystem.StaffOnly
             Response.Redirect("AvailableFoodManagement.aspx");
         }
 
-        protected void GVMenu_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnUnAvailable_Click(object sender, EventArgs e)
         {
-            btn_Discontinue.Visible = true;
-            btn_edit.Visible = true;
+            Response.Redirect("UnavailableFoodManagement.aspx");
+        }
 
-            var selectedIndex = GVMenu.SelectedIndex;
+        protected void btnView_Command(object sender, CommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow selectedRow = GVMenu.Rows[index];
+            
+            var selectedID = selectedRow.Cells[0].Text;
 
-            var selectedID = GVMenu.SelectedRow.Cells[0].Text;
             menuImg.Attributes.CssStyle.Add("display", "initial");
 
             //step 2 load detail
@@ -295,7 +299,7 @@ namespace MovieTicketingSystem.StaffOnly
                 lblMenuId.Text = dr[0].ToString().Trim();
                 tbName.Text = dr[1].ToString().Trim();
                 DDLCategory.SelectedItem.Text = dr[2].ToString().Trim();
-                
+
 
                 tbPrice.Text = dr[3].ToString().Trim();
                 tbDecs.Text = dr[4].ToString().Trim();
@@ -311,17 +315,6 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             dr.Close();
             con.Close();
-        }
-
-        protected void btnUnAvailable_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("UnavailableFoodManagement.aspx");
-        }
-
-        protected void SerachButton_Click(object sender, EventArgs e)
-        {
-            String search = SearchBox.Text;
-            Response.Redirect("AvailableFoodManagement.aspx?search=" + search);
         }
     }
 }

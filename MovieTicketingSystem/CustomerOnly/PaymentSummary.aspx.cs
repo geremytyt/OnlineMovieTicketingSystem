@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using MailKit.Net.Smtp;
-using MailKit;
-using MimeKit;
+//using MailKit.Net.Smtp;
+//using MailKit;
+//using MimeKit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -82,50 +82,35 @@ namespace MovieTicketingSystem.CustomerOnly
 
 
             // Generate the QR code byte array
-            var qrCodeBytes = QrCode.GenerateQrCode("P0002");
+            //var qrCodeBytes = QrCode.GenerateQrCode("P0002");
 
-            var apiKey = "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";
+            // Attach the QR code to an email and send it
+            //var message = new MimeMessage();
+            //message.From.Add(new MailboxAddress("StarLight Cinema", "geremytyt-pm20@student.tarc.edu.my"));
+            //message.To.Add(new MailboxAddress(custName, "geremytanyentsen@gmail.com"));
+            //message.Subject = "Purchase Summary";
 
-            // Create a new SendGrid client
-            var client = new SendGridClient(apiKey);
+            //var builder = new BodyBuilder();
+            //builder.HtmlBody = $@"<p>Thank you for your purchase! Here are your payment details.</p>
+            //                  <p>Payment Number: {lblPaymentNo.Text}</p>
+            //                  <p>Purchase Number: {lblPurchaseNo.Text}</p>
+            //                  <p>Payment Date and Time: {lblPaymentDateTime.Text}</p>
+            //                  <p>Payment Amount: {lblPaymentAmount.Text}</p>
+            //                  <p>Card Number: {lblCardNo.Text}</p>
+            //                  <br>
+            //                  <p><em>Scan the QR code for purchase number</em></p>";
 
-            // Create a new email message
-            var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
-            var to = new EmailAddress("geremytanyentsen@gmail.com", "Staff");
-            var subject = "Payment Confirmation";
-            var plainTextContent = "Payment has been made";
-            var htmlContent = $@" Thank you for your purchase!Here are your payment details.<br><br>
-                          Payment Number: {lblPaymentNo.Text}<br>
-                          Purchase Number: {lblPurchaseNo.Text}<br>
-                          Payment Date and Time: {lblPaymentDateTime.Text}<br>
-                          Payment Amount: {lblPaymentAmount.Text}<br>
-                          Card Number: {lblCardNo.Text}<br><br>
-                          
-                          Scan the QR code for purchase number";
+            //builder.Attachments.Add("qrCode.png", qrCodeBytes, new ContentType("image", "png"));
 
-            // Convert the QR code byte array to a base64 string
-            var qrCodeBase64 = Convert.ToBase64String(qrCodeBytes);
+            //message.Body = builder.ToMessageBody();
 
-            // Attach the QR code to the email message
-            var attachment = new Attachment
-            {
-                Content = qrCodeBase64,
-                Filename = "qrCode.png",
-                Type = "image/png",
-                Disposition = "attachment"
-            };
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            msg.AddAttachment(attachment);
-
-            // Send the email message
-            var response = client.SendEmailAsync(msg).Result;
-
-            // Check the response status code
-            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
-            {
-                // Email sent successfully
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Payment confirmation email has been sent');", true);
-            }
+            //using (var client = new SmtpClient())
+            //{
+            //    client.Connect("smtp-relay.sendinblue.com", 587, false);
+            //    client.Authenticate("geremytanyentsen@gmail.com", "yXs5nbHImU4VJkEh");
+            //    client.Send(message);
+            //    client.Disconnect(true);
+            //}
 
 
             //Reset Ticket and Cart Session
