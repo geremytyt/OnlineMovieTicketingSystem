@@ -44,12 +44,13 @@
             </asp:GridView>
         </div>
         <div class="col-md-4">
-            <div class="bg-dark rounded-4 text-white mb-2">
-                <div class="row">
+            <div class="bg-dark rounded-4 text-white mb-2 ">
+                <div class="row justify-content-center align-items-center">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div class="m-4">
-                        <label class="">Staff ID:</label>
-                        <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
+                        <div class="w-75">
+                            <label class="">Staff ID:</label>
+                            <asp:Label ID="lblId" runat="server" Text="asd" CssClass="m-2"></asp:Label>
+                        </div>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtName">Name</label>
@@ -64,7 +65,7 @@
                             <asp:TextBox ID="txtIC" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtDob">IC</label>
                             <asp:RequiredFieldValidator ID="rfvIC" runat="server" ErrorMessage="Please enter IC" SetFocusOnError="true" ControlToValidate="txtIC" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="/d{12}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="\d{12}"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-floating w-75" id="float4">
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
@@ -73,11 +74,11 @@
                             <asp:CustomValidator ID="cvExistPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" ControlToValidate="txtPhone" SetFocusOnError="true"></asp:CustomValidator>
                             <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                         </div>
-                        <div class="row my-3 ms-1 align-items-center">
+                        <div class="row my-3 align-items-center w-75">
                             <div class="w-25">
                                 <asp:Label ID="lblGender" runat="server" Text="Gender:"></asp:Label>
                             </div>
-                            <div class="w-50">
+                            <div class="w-75">
                                 <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" RepeatLayout="Table" RepeatColumns="2" Width="100%">
                                     <asp:ListItem Value="M">Male</asp:ListItem>
                                     <asp:ListItem Value="F">Female</asp:ListItem>
@@ -85,18 +86,23 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select gender" SetFocusOnError="true" ControlToValidate="rblGender" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="form-floating w-75" id="float6">
-                            <asp:DropDownList ID="ddlPosition" runat="server">
-                                <asp:ListItem>Cashier</asp:ListItem>
-                                <asp:ListItem>Usher</asp:ListItem>
-                                <asp:ListItem>Cleaner</asp:ListItem>
-                                <asp:ListItem>Projectionist</asp:ListItem>
-                                <asp:ListItem>Mechanic</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvPosition" runat="server" ErrorMessage="Please select position" SetFocusOnError="true" ControlToValidate="ddlPosition" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                        <div class="row mb-3 align-items-center w-75">
+                            <div class="w-25">
+                                <asp:Label ID="lblPosition" runat="server" Text="Position:" CssClass="w-25"></asp:Label>
+                            </div>
+                            <div class="w-75">
+                                <asp:DropDownList ID="ddlPosition" CssClass="w-100 p-2 bg-dark" runat="server" ForeColor="White">
+                                    <asp:ListItem>Cashier</asp:ListItem>
+                                    <asp:ListItem>Usher</asp:ListItem>
+                                    <asp:ListItem>Film Projectionist</asp:ListItem>
+                                    <asp:ListItem>Cleaner</asp:ListItem>
+                                    <asp:ListItem>Mechanic</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please select position" SetFocusOnError="true" ControlToValidate="ddlPosition" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            </div>
                         </div>
-                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
-                        <asp:Button ID="btnDelete" runat="server" Text="Unresign" CssClass="btn btn-default" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
+                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default mx-2 mb-4" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Unresign" CssClass="btn btn-default mx-2 mb-4" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                     </div>
             </div>
         </div>

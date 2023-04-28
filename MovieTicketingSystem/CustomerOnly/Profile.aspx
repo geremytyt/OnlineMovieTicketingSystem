@@ -3,8 +3,8 @@
     <div class="col-md-10 py-5 mx-auto text-white">
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
-                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px" ImageUrl="~/Image/default.jpeg"/>
-                <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control d-block mx-auto w-75 mt-2" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/>
+                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
+                <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control d-block mx-auto w-75 mt-2" onchange="uploadImg()"/>
                 <hr class="mx-auto w-75" style="border:1px solid white;"/>
                 <div class="row ">
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
@@ -29,6 +29,7 @@
                     <div class="tab-pane fade show active p-3" id="nav-myProfile">
                         <h3 class="text-white">My Profile</h3>
                         <hr style="border:1px solid white"/>
+                        <asp:Panel ID="Panel1" runat="server" DefaultButton="btnEdit">
                             <div class="my-4 mx-auto row">
                                 <h6 class="w-25 align-self-end">Name</h6>
                                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control w-75 userInput" placeholder=" "/>
@@ -48,7 +49,7 @@
                                 <asp:RegularExpressionValidator ID="revPhone" runat="server" Display="Dynamic" CssClass="text-danger w-75" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
                             </div>
                             <div class="my-4 mx-auto row">
-                                <h6 class="w-25 align-self-end">IC</h6>
+                                <h6 class="w-25 align-self-end">Date Of Birth</h6>
                                 <asp:TextBox ID="txtDob" runat="server" CssClass="form-control w-75 userInput" placeholder=" " TextMode="Date"/>
                                 <i class="w-25"></i>
                                 <asp:RequiredFieldValidator ID="rfvDob" CssClass="text-danger w-75" Display="Dynamic" runat="server" ErrorMessage="Please enter your date of birth" SetFocusOnError="true" ControlToValidate="txtDob"></asp:RequiredFieldValidator>
@@ -62,7 +63,8 @@
                                 <i class="w-25"></i>
                                 <asp:RequiredFieldValidator ID="rfvGender" CssClass="text-danger w-75" Display="Dynamic" runat="server" ErrorMessage="Please select your gender" SetFocusOnError="true" ControlToValidate="rblGender"></asp:RequiredFieldValidator>
                             </div>
-                        <asp:Button class="btn btn-default btn-block w-25 my-3 float-end" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" />
+                        <asp:Button class="btn btn-default btn-block w-25 my-3 float-end" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click"/>
+                        </asp:Panel>
                     </div>
                 </div>
             </div>
