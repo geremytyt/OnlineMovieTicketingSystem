@@ -23,15 +23,7 @@ namespace MovieTicketingSystem.StaffOnly
             String searchDate = "8/4/2023";
             //String searchDate = DateTime.Now.ToString();
 
-            if (Application["LoginPerformed"] != null)
-            {
-                int numberOfLoginPerformed = (int)Application["LoginPerformed"];
-                litLoginPerfrom.Text = numberOfLoginPerformed.ToString();
-            }
-            else
-            {
-                litLoginPerfrom.Text = "0";
-            }
+            
 
             TBDate.Text = CurrentDate;
             

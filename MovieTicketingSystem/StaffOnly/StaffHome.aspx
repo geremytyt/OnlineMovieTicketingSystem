@@ -9,14 +9,6 @@
 
         <div class="row">
              <div class="text-white col-6 border border-white" style="font-size:20px;">
-                <div class="row master ">
-                    <div class="col-6">
-                     <asp:Label ID="lblLoginPerfrom" runat="server" cssClass="text-white" Text="Total Login Perfromed "></asp:Label>
-                    </div>
-                   <div class="col-6 m-0 align-middle">
-                     <asp:Literal ID="litLoginPerfrom" runat="server"></asp:Literal>
-                    </div>                
-                </div>
                 <div class="row">
                     <div class="col-6 m-0">
                         <asp:Label ID="lblTicketSold" runat="server" cssClass="text-white" Text="Total Ticket Sold Today "></asp:Label>
