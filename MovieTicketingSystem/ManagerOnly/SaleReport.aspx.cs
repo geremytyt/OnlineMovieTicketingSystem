@@ -16,5 +16,25 @@ namespace MovieTicketingSystem.ManagerOnly
         {
 
         }
+
+        protected void btnSale_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SaleReport.aspx");
+        }
+
+        protected void btnMovieReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MovieReport.aspx");
+        }
+
+        protected void btnFoodReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FoodSaleReport.aspx");
+        }
+
+        protected void btnUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserReport.aspx");
+        }
     }
 }

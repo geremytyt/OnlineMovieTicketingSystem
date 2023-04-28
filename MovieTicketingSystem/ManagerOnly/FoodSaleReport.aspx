@@ -3,18 +3,19 @@
 <div class="container row" id="reportContainer" style="height:700px;">
   <div class="col-md-4 p-3">
          <div class="row ">
+                <h1  class="nav nav-tabs flex-column align-items-center border-0" >Report Type</h1>
                 <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
                     <li class="nav-item mb-3">
-                        <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link " type="button" CausesValidation="false"/>
+                        <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link " type="button" OnClick="btnSale_Click" CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">
-                        <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab  nav-link" type="button" CausesValidation="false"/>
+                        <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab  nav-link" type="button" OnClick="btnMovieReport_Click" CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">
-                        <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab active nav-link " type="button"  CausesValidation="false" />
+                        <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab active nav-link " type="button" OnClick="btnFoodReport_Click" CausesValidation="false" />
                     </li>
                     <li class="nav-item mb-3">
-                        <asp:Button ID="btnUser" runat="server" Text="User Report" class="profileTab nav-link" type="button" CausesValidation="false"/>
+                        <asp:Button ID="btnUser" runat="server" Text="User Report" class="profileTab nav-link" type="button" OnClick="btnUser_Click" CausesValidation="false"/>
                     </li>
                 </ul>
         </div>
