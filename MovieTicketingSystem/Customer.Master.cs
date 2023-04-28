@@ -16,7 +16,7 @@ namespace MovieTicketingSystem
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MovieSearch.aspx?movieName="+txtSearch.Text.ToString());
+            Response.Redirect("../Annonymous/MovieSearch.aspx?movieName="+txtSearch.Text.ToString());
         }
     }
 }

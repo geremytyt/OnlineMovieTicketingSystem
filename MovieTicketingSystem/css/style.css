@@ -23,6 +23,14 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: white !important;
 }
 
+.search:-webkit-autofill,
+.search:-webkit-autofill:hover,
+.search:-webkit-autofill:focus,
+.search:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black !important;
+}
+
 /*yinwei part*/
 .loginLink {
     text-decoration: none;

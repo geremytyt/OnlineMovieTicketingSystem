@@ -23,88 +23,89 @@ namespace MovieTicketingSystem.User_Control
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (IsReCaptchValid())
+            if (IsReCaptchValid() && Page.IsValid)
             {
-                if (Page.IsValid)
+                string id = "";
+                string status = "";
+                string username = txtEmail.Text;
+                string password = txtPassword.Text;
+                bool rememberMe = cbRemember.Checked;
+                // Login the user
+                string hash = Security.GetHash(password);
+                User u = db.Users.SingleOrDefault(
+                    user => user.Username == username &&
+                    user.Hash == hash
+                    );
+                if (u != null)
                 {
-                    string id = "";
-                    string status = "";
-                    string username = txtEmail.Text;
-                    string password = txtPassword.Text;
-                    bool rememberMe = cbRemember.Checked;
-                    // Login the user
-                    string hash = Security.GetHash(password);
-                    User u = db.Users.SingleOrDefault(
-                        user => user.Username == username &&
-                        user.Hash == hash
-                        );
-                    if (u != null)
+                    string page = Session["Page"].ToString();
+                    if (u.Role == "Customer" && page.Equals("Customer"))
                     {
-                        if (u.Role == "Customer")
+                        string sql = "SELECT * FROM Customer WHERE custEmail = @email";
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@email", username);
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.Read())
                         {
-                            string sql = "SELECT * FROM Customer WHERE custEmail = @email";
-                            SqlConnection con = new SqlConnection(cs);
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            con.Open();
-                            cmd.Parameters.AddWithValue("@email", username);
-                            SqlDataReader dr = cmd.ExecuteReader();
-
-                            if (dr.Read())
-                            {
-                                id = dr[0].ToString();
-                                status = dr[8].ToString().Trim();
-                            }
-                            dr.Close();
-                            con.Close();
-                            if (status == "Active")
-                            {
-                                HttpCookie cookie = new HttpCookie("Customer", id);
-                                cookie.Expires = DateTime.Now.AddDays(14);
-                                Response.Cookies.Add(cookie);
-                                Security.LoginUser(u.Username, u.Role, rememberMe);
-                            }
-                            else {
-                                cvLogin.IsValid = false;
-                            }
-
+                            id = dr[0].ToString();
+                            status = dr[8].ToString().Trim();
                         }
-                        else if (u.Role == "Staff" || u.Role =="Manager")
+                        dr.Close();
+                        con.Close();
+                        if (status == "Active")
                         {
-                            string sql = "SELECT * FROM Staff WHERE staffEmail = @email";
-                            SqlConnection con = new SqlConnection(cs);
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            con.Open();
-                            cmd.Parameters.AddWithValue("@email", username);
-                            SqlDataReader dr = cmd.ExecuteReader();
+                            Session.Remove("Page");
+                            HttpCookie cookie = new HttpCookie("Customer", id);
+                            cookie.Expires = DateTime.Now.AddDays(14);
+                            Response.Cookies.Add(cookie);
+                            Security.LoginUser(u.Username, u.Role, rememberMe);
+                        }
+                        else {
+                            cvLogin.IsValid = false;
+                        }
 
-                            if (dr.Read())
-                            {
-                                id = dr[0].ToString();
-                                status = dr[9].ToString().Trim();
-                            }
-                            dr.Close();
-                            con.Close();
-                            if (status == "Active")
-                            {
-                                HttpCookie cookie = new HttpCookie("Staff", id);
-                                cookie.Expires = DateTime.Now.AddDays(14);
-                                Response.Cookies.Add(cookie);
-                                Security.LoginUser(u.Username, u.Role, rememberMe);
-                            }
-                            else {
-                                cvLogin.IsValid = false;
-                            }
+                    }
+                    else if ((u.Role == "Staff" || u.Role =="Manager") && page.Equals("Staff"))
+                    {
+                        string sql = "SELECT * FROM Staff WHERE staffEmail = @email";
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@email", username);
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            id = dr[0].ToString();
+                            status = dr[9].ToString().Trim();
+                        }
+                        dr.Close();
+                        con.Close();
+                        if (status == "Active")
+                        {
+                            Session.Remove("Page");
+                            HttpCookie cookie = new HttpCookie("Staff", id);
+                            cookie.Expires = DateTime.Now.AddDays(14);
+                            Response.Cookies.Add(cookie);
+                            Security.LoginUser(u.Username, u.Role, rememberMe);
                         }
                         else {
                             cvLogin.IsValid = false;
                         }
                     }
-                    else
-                    {
+                    else {
                         cvLogin.IsValid = false;
                     }
-                    
                 }
+                else
+                {
+                    cvLogin.IsValid = false;
+                }
+                    
+                
             }
             else
             {
