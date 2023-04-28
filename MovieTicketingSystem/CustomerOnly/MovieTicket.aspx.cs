@@ -37,7 +37,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 lbMovieInfo.Text = cookie.Value;
             }
             lbHall.Text = "Hall : " + s.Hall.hallNo;
-            lbDateTime.Text = s.scheduleDateTime.ToString("ddd dd MMMM hh:mm tt");
+            lbDateTime.Text = s.scheduleDateTime.ToString();
 
             cookie = Request.Cookies["seatNum"];
             if (cookie != null)

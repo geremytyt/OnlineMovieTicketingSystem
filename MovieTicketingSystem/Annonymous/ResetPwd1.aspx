@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ResetPwd1.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.ResetPwd1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
      <div id="content" class="text-light d-flex align-items-center justify-content-center"  style="min-height: 100vh;">
-        <div class="bg-black rounded col-md-5 col-lg-3 col-sm-6">                  
+         <div class="bg-black rounded col-md-5 col-lg-3 col-sm-6">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="btnToken">
             <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Reset Password</div> 
                 <div class="row mt-2 justify-content-center">
                     <i class="fa-solid fa-user" style="width:10%;margin-top:30px"></i>
@@ -15,6 +16,7 @@
             <div class="text-center">
                 <asp:Button class="btn btn-default my-4" ID="btnToken" runat="server" Text="Send Token" OnClick="btnToken_Click" />
             </div>
+            </asp:Panel>
         </div>
     </div>
 </asp:Content>

@@ -16,51 +16,51 @@ namespace MovieTicketingSystem.Annonymous
         protected void Page_Load(object sender, EventArgs e)
         {
             string token = Request.QueryString["token"];
-            if (token != null)
+            string email = Request.QueryString["email"];
+            if (token != null && email!=null)
             {
                 string hash = Security.GetHash(token);
                 Customer c = db.Customers.SingleOrDefault(
-                customer => customer.custSignature == hash);
+                customer => customer.custEmail == email);
                 if (c != null)
                 {
-                    string[] details = token.Split('/');
-                    if (Convert.ToDateTime(details[2]) < DateTime.Now)
-                    {
-                        Response.Redirect("ResetPwd1.aspx");
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');", true);
+                    if (Security.GetHash(c.custToken) == token) {
+                        if (Convert.ToDateTime(c.custToken.Split('/')[1]) < DateTime.Now)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');window.location.href='../Annonymous/ResetPwd1.aspx';", true);
+                        }
                     }
                 }
 
             }
             else
             {
-
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Invalid token.');window.location.href='../Annonymous/ResetPwd1.aspx';", true);
             }
         }
         protected void btnToken_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                string email = Request.QueryString["token"].Split('/')[1];
+                string email = Request.QueryString["email"];
                 string text = txtNewPwd.Text;
                 string password = Security.GetHash(text);
-                string sql = "UPDATE Customer SET custPassword=@Password, custSignature=@signature WHERE custEmail=@email";
+                string sql = "UPDATE Customer SET custPassword=@Password, custToken=@token WHERE custEmail=@email";
 
                 SqlConnection con = new SqlConnection(cs);
 
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@signature", null);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@token", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Password", password);
 
                 cmd.ExecuteNonQuery();
 
                 con.Close();
 
-                Response.Redirect("Login.aspx");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.'); window.location.href='../Annonymous/Login.aspx';", true);
             }
         }
 

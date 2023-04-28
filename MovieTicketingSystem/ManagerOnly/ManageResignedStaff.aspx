@@ -49,7 +49,7 @@
                     <h3 class="text-center mt-2">Record</h3>
                         <div class="w-75">
                             <label class="">Staff ID:</label>
-                            <asp:Label ID="lblId" runat="server" Text="asd" CssClass="m-2"></asp:Label>
+                            <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
                         </div>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
@@ -59,13 +59,12 @@
                         <div class="form-floating w-75" id="float1">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                             <label for="txtEmail">Email</label>
-                            <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered" SetFocusOnError="true"></asp:CustomValidator> 
                         </div>
                         <div class="form-floating w-75" id="float5">
                             <asp:TextBox ID="txtIC" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtDob">IC</label>
                             <asp:RequiredFieldValidator ID="rfvIC" runat="server" ErrorMessage="Please enter IC" SetFocusOnError="true" ControlToValidate="txtIC" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="\d{12}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="\d{12}"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-floating w-75" id="float4">
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
