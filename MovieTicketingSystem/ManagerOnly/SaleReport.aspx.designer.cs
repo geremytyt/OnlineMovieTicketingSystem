@@ -7,47 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieTicketingSystem.Annonymous
+namespace MovieTicketingSystem.ManagerOnly
 {
 
 
-    public partial class Food
+    public partial class SaleReport
     {
 
         /// <summary>
-        /// Panel1 control.
+        /// btnSale control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Button btnSale;
 
         /// <summary>
-        /// SearchBox control.
+        /// btnMovieReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchBox;
+        protected global::System.Web.UI.WebControls.Button btnMovieReport;
 
         /// <summary>
-        /// SerachButton control.
+        /// btnFoodReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SerachButton;
+        protected global::System.Web.UI.WebControls.Button btnFoodReport;
 
         /// <summary>
-        /// repMenu control.
+        /// btnUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repMenu;
+        protected global::System.Web.UI.WebControls.Button btnUser;
     }
 }

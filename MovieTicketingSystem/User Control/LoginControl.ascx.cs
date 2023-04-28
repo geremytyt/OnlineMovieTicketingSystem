@@ -59,7 +59,6 @@ namespace MovieTicketingSystem.User_Control
                             if (status == "Active")
                             {
                                 HttpCookie cookie = new HttpCookie("Customer", id);
-                                addLogin();
                                 cookie.Expires = DateTime.Now.AddDays(14);
                                 Response.Cookies.Add(cookie);
                                 Security.LoginUser(u.Username, u.Role, rememberMe);
@@ -133,24 +132,7 @@ namespace MovieTicketingSystem.User_Control
             return result;
         }
 
-        private void addLogin()
-        {
-            DateTime curent = DateTime.Now;
-
-            if (Application["LoginPerformed"] != null && Application["LoginDate"] != null && curent.Day == (int)Application["LoginDate"])
-            {
-                
-                int numberOfLoginPerformed = (int)Application["LoginPerformed"];
-                Application["LoginPerformaed"] = (numberOfLoginPerformed + 1);
-                
-            }
-            else
-            {
-                Application["LoginPerformed"] = 1;
-                Application["LoginDate"] = curent.Day;
-            }
-
-        }
+        
 
     }
 }

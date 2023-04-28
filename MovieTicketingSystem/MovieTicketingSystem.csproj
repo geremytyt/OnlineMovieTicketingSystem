@@ -179,6 +179,10 @@
     <Content Include="Image\slideImages\TheSuperMarioBros.jpg" />
     <Content Include="Image\user.png" />
     <Content Include="js\Script.js" />
+    <Content Include="ManagerOnly\FoodSaleReport.aspx" />
+    <Content Include="ManagerOnly\MovieReport.aspx" />
+    <Content Include="ManagerOnly\SaleReport.aspx" />
+    <Content Include="ManagerOnly\UserReport.aspx" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -197,7 +201,6 @@
     <Content Include="StaffOnly\ManagePayment.aspx" />
     <Content Include="ManagerOnly\ManageResignedStaff.aspx" />
     <Content Include="StaffOnly\ManageSuspendedUser.aspx" />
-    <Content Include="ManagerOnly\Report.aspx" />
     <Content Include="css\movie.css" />
     <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
@@ -369,6 +372,34 @@
     <Compile Include="CustomerOnly\Tickets.aspx.designer.cs">
       <DependentUpon>Tickets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerOnly\FoodSaleReport.aspx.cs">
+      <DependentUpon>FoodSaleReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\FoodSaleReport.aspx.designer.cs">
+      <DependentUpon>FoodSaleReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOnly\MovieReport.aspx.cs">
+      <DependentUpon>MovieReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\MovieReport.aspx.designer.cs">
+      <DependentUpon>MovieReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOnly\SaleReport.aspx.cs">
+      <DependentUpon>SaleReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\SaleReport.aspx.designer.cs">
+      <DependentUpon>SaleReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOnly\UserReport.aspx.cs">
+      <DependentUpon>UserReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\UserReport.aspx.designer.cs">
+      <DependentUpon>UserReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Card.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -477,13 +508,6 @@
     </Compile>
     <Compile Include="StaffOnly\ManageSuspendedUser.aspx.designer.cs">
       <DependentUpon>ManageSuspendedUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManagerOnly\Report.aspx.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManagerOnly\Report.aspx.designer.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
