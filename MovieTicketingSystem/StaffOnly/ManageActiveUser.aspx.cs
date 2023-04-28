@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,6 +14,7 @@ namespace MovieTicketingSystem.StaffOnly
     public partial class ManageUser : System.Web.UI.Page
     {
         string cs = Global.cs;
+        movieDBEntities db = new movieDBEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -55,32 +57,47 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            string id = lblId.Text;
-            string name = txtName.Text;
-            string email = txtEmail.Text;
-            string phone = txtPhone.Text;
-            string gender = rblGender.SelectedValue.Substring(0,1);
-            DateTime dob = DateTime.Parse(txtDob.Text);
-            string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob WHERE custId=@Id";
+            string exist = Session["Phone"].ToString();
+            if (exist != null)
+            {
+                if (exist != txtPhone.Text)
+                {
+                    if (db.Customers.Any(c => c.custPhoneNo == txtPhone.Text.Trim()))
+                    {
+                        //display error msg
+                        cvExistPhone.IsValid = false;
+                    }
+                }
+            }
+            if (Page.IsValid)
+            {
+                string id = lblId.Text;
+                string name = txtName.Text;
+                string email = txtEmail.Text;
+                string phone = txtPhone.Text;
+                string gender = rblGender.SelectedValue.Substring(0, 1);
+                DateTime dob = DateTime.Parse(txtDob.Text);
+                string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob WHERE custId=@Id";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
-                
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", id);
-            cmd.Parameters.AddWithValue("@Name", name);
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.Parameters.AddWithValue("@Phone", phone);
-            cmd.Parameters.AddWithValue("@Gender", gender);
-            cmd.Parameters.AddWithValue("@Dob", dob);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Gender", gender);
+                cmd.Parameters.AddWithValue("@Dob", dob);
 
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
 
-            Response.Redirect("ManageActiveUser.aspx");
+                Response.Redirect("ManageActiveUser.aspx");
+            }
         }
 
         protected void btnSuspended_Click(object sender, EventArgs e)
@@ -99,6 +116,7 @@ namespace MovieTicketingSystem.StaffOnly
         txtName.Text = selectedRow.Cells[1].Text;
         txtEmail.Text = selectedRow.Cells[2].Text;
         txtPhone.Text = selectedRow.Cells[4].Text;
+        Session["Phone"] = selectedRow.Cells[4].Text;
         txtDob.Text = (Convert.ToDateTime(selectedRow.Cells[3].Text).ToString("yyyy-MM-dd"));
         rblGender.SelectedValue = selectedRow.Cells[5].Text;
 

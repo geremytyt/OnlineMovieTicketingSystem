@@ -17,7 +17,7 @@
         <asp:RequiredFieldValidator ID="rfvNewPwd" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter your password" ControlToValidate="txtNewPwd" SetFocusOnError="true"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revNewPwd" runat="server" ControlToValidate="txtNewPwd" Cssclass="text-danger" Display="Dynamic" ErrorMessage="Password is too weak" SetFocusOnError="true" ValidationExpression="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$" ></asp:RegularExpressionValidator>
     </div>
-    <i id="cfmpasswordVisibility2" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility2()"  style="width:5%;margin-top:30px"></i>
+    <i id="newpasswordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility2()"  style="width:5%;margin-top:30px"></i>
     <div style="border: 1px solid white;width:70%;">
         <label class="text-left mt-2">Password strength:</label>
         <label id="lblStrength"></label>
@@ -151,7 +151,7 @@
         }
         function togglePasswordVisibility2() {
             var passwordInput = document.getElementById('<%= txtNewPwd.ClientID %>');
-            var iconPasswordVisibility = document.getElementById('cfmpasswordVisibility');
+            var iconPasswordVisibility = document.getElementById('newpasswordVisibility');
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
@@ -165,7 +165,7 @@
         }
         function togglePasswordVisibility3() {
             var passwordInput = document.getElementById('<%= txtCfmPwd.ClientID %>');
-            var iconPasswordVisibility = document.getElementById('passwordVisibility');
+            var iconPasswordVisibility = document.getElementById('cfmpasswordVisibility');
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

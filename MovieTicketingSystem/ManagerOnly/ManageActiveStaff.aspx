@@ -24,14 +24,14 @@
                 <asp:Button ID="btnResigned" runat="server" Text="Resigned" CssClass="nav-link w-25 text-white mb-2" BorderColor="White" CausesValidation="false" OnClick="btnResigned_Click"/>
             </div>
             <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" ClientIDMode="Static"
-                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+                CssClass="table table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="staffId" HeaderText="ID" SortExpression="staffId" ReadOnly="True"></asp:BoundField>
                     <asp:BoundField DataField="staffName" HeaderText="Name" SortExpression="staffName"></asp:BoundField>
                     <asp:BoundField DataField="staffEmail" HeaderText="Email" SortExpression="staffEmail"></asp:BoundField>
                     <asp:BoundField DataField="staffIC" HeaderText="IC" SortExpression="staffIC"></asp:BoundField>
-                    <asp:BoundField DataField="staffPhoneNo" HeaderText="Phone No" SortExpression="staffPhoneNo"></asp:BoundField>
-                    <asp:BoundField DataField="staffGender" HeaderText="Gender" SortExpression="staffGender"></asp:BoundField>
+                    <asp:BoundField DataField="staffPhoneNo" HeaderText="Phone" SortExpression="staffPhoneNo"></asp:BoundField>
+                    <asp:BoundField DataField="staffGender" HeaderText="gender" SortExpression="staffGender"></asp:BoundField>
                     <asp:BoundField DataField="position" HeaderText="Position" SortExpression="position"></asp:BoundField>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
@@ -94,7 +94,7 @@
                                 <asp:DropDownList ID="ddlPosition" CssClass="w-100 p-2 bg-dark" runat="server" ForeColor="White">
                                     <asp:ListItem>Cashier</asp:ListItem>
                                     <asp:ListItem>Usher</asp:ListItem>
-                                    <asp:ListItem>Film Projectionist</asp:ListItem>
+                                    <asp:ListItem>Projectionist</asp:ListItem>
                                     <asp:ListItem>Cleaner</asp:ListItem>
                                     <asp:ListItem>Mechanic</asp:ListItem>
                                 </asp:DropDownList>
