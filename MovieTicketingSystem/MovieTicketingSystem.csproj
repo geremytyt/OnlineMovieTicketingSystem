@@ -182,6 +182,7 @@
     <Content Include="ManagerOnly\FoodSaleReport.aspx" />
     <Content Include="ManagerOnly\MovieReport.aspx" />
     <Content Include="ManagerOnly\SaleReport.aspx" />
+    <Content Include="ManagerOnly\TopPurchasedFoodReport.aspx" />
     <Content Include="ManagerOnly\UserReport.aspx" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -392,6 +393,13 @@
     </Compile>
     <Compile Include="ManagerOnly\SaleReport.aspx.designer.cs">
       <DependentUpon>SaleReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOnly\TopPurchasedFoodReport.aspx.cs">
+      <DependentUpon>TopPurchasedFoodReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\TopPurchasedFoodReport.aspx.designer.cs">
+      <DependentUpon>TopPurchasedFoodReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerOnly\UserReport.aspx.cs">
       <DependentUpon>UserReport.aspx</DependentUpon>

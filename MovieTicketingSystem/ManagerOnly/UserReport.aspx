@@ -14,6 +14,9 @@
                     <li class="nav-item mb-3">
                         <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab  nav-link " type="button" OnClick="btnFoodReport_Click"  CausesValidation="false" />
                     </li>
+                     <li class="nav-item mb-3">
+                        <asp:Button ID="btnTopFoodPurchase" runat="server" Text="Top Purchase Food Report " class="profileTab nav-link " type="button" OnClick="btnTopFoodPurchase_Click" CausesValidation="false" />
+                    </li>
                     <li class="nav-item mb-3">
                         <asp:Button ID="btnUser" runat="server" Text="User Report" class="profileTab active nav-link" type="button" OnClick="btnUser_Click" CausesValidation="false"/>
                     </li>

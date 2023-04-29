@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.ManagerOnly
 {
 
 
-    public partial class FoodSaleReport
+    public partial class TopPurchasedFoodReport
     {
 
         /// <summary>
@@ -67,6 +67,24 @@ namespace MovieTicketingSystem.ManagerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
+
+        /// <summary>
+        /// topAmountDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl topAmountDiv;
+
+        /// <summary>
+        /// tbtotalItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbtotalItem;
 
         /// <summary>
         /// timeRangeDiv control.

@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="FoodSaleReport.aspx.cs" Inherits="MovieTicketingSystem.ManagerOnly.FoodSaleReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="TopPurchasedFoodReport.aspx.cs" Inherits="MovieTicketingSystem.ManagerOnly.TopPurchasedFoodReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var options = {
-                title: 'Food Sale Summary Report',
+                title: 'Top Food Sale Report',
                 width: 600,
                 height: 400,
                 bar: { groupWidth: "95%" },
@@ -16,7 +16,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "FoodSaleReport.aspx/GetChartData",
+                url: "TopPurchasedFoodReport.aspx/GetChartData",
                 data: '{}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -27,7 +27,7 @@
                     for (var i = 0; i < r.d.length; i++) {
                         data.addRow([String(r.d[i][0]), parseFloat(r.d[i][1])]);
                     }
-                    var chart = new google.visualization.ColumnChart($("#ChartReport")[0]);
+                    var chart = new google.visualization.PieChart($("#ChartReport")[0]);
                     chart.draw(data, options);
                 },
                 failure: function (r) {
@@ -52,10 +52,10 @@
                         <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab  nav-link" type="button" OnClick="btnMovieReport_Click" CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">
-                        <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab active nav-link " type="button" OnClick="btnFoodReport_Click" CausesValidation="false" />
+                        <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab  nav-link " type="button" OnClick="btnFoodReport_Click" CausesValidation="false" />
                     </li>
                      <li class="nav-item mb-3">
-                        <asp:Button ID="btnTopFoodPurchase" runat="server" Text="Top Purchase Food Report " class="profileTab nav-link " type="button" OnClick="btnTopFoodPurchase_Click" CausesValidation="false" />
+                        <asp:Button ID="btnTopFoodPurchase" runat="server" Text="Top Purchase Food Report " class="profileTab active nav-link " type="button" OnClick="btnTopFoodPurchase_Click" CausesValidation="false" />
                     </li>
                     <li class="nav-item mb-3">
                         <asp:Button ID="btnUser" runat="server" Text="User Report" class="profileTab nav-link" type="button" OnClick="btnUser_Click" CausesValidation="false"/>
@@ -73,6 +73,12 @@
 
                    <div id="ReportSetting">
                        <asp:Panel ID="Panel1" runat="server">
+                            <div class="row mx-auto" runat="server" >
+                         <div class="form-floating m-auto mb-3 w-50" id="topAmountDiv" runat="server" >
+                            <asp:TextBox ID="tbtotalItem" runat="server" class="form-control" placeholder="Total Item" AutoPostBack="true" OnTextChanged="tbtotalItem_TextChanged" AutoComplete="off" TextMode="Number"></asp:TextBox>                                                         
+                          <label for="tbtotalItem"> Total Item </label> 
+                    </div>
+                      </div>
                       <div class="row mx-auto" runat="server" id="timeRangeDiv">
                         <div class="form-floating m-auto mb-3">
                             <asp:TextBox ID="tbFoodReportStartDate" runat="server" class="form-control" placeholder="dd/mm/yyyy" AutoPostBack="true" AutoComplete="off" TextMode="Date" OnTextChanged="tbFoodReportStartDate_TextChanged" onkeypress="return false;" onpaste="return false" ></asp:TextBox>                            
