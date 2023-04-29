@@ -56,7 +56,7 @@
     }
     function togglePasswordVisibility2() {
         var passwordInput = document.getElementById('<%= txtCfmPwd.ClientID %>');
-            var iconPasswordVisibility = document.getElementById('cfmpasswordVisibility');
+            var iconPasswordVisibility = document.getElementById('passwordVisibility2');
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

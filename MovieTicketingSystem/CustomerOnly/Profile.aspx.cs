@@ -39,6 +39,7 @@ namespace MovieTicketingSystem.CustomerOnly
                         txtEmail.Text = dr[2].ToString();
                         txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
                         txtPhone.Text = dr[5].ToString();
+                        Session["Phone"] = dr[5].ToString();
                         rblGender.SelectedValue = dr[6].ToString();
                         imgPreview.ImageUrl = dr[7].ToString();
 
@@ -46,7 +47,6 @@ namespace MovieTicketingSystem.CustomerOnly
                     con.Close();
                 }
             }
-            Session["Phone"] = txtPhone.Text;
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace MovieTicketingSystem.CustomerOnly
             string exist = Session["Phone"].ToString();
             if (exist != null)
             {
-                if (exist == txtPhone.Text)
+                if (exist != txtPhone.Text)
                 {
                     if (db.Customers.Any(c => c.custPhoneNo == txtPhone.Text.Trim()))
                     {
@@ -100,7 +100,8 @@ namespace MovieTicketingSystem.CustomerOnly
                 cmd.ExecuteNonQuery();
 
                 con.Close();
-                Response.Redirect("Profile.aspx");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your profile has been edited successfully'); window.location.href='../CustomerOnly/Profile.aspx';", true);
+
             }
            
 

@@ -23,12 +23,12 @@ namespace MovieTicketingSystem.Annonymous
         {
 
             string email = txtEmail.Text;
-            User u = db.Users.SingleOrDefault(
-            user => user.Username == email && (user.Role=="Staff" || user.Role=="Manager"));
-            if (u != null)
+            Staff s = db.Staffs.SingleOrDefault(
+            staff => staff.staffEmail == email && staff.staffStatus != "Resigned");
+            if (s != null)
             {
                 string token = generateToken();
-                string destination = "https://localhost:44377/Annonymous/StaffResetPwd2.aspx?token=" + token;
+                string destination = "https://localhost:44377/Annonymous/StaffResetPwd2.aspx?email=" + txtEmail.Text + "&token=" + token;
                 var apiKey = "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";
 
                 // Create a new SendGrid client
@@ -36,10 +36,10 @@ namespace MovieTicketingSystem.Annonymous
 
                 // Create a new email message
                 var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
-                var to = new EmailAddress("yinwei911@gmail.com", "Staff");
-                var subject = "Reset your Password";
-                var plainTextContent = "Here is your token";
-                var htmlContent = "Reset your password " + "<a href=" + destination + ">here</a>";
+                var to = new EmailAddress(txtEmail.Text, s.staffName);
+                var subject = "Password Reset Request at Starlight Cinema";
+                var plainTextContent = "Password Reset Token from Starlight Cinema";
+                var htmlContent = "<div><h1>Password Reset</h1>\n<p>Hi there,</p>\n<p>You recently requested to reset your password. To do so, please click on the button below:</p>\n<p><a href=" + destination + "><button>Reset Password</button></a></p>\n<p>If you did not make this request, please ignore this message.</p>\n<p>Thanks,<br>Starlight Cinema</p></div>";
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
                 // Send the email message
@@ -49,13 +49,12 @@ namespace MovieTicketingSystem.Annonymous
                 if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
                 {
                     // Email sent successfully
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is sent successfully. Please go to your email to check.');", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is sent. Please check your email.');", true);
                 }
                 else
                 {
                     // Email failed to send
-                    Response.Redirect("StaffResetPwd1.aspx");
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is not sent. Please retry.');", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('The token is not sent. Please retry.'); window.location.href='../Annonymous/StaffResetPwd1.aspx';", true);
                 }
             }
             else
@@ -73,25 +72,25 @@ namespace MovieTicketingSystem.Annonymous
                 .Select(s => s[random.Next(s.Length)]).ToArray());
             string expiryDate = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            string token = randomString + "/" + txtEmail.Text + "/" + expiryDate;
+            string token = randomString + "/" + expiryDate;
 
             string email = txtEmail.Text;
             string hash = Security.GetHash(token);
-            string sql = "UPDATE Staff SET staffSignature=@signature WHERE staffEmail=@email";
+            string sql = "UPDATE Staff SET staffToken=@token WHERE staffEmail=@email";
 
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
 
             SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@signature", hash);
+            cmd.Parameters.AddWithValue("@token", token);
             cmd.Parameters.AddWithValue("@email", email);
 
             cmd.ExecuteNonQuery();
 
             con.Close();
 
-            return token;
+            return hash;
         }
     }
 }

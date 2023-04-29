@@ -24,6 +24,6 @@ namespace MovieTicketingSystem.Model
         public string staffPhoto { get; set; }
         public string position { get; set; }
         public string staffStatus { get; set; }
-        public string staffSignature { get; set; }
+        public string staffToken { get; set; }
     }
 }

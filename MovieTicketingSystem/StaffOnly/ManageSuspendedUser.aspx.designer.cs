@@ -78,15 +78,6 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// cvExistEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvExistEmail;
-
-        /// <summary>
         /// txtDob control.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,15 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhone;
+
+        /// <summary>
+        /// cvExistPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvExistPhone;
 
         /// <summary>
         /// revPhone control.

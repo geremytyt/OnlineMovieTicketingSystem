@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginControl.ascx.cs" Inherits="MovieTicketingSystem.User_Control.LoginControl" %>
+<asp:Panel ID="Panel1" runat="server" DefaultButton="btnLogin">
 <div class="container-fluid">
     <div class="row mt-2 justify-content-center">
     <i class="fa-solid fa-user" style="width:10%;margin-top:30px"></i>
@@ -34,6 +35,7 @@
         <asp:Button class="btn btn-default w-50 mt-3 " ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
     </div>
 </div>
+</asp:Panel>
 <script>
         function togglePasswordVisibility() {
             var passwordInput = document.getElementById('<%= txtPassword.ClientID %>');

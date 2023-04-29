@@ -24,14 +24,14 @@
                 <asp:Button ID="btnResigned" runat="server" Text="Resigned" CssClass="nav-link w-25 text-white mb-2" BorderColor="White" CausesValidation="false" OnClick="btnResigned_Click"/>
             </div>
             <asp:GridView ID="gvStaff" runat="server" AutoGenerateColumns="False" DataKeyNames="staffId" ClientIDMode="Static"
-                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
+                CssClass="table table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="staffId" HeaderText="ID" SortExpression="staffId" ReadOnly="True"></asp:BoundField>
                     <asp:BoundField DataField="staffName" HeaderText="Name" SortExpression="staffName"></asp:BoundField>
                     <asp:BoundField DataField="staffEmail" HeaderText="Email" SortExpression="staffEmail"></asp:BoundField>
                     <asp:BoundField DataField="staffIC" HeaderText="IC" SortExpression="staffIC"></asp:BoundField>
-                    <asp:BoundField DataField="staffPhoneNo" HeaderText="Phone No" SortExpression="staffPhoneNo"></asp:BoundField>
-                    <asp:BoundField DataField="staffGender" HeaderText="Gender" SortExpression="staffGender"></asp:BoundField>
+                    <asp:BoundField DataField="staffPhoneNo" HeaderText="Phone" SortExpression="staffPhoneNo"></asp:BoundField>
+                    <asp:BoundField DataField="staffGender" HeaderText="gender" SortExpression="staffGender"></asp:BoundField>
                     <asp:BoundField DataField="position" HeaderText="Position" SortExpression="position"></asp:BoundField>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
@@ -49,7 +49,7 @@
                     <h3 class="text-center mt-2">Record</h3>
                         <div class="w-75">
                             <label class="">Staff ID:</label>
-                            <asp:Label ID="lblId" runat="server" Text="asd" CssClass="m-2"></asp:Label>
+                            <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
                         </div>
                         <div class="form-floating w-75" id="float">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
@@ -59,13 +59,14 @@
                         <div class="form-floating w-75" id="float1">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
                             <label for="txtEmail">Email</label>
+                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Please enter email" SetFocusOnError="true" ControlToValidate="txtEmail" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
                             <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered" SetFocusOnError="true"></asp:CustomValidator> 
                         </div>
                         <div class="form-floating w-75" id="float5">
                             <asp:TextBox ID="txtIC" runat="server" CssClass="form-control userInput" placeholder=" " />
                             <label for="txtDob">IC</label>
                             <asp:RequiredFieldValidator ID="rfvIC" runat="server" ErrorMessage="Please enter IC" SetFocusOnError="true" ControlToValidate="txtIC" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="\d{12}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="revIC" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of IC" SetFocusOnError="true" ControlToValidate="txtIC" ValidationExpression="\d{12}"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-floating w-75" id="float4">
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
@@ -94,7 +95,7 @@
                                 <asp:DropDownList ID="ddlPosition" CssClass="w-100 p-2 bg-dark" runat="server" ForeColor="White">
                                     <asp:ListItem>Cashier</asp:ListItem>
                                     <asp:ListItem>Usher</asp:ListItem>
-                                    <asp:ListItem>Film Projectionist</asp:ListItem>
+                                    <asp:ListItem>Projectionist</asp:ListItem>
                                     <asp:ListItem>Cleaner</asp:ListItem>
                                     <asp:ListItem>Mechanic</asp:ListItem>
                                 </asp:DropDownList>

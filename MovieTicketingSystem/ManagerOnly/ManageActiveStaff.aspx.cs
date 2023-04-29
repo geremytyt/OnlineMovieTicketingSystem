@@ -30,7 +30,7 @@ namespace MovieTicketingSystem.ManagerOnly
             }
             gvStaff.UseAccessibleHeader = true;
             gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
-
+            lblId.Text = generateID();
         }
 
         private string generateID()
