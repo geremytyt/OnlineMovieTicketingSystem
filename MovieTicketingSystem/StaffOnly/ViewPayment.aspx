@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/style.css" rel="stylesheet" />
-     <link href="../css/manageSchedule.css" rel="stylesheet" />
+    
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
@@ -18,10 +18,10 @@
                 });
         });
     </script>
-
+    <div class="mx-auto" style="width:85%;">
     <div class="container" style="height:700px;">
-        <h2 class="text-white">Maintain Payment</h2>
-        <hr />
+        <h2 class="text-white pt-2">Maintain Payment</h2>
+        <hr width="100%" style="border: 1px solid white"/>
         <div class="containerPayment text-white">
             <%--<div class="d-flex justify-content-end">
                 <asp:TextBox ID="txtPaymentSearch" runat="server" style="width:40%;" Cssclass="ms-4 rounded-4 p-2" placeholder="Search"></asp:TextBox>
@@ -49,5 +49,6 @@
             </asp:GridView>
         </div>
 
+    </div>
     </div>
 </asp:Content>

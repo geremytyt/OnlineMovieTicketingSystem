@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,7 @@ namespace MovieTicketingSystem.StaffOnly
                         lblPaymentDate.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortDateString();
                         lblPaymentTime.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortTimeString();
                         lblPaymentAmt.Text = "RM " + reader["paymentAmount"].ToString();
+                        lblCardNo.Text = reader["cardNo"].ToString();
 
                         string status = reader["status"].ToString();
                         ddlStatus.SelectedValue = status;
@@ -50,28 +52,35 @@ namespace MovieTicketingSystem.StaffOnly
                         {
                             lblTicketTotal.Text = "RM " + reader["ticketTotal"].ToString();
                             lblFoodTotal.Text = "RM " + reader["foodTotal"].ToString();
-                            lblCustID.Text = reader["custID"].ToString();
+                            lblCustID.Text = reader["custId"].ToString();
                         }
                         reader.Close();
 
-                        cmd = new SqlCommand("SELECT * FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
+                        // Retrieve all ticket numbers for a given purchaseNo and store them in a DataTable
+                        DataTable dt = new DataTable();
+                        conn = new SqlConnection(cs);
+                        
+                        conn.Open();
+                        cmd = new SqlCommand("SELECT ticketNo FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
                         cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblTicketNo.Text = reader["ticketNo"].ToString();
-                        }
-                        reader.Close();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
 
-                        cmd = new SqlCommand("SELECT * FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
+                        rptTickets.DataSource = dt;
+                        rptTickets.DataBind();
+
+
+                        DataTable dt2 = new DataTable();
+                        conn = new SqlConnection(cs);
+                        cmd = new SqlCommand("SELECT menuId FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
                         cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblMenuID.Text = reader["menuId"].ToString();
-                        }
-                        reader.Close();
+                        SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+                        adapter2.Fill(dt2);
 
+                        rptMenuID.DataSource = dt2;
+                        rptMenuID.DataBind();
+
+                       
                     }
                     conn.Close();
                 }

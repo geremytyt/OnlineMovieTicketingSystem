@@ -173,7 +173,7 @@ namespace MovieTicketingSystem.CustomerOnly
                             Schedule = s,
                             scheduleNo = s.scheduleNo,
                             seatNo = seatNum[i],
-                            ticketPrice = (decimal)adultPrice,
+                            ticketPrice = (decimal)childrenPrice,
                             ticketCategory = "Children"
                         };
                         tickets.Add(t);
@@ -185,7 +185,7 @@ namespace MovieTicketingSystem.CustomerOnly
                             Schedule = s,
                             scheduleNo = s.scheduleNo,
                             seatNo = seatNum[i],
-                            ticketPrice = (decimal)adultPrice,
+                            ticketPrice = (decimal)seniorPrice,
                             ticketCategory = "Senior"
                         };
                         tickets.Add(t);
