@@ -4,48 +4,49 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MovieTicketingSystem.Model;
-using System.Security.Policy;
-using System.Web.Services;
-using System.Security.Cryptography;
 
 namespace MovieTicketingSystem.ManagerOnly
 {
-
-    public partial class FoodSaleReport : System.Web.UI.Page
+    public partial class TopPurchasedFoodReport : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
         string cs = Global.cs;
-        private static string start { get; set; } 
-        private static string end { get; set; } 
+        private static int topitem { get; set; }
+        private static string start { get; set; }
+        private static string end { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             DateTime current = DateTime.Now;
-
-           
 
             litDate.Text = current.ToString();
 
             if (!IsPostBack)
             {
+                string top = Request.QueryString["Top"] ?? "";
                 start = Request.QueryString["Start"] ?? "";
                 end = Request.QueryString["End"] ?? "";
 
-                if(start != "")
+                if (top != "")
+                {
+                    tbtotalItem.Text = top;
+                    topitem = int.Parse(top);
+                }
+
+                if (start != "")
                 {
                     tbFoodReportStartDate.Text = start.ToString();
                 }
-                
+
                 if (end != "")
                 {
                     tbFoodReportEndDate.Text = end.ToString();
                 }
 
-                if (start != "" && end !="")
+                if (start != "" && top != "" && end != "")
                 {
                     bindGrid();
                 }
@@ -66,7 +67,7 @@ namespace MovieTicketingSystem.ManagerOnly
                 string constr = Global.cs;
 
                 List<object> chartData = new List<object>();
-               
+
                 using (SqlConnection con = new SqlConnection(constr))
                 {
                     using (SqlCommand cmd = new SqlCommand(query))
@@ -74,19 +75,19 @@ namespace MovieTicketingSystem.ManagerOnly
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = con;
                         con.Open();
-                       
+
                         using (SqlDataReader sdr = cmd.ExecuteReader())
                         {
                             while (sdr.Read())
                             {
                                 chartData.Add(new object[]
                                 {
-                                    sdr["name"].ToString(),(decimal)sdr["Total_Money"]
+                                    sdr["name"].ToString(),(int)sdr["Total_Item_Sold"]
                                 });
                             }
 
                         }
-                        
+
                         con.Close();
 
                         return chartData;
@@ -100,7 +101,7 @@ namespace MovieTicketingSystem.ManagerOnly
             }
 
         }
-        
+
         private void bindGrid()
         {
             string sql = getQueryString();
@@ -125,15 +126,20 @@ namespace MovieTicketingSystem.ManagerOnly
 
         private static string getQueryString()
         {
-            return "SELECT Menu.menuId AS ID, Menu.menuName AS name, SUM(PurchaseMenu.menuQty) AS Total_Item_Sold, Menu.menuPrice AS Price, SUM(PurchaseMenu.menuQty) * Menu.menuPrice AS Total_Money " +
+            return "SELECT TOP " + topitem.ToString() +
+                "Menu.menuId, Menu.menuName as name, SUM(PurchaseMenu.menuQty) AS Total_Item_Sold, (SUM(PurchaseMenu.menuQty) * Menu.menuPrice) * 100 /  " +
+                "(Select SUM(Purchase.foodTotal) FROM payment, purchase  " +
+                "WHERE Payment.purchaseNo = Purchase.purchaseNo  " +
+                "AND CONVERT(Date, Payment.paymentDateTime, 101) <= '" + end + "' " +
+                "AND CONVERT(Date, Payment.paymentDateTime, 101) > '" + start + "') precent_to_Total " +
                 "From Menu, PurchaseMenu, Purchase, Payment " +
                 "WHERE Menu.menuId = PurchaseMenu.menuId " +
                 "AND PurchaseMenu.purchaseNo = Purchase.purchaseNo " +
                 "AND Payment.purchaseNo = Purchase.purchaseNo " +
-                "AND CONVERT(Date, Payment.paymentDateTime, 23) <= '"+ end + "' " +
-                "AND CONVERT(Date, Payment.paymentDateTime, 23) >= '" + start + "' " +
-                "Group By  Menu.menuId, Menu.menuName, Menu.menuPrice " +
-                 "Order By Total_Money DESC";
+                "AND CONVERT(Date, Payment.paymentDateTime, 101) <= '" + end + "' " +
+                "AND CONVERT(Date, Payment.paymentDateTime, 101) > '" + start + "' " +
+                "Group By  Menu.menuId,  Menu.menuName, Menu.menuPrice " +
+                "Order By Total_Item_Sold DESC";
         }
 
         protected void btnSale_Click(object sender, EventArgs e)
@@ -155,28 +161,39 @@ namespace MovieTicketingSystem.ManagerOnly
         {
             Response.Redirect("UserReport.aspx");
         }
+
         protected void btnTopFoodPurchase_Click(object sender, EventArgs e)
         {
             Response.Redirect("TopPurchasedFoodReport.aspx");
         }
 
+        protected void tbtotalItem_TextChanged(object sender, EventArgs e)
+        {
+            if (tbFoodReportStartDate.Text != null || tbFoodReportEndDate.Text != null)
+            {
+                Response.Redirect("TopPurchasedFoodReport.aspx?Top=" + tbtotalItem.Text + "&&Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
+            }
+        }
 
         protected void tbFoodReportStartDate_TextChanged(object sender, EventArgs e)
         {
-                        
-            if ( tbFoodReportEndDate.Text != null)
+
+            if (tbtotalItem.Text != null || tbFoodReportEndDate.Text != null)
             {
-                Response.Redirect("FoodSaleReport.aspx?Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
+                Response.Redirect("TopPurchasedFoodReport.aspx?Top=" + tbtotalItem.Text + "&&Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
             }
         }
 
         protected void tbFoodReportEndDate_TextChanged(object sender, EventArgs e)
         {
-            if (tbFoodReportStartDate.Text != null)
+            if (tbtotalItem.Text != null || tbFoodReportStartDate.Text != null)
             {
-                Response.Redirect("FoodSaleReport.aspx?Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
+                Response.Redirect("TopPurchasedFoodReport.aspx?Top=" + tbtotalItem.Text + "&&Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
             }
         }
 
+        
     }
+
+
 }

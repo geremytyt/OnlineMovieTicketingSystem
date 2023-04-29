@@ -42,6 +42,15 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.WebControls.Button btnFoodReport;
 
         /// <summary>
+        /// btnTopFoodPurchase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTopFoodPurchase;
+
+        /// <summary>
         /// btnUser control.
         /// </summary>
         /// <remarks>
@@ -58,24 +67,6 @@ namespace MovieTicketingSystem.ManagerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
-
-        /// <summary>
-        /// topAmountDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl topAmountDiv;
-
-        /// <summary>
-        /// tbtotalItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbtotalItem;
 
         /// <summary>
         /// timeRangeDiv control.

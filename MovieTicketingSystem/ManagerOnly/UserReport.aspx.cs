@@ -145,6 +145,11 @@ namespace MovieTicketingSystem.ManagerOnly
             Response.Redirect("FoodSaleReport.aspx");
         }
 
+        protected void btnTopFoodPurchase_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TopPurchasedFoodReport.aspx");
+        }
+
         protected void btnUser_Click(object sender, EventArgs e)
         {
             Response.Redirect("UserReport.aspx");
