@@ -3,7 +3,7 @@
     <div class="col-md-10 py-5 mx-auto text-white">
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
-                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
+                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
                 <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control d-block mx-auto w-75 mt-2" onchange="uploadImg()"/>
                 <hr class="mx-auto w-75" style="border:1px solid white;"/>
                 <div class="row ">
