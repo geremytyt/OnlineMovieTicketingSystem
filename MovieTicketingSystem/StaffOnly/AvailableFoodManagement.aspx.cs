@@ -299,10 +299,11 @@ namespace MovieTicketingSystem.StaffOnly
                 lblMenuId.Text = dr[0].ToString().Trim();
                 tbName.Text = dr[1].ToString().Trim();
                 DDLCategory.SelectedItem.Text = dr[2].ToString().Trim();
-
-
                 tbPrice.Text = dr[3].ToString().Trim();
                 tbDecs.Text = dr[4].ToString().Trim();
+
+                btn_edit.Visible = true;
+                btn_Discontinue.Visible = true;
             }
             else
             {
@@ -310,6 +311,9 @@ namespace MovieTicketingSystem.StaffOnly
                 tbName.Text = " ";
                 DDLCategory.ClearSelection();
                 tbPrice.Text = " ";
+
+                btn_edit.Visible = false;
+                btn_Discontinue.Visible = false;
             }
 
             //step 8 close dr and close con

@@ -3,9 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="../css/style.css" rel="stylesheet" />
-    <%--<link href="../css/payment.css" rel="stylesheet" />--%>
-     <%--<link href="../css/manageSchedule.css" rel="stylesheet" />--%>
-
+   
     <div class="container" style="overflow:hidden;">
     <div class="paymentSummaryContainer" style="width:60%; margin: auto; margin-top:20px;">
         <br />
@@ -126,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="m-2 row">
+            <%--<div class="m-2 row">
                 <div class="col-6">
                     <label>Ticket Number</label>
                 </div>
@@ -134,9 +132,41 @@
                 <div class="col-3 text-right">
                     <asp:Label ID="lblTicketNo" runat="server" Text="" CssClass="m-2"></asp:Label>
                 </div>
-            </div>
+            </div>--%>
 
-            <div class="m-2 row">
+            <asp:Repeater ID="rptTickets" runat="server">
+                <ItemTemplate>
+                    <div class="m-2 row">
+                        <div class="col-6">
+                            <label><%# (Container.ItemIndex == 0) ? "Ticket Number" : "" %></label>
+                        </div>
+                        <div class="col-3 text-center"></div>
+                        <div class="col-3 text-right">
+                            <asp:Label ID="lblTicketNo" runat="server" Text='<%# Eval("ticketNo") %>' CssClass="m-2"></asp:Label>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+
+            <asp:Repeater ID="rptMenuID" runat="server">
+                <ItemTemplate>
+                    <div class="m-2 row">
+                        <div class="col-6">
+                            <label><%# (Container.ItemIndex == 0) ? "Menu Id" : "" %></label>
+                        </div>
+                        <div class="col-3 text-center"></div>
+                        <div class="col-3 text-right">
+                            <asp:Label ID="lblMenuID" runat="server" Text='<%# Eval("menuId") %>' CssClass="m-2"></asp:Label>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+
+
+
+
+
+            <%--<div class="m-2 row">
                 <div class="col-6">
                     <label>Menu ID</label>
                 </div>
@@ -144,7 +174,7 @@
                 <div class="col-3 text-right">
                     <asp:Label ID="lblMenuID" runat="server" Text="" CssClass="m-2"></asp:Label>
                 </div>
-            </div>
+            </div>--%>
 
             <br />  
         </div>

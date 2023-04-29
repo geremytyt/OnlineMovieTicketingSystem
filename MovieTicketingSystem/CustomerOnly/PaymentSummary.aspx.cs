@@ -4,15 +4,16 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-//using MailKit.Net.Smtp;
-//using MailKit;
-//using MimeKit;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MailKit.Security;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using MovieTicketingSystem.Model;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
@@ -23,18 +24,64 @@ namespace MovieTicketingSystem.CustomerOnly
         {
             if (!IsPostBack)
             {
-                //get info from previous page
-                //string paymentNo = Request.QueryString["paymentNo"];
-                string paymentNo = "T0001";
-                
+                //Get the customer cart from session
+                List<CartItem> cart = (List<CartItem>)HttpContext.Current.Session["Cart"];
+                List<Ticket> tickets = (List<Ticket>)HttpContext.Current.Session["Tickets"];
 
+
+               
+                //get all the details of movie selected
+                if(tickets != null)
+                {
+                    Schedule s = (Schedule)Session["schedule"];
+                    HttpCookie cookie2 = Request.Cookies["movieName"];
+                    string scheduleDateTime = s.scheduleDateTime.ToString();
+                    string[] dateTimeParts = scheduleDateTime.Split(' ');
+                    lblShowingDate.Text = dateTimeParts[0];
+                    lblShowingTime.Text = dateTimeParts[1];
+                    lblMovie.Text = cookie2.Value;
+
+                    string seatNos = "";
+                    int count = 0;
+                    foreach (Ticket ticket in tickets)
+                    {
+                        seatNos += ticket.seatNo.ToString() + ",";
+                        count++;
+                        if (count == 3)
+                        {
+                            seatNos += "<br /> ";
+                            count = 0;
+                        }
+                    }
+                    lblSeatNo.Text = seatNos.TrimEnd(',').Trim();
+                }
+                else
+                {
+                    movieDetails.Visible = false;
+                }
+                
+                //get food purchase info
+                if (cart != null)
+                {
+                    rptCartItems.DataSource = cart;
+                    rptCartItems.DataBind();
+                   
+                }
+                else
+                {
+                    cartDetails.Visible = false;
+                }
+
+                //get info from previous page
+                string paymentNo = Request.QueryString["paymentNo"];
+                
+                
                 //Retrieve payment details from database
                 string paymentQuery = "SELECT paymentNo, purchaseNo, paymentDateTime, paymentAmount, cardNo, status FROM Payment WHERE paymentNo = @paymentNo";
           
 
                 SqlConnection connection = new SqlConnection(cs);       
                 connection.Open();
-
                 // Retrieve payment details
                 SqlCommand paymentCommand = new SqlCommand(paymentQuery, connection);
                 paymentCommand.Parameters.AddWithValue("@paymentNo", paymentNo);
@@ -58,6 +105,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void btnDone_Click(object sender, EventArgs e)
         {
+            List<CartItem> cart = (List<CartItem>)HttpContext.Current.Session["Cart"];
             // Get the custID from session
             HttpCookie cookie = Request.Cookies["Customer"];
             string custId = cookie.Value.ToString();
@@ -82,40 +130,75 @@ namespace MovieTicketingSystem.CustomerOnly
 
 
             // Generate the QR code byte array
-            //var qrCodeBytes = QrCode.GenerateQrCode("P0002");
+            string paymentNo = Request.QueryString["paymentNo"];
+            var qrCodeBytes = QrCode.GenerateQrCode(paymentNo);
 
-            // Attach the QR code to an email and send it
-            //var message = new MimeMessage();
-            //message.From.Add(new MailboxAddress("StarLight Cinema", "geremytyt-pm20@student.tarc.edu.my"));
-            //message.To.Add(new MailboxAddress(custName, "geremytanyentsen@gmail.com"));
-            //message.Subject = "Purchase Summary";
+            var apiKey = "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";
 
-            //var builder = new BodyBuilder();
-            //builder.HtmlBody = $@"<p>Thank you for your purchase! Here are your payment details.</p>
-            //                  <p>Payment Number: {lblPaymentNo.Text}</p>
-            //                  <p>Purchase Number: {lblPurchaseNo.Text}</p>
-            //                  <p>Payment Date and Time: {lblPaymentDateTime.Text}</p>
-            //                  <p>Payment Amount: {lblPaymentAmount.Text}</p>
-            //                  <p>Card Number: {lblCardNo.Text}</p>
-            //                  <br>
-            //                  <p><em>Scan the QR code for purchase number</em></p>";
+            // Create a new SendGrid client
+            var client = new SendGridClient(apiKey);
 
-            //builder.Attachments.Add("qrCode.png", qrCodeBytes, new ContentType("image", "png"));
+            string foodPurchased = "";
 
-            //message.Body = builder.ToMessageBody();
+            if (cart != null)
+            {
+                foreach (CartItem item in cart)
+                {
+                    foodPurchased += item.menuName + ", ";
+                }
+            }
 
-            //using (var client = new SmtpClient())
-            //{
-            //    client.Connect("smtp-relay.sendinblue.com", 587, false);
-            //    client.Authenticate("geremytanyentsen@gmail.com", "yXs5nbHImU4VJkEh");
-            //    client.Send(message);
-            //    client.Disconnect(true);
-            //}
+            // Remove the trailing comma and space
+            foodPurchased = foodPurchased.TrimEnd(',', ' ');
+
+            // Create a new email message
+            var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
+            var to = new EmailAddress("geremytanyentsen@gmail.com", "Staff");
+            var subject = "Payment Confirmation";
+            var plainTextContent = "Payment has been made";
+            var htmlContent = $@" Thank you for your purchase! Here are your purchase details.<br><br>
+                          Payment Number: {lblPaymentNo.Text}<br>
+                          Purchase Number: {lblPurchaseNo.Text}<br>
+                          Payment Date and Time: {lblPaymentDateTime.Text}<br>
+                          Payment Amount: {lblPaymentAmount.Text}<br><br>
+                          Movie: {lblMovie.Text}<br>
+                          Showing Date: {lblShowingDate.Text}<br>
+                          Showing Time: {lblShowingTime.Text}<br>
+                          Seat(s): {lblSeatNo.Text}<br>
+                          Food Purchased: {foodPurchased}<br>
+                          
+                          
+                          Scan the QR code for purchase number";
+
+            // Convert the QR code byte array to a base64 string
+            var qrCodeBase64 = Convert.ToBase64String(qrCodeBytes);
+
+            // Attach the QR code to the email message
+            var attachment = new Attachment
+            {
+                Content = qrCodeBase64,
+                Filename = "qrCode.png",
+                Type = "image/png",
+                Disposition = "attachment"
+            };
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            msg.AddAttachment(attachment);
+
+            // Send the email message
+            var response = client.SendEmailAsync(msg).Result;
+
+            // Check the response status code
+            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            {
+                // Email sent successfully
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Payment confirmation email has been sent');", true);
+            }
 
 
             //Reset Ticket and Cart Session
-            //Session.Remove("Cart");
-            //Session.Remove("Ticket");
+            Session.Remove("Cart");
+            Session.Remove("Tickets");
+            Session.Remove("Schedule");
 
             Response.Redirect("~/Annonymous/Home.aspx");
         }
