@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace MovieTicketingSystem.ErrorPages
 {
-    public partial class FileNotFound_Customer_ : System.Web.UI.Page
+    public partial class _500Error_Staff_ : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

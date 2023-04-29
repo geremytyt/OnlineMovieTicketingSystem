@@ -131,6 +131,10 @@
     <Content Include="CustomerOnly\MovieTicket.aspx" />
     <Content Include="CustomerOnly\ResetPassword.aspx" />
     <Content Include="CustomerOnly\Tickets.aspx" />
+    <Content Include="ErrorPages\500Error%28Customer%29.aspx" />
+    <Content Include="ErrorPages\500Error%28Staff%29.aspx" />
+    <Content Include="ErrorPages\DefaultErrorPage%28Customer%29.aspx" />
+    <Content Include="ErrorPages\DefaultErrorPage%28Staff%29.aspx" />
     <Content Include="ErrorPages\FileNotFound%28Customer%29.aspx" />
     <Content Include="ErrorPages\FileNotFound%28Staff%29.aspx" />
     <Content Include="Image\2 people Combo.jpg" />
@@ -377,6 +381,34 @@
     </Compile>
     <Compile Include="CustomerOnly\Tickets.aspx.designer.cs">
       <DependentUpon>Tickets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\500Error%28Customer%29.aspx.cs">
+      <DependentUpon>500Error%28Customer%29.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\500Error%28Customer%29.aspx.designer.cs">
+      <DependentUpon>500Error%28Customer%29.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\500Error%28Staff%29.aspx.cs">
+      <DependentUpon>500Error%28Staff%29.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\500Error%28Staff%29.aspx.designer.cs">
+      <DependentUpon>500Error%28Staff%29.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\DefaultErrorPage%28Customer%29.aspx.cs">
+      <DependentUpon>DefaultErrorPage%28Customer%29.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\DefaultErrorPage%28Customer%29.aspx.designer.cs">
+      <DependentUpon>DefaultErrorPage%28Customer%29.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\DefaultErrorPage%28Staff%29.aspx.cs">
+      <DependentUpon>DefaultErrorPage%28Staff%29.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\DefaultErrorPage%28Staff%29.aspx.designer.cs">
+      <DependentUpon>DefaultErrorPage%28Staff%29.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPages\FileNotFound%28Customer%29.aspx.cs">
       <DependentUpon>FileNotFound%28Customer%29.aspx</DependentUpon>
