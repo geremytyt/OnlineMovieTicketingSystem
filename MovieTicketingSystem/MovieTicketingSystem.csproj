@@ -77,6 +77,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -181,6 +182,7 @@
     <Content Include="js\Script.js" />
     <Content Include="ManagerOnly\FoodSaleReport.aspx" />
     <Content Include="ManagerOnly\MovieReport.aspx" />
+    <Content Include="ManagerOnly\RefundReport.aspx" />
     <Content Include="ManagerOnly\SaleReport.aspx" />
     <Content Include="ManagerOnly\TopPurchasedFoodReport.aspx" />
     <Content Include="ManagerOnly\UserReport.aspx" />
@@ -386,6 +388,13 @@
     </Compile>
     <Compile Include="ManagerOnly\MovieReport.aspx.designer.cs">
       <DependentUpon>MovieReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOnly\RefundReport.aspx.cs">
+      <DependentUpon>RefundReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOnly\RefundReport.aspx.designer.cs">
+      <DependentUpon>RefundReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerOnly\SaleReport.aspx.cs">
       <DependentUpon>SaleReport.aspx</DependentUpon>

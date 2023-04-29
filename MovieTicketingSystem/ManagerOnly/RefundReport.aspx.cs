@@ -13,7 +13,7 @@ using System.Globalization;
 
 namespace MovieTicketingSystem.ManagerOnly
 {
-    public partial class SaleReport : System.Web.UI.Page
+    public partial class RefundReport : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
         string cs = Global.cs;
@@ -34,12 +34,12 @@ namespace MovieTicketingSystem.ManagerOnly
 
                 if (start != "")
                 {
-                    tbSalesReportStartDate.Text = start.ToString();
+                    tbRefundReportStartDate.Text = start.ToString();
                 }
 
                 if (end != "")
                 {
-                    tbSalesReportEndDate.Text = end.ToString();
+                    tbRefundReportEndDate.Text = end.ToString();
                 }
 
                 if (start != "" && end != "")
@@ -48,9 +48,9 @@ namespace MovieTicketingSystem.ManagerOnly
                 }
 
                 //set min and max value of date
-                tbSalesReportStartDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbSalesReportEndDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbSalesReportEndDate.Attributes["min"] = tbSalesReportStartDate.Text;
+                tbRefundReportStartDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
+                tbRefundReportEndDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
+                tbRefundReportEndDate.Attributes["min"] = tbRefundReportStartDate.Text;
             }
         }
 
@@ -78,7 +78,7 @@ namespace MovieTicketingSystem.ManagerOnly
                             {
                                 chartData.Add(new object[]
                                 {
-                                    sdr["month"].ToString(),(decimal)sdr["totalSales"]
+                                    sdr["month"].ToString(),(decimal)sdr["totalRefund"]
                                 });
                             }
 
@@ -122,27 +122,27 @@ namespace MovieTicketingSystem.ManagerOnly
 
         private static string getQueryString()
         {
-            return @"SELECT YEAR(paymentDateTime) AS year, MONTH(paymentDateTime) AS month, SUM(paymentAmount) AS totalSales
+            return @"SELECT YEAR(paymentDateTime) AS year, MONTH(paymentDateTime) AS month, SUM(paymentAmount) AS totalRefund
                    FROM Payment
-                   WHERE paymentDateTime >= '" + start + "' AND paymentDateTime <= '" + end + @"' AND status = 'Completed'
+                   WHERE paymentDateTime >= '" + start + "' AND paymentDateTime <= '" + end + @"' AND status = 'Cancelled'
                    GROUP BY YEAR(paymentDateTime), MONTH(paymentDateTime)
                    ORDER BY year, month";
         }
 
-        protected void tbSalesReportStartDate_TextChanged(object sender, EventArgs e)
+        protected void tbRefundReportStartDate_TextChanged(object sender, EventArgs e)
         {
 
-            if (tbSalesReportEndDate.Text != null)
+            if (tbRefundReportEndDate.Text != null)
             {
-                Response.Redirect("SaleReport.aspx?Start=" + tbSalesReportStartDate.Text + "&&End=" + tbSalesReportEndDate.Text);
+                Response.Redirect("RefundReport.aspx?Start=" + tbRefundReportStartDate.Text + "&&End=" + tbRefundReportEndDate.Text);
             }
         }
 
-        protected void tbSalesReportEndDate_TextChanged(object sender, EventArgs e)
+        protected void tbRefundReportEndDate_TextChanged(object sender, EventArgs e)
         {
-            if (tbSalesReportStartDate.Text != null)
+            if (tbRefundReportStartDate.Text != null)
             {
-                Response.Redirect("SaleReport.aspx?Start=" + tbSalesReportStartDate.Text + "&&End=" + tbSalesReportEndDate.Text);
+                Response.Redirect("RefundReport.aspx?Start=" + tbRefundReportStartDate.Text + "&&End=" + tbRefundReportEndDate.Text);
             }
         }
 

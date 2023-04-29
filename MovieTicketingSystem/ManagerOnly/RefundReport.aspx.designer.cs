@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.ManagerOnly
 {
 
 
-    public partial class SaleReport
+    public partial class RefundReport
     {
 
         /// <summary>
@@ -87,22 +87,22 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl timeRangeDiv;
 
         /// <summary>
-        /// tbSalesReportStartDate control.
+        /// tbRefundReportStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSalesReportStartDate;
+        protected global::System.Web.UI.WebControls.TextBox tbRefundReportStartDate;
 
         /// <summary>
-        /// tbSalesReportEndDate control.
+        /// tbRefundReportEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSalesReportEndDate;
+        protected global::System.Web.UI.WebControls.TextBox tbRefundReportEndDate;
 
         /// <summary>
         /// displayReport control.

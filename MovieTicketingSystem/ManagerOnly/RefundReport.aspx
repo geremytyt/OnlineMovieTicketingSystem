@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="SaleReport.aspx.cs" Inherits="MovieTicketingSystem.ManagerOnly.SaleReport" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="RefundReport.aspx.cs" Inherits="MovieTicketingSystem.ManagerOnly.RefundReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -9,7 +9,7 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var options = {
-                title: 'Sales Report on Selected Months',
+                title: 'Refund Report on Selected Months',
                 width: 600,
                 height: 400,
                 bar: { groupWidth: "95%" },
@@ -18,14 +18,14 @@
             };
             $.ajax({
                 type: "POST",
-                url: "SaleReport.aspx/GetChartData",
+                url: "RefundReport.aspx/GetChartData",
                 data: '{}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'Month');
-                    data.addColumn('number', 'Total Sales (RM)');
+                    data.addColumn('number', 'Total Refund Amount (RM)');
                     for (var i = 0; i < r.d.length; i++) {
                         var month = new Date(Date.parse(r.d[i][0] + " 01, 2000")).toLocaleString("en-us", { month: "short" });
                         data.addRow([month, parseFloat(r.d[i][1])]);
@@ -49,10 +49,10 @@
                     <h1  class="nav nav-tabs flex-column align-items-center border-0" >Report Type</h1>
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
                         <li class="nav-item mb-3">
-                            <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link active" OnClick="btnSale_Click" type="button" CausesValidation="false"/>
+                            <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link" OnClick="btnSale_Click" type="button" CausesValidation="false"/>
                         </li>
                         <li class="nav-item mb-3">
-                            <asp:Button ID="btnRefund" runat="server" Text="Refund Report" class="profileTab nav-link" OnClick="btnRefund_Click" type="button" CausesValidation="false"/>
+                            <asp:Button ID="btnRefund" runat="server" Text="Refund Report" class="profileTab nav-link active" OnClick="btnRefund_Click" type="button" CausesValidation="false"/>
                         </li>
                         <li class="nav-item mb-3">
                             <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab nav-link" OnClick="btnMovieReport_Click" type="button" CausesValidation="false"/>
@@ -81,13 +81,13 @@
                            <asp:Panel ID="Panel1" runat="server">
                           <div class="row mx-auto" runat="server" id="timeRangeDiv">
                             <div class="form-floating m-auto mb-3">
-                                <asp:TextBox ID="tbSalesReportStartDate" runat="server" class="form-control" placeholder="dd/mm/yyyy" AutoPostBack="true" AutoComplete="off" TextMode="Date" OnTextChanged="tbSalesReportStartDate_TextChanged" onkeypress="return false;" onpaste="return false" ></asp:TextBox>                            
-                                <label for="tbSalesReportStartDate" > Start From </label> 
+                                <asp:TextBox ID="tbRefundReportStartDate" runat="server" class="form-control" placeholder="dd/mm/yyyy" AutoPostBack="true" AutoComplete="off" TextMode="Date" OnTextChanged="tbRefundReportStartDate_TextChanged" onkeypress="return false;" onpaste="return false" ></asp:TextBox>                            
+                                <label for="tbRefundReportStartDate" > Start From </label> 
                             </div>
                             <div class="form-floating my-auto p-0" style="width:fit-content;"> Until </div>
                             <div class="form-floating m-auto mb-3">
-                                <asp:TextBox ID="tbSalesReportEndDate" runat="server" class="form-control" placeholder="End Date" AutoPostBack="true" AutoComplete="off" TextMode="Date" OnTextChanged="tbSalesReportEndDate_TextChanged" onkeypress="return false;" onpaste="return false" ></asp:TextBox>                            
-                                <label for="tbSalesReportEndDate" > End At </label> 
+                                <asp:TextBox ID="tbRefundReportEndDate" runat="server" class="form-control" placeholder="End Date" AutoPostBack="true" AutoComplete="off" TextMode="Date" OnTextChanged="tbRefundReportEndDate_TextChanged" onkeypress="return false;" onpaste="return false" ></asp:TextBox>                            
+                                <label for="tbRefundReportEndDate" > End At </label> 
                             </div>
                         </div>
                            </asp:Panel>
@@ -95,7 +95,7 @@
                      
                        <hr width="100%" style="border: 1px solid white"/>
                        <div runat="server" id="displayReport" visible="false">
-                           <h1> Sales Report</h1>
+                           <h1> Refund Report</h1>
                    
                             <div class="row ">
                                 <div class="col-6 m-0 justify-content-center">
@@ -117,3 +117,4 @@
         </div>
     </div>
 </asp:Content>
+

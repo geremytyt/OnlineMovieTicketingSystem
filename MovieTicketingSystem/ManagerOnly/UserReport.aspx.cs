@@ -135,6 +135,10 @@ namespace MovieTicketingSystem.ManagerOnly
             Response.Redirect("SaleReport.aspx");
         }
 
+        protected void btnRefund_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RefundReport.aspx");
+        }
         protected void btnMovieReport_Click(object sender, EventArgs e)
         {
             Response.Redirect("MovieReport.aspx");
