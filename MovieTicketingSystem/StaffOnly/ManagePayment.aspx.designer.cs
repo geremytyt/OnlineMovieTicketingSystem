@@ -114,22 +114,22 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.Label lblFoodTotal;
 
         /// <summary>
-        /// lblTicketNo control.
+        /// rptTickets control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTicketNo;
+        protected global::System.Web.UI.WebControls.Repeater rptTickets;
 
         /// <summary>
-        /// lblMenuID control.
+        /// rptMenuID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMenuID;
+        protected global::System.Web.UI.WebControls.Repeater rptMenuID;
 
         /// <summary>
         /// btnEdit control.

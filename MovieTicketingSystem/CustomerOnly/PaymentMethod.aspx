@@ -25,7 +25,7 @@
                 <h6>CVV</h6>
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCvv" TextMode="Password" runat="server"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtCvv" runat="server" ValidationExpression="\d{3}" ErrorMessage="Please enter a 3 digit CVV" ForeColor="Red"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtCvv" runat="server" ValidationExpression="\d{3}" ErrorMessage="Invalid format of CVV. Please enter a 3 digit CVV" ForeColor="Red"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtCardNo" runat="server" ValidationExpression="^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$" 
-                        ErrorMessage="Please enter a valid MasterCard number" ForeColor="Red"></asp:RegularExpressionValidator>
+                        ErrorMessage="Invalid format of Mastercard Number." ForeColor="Red"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>
@@ -65,12 +65,17 @@
                         <asp:ListItem Text="2027" Value="2027"></asp:ListItem>
                         <asp:ListItem Text="2028" Value="2028"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
+                    
                 </div>
                 
             </div>    
         </div>
-        <asp:Button ID="btnCardConfirm" class="btnCardConfirm" runat="server" Text="Confirm" OnClick="btnCardConfirm_Click" />
+        <br />
+        <div class="d-flex justify-content-center align-items-center m-2">
+            <asp:Button ID="btnCancel" class="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;"/>
+            <asp:Button ID="btnCardConfirm" class="btnCardConfirm" runat="server" Text="Confirm" OnClick="btnCardConfirm_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;"/>
+        </div>
+        
     </div>
    
    </div>

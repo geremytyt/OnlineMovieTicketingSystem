@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.ManagerOnly
 {
 
 
-    public partial class UserReport
+    public partial class TopCustomerReport
     {
 
         /// <summary>
@@ -51,22 +51,22 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.WebControls.Button btnTopFoodPurchase;
 
         /// <summary>
-        /// btnUser control.
+        /// btnCustDemo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUser;
+        protected global::System.Web.UI.WebControls.Button btnCustDemo;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// btnTopCust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Button btnTopCust;
 
         /// <summary>
         /// Panel1 control.
@@ -87,13 +87,31 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl topAmountDiv;
 
         /// <summary>
-        /// tbtotalItem control.
+        /// txtCust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbtotalItem;
+        protected global::System.Web.UI.WebControls.TextBox txtCust;
+
+        /// <summary>
+        /// rvCust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvCust;
+
+        /// <summary>
+        /// rfvCust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCust;
 
         /// <summary>
         /// timeRangeDiv control.
@@ -105,22 +123,58 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl timeRangeDiv;
 
         /// <summary>
-        /// tbFoodReportStartDate control.
+        /// txtStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFoodReportStartDate;
+        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
 
         /// <summary>
-        /// tbFoodReportEndDate control.
+        /// rfvStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFoodReportEndDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStart;
+
+        /// <summary>
+        /// cvStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvStart;
+
+        /// <summary>
+        /// txtEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
+
+        /// <summary>
+        /// rfvEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEnd;
+
+        /// <summary>
+        /// btnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReport;
 
         /// <summary>
         /// displayReport control.
@@ -148,6 +202,24 @@ namespace MovieTicketingSystem.ManagerOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDate;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// Literal1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
 
         /// <summary>
         /// GVReport control.
