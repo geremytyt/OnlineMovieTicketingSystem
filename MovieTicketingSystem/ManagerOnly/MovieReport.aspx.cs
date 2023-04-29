@@ -16,13 +16,11 @@ namespace MovieTicketingSystem.ManagerOnly
         {
 
         }
-
-
-
         protected void btnSale_Click(object sender, EventArgs e)
         {
             Response.Redirect("SaleReport.aspx");
         }
+
 
         protected void btnRefund_Click(object sender, EventArgs e)
         {

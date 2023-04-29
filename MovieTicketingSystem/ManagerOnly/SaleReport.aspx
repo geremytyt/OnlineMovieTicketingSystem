@@ -54,17 +54,20 @@
                         <li class="nav-item mb-3">
                             <asp:Button ID="btnRefund" runat="server" Text="Refund Report" class="profileTab nav-link" OnClick="btnRefund_Click" type="button" CausesValidation="false"/>
                         </li>
-                        <li class="nav-item mb-3">
-                            <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab nav-link" OnClick="btnMovieReport_Click" type="button" CausesValidation="false"/>
+                       <li class="nav-item mb-3">
+                        <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab  nav-link" type="button" OnClick="btnMovieReport_Click"  CausesValidation="false"/>
                         </li>
                         <li class="nav-item mb-3">
-                            <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab nav-link" OnClick="btnFoodReport_Click" type="button"  CausesValidation="false" />
+                            <asp:Button ID="btnFoodReport" runat="server" Text="Food Sale Report " class="profileTab  nav-link " type="button" OnClick="btnFoodReport_Click"  CausesValidation="false" />
                         </li>
                          <li class="nav-item mb-3">
                             <asp:Button ID="btnTopFoodPurchase" runat="server" Text="Top Purchase Food Report " class="profileTab nav-link " type="button" OnClick="btnTopFoodPurchase_Click" CausesValidation="false" />
                         </li>
                         <li class="nav-item mb-3">
-                            <asp:Button ID="btnUser" runat="server" Text="User Report" class="profileTab nav-link" OnClick="btnUser_Click"  type="button" CausesValidation="false"/>
+                            <asp:Button ID="btnCustDemo" runat="server" Text="Customer Demographic Report" class="profileTab nav-link" type="button" OnClick="btnCustDemo_Click" CausesValidation="false"/>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <asp:Button ID="btnTopCust" runat="server" Text="Top Customer Report" class="profileTab nav-link" type="button" OnClick="btnTopCust_Click" CausesValidation="false"/>
                         </li>
                     </ul>
             </div>

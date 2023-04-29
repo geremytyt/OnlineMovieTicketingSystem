@@ -9,6 +9,9 @@
                         <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link " OnClick="btnSale_Click"  type="button" CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">
+                            <asp:Button ID="btnRefund" runat="server" Text="Refund Report" class="profileTab nav-link" OnClick="btnRefund_Click" type="button" CausesValidation="false"/>
+                        </li>
+                    <li class="nav-item mb-3">
                         <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab active nav-link" type="button" OnClick="btnMovieReport_Click"  CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">
