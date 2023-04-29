@@ -99,5 +99,19 @@ namespace MovieTicketingSystem.StaffOnly
         {
             Response.Redirect("StaffMovie.aspx");
         }
+        protected void EndDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime startDate = DateTime.Parse(txtDate.Text);
+            DateTime endDate = DateTime.Parse(txtEndDate.Text);
+            if (startDate < endDate)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+
+        }
     }
 }

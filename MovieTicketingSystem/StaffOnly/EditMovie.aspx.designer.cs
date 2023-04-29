@@ -60,6 +60,15 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.FileUpload posterFile;
 
         /// <summary>
+        /// txtMovieID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMovieID;
+
+        /// <summary>
         /// txtMovieName control.
         /// </summary>
         /// <remarks>
@@ -69,31 +78,13 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox txtMovieName;
 
         /// <summary>
-        /// RequiredFieldValidatorName control.
+        /// RequiredFieldValidator4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorName;
-
-        /// <summary>
-        /// lbDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDuration;
-
-        /// <summary>
-        /// lbAge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAge;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
         /// txtDuration control.
@@ -114,13 +105,13 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDuration;
 
         /// <summary>
-        /// RangeValidator1 control.
+        /// RangeValidatorDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
+        protected global::System.Web.UI.WebControls.RangeValidator RangeValidatorDuration;
 
         /// <summary>
         /// ddlAge control.
@@ -130,24 +121,6 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAge;
-
-        /// <summary>
-        /// lbReleaseDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbReleaseDate;
-
-        /// <summary>
-        /// lbEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEndDate;
 
         /// <summary>
         /// txtDate control.
@@ -195,15 +168,6 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.CustomValidator EndDateValidator;
 
         /// <summary>
-        /// lbSynopsis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSynopsis;
-
-        /// <summary>
         /// txtSynopsis control.
         /// </summary>
         /// <remarks>
@@ -213,31 +177,13 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox txtSynopsis;
 
         /// <summary>
-        /// RequiredFieldValidatorSynopsis control.
+        /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSynopsis;
-
-        /// <summary>
-        /// lbGenre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGenre;
-
-        /// <summary>
-        /// lbLanguage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLanguage;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
 
         /// <summary>
         /// ddlGenre control.
@@ -258,24 +204,6 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
 
         /// <summary>
-        /// lbActor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbActor;
-
-        /// <summary>
-        /// lbDirector control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDirector;
-
-        /// <summary>
         /// txtActor control.
         /// </summary>
         /// <remarks>
@@ -283,24 +211,6 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtActor;
-
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// txtDirector control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDirector;
 
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -312,13 +222,22 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
-        /// lbMovieURL control.
+        /// txtDirector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovieURL;
+        protected global::System.Web.UI.WebControls.TextBox txtDirector;
+
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// txtMovieURL control.
@@ -330,13 +249,13 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox txtMovieURL;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
         /// trailerContainer control.
@@ -355,15 +274,6 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe iframeTrailer;
-
-        /// <summary>
-        /// lbSlideImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSlideImage;
 
         /// <summary>
         /// slideFile control.
