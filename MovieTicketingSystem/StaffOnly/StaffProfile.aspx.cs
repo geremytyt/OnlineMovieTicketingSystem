@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -71,23 +73,29 @@ namespace MovieTicketingSystem.StaffOnly
                     }
                 }
             }
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png",".PNG",".JPEG",".JPG" };
+            string fileUrl = null;
+            HttpCookie cookie = Request.Cookies["Staff"];
+            if (fileUpload.HasFile)
+            {
+                string fileName = Path.GetFileName(fileUpload.FileName);
+                string fileExtension = Path.GetExtension(fileName);
+                if (!allowedExtensions.Contains(fileExtension.ToLower()))
+                {
+                    cvImage.IsValid = false;
+                }
+                fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
+                string filePath = Server.MapPath("~/Image/staffImages/" + fileName);
+                fileUpload.SaveAs(filePath);
+                fileUrl = ResolveUrl("~/Image/staffImages/" + fileName);
+            }
+            else
+            {
+                fileUrl = imgPreview.ImageUrl;
+            }
             if (Page.IsValid)
             {
-                HttpCookie cookie = Request.Cookies["Staff"];
-                string fileUrl = null;
-                if (fileUpload.HasFile)
-                {
-                    string fileName = Path.GetFileName(fileUpload.FileName);
-                    fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
-                    string filePath = Server.MapPath("~/Image/staffImages/" + fileName);
-                    fileUpload.SaveAs(filePath);
-                    fileUrl = ResolveUrl("~/Image/staffImages/" + fileName);
-                }
-                else
-                {
-                    fileUrl = imgPreview.ImageUrl;
-                }
-  
+
                 string name = txtName.Text;
                 string phone = txtPhone.Text;
                 string gender = rblGender.SelectedValue;

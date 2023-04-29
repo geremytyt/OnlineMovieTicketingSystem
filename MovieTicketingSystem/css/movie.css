@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.idDisabled{
+    background-color:transparent !important;
+}
+
 .labelScedule{
     width:100%;
 }

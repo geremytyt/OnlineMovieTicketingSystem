@@ -71,7 +71,7 @@
                                                             <asp:Label ID="Label3" runat="server" Cssclass="w-25 text-center" Text='<%#(Convert.ToDecimal(Eval("seniorQty")) * 10).ToString("N2") %>'></asp:Label>
                                                             <asp:Label ID="Label4" runat="server" Cssclass="mx-2" Width="45%" Text="Adult"></asp:Label>
                                                             <asp:Label ID="Label6" runat="server" Cssclass="w-25 text-center" Text='<%#Convert.ToDecimal(Eval("adultQty")) %>'></asp:Label>
-                                                            <asp:Label ID="Label7" runat="server" Cssclass="w-25 text-center" Text='<%#(Convert.ToDecimal(Eval("adultQty")) * 13).ToString("N2") %>'></asp:Label>
+                                                            <asp:Label ID="Label7" runat="server" Cssclass="w-25 text-center" Text='<%#(Convert.ToDecimal(Eval("adultQty")) * 15).ToString("N2") %>'></asp:Label>
                                                             <asp:Label ID="Label8" runat="server" Cssclass="mx-2" Width="45%" Text="Children"></asp:Label>
                                                             <asp:Label ID="Label9" runat="server" Cssclass="w-25 text-center" Text='<%#Convert.ToDecimal(Eval("childrenQty")) %>'></asp:Label>
                                                             <asp:Label ID="Label10" runat="server" Cssclass="w-25 text-center" Text='<%#(Convert.ToDecimal(Eval("childrenQty")) * 10).ToString("N2") %>'></asp:Label>

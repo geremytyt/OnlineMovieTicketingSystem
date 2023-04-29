@@ -63,22 +63,27 @@ namespace MovieTicketingSystem.CustomerOnly
                     }
                 }
             }
-
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".PNG", ".JPEG", ".JPG" };
+            HttpCookie cookie = Request.Cookies["Customer"];
+            string fileUrl = null;
+            if (fileUpload.HasFile)
+            {
+                string fileName = Path.GetFileName(fileUpload.FileName);
+                string fileExtension = Path.GetExtension(fileName);
+                if (!allowedExtensions.Contains(fileExtension.ToLower()))
+                {
+                    cvImage.IsValid = false;
+                }
+                fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
+                string filePath = Server.MapPath("~/Image/customerImages/" + fileName);
+                fileUpload.SaveAs(filePath);
+                fileUrl = ResolveUrl("~/Image/customerImages/" + fileName);
+            }
+            else
+            {
+                fileUrl = imgPreview.ImageUrl;
+            }
             if (Page.IsValid) {
-                HttpCookie cookie = Request.Cookies["Customer"];
-                string fileUrl = null;
-                if (fileUpload.HasFile)
-                {
-                    string fileName = Path.GetFileName(fileUpload.FileName);
-                    fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
-                    string filePath = Server.MapPath("~/Image/customerImages/" + fileName);
-                    fileUpload.SaveAs(filePath);
-                    fileUrl = ResolveUrl("~/Image/customerImages/" + fileName);
-                }
-                else
-                {
-                    fileUrl = imgPreview.ImageUrl;
-                }
                 string name = txtName.Text.Trim();
                 string phone = txtPhone.Text.Trim();
                 string gender = rblGender.SelectedValue.Trim();

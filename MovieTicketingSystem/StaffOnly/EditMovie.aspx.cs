@@ -29,6 +29,7 @@ namespace MovieTicketingSystem.StaffOnly
                 if (dr.Read())
                 {
                     found = true;
+                    txtMovieID.Text = id;
                     DateTime date = DateTime.Parse(dr["releaseDate"].ToString());
                     DateTime endDate = DateTime.Parse(dr["endDate"].ToString());
                     txtMovieName.Text = dr["movieName"].ToString();

@@ -10,7 +10,7 @@ using System.Web.Services;
 
 namespace MovieTicketingSystem.ManagerOnly
 {
-    public partial class UserReport : System.Web.UI.Page
+    public partial class TopCustomerReport : System.Web.UI.Page
     {
         string cs = Global.cs;
         private static int topcust { get; set; }
@@ -18,32 +18,34 @@ namespace MovieTicketingSystem.ManagerOnly
         private static string end { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            DateTime current = DateTime.Now;
+            //set min and max value of date
+            txtStartDate.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
+            txtEndDate.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
 
 
-
-            litDate.Text = current.ToString();
+            litDate.Text = DateTime.Now.ToString();
 
             if (!IsPostBack)
             {
                 string top = Request.QueryString["Top"] ?? "";
                 start = Request.QueryString["Start"] ?? "";
                 end = Request.QueryString["End"] ?? "";
+                Literal1.Text = start + " - " + end;
 
                 if (top != "")
                 {
-                    tbtotalItem.Text = top;
+                    txtCust.Text = top;
                     topcust = int.Parse(top);
                 }
 
                 if (start != "")
                 {
-                    tbFoodReportStartDate.Text = start.ToString();
+                    txtStartDate.Text = start.ToString();
                 }
 
                 if (end != "")
                 {
-                    tbFoodReportEndDate.Text = end.ToString();
+                    txtEndDate.Text = end.ToString();
                 }
 
                 if (start != "" && top != "" && end != "")
@@ -51,10 +53,6 @@ namespace MovieTicketingSystem.ManagerOnly
                     bindGrid();
                 }
 
-                //set min and max value of date
-                tbFoodReportStartDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbFoodReportEndDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbFoodReportEndDate.Attributes["min"] = tbFoodReportStartDate.Text;
             }
         }
 
@@ -82,10 +80,9 @@ namespace MovieTicketingSystem.ManagerOnly
                             {
                                 chartData.Add(new object[]
                                 {
-                                    sdr["name"].ToString(),(decimal)sdr["Total_Money"]
+                                sdr["name"].ToString(), (decimal)sdr["Total Amount(RM)"]
                                 });
                             }
-
                         }
 
                         con.Close();
@@ -116,17 +113,21 @@ namespace MovieTicketingSystem.ManagerOnly
                 GVReport.DataBind();
                 displayReport.Visible = true;
             }
+            else {
+                displayReport.Visible = true;
+                displayReport.InnerHtml = "No Record Found";
+            }
         }
 
         private static string getQueryString()
         {
             return "SELECT TOP " + topcust.ToString() + " " + 
-                "Customer.custId AS ID, Customer.custName AS name, SUM(Purchase.ticketTotal) AS Total_Ticket_Sold," +
-                " SUM(Purchase.foodTotal) AS Total_Food_Sold, SUM(Payment.paymentAmount) AS Total_Amount " +
+                "Customer.custId AS ID, Customer.custName AS Name, SUM(Purchase.ticketTotal) AS [Total Ticket Bought(RM)]," +
+                " SUM(Purchase.foodTotal) AS [Total Food Bought(RM)], SUM(Payment.paymentAmount) AS [Total Amount(RM)] " +
                 "FROM Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo" +
-                "WHERE CONVERT(Date, Payment.paymentDateTime, 23) <= '" + end + "' " + 
-                "AND CONVERT(Date, Payment.paymentDateTime, 23) >= '" + start + "' " + 
-                "GROUP BY Customer.custId, Customer.custName ORDER BY Total_Amount DESC";
+                " WHERE CONVERT(Date, Payment.paymentDateTime, 23) <= '" + end + "' " +
+                "AND CONVERT(Date, Payment.paymentDateTime, 23) >= '" + start + "' " +
+                "GROUP BY Customer.custId, Customer.custName ORDER BY [Total Amount(RM)] DESC";
         }
 
 
@@ -154,9 +155,23 @@ namespace MovieTicketingSystem.ManagerOnly
             Response.Redirect("TopPurchasedFoodReport.aspx");
         }
 
-        protected void btnUser_Click(object sender, EventArgs e)
+        protected void btnCustDemo_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UserReport.aspx");
+            Response.Redirect("CustDemoReport.aspx");
         }
+
+        protected void btnTopCust_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TopCustomerReport.aspx");
+        }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            if(Page.IsValid)
+            {
+                Response.Redirect("TopCustomerReport.aspx?Top=" + txtCust.Text + "&&Start=" + txtStartDate.Text + "&&End=" + txtEndDate.Text);
+            }
+        }
+
     }
 }
