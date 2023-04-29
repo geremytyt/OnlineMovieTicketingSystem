@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.Annonymous
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["Page"] = "Staff";
         }
     }
 }

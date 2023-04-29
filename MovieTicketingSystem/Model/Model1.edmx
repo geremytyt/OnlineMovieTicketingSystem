@@ -20,15 +20,15 @@
             <PropertyRef Name="custId" />
           </Key>
           <Property Name="custId" Type="varchar" MaxLength="4" Nullable="false" />
-          <Property Name="custName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="custName" Type="nchar" MaxLength="30" Nullable="false" />
           <Property Name="custEmail" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="custPassword" Type="varchar" MaxLength="44" Nullable="false" />
           <Property Name="custDob" Type="date" Nullable="false" />
           <Property Name="custPhoneNo" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="custGender" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="custPhoto" Type="varchar" MaxLength="30" />
+          <Property Name="custPhoto" Type="varchar" MaxLength="100" />
           <Property Name="custStatus" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="custSignature" Type="varchar" MaxLength="50" />
+          <Property Name="custToken" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -112,7 +112,7 @@
           <Property Name="scheduleNo" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="movieId" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="hallNo" Type="varchar" MaxLength="4" Nullable="false" />
-          <Property Name="scheduleDateTime" Type="datetime" Nullable="false" />
+          <Property Name="scheduleDateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -128,7 +128,7 @@
           <Property Name="staffPhoto" Type="varchar" MaxLength="30" />
           <Property Name="position" Type="nchar" MaxLength="30" Nullable="false" />
           <Property Name="staffStatus" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="staffSignature" Type="varchar" MaxLength="50" />
+          <Property Name="staffToken" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -338,17 +338,17 @@ warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM
             <PropertyRef Name="custId" />
           </Key>
           <Property Name="custId" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="custName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="custName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="custEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="custPassword" Type="String" MaxLength="44" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="custDob" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="custPhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="custGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="custPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="custPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="custStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cards" Relationship="Self.FK__Card__custId__160F4887" FromRole="Customer" ToRole="Card" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__custId__17036CC0" FromRole="Customer" ToRole="Purchase" />
-          <Property Name="custSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="custToken" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -441,7 +441,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM
           <Property Name="scheduleNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="movieId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="hallNo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="scheduleDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="scheduleDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Hall" Relationship="Self.FK__Schedule__hallNo__76969D2E" FromRole="Schedule" ToRole="Hall" />
           <NavigationProperty Name="Movie" Relationship="Self.FK__Schedule__movieI__75A278F5" FromRole="Schedule" ToRole="Movie" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__schedule__7A672E12" FromRole="Schedule" ToRole="Ticket" />
@@ -461,7 +461,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM
           <Property Name="staffPhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="position" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="staffStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="staffSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="staffToken" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -665,7 +665,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="movieDBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="custSignature" ColumnName="custSignature" />
+                <ScalarProperty Name="custToken" ColumnName="custToken" />
                 <ScalarProperty Name="custId" ColumnName="custId" />
                 <ScalarProperty Name="custName" ColumnName="custName" />
                 <ScalarProperty Name="custEmail" ColumnName="custEmail" />
@@ -771,7 +771,7 @@ warning 6002: The table/view 'C:\USERS\WEI\DOCUMENTS\GITHUB\MOVIETICKETINGSYSTEM
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="movieDBModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="staffSignature" ColumnName="staffSignature" />
+                <ScalarProperty Name="staffToken" ColumnName="staffToken" />
                 <ScalarProperty Name="staffId" ColumnName="staffId" />
                 <ScalarProperty Name="staffName" ColumnName="staffName" />
                 <ScalarProperty Name="staffEmail" ColumnName="staffEmail" />

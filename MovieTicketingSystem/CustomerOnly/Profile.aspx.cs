@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
+
 namespace MovieTicketingSystem.CustomerOnly
 {
     public partial class Profile : System.Web.UI.Page
@@ -19,38 +20,50 @@ namespace MovieTicketingSystem.CustomerOnly
         string cs = Global.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtDob.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
-            HttpCookie cookie = Request.Cookies["Customer"];
-            if (cookie != null)
+            if (!IsPostBack)
             {
-                string sql = "SELECT * FROM Customer WHERE custId = @id";
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                txtDob.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
+                HttpCookie cookie = Request.Cookies["Customer"];
+                if (cookie != null)
                 {
-                    txtName.Text = dr[1].ToString().Trim();
-                    txtEmail.Text = dr[2].ToString();
-                    txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
-                    txtPhone.Text = dr[5].ToString();
-                    rblGender.SelectedValue = dr[6].ToString();
-                    imgPreview.ImageUrl = dr[7].ToString();
+                    string sql = "SELECT * FROM Customer WHERE custId = @id";
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                    SqlDataReader dr = cmd.ExecuteReader();
 
+                    if (dr.Read())
+                    {
+                        txtName.Text = dr[1].ToString().Trim();
+                        txtEmail.Text = dr[2].ToString();
+                        txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
+                        txtPhone.Text = dr[5].ToString();
+                        Session["Phone"] = dr[5].ToString();
+                        rblGender.SelectedValue = dr[6].ToString();
+                        imgPreview.ImageUrl = dr[7].ToString();
+
+                    }
+                    con.Close();
                 }
-                con.Close();
             }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            if (db.Customers.Any(c => c.custPhoneNo == txtPhone.Text))
+            string exist = Session["Phone"].ToString();
+            if (exist != null)
             {
-                //display error msg
-                cvExistPhone.IsValid = false;
+                if (exist != txtPhone.Text)
+                {
+                    if (db.Customers.Any(c => c.custPhoneNo == txtPhone.Text.Trim()))
+                    {
+                        //display error msg
+                        cvExistPhone.IsValid = false;
+                    }
+                }
             }
+
             if (Page.IsValid) {
                 HttpCookie cookie = Request.Cookies["Customer"];
                 string fileUrl = null;
@@ -58,9 +71,9 @@ namespace MovieTicketingSystem.CustomerOnly
                 {
                     string fileName = Path.GetFileName(fileUpload.FileName);
                     fileName = cookie.Value.ToString() + fileName.Substring(fileName.IndexOf(".")); ;
-                    string filePath = Server.MapPath("~/Image/customerImages" + fileName);
+                    string filePath = Server.MapPath("~/Image/customerImages/" + fileName);
                     fileUpload.SaveAs(filePath);
-                    fileUrl = ResolveUrl("~/Image/" + fileName);
+                    fileUrl = ResolveUrl("~/Image/customerImages/" + fileName);
                 }
                 else
                 {
@@ -82,11 +95,13 @@ namespace MovieTicketingSystem.CustomerOnly
                 cmd.Parameters.AddWithValue("@Phone", phone);
                 cmd.Parameters.AddWithValue("@Gender", gender);
                 cmd.Parameters.AddWithValue("@Dob", dob);
-                cmd.Parameters.AddWithValue("@Photo", ".." + fileUrl);
+                cmd.Parameters.AddWithValue("@Photo", fileUrl);
 
                 cmd.ExecuteNonQuery();
 
                 con.Close();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your profile has been edited successfully'); window.location.href='../CustomerOnly/Profile.aspx';", true);
+
             }
            
 

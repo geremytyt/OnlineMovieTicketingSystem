@@ -23,7 +23,7 @@ namespace MovieTicketingSystem.Model
         public string scheduleNo { get; set; }
         public string movieId { get; set; }
         public string hallNo { get; set; }
-        public System.DateTime scheduleDateTime { get; set; }
+        public Nullable<System.DateTime> scheduleDateTime { get; set; }
         public short id { get; set; }
     
         public virtual Hall Hall { get; set; }

@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ResetPwd2.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.ResetPwd2" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ResetPwd2.aspx.cs" Inherits="MovieTicketingSystem.Annonymous.ResetPwd2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <div id="content" class="text-light d-flex align-items-center justify-content-center"  style="min-height: 100vh;">
         <div class="bg-black rounded col-md-5 col-lg-3 col-sm-6">     
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="btnToken">
             <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Reset Password</div> 
             <div class="row mt-2 justify-content-center">
                 <i class="fa-solid fa-lock" style="width:10%;margin-top:30px"></i>
@@ -37,6 +38,7 @@
             <div class="text-center">
                 <asp:Button class="btn btn-default my-4 w-50" ID="btnToken" runat="server" Text="Reset Password" OnClick="btnToken_Click"/>
             </div>
+            </asp:Panel>
         </div>
     </div>
     <script>
@@ -56,7 +58,7 @@
     }
     function togglePasswordVisibility2() {
         var passwordInput = document.getElementById('<%= txtCfmPwd.ClientID %>');
-            var iconPasswordVisibility = document.getElementById('cfmpasswordVisibility');
+            var iconPasswordVisibility = document.getElementById('passwordVisibility2');
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

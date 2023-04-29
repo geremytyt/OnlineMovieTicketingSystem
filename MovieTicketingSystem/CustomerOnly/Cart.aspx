@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">    
     <script>
         function confirmDeleteDialog() {
-            if (confirm("Do you want to continue!Click 'YES'") == true) {
+            if (confirm("Do you want to continue? Click 'YES'") == true) {
                 return true
             }
             else {

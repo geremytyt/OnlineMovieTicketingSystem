@@ -45,47 +45,47 @@
         </div>     
         <div class="col-md-4">
             <div class="bg-dark rounded-4 text-white mb-2">
-                <div class="row">
+                <div class="row align-items-center justify-content-center">
                     <h3 class="text-center mt-2">Record</h3>
-                    <div class="m-4">
+                       <div class="w-75">
                         <label>Customer ID:</label>
                         <asp:Label ID="lblId" runat="server" Text="" CssClass="m-2"></asp:Label>
-                        <div class="form-floating w-75" id="float">
-                            <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
-                            <label for="txtName">Name</label>
-                            <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Please enter name" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-floating w-75" id="float1">
-                            <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
-                            <label for="txtEmail">Email</label>
-                            <asp:CustomValidator ID="cvExistEmail" runat="server" ControlToValidate="txtEmail" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This email has been registered" SetFocusOnError="true"></asp:CustomValidator> 
-                        </div>
-                        <div class="form-floating w-75" id="float5">
-                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Date" />
-                            <label for="txtDob">Date Of Birth</label>
-                            <asp:RequiredFieldValidator ID="rfvDob" runat="server" ErrorMessage="Please enter date of birth" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-floating w-75" id="float4">
-                            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
-                            <label for="txtPhone">Phone No</label>
-                            <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ErrorMessage="Please enter phone no" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
-                        </div>
-                        <div class="row my-3 ms-1 align-items-center">
-                            <div class="w-25">
-                                <asp:Label ID="lblGender" runat="server" Text="Gender:"></asp:Label>
-                            </div>
-                            <div class="w-50">
-                                <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" RepeatLayout="Table" RepeatColumns="2" Width="100%">
-                                    <asp:ListItem Value="M">Male</asp:ListItem>
-                                    <asp:ListItem Value="F">Female</asp:ListItem>
-                                </asp:RadioButtonList>
-                            </div>
-                            <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select gender" Display="Static" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
-                        </div>
-                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
-                        <asp:Button ID="btnDelete" runat="server" Text="Suspend" CssClass="btn btn-default" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                     </div>
+                    <div class="form-floating w-75" id="float">
+                        <asp:TextBox ID="txtName" runat="server" CssClass="form-control userInput" placeholder=" " />
+                        <label for="txtName">Name</label>
+                        <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Please enter name" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-floating w-75" id="float1">
+                        <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control userInput" placeholder=" " TextMode="Email" />
+                        <label for="txtEmail">Email</label>
+                    </div>
+                    <div class="form-floating w-75" id="float5">
+                        <asp:TextBox ID="txtDob" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Date" />
+                        <label for="txtDob">Date Of Birth</label>
+                        <asp:RequiredFieldValidator ID="rfvDob" runat="server" ErrorMessage="Please enter date of birth" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-floating w-75" id="float4">
+                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control userInput" placeholder=" " TextMode="Phone" />
+                        <label for="txtPhone">Phone No</label>
+                        <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ErrorMessage="Please enter phone no" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cvExistPhone" runat="server" ControlToValidate="txtPhone" Cssclass="text-danger" Display="Dynamic" ErrorMessage="This phone no has been registered" SetFocusOnError="true"></asp:CustomValidator> 
+                        <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Invalid format of phone no" SetFocusOnError="true" ControlToValidate="txtPhone" ValidationExpression="^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$"></asp:RegularExpressionValidator>
+                    </div>
+                    <div class="row my-3 w-75">
+                        <div class="w-25">
+                            <asp:Label ID="lblGender" runat="server" Text="Gender:"></asp:Label>
+                        </div>
+                        <div class="w-75">
+                            <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" RepeatLayout="Table" RepeatColumns="2" Width="100%">
+                                <asp:ListItem Value="M">Male</asp:ListItem>
+                                <asp:ListItem Value="F">Female</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select gender" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                    </div>
+                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default mb-4 mx-2" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
+                    <asp:Button ID="btnDelete" runat="server" Text="Suspend" CssClass="btn btn-default mb-4 mx-2" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                 </div>  
             </div>
         </div>

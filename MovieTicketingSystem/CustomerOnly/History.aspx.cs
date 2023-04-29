@@ -44,7 +44,8 @@ namespace MovieTicketingSystem.CustomerOnly
             con2.Open();
             cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
             SqlDataReader dr2 = cmd2.ExecuteReader();
-            if (!dr2.HasRows) {
+            if (!dr2.HasRows)
+            {
                 lblNo.Text = "No Records Found";
             }
             Repeater4.DataSource = dr2;

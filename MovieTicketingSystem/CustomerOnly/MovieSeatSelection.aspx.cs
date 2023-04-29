@@ -46,7 +46,7 @@ namespace MovieTicketingSystem.CustomerOnly
             }
             dr.Close();
             lbHall.Text = "Hall : " + schedule.Hall.hallNo;
-            lbDateTime.Text = schedule.scheduleDateTime.ToString("ddd dd MMMM hh:mm tt");
+            lbDateTime.Text = schedule.scheduleDateTime.ToString();
             List<string> soldSeatNo = new List<string>();
             sql = "SELECT seatNo FROM Ticket WHERE scheduleNo = @Num";
             cmd = new SqlCommand(sql, con);

@@ -7,7 +7,7 @@
     <siteMapNode url="StaffOnly/AvailableFoodManagement.aspx" title="Food" roles="Staff,Manager"/>
     <siteMapNode url="StaffOnly/ManageSchedule.aspx" title="Schedule" roles="Staff,Manager"/>
     <siteMapNode url="StaffOnly/ViewPayment.aspx" title="Payment" roles="Staff,Manager"/>
-    <siteMapNode url="ManagerOnly/Report.aspx" title="Report" roles="Manager"/>
+    <siteMapNode url="ManagerOnly/SaleReport.aspx" title="Report" roles="Manager"/>
     <siteMapNode url="StaffOnly/StaffProfile.aspx" title="Profile" roles="Staff,Manager"/>
     <siteMapNode url="StaffOnly/StaffLogout.aspx" title="Logout" roles="Staff,Manager"/>
   </siteMapNode>

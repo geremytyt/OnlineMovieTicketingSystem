@@ -78,15 +78,6 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// cvExistEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvExistEmail;
-
-        /// <summary>
         /// txtIC control.
         /// </summary>
         /// <remarks>
@@ -177,6 +168,15 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGender;
 
         /// <summary>
+        /// lblPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPosition;
+
+        /// <summary>
         /// ddlPosition control.
         /// </summary>
         /// <remarks>
@@ -186,13 +186,13 @@ namespace MovieTicketingSystem.ManagerOnly
         protected global::System.Web.UI.WebControls.DropDownList ddlPosition;
 
         /// <summary>
-        /// rfvPosition control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPosition;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
         /// btnEdit control.

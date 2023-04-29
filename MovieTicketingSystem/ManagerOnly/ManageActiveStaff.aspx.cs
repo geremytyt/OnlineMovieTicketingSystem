@@ -27,10 +27,10 @@ namespace MovieTicketingSystem.ManagerOnly
                 sda.Fill(dt);
                 gvStaff.DataSource = dt;
                 gvStaff.DataBind();
-                gvStaff.UseAccessibleHeader = true;
-                gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
-
+            gvStaff.UseAccessibleHeader = true;
+            gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
+            lblId.Text = generateID();
         }
 
         private string generateID()
@@ -63,7 +63,8 @@ namespace MovieTicketingSystem.ManagerOnly
             string phone = txtPhone.Text;
             string gender = rblGender.SelectedValue.Substring(0, 1);
             string ic = txtIC.Text;
-            string sql = "UPDATE Staff SET staffName=@Name, staffPhoneNo=@Phone, staffGender=@Gender,staffIC=@ic WHERE staffId=@Id";
+            string position = ddlPosition.SelectedValue;
+            string sql = "UPDATE Staff SET staffName=@Name, staffPhoneNo=@Phone, staffGender=@Gender,staffIC=@ic, position=@position WHERE staffId=@Id";
 
             SqlConnection con = new SqlConnection(cs);
 
@@ -76,10 +77,12 @@ namespace MovieTicketingSystem.ManagerOnly
             cmd.Parameters.AddWithValue("@Phone", phone);
             cmd.Parameters.AddWithValue("@Gender", gender);
             cmd.Parameters.AddWithValue("@ic", ic);
+            cmd.Parameters.AddWithValue("@position", position);
 
             cmd.ExecuteNonQuery();
 
             con.Close();
+            Response.Redirect("ManageActiveStaff.aspx");
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -98,7 +101,7 @@ namespace MovieTicketingSystem.ManagerOnly
             cmd.ExecuteNonQuery();
 
             con.Close();
-
+            Response.Redirect("ManageActiveStaff.aspx");
         }
 
         protected void btnResigned_Click(object sender, EventArgs e)
@@ -116,7 +119,7 @@ namespace MovieTicketingSystem.ManagerOnly
                 string phone = txtPhone.Text;
                 string ic = txtIC.Text;
                 string gender = rblGender.SelectedValue.Substring(0, 1);
-
+                string position = ddlPosition.SelectedValue;
                 string sql = "INSERT INTO Staff (staffId, staffName, staffEmail, staffPassword, staffPhoneNo, staffIC , staffGender, staffStatus, position) VALUES (@Id, @Name, @Email, @Password, @PhoneNo, @IC, @Gender, @Status, @position)";
 
                 SqlConnection con = new SqlConnection(cs);
@@ -130,7 +133,7 @@ namespace MovieTicketingSystem.ManagerOnly
                 cmd.Parameters.AddWithValue("@IC", ic);
                 cmd.Parameters.AddWithValue("@Gender", gender);
                 cmd.Parameters.AddWithValue("@Status", "Active");
-                cmd.Parameters.AddWithValue("@position", "Staff");
+                cmd.Parameters.AddWithValue("@position", position);
 
                 con.Open();
 
@@ -172,7 +175,7 @@ namespace MovieTicketingSystem.ManagerOnly
             txtPhone.Text = selectedRow.Cells[4].Text;
             txtIC.Text = selectedRow.Cells[3].Text;
             rblGender.SelectedValue = selectedRow.Cells[5].Text;
-            ddlPosition.SelectedValue = selectedRow.Cells[6].Text;
+            ddlPosition.SelectedValue = selectedRow.Cells[6].Text.Trim();
         }
     }
 }
