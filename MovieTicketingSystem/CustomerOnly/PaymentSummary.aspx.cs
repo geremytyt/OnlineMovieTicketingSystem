@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using MailKit.Security;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using MovieTicketingSystem.Model;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
@@ -23,18 +24,64 @@ namespace MovieTicketingSystem.CustomerOnly
         {
             if (!IsPostBack)
             {
-                //get info from previous page
-                //string paymentNo = Request.QueryString["paymentNo"];
-                string paymentNo = "T0001";
-                
+                //Get the customer cart from session
+                List<CartItem> cart = (List<CartItem>)HttpContext.Current.Session["Cart"];
+                List<Ticket> tickets = (List<Ticket>)HttpContext.Current.Session["Tickets"];
 
+
+               
+                //get all the details of movie selected
+                if(tickets != null)
+                {
+                    Schedule s = (Schedule)Session["schedule"];
+                    HttpCookie cookie2 = Request.Cookies["movieName"];
+                    string scheduleDateTime = s.scheduleDateTime.ToString();
+                    string[] dateTimeParts = scheduleDateTime.Split(' ');
+                    lblShowingDate.Text = dateTimeParts[0];
+                    lblShowingTime.Text = dateTimeParts[1];
+                    lblMovie.Text = cookie2.Value;
+
+                    string seatNos = "";
+                    int count = 0;
+                    foreach (Ticket ticket in tickets)
+                    {
+                        seatNos += ticket.seatNo.ToString() + ",";
+                        count++;
+                        if (count == 3)
+                        {
+                            seatNos += "<br /> ";
+                            count = 0;
+                        }
+                    }
+                    lblSeatNo.Text = seatNos.TrimEnd(',').Trim();
+                }
+                else
+                {
+                    movieDetails.Visible = false;
+                }
+                
+                //get food purchase info
+                if (cart != null)
+                {
+                    rptCartItems.DataSource = cart;
+                    rptCartItems.DataBind();
+                   
+                }
+                else
+                {
+                    cartDetails.Visible = false;
+                }
+
+                //get info from previous page
+                string paymentNo = Request.QueryString["paymentNo"];
+                
+                
                 //Retrieve payment details from database
                 string paymentQuery = "SELECT paymentNo, purchaseNo, paymentDateTime, paymentAmount, cardNo, status FROM Payment WHERE paymentNo = @paymentNo";
           
 
                 SqlConnection connection = new SqlConnection(cs);       
                 connection.Open();
-
                 // Retrieve payment details
                 SqlCommand paymentCommand = new SqlCommand(paymentQuery, connection);
                 paymentCommand.Parameters.AddWithValue("@paymentNo", paymentNo);
@@ -58,6 +105,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void btnDone_Click(object sender, EventArgs e)
         {
+            List<CartItem> cart = (List<CartItem>)HttpContext.Current.Session["Cart"];
             // Get the custID from session
             HttpCookie cookie = Request.Cookies["Customer"];
             string custId = cookie.Value.ToString();
@@ -82,24 +130,43 @@ namespace MovieTicketingSystem.CustomerOnly
 
 
             // Generate the QR code byte array
-            var qrCodeBytes = QrCode.GenerateQrCode("P0002");
+            string paymentNo = Request.QueryString["paymentNo"];
+            var qrCodeBytes = QrCode.GenerateQrCode(paymentNo);
 
             var apiKey = "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";
 
             // Create a new SendGrid client
             var client = new SendGridClient(apiKey);
 
+            string foodPurchased = "";
+
+            if (cart != null)
+            {
+                foreach (CartItem item in cart)
+                {
+                    foodPurchased += item.menuName + ", ";
+                }
+            }
+
+            // Remove the trailing comma and space
+            foodPurchased = foodPurchased.TrimEnd(',', ' ');
+
             // Create a new email message
             var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
             var to = new EmailAddress("geremytanyentsen@gmail.com", "Staff");
             var subject = "Payment Confirmation";
             var plainTextContent = "Payment has been made";
-            var htmlContent = $@" Thank you for your purchase!Here are your payment details.<br><br>
+            var htmlContent = $@" Thank you for your purchase! Here are your purchase details.<br><br>
                           Payment Number: {lblPaymentNo.Text}<br>
                           Purchase Number: {lblPurchaseNo.Text}<br>
                           Payment Date and Time: {lblPaymentDateTime.Text}<br>
-                          Payment Amount: {lblPaymentAmount.Text}<br>
-                          Card Number: {lblCardNo.Text}<br><br>
+                          Payment Amount: {lblPaymentAmount.Text}<br><br>
+                          Movie: {lblMovie.Text}<br>
+                          Showing Date: {lblShowingDate.Text}<br>
+                          Showing Time: {lblShowingTime.Text}<br>
+                          Seat(s): {lblSeatNo.Text}<br>
+                          Food Purchased: {foodPurchased}<br>
+                          
                           
                           Scan the QR code for purchase number";
 
@@ -129,8 +196,9 @@ namespace MovieTicketingSystem.CustomerOnly
 
 
             //Reset Ticket and Cart Session
-            //Session.Remove("Cart");
-            //Session.Remove("Ticket");
+            Session.Remove("Cart");
+            Session.Remove("Tickets");
+            Session.Remove("Schedule");
 
             Response.Redirect("~/Annonymous/Home.aspx");
         }

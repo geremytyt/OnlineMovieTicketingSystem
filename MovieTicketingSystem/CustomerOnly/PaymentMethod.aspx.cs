@@ -17,6 +17,12 @@ namespace MovieTicketingSystem.CustomerOnly
 
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Redirect the user back to payment page
+            Response.Redirect("~/CustomerOnly/Payment.aspx");
+        }
+
 
         protected void btnCardConfirm_Click(object sender, EventArgs e)
         {
@@ -35,27 +41,47 @@ namespace MovieTicketingSystem.CustomerOnly
             // Combine the selected values to form the expiryDate in the desired format
             string expiryDate = selectedDay + "/" + selectedMonth + "/" + selectedYear;
 
+            // Get the custID from cookie
+            HttpCookie cookie = Request.Cookies["Customer"];
+            string custId = cookie.Value.ToString();
 
-            string custID = "C001";
+            SqlConnection connection = new SqlConnection(cs);
 
-            // Insert the card details into the Card table using SQL
-            using (SqlConnection connection = new SqlConnection(cs))
+            connection.Open();
+
+            // Check if the card number has been registered before
+            SqlCommand checkCommand = new SqlCommand("SELECT COUNT(*) FROM Card WHERE cardNo = @cardNo", connection);
+            checkCommand.Parameters.AddWithValue("@cardNo", cardNo);
+            int cardCount = (int)checkCommand.ExecuteScalar();
+
+            if (cardCount > 0)
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Card (cardNo, custID, cvv, cardHolderName, expiryDate) VALUES (@cardNo, @custID, @cvv, @cardHolderName, @expiryDate)", connection))
-                {
-                    command.Parameters.AddWithValue("@cardNo", cardNo);
-                    command.Parameters.AddWithValue("@custID", custID);
-                    command.Parameters.AddWithValue("@cvv", cvv);
-                    command.Parameters.AddWithValue("@cardHolderName", cardHolderName);
-                    command.Parameters.AddWithValue("@expiryDate", expiryDate);
+                // Card number has been registered before
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Card has already been registered. Please enter a new card!')", true);
+            }
+            else
+            {
+          
+                connection = new SqlConnection(cs);
 
-                    command.ExecuteNonQuery();
-                }
+                connection.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO Card (cardNo, custID, cvv, cardHolderName, expiryDate) VALUES (@cardNo, @custID, @cvv, @cardHolderName, @expiryDate)", connection);
+
+                command.Parameters.AddWithValue("@cardNo", cardNo);
+                command.Parameters.AddWithValue("@custID", custId);
+                command.Parameters.AddWithValue("@cvv", cvv);
+                command.Parameters.AddWithValue("@cardHolderName", cardHolderName);
+                command.Parameters.AddWithValue("@expiryDate", expiryDate);
+
+                command.ExecuteNonQuery();
+
+                // Redirect the user back to payment page
+                Response.Redirect("~/CustomerOnly/Payment.aspx");
             }
 
-            // Redirect the user back to payment page
-            Response.Redirect("Payment.aspx");
+            connection.Close();
+                
         }
+
     }
 }

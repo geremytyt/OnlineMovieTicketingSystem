@@ -60,6 +60,15 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.TextBox txtScheduleDate;
 
         /// <summary>
+        /// rfvScheduleDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvScheduleDate;
+
+        /// <summary>
         /// txtScheduleTime control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtScheduleTime;
+
+        /// <summary>
+        /// rfvScheduleTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvScheduleTime;
 
         /// <summary>
         /// ddlStatus control.
@@ -112,15 +130,6 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// lblInvalid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInvalid;
 
         /// <summary>
         /// SqlDataSourceSchedule2 control.

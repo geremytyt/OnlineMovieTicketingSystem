@@ -116,7 +116,7 @@
     <Content Include="Annonymous\StaffResetPwd1.aspx" />
     <Content Include="Annonymous\StaffResetPwd2.aspx" />
     <Content Include="App_Data\MovieDB.mdf" />
-    <Content Include="App_Data\movieDB_log.ldf" />
+    <Content Include="App_Data\MovieDB_log.ldf" />
     <Content Include="css\manageSchedule.css" />
     <Content Include="CustomerOnly\Cart.aspx" />
     <Content Include="Annonymous\Food.aspx" />

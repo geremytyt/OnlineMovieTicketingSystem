@@ -19,7 +19,7 @@ namespace MovieTicketingSystem.CustomerOnly
             string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
             {    
-                string sql = "SELECT movieName FROM Movie WHERE movieId = @Id";  //specify the column name and sequence
+                string sql = "SELECT * FROM Movie WHERE movieId = @Id";  //specify the column name and sequence
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Id", id);
@@ -41,7 +41,9 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnNext_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["movieId"] ?? "";
-            string number = ddlTime.SelectedValue;
+            //string number = ddlTime.SelectedValue;
+            string number = "SC1001";
+
             string sql = "SELECT Hall.hallNo, Hall.row, Hall.[column], Schedule.movieId, Schedule.scheduleDateTime FROM  Schedule INNER JOIN   Hall ON Schedule.hallNo = Hall.hallNo WHERE  (Schedule.scheduleNo = @Num)";
             Schedule schedule;
             SqlConnection con = new SqlConnection(cs);
