@@ -109,7 +109,7 @@
                 </div>
                 <div class="mx-4">
                     <asp:TextBox ID="txtScheduleDate" runat="server" CssClass="form-control" placeholder=" " TextMode="Date"/>
-                    <asp:RequiredFieldValidator ID="rfvScheduleDate" runat="server" ControlToValidate="txtScheduleDate" CssClass="error" Display="Dynamic" ErrorMessage="Please enter schedule date"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvScheduleDate" runat="server" ControlToValidate="txtScheduleDate" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter schedule date"></asp:RequiredFieldValidator>
                 </div>
 
                 <br />
@@ -118,7 +118,7 @@
                 </div>
                 <div class="mx-4">
                     <asp:TextBox ID="txtScheduleTime" runat="server" CssClass="form-control" placeholder=" " TextMode="Time"/>
-                    <asp:RequiredFieldValidator ID="rfvScheduleTime" runat="server" ControlToValidate="txtScheduleTime" CssClass="error" Display="Dynamic" ErrorMessage="Please enter schedule time"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvScheduleTime" runat="server" ControlToValidate="txtScheduleTime" CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter schedule time"></asp:RequiredFieldValidator>
                 </div>
                 <br />
                 <div class="mx-4">
@@ -128,6 +128,7 @@
                     <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control mt-3 bg-dark">
                             <asp:ListItem Text="Active" Value="Active" />
                             <asp:ListItem Text="Cancelled" Value="Cancelled" />
+                            <asp:ListItem Text="Completed" Value="Completed" />
                     </asp:DropDownList>
                 </div>
 

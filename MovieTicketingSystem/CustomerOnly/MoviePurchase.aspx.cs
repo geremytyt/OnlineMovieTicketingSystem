@@ -42,8 +42,8 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnNext_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["movieId"] ?? "";
-            //string number = ddlTime.SelectedValue;
-            string number = "SC1001";
+            string number = ddlTime.SelectedValue;
+            //string number = "SC1001";
 
             string sql = "SELECT Hall.hallNo, Hall.row, Hall.[column], Schedule.movieId, Schedule.scheduleDateTime FROM  Schedule INNER JOIN   Hall ON Schedule.hallNo = Hall.hallNo WHERE  (Schedule.scheduleNo = @Num)";
             Schedule schedule;
