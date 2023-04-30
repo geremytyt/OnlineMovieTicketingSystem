@@ -161,6 +161,7 @@
                                 <asp:ListItem Text="Select a credit card" Value="" disabled="disabled"></asp:ListItem>
                                 <asp:ListItem Text="Register a new credit card" Value="registerCreditCard"></asp:ListItem>
                             </asp:DropDownList>
+            
                         </div>
                     </div>
                 </div>
@@ -171,7 +172,7 @@
         <br />
         <br />
         <div class="d-flex justify-content-center align-items-center m-2">
-            <asp:Button ID="btnCancel" class="btnCancel" runat="server" Text="Cancel" style="display: block; margin: 0 auto; width:20%;" CssClass="btn btn-default" OnClick="btnCancel_Click" />
+            <asp:Button ID="btnCancel" class="btnCancel" runat="server" Text="Cancel" style="display: block; margin: 0 auto; width:20%;" CssClass="btn btn-default" OnClick="btnCancel_Click"  />
             <asp:Button ID="btnProceed" class="btnProceed" style="display: block; margin: 0 auto; width:20%;" CssClass="btn btn-default" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
         </div>
         
