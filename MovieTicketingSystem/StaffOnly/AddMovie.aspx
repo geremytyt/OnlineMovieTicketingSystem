@@ -93,7 +93,7 @@
                              <div class="mb-2">
                                  <label for="txtSynopsis" class="form-label requiredField">Synopsis</label>
                                  <asp:TextBox ID="txtSynopsis" ClientIDMode="Static" TextMode="MultiLine" runat="server" CssClass="form-control bg-transparent" ForeColor="White"></asp:TextBox>
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please enter a synopsis" ControlToValidate="txtSynopsis" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true" BackColor="Transparent" ForeColor="White"></asp:RequiredFieldValidator>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please enter a synopsis" ControlToValidate="txtSynopsis" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
                              </div>
                          </td>
                      </tr>
