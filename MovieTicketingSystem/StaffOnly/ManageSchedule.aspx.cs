@@ -17,11 +17,19 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Update the schedule status, if the schedule status is active and the date and time has passed, set it to completed
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+
+            string updateSch = "UPDATE Schedule SET status = 'Completed' WHERE ScheduleDateTime <= GETDATE() AND Status = 'Active'";
+            SqlCommand command = new SqlCommand(updateSch, con);
+            command.ExecuteNonQuery();
+
             if (!IsPostBack)
             {
                 string sql = "Select * FROM Schedule";
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
+                con = new SqlConnection(cs);
+                
                 SqlDataAdapter sda = new SqlDataAdapter(sql, con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -30,17 +38,14 @@ namespace MovieTicketingSystem.StaffOnly
 
             }
 
+            con.Close();
+
             scheduleGridView.UseAccessibleHeader = true;
             scheduleGridView.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-            //scheduleGridView.PageSize = 10;
-            //scheduleGridView.AllowPaging = true;
-            //scheduleGridView.DataBind();
 
             btnConfirm.Visible = false;
             btnCancel.Visible = false;
             
-
             // Disable editing controls
             ddlMovieID.Enabled = false;
             ddlHall.Enabled = false;
@@ -85,8 +90,9 @@ namespace MovieTicketingSystem.StaffOnly
             btnAdd.Enabled = true;
             btnEdit.Visible = true;
 
+            //cant edit schedule if it already pass the current date time or if the schedule is less than 3 days from now
             DateTime scheduleDateTime1 = Convert.ToDateTime(row.Cells[3].Text);
-            if (DateTime.Now > scheduleDateTime1 || DateTime.Now.AddDays(7) > scheduleDateTime1)
+            if (DateTime.Now > scheduleDateTime1 || DateTime.Now.AddDays(3) > scheduleDateTime1)
             {
                 btnEdit.Enabled = false;
             }
@@ -165,6 +171,7 @@ namespace MovieTicketingSystem.StaffOnly
             txtScheduleDate.Enabled = false;
             txtScheduleTime.Enabled = false;
             ddlStatus.Enabled = true;
+            ddlStatus.Items.FindByValue("Completed").Enabled = false;
         }
 
 
@@ -219,6 +226,7 @@ namespace MovieTicketingSystem.StaffOnly
                     txtScheduleDate.Enabled = false;
                     txtScheduleTime.Enabled = false;
                     ddlStatus.Enabled = false;
+                    ddlStatus.Items.FindByValue("Completed").Enabled = true;
 
                     // Update the grid view
                     string sql = "Select * FROM Schedule";
@@ -243,7 +251,6 @@ namespace MovieTicketingSystem.StaffOnly
                     string scheduleNo = lblScheduleID.Text;
                     string movieId = ddlMovieID.SelectedValue;
                     string hallNo = ddlHall.SelectedValue;
-
 
                     string initialHallNo = "";
                     string sqlGetHall = "SELECT hallNo FROM Schedule WHERE scheduleNo = @scheduleNo";
@@ -308,6 +315,7 @@ namespace MovieTicketingSystem.StaffOnly
                         txtScheduleDate.Enabled = false;
                         txtScheduleTime.Enabled = false;
                         ddlStatus.Enabled = false;
+                        ddlStatus.Items.FindByValue("Completed").Enabled = true;
 
 
                         if (status == "Cancelled")
@@ -346,6 +354,7 @@ namespace MovieTicketingSystem.StaffOnly
             ddlHall.SelectedIndex = 0;
             txtScheduleDate.Text = string.Empty;
             txtScheduleTime.Text = string.Empty;
+            ddlStatus.Items.FindByValue("Completed").Enabled = true;
 
             // Set the button back 
             btnConfirm.Visible = false;

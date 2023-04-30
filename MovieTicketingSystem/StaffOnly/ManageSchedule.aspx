@@ -128,6 +128,7 @@
                     <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control mt-3 bg-dark">
                             <asp:ListItem Text="Active" Value="Active" />
                             <asp:ListItem Text="Cancelled" Value="Cancelled" />
+                            <asp:ListItem Text="Completed" Value="Completed" />
                     </asp:DropDownList>
                 </div>
 
