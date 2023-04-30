@@ -52,7 +52,7 @@
                                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                                             <div class="d-grid gap-2">
                                                 <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
-                                                <asp:Button ID="Button1" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
+                                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                             </div>
                                         </div>
                                     </div>
@@ -91,8 +91,8 @@
                                             <asp:Image ID="Image1" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                                             <div class="d-grid gap-2">
-                                                <asp:Button ID="Button2" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
-                                                <asp:Button ID="Button3" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
+                                                <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                             </div>
                                         </div>
                                     </div>
@@ -102,6 +102,23 @@
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper(".currentSwiper", {
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                            pagination: {
+                                el: ".swiper-pagination",
+                                type: "fraction",
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            },
+                        });
+                    </script>
                 </div>
 
                 <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM movie WHERE releaseDate > GETDATE()"></asp:SqlDataSource>
@@ -116,8 +133,8 @@
                                             <asp:Image ID="Image2" CssClass="card-img-top image-fluid image-poster" ImageUrl='<%# ResolveUrl((string)Eval("posterURL")) %>' runat="server" ImageAlign="Middle" />
                                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                                             <div class="d-grid gap-2">
-                                                <asp:Button ID="Button4" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
-                                                <asp:Button ID="Button5" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
+                                                <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
+                                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +144,24 @@
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT TOP (5) m.movieId, m.movieName, COUNT(*) AS ticketsSold, m.posterURL, m.trailerURL FROM Movie AS m INNER JOIN Schedule AS s ON m.movieId = s.movieId INNER JOIN Ticket AS t ON s.scheduleNo = t.scheduleNo INNER JOIN Purchase AS p ON t.purchaseNo = p.purchaseNo GROUP BY m.movieId, m.movieName, m.posterURL, m.trailerURL ORDER BY ticketsSold DESC"></asp:SqlDataSource>
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper(".currentSwiper", {
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                            pagination: {
+                                el: ".swiper-pagination",
+                                type: "fraction",
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            },
+                        });
+                    </script>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT TOP (5) m.movieId, m.movieName, COUNT(*) AS ticketsSold, m.posterURL, m.trailerURL FROM Movie AS m INNER JOIN Schedule AS s ON m.movieId = s.movieId INNER JOIN Ticket AS t ON s.scheduleNo = t.scheduleNo INNER JOIN Purchase AS p ON t.purchaseNo = p.purchaseNo WHERE (m.endDate > GETDATE()) GROUP BY m.movieId, m.movieName, m.posterURL, m.trailerURL ORDER BY ticketsSold DESC"></asp:SqlDataSource>
                 </div>
             </div>
             

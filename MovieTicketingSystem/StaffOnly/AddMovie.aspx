@@ -54,7 +54,6 @@
                              <div class="form-floating mb-2">
                                  <asp:TextBox ID="txtDuration" placeholder=" " ClientIDMode="Static" TextMode="Number" runat="server" CssClass="form-control userInput"></asp:TextBox>
                                  <label for="txtDuration" class="requiredField">Duration (minutes)</label>
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorDuration" runat="server" ErrorMessage="Please enter a duration" ControlToValidate="txtDuration" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                  <asp:RangeValidator ID="RangeValidatorDuration" runat="server" ErrorMessage="Invalid format of duration, Please enter a valid duration (Min.1)" MinimumValue="1" MaximumValue="1000" Type="Integer" ControlToValidate="txtDuration" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true"></asp:RangeValidator>
                              </div>
                          </td>
