@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MovieTicketingSystem.Model;
-using System.Security.Policy;
+using System.Web.UI.DataVisualization.Charting;
+using Newtonsoft.Json;
 using System.Web.Services;
-using System.Security.Cryptography;
+using System.Data.SqlClient;
+using System.Globalization;
 
 namespace MovieTicketingSystem.ManagerOnly
 {
-
-    public partial class FoodSaleReport : System.Web.UI.Page
+    public partial class RefundReport : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
         string cs = Global.cs;
-        private static string start { get; set; } 
-        private static string end { get; set; } 
+        private static string start { get; set; }
+        private static string end { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             DateTime current = DateTime.Now;
-
-           
 
             litDate.Text = current.ToString();
 
@@ -35,25 +32,25 @@ namespace MovieTicketingSystem.ManagerOnly
                 start = Request.QueryString["Start"] ?? "";
                 end = Request.QueryString["End"] ?? "";
 
-                if(start != "")
+                if (start != "")
                 {
-                    tbFoodReportStartDate.Text = start.ToString();
-                }
-                
-                if (end != "")
-                {
-                    tbFoodReportEndDate.Text = end.ToString();
+                    tbRefundReportStartDate.Text = start.ToString();
                 }
 
-                if (start != "" && end !="")
+                if (end != "")
+                {
+                    tbRefundReportEndDate.Text = end.ToString();
+                }
+
+                if (start != "" && end != "")
                 {
                     bindGrid();
                 }
 
                 //set min and max value of date
-                tbFoodReportStartDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbFoodReportEndDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
-                tbFoodReportEndDate.Attributes["min"] = tbFoodReportStartDate.Text;
+                tbRefundReportStartDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
+                tbRefundReportEndDate.Attributes["max"] = current.ToString("yyyy-MM-dd");
+                tbRefundReportEndDate.Attributes["min"] = tbRefundReportStartDate.Text;
             }
         }
 
@@ -66,7 +63,7 @@ namespace MovieTicketingSystem.ManagerOnly
                 string constr = Global.cs;
 
                 List<object> chartData = new List<object>();
-               
+
                 using (SqlConnection con = new SqlConnection(constr))
                 {
                     using (SqlCommand cmd = new SqlCommand(query))
@@ -74,19 +71,19 @@ namespace MovieTicketingSystem.ManagerOnly
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = con;
                         con.Open();
-                       
+
                         using (SqlDataReader sdr = cmd.ExecuteReader())
                         {
                             while (sdr.Read())
                             {
                                 chartData.Add(new object[]
                                 {
-                                    sdr["name"].ToString(),(decimal)sdr["Total_Money"]
+                                    sdr["month"].ToString(),(decimal)sdr["totalRefund"]
                                 });
                             }
 
                         }
-                        
+
                         con.Close();
 
                         return chartData;
@@ -100,7 +97,7 @@ namespace MovieTicketingSystem.ManagerOnly
             }
 
         }
-        
+
         private void bindGrid()
         {
             string sql = getQueryString();
@@ -125,16 +122,30 @@ namespace MovieTicketingSystem.ManagerOnly
 
         private static string getQueryString()
         {
-            return "SELECT Menu.menuId AS ID, Menu.menuName AS name, SUM(PurchaseMenu.menuQty) AS Total_Item_Sold, Menu.menuPrice AS Price, SUM(PurchaseMenu.menuQty) * Menu.menuPrice AS Total_Money " +
-                "From Menu, PurchaseMenu, Purchase, Payment " +
-                "WHERE Menu.menuId = PurchaseMenu.menuId " +
-                "AND PurchaseMenu.purchaseNo = Purchase.purchaseNo " +
-                "AND Payment.purchaseNo = Purchase.purchaseNo " +
-                "AND CONVERT(Date, Payment.paymentDateTime, 23) <= '"+ end + "' " +
-                "AND CONVERT(Date, Payment.paymentDateTime, 23) >= '" + start + "' " +
-                "Group By  Menu.menuId, Menu.menuName, Menu.menuPrice " +
-                 "Order By Total_Money DESC";
+            return @"SELECT YEAR(paymentDateTime) AS year, MONTH(paymentDateTime) AS month, SUM(paymentAmount) AS totalRefund
+                   FROM Payment
+                   WHERE paymentDateTime >= '" + start + "' AND paymentDateTime <= '" + end + @"' AND status = 'Cancelled'
+                   GROUP BY YEAR(paymentDateTime), MONTH(paymentDateTime)
+                   ORDER BY year, month";
         }
+
+        protected void tbRefundReportStartDate_TextChanged(object sender, EventArgs e)
+        {
+
+            if (tbRefundReportEndDate.Text != null)
+            {
+                Response.Redirect("RefundReport.aspx?Start=" + tbRefundReportStartDate.Text + "&&End=" + tbRefundReportEndDate.Text);
+            }
+        }
+
+        protected void tbRefundReportEndDate_TextChanged(object sender, EventArgs e)
+        {
+            if (tbRefundReportStartDate.Text != null)
+            {
+                Response.Redirect("RefundReport.aspx?Start=" + tbRefundReportStartDate.Text + "&&End=" + tbRefundReportEndDate.Text);
+            }
+        }
+
 
         protected void btnSale_Click(object sender, EventArgs e)
         {
@@ -170,23 +181,5 @@ namespace MovieTicketingSystem.ManagerOnly
         {
             Response.Redirect("TopCustomerReport.aspx");
         }
-
-        protected void tbFoodReportStartDate_TextChanged(object sender, EventArgs e)
-        {
-                        
-            if ( tbFoodReportEndDate.Text != null)
-            {
-                Response.Redirect("FoodSaleReport.aspx?Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
-            }
-        }
-
-        protected void tbFoodReportEndDate_TextChanged(object sender, EventArgs e)
-        {
-            if (tbFoodReportStartDate.Text != null)
-            {
-                Response.Redirect("FoodSaleReport.aspx?Start=" + tbFoodReportStartDate.Text + "&&End=" + tbFoodReportEndDate.Text);
-            }
-        }
-
     }
 }

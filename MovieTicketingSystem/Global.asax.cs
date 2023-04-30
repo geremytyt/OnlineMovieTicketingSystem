@@ -47,5 +47,63 @@ namespace MovieTicketingSystem
         {
 
         }
+
+        protected void Application_EndRequest(Object sender, EventArgs e)
+        {
+            if (Context.Response.StatusCode == 500)
+            {
+                if (Context.User.IsInRole("Customer"))
+                {
+                    Response.Redirect("~/ErrorPages/500Error(Customer).aspx");
+                }
+                else if (Context.User.IsInRole("Staff"))
+                {
+                    Response.Redirect("~/ErrorPages/500Error(Staff).aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/ErrorPages/500Error(Customer).aspx");
+                }
+
+            }
+            else if (Context.Response.StatusCode == 404)
+            {
+                if (Context.User.IsInRole("Customer"))
+                {
+                    Response.Redirect("~/ErrorPages/FileNotFound(Customer).aspx");
+                }
+                else if (Context.User.IsInRole("Staff"))
+                {
+                    Response.Redirect("~/ErrorPages/FileNotFound(Staff).aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/ErrorPages/FileNotFound(Customer).aspx");
+                }
+            }
+            else
+            {
+                string statusCode = Context.Response.StatusCode.ToString();
+
+                if (statusCode.StartsWith("4") || statusCode.StartsWith("5"))
+                {
+                    if (Context.User.IsInRole("Customer"))
+                    {
+                        Response.Redirect(String.Format("~/ErrorPages/DefaultErrorPage(Customer).aspx?statusCode={0}", statusCode));
+                    }
+                    else if (Context.User.IsInRole("Staff"))
+                    {
+                        Response.Redirect(String.Format("~/ErrorPages/DefaultErrorPage(Staff).aspx?statusCode={0}", statusCode));
+                    }
+                    else
+                    {
+                        Response.Redirect(String.Format("~/ErrorPages/DefaultErrorPage(Customer).aspx?statusCode={0}", statusCode));
+                    }
+                    
+               
+                }
+            }
+
+        }
     }
 }

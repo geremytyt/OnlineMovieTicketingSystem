@@ -15,6 +15,7 @@ namespace MovieTicketingSystem.CustomerOnly
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             bool found = false;
             string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
@@ -71,6 +72,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 cookie.Expires = DateTime.Now.AddHours(3);
                 cookie.Value = slideIndex;
                 Response.Cookies.Add(cookie);
+
             }
 
             Response.Redirect("MoviePurchase.aspx?movieId=" + id);
