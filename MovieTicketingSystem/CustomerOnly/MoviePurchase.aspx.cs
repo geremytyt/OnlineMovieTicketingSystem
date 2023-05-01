@@ -15,6 +15,7 @@ namespace MovieTicketingSystem.CustomerOnly
         private string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             bool found = false;
             string id = Request.QueryString["movieId"] ?? "";
             if (!IsPostBack)
@@ -41,8 +42,8 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnNext_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["movieId"] ?? "";
-            //string number = ddlTime.SelectedValue;
-            string number = "SC1001";
+            string number = ddlTime.SelectedValue;
+            //string number = "SC1001";
 
             string sql = "SELECT Hall.hallNo, Hall.row, Hall.[column], Schedule.movieId, Schedule.scheduleDateTime FROM  Schedule INNER JOIN   Hall ON Schedule.hallNo = Hall.hallNo WHERE  (Schedule.scheduleNo = @Num)";
             Schedule schedule;
@@ -71,6 +72,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 cookie.Expires = DateTime.Now.AddHours(3);
                 cookie.Value = slideIndex;
                 Response.Cookies.Add(cookie);
+
             }
 
             Response.Redirect("MoviePurchase.aspx?movieId=" + id);

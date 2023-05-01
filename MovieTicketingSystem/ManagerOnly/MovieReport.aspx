@@ -1,5 +1,44 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="MovieReport.aspx.cs" Inherits="MovieTicketingSystem.ManagerOnly.MovieReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var options = {
+            title: 'Ticket Sold',
+            width: 600,
+            height: 400,
+            bar: { groupWidth: "95%" },
+            legend: { position: "none" },
+            isStacked: true
+        };
+        $.ajax({
+            type: "POST",
+            url: "MovieReport.aspx/GetChartData2",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Movie');
+                data.addColumn('number', 'Ticket');
+                for (var i = 0; i < r.d.length; i++) {
+                    data.addRow([String(r.d[i][0]), r.d[i][1]]);
+                }
+                var chart = new google.visualization.ColumnChart($("#ChartReport2")[0]);
+                chart.draw(data, options);
+            },
+            failure: function (r) {
+                alert("Error2: " + r.status + " " + r.statusText + " " + r.responsetext);
+            },
+            error: function (r) {
+                alert("Error: " + r.status + " " + r.statusText + " " + r.responsetext);
+            }
+        });
+    }
+</script>
 <div class="container row" id="reportContainer" style="height:700px;">
   <div class="col-md-4 p-3">
          <div class="row ">
@@ -8,6 +47,9 @@
  <li class="nav-item mb-3">
                         <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link " OnClick="btnSale_Click"  type="button" CausesValidation="false"/>
                     </li>
+                    <li class="nav-item mb-3">
+                            <asp:Button ID="btnRefund" runat="server" Text="Refund Report" class="profileTab nav-link" OnClick="btnRefund_Click" type="button" CausesValidation="false"/>
+                        </li>
                     <li class="nav-item mb-3">
                         <asp:Button ID="btnMovieReport" runat="server" Text="Movie Report" class="profileTab active nav-link" type="button" OnClick="btnMovieReport_Click"  CausesValidation="false"/>
                     </li>
@@ -32,9 +74,17 @@
         <div class="tab-content container-fluid" id="nav-tabContent">
            <div class="tab-pane fade show active p-3" id="reportContenier">
                <div class="text-white w-100">
-                   <!----Start uour report here --->    
-                   <h1> Movie Report</h1>
-               
+                   <!----Start uour report here --->
+                   <hr width="100%" style="border: 1px solid white" />
+                   <div runat="server" id="displayReport" class="border border-light p-5">
+                       <h1 class="text-center"> Movie Sales Report</h1>
+                       <div class="justify-content-end d-flex">
+                            <asp:Label ID = "lblDate" runat="server" cssClass="text-white mx-2" Text="Generated On: "></asp:Label>
+                            <asp:Literal ID = "litDate" runat="server"></asp:Literal>
+                       </div>
+                    <div id="ChartReport2" class="my-3 mx-auto d-flex align-items-center justify-content-center"></div>
+
+                    </div>
                
                </div>
            </div>

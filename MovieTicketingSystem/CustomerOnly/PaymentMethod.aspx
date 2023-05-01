@@ -18,14 +18,15 @@
                 <h6>Cardholder Name</h6>
                 <div class="paymentInput">    
                     <asp:TextBox ID="txtCardName" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCardName" CssClass="error" Display="Dynamic" ErrorMessage="Please enter the cardholder name" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCardName"  CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter the cardholder name"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="cvv">
                 <h6>CVV</h6>
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCvv" TextMode="Password" runat="server"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtCvv" runat="server" ValidationExpression="\d{3}" ErrorMessage="Invalid format of CVV. Please enter a 3 digit CVV" ForeColor="Red"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCvv"  CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter the cvv"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtCvv" runat="server"  CssClass="text-danger" ValidationExpression="\d{3}" ErrorMessage="Invalid format of CVV. Please enter a 3 digit CVV"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>
@@ -34,8 +35,10 @@
                 <h6>Card Number</h6>
                 <div class="paymentInput">
                     <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtCardNo" runat="server" ValidationExpression="^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$" 
-                        ErrorMessage="Invalid format of Mastercard Number." ForeColor="Red"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtCardNo"  CssClass="text-danger" runat="server" ValidationExpression="^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$" 
+                        ErrorMessage="Invalid format of Mastercard Number."></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCardNo"  CssClass="text-danger" Display="Dynamic" ErrorMessage="Please enter the credit card number"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCardNo" CssClass="text-danger" Text="Credit card already exists." ErrorMessage="Credit card already exists." SetFocusOnError="true"  OnServerValidate="cvCardExists_ServerValidate"></asp:CustomValidator>
                 </div>
             </div>
         </div>
@@ -72,8 +75,8 @@
         </div>
         <br />
         <div class="d-flex justify-content-center align-items-center m-2">
-            <asp:Button ID="btnCancel" class="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;"/>
-            <asp:Button ID="btnCardConfirm" class="btnCardConfirm" runat="server" Text="Confirm" OnClick="btnCardConfirm_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;"/>
+            <asp:Button ID="btnCancel" class="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;" CausesValidation="false"/>
+            <asp:Button ID="btnCardConfirm" class="btnCardConfirm" runat="server" Text="Confirm" OnClick="btnCardConfirm_Click" CssClass="btn btn-default" style="display: block; margin: 0 auto; width:20%;" CausesValidation="true"/>
         </div>
         
     </div>
