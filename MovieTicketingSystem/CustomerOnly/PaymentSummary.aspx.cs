@@ -112,6 +112,9 @@ namespace MovieTicketingSystem.CustomerOnly
             string custName = "";
             string custEmail = "";
 
+            //Get customer email and name to send email, now we using our own emails to test, when integrate dat time can uncomment and chnge the code down there
+
+            //For 
             //if (cookie != null)
             //{
             //    string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
@@ -129,9 +132,17 @@ namespace MovieTicketingSystem.CustomerOnly
             //}
 
 
-            // Generate the QR code byte array
             string paymentNo = Request.QueryString["paymentNo"];
-            var qrCodeBytes = QrCode.GenerateQrCode(paymentNo);
+            QrCode.GenerateQrCode(paymentNo);
+            // Retrieve the QR code byte array from the database using the payment number
+            byte[] qrCodeBytes;
+            SqlConnection connection = new SqlConnection(cs);
+            
+            connection.Open();
+            SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
+            command.Parameters.AddWithValue("@paymentNo", paymentNo);
+            qrCodeBytes = (byte[])command.ExecuteScalar();
+            
 
             var apiKey = "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";
 

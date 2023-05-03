@@ -7,14 +7,17 @@ using System.Drawing;
 using ZXing.QrCode;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace MovieTicketingSystem
 {
     public static class QrCode
     {
-        public static byte[] GenerateQrCode(string purchaseNumber)
+        private static string cs = ConfigurationManager.ConnectionStrings["MovieConnectionString"].ConnectionString;
+        public static void GenerateQrCode(string paymentNo)
         {
-            // Generate the QR code
+            // Get the QR code image as a byte array
             var writer = new BarcodeWriter
             {
                 Format = BarcodeFormat.QR_CODE,
@@ -25,21 +28,25 @@ namespace MovieTicketingSystem
                     Margin = 0
                 }
             };
-            var qrCode = writer.Write($"Purchase Number: {purchaseNumber}");
+            var qrCode = writer.Write($"Payment Number: {paymentNo}");
+            var stream = new MemoryStream();
+            
+            qrCode.Save(stream, ImageFormat.Png);
+            var qrCodeBytes = stream.ToArray();
 
-            // Save the QR code image to a file
-            var filePath = "~/Image/qrCodes/qrCode1.png";
-            qrCode.Save(HttpContext.Current.Server.MapPath(filePath), ImageFormat.Png);
 
-            // Read the QR code image from the file and convert it to a byte array
-            using (var stream = new MemoryStream())
-            {
-                using (var fileStream = File.OpenRead(HttpContext.Current.Server.MapPath(filePath)))
-                {
-                    fileStream.CopyTo(stream);
-                }
-                return stream.ToArray();
-            }
+            // Update the payment record in the database with the QR code image
+            SqlConnection connection = new SqlConnection(cs);
+            
+            connection.Open();
+            SqlCommand command = new SqlCommand("UPDATE Payment SET qrCode = @qrCode WHERE paymentNo = @paymentNo", connection);
+                
+            command.Parameters.AddWithValue("@qrCode", qrCodeBytes);
+            command.Parameters.AddWithValue("@paymentNo", paymentNo);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+                
         }
 
     }
