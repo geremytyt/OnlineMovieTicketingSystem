@@ -49,7 +49,7 @@
         }
     </style>
     <div class="mx-auto" style="width:85%;">
-    <div class="maintainScheduleContainer" style="height:700px;">
+    <div class="maintainScheduleContainer" style="min-height:100%;">
         <h2 class="text-white pt-2">Maintain Schedule</h2>
         <hr width="100%" style="border: 1px solid white"/>
         <div class="scheduleGridViewContainer text-white">
