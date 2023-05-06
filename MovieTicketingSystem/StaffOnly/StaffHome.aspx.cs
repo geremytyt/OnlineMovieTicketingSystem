@@ -20,9 +20,10 @@ namespace MovieTicketingSystem.StaffOnly
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            String searchDate = DateTime.Now.Date.ToString();
+            String searchDate = DateTime.Now.ToString();
 
             TBDate.Text = "Up to Date until: " + searchDate;
+            searchDate = DateTime.Now.ToString();
 
             getTotalTicketSold(searchDate);
             getTotalFoodSold(searchDate);
@@ -36,10 +37,8 @@ namespace MovieTicketingSystem.StaffOnly
         private void getTotalTicketSold(String searchDate)
         {
             
-            string sql = "SELECT Purchase.adultQty, Purchase.childrenQty, Purchase.seniorQty, Purchase.ticketTotal, Payment.paymentDateTime  " +
-                "FROM Purchase, Payment " +
-                "Where Purchase.purchaseNo = Payment.purchaseNo " +
-                "AND CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "'";
+            string sql = "SELECT Purchase.adultQty, Purchase.childrenQty, Purchase.seniorQty, Purchase.ticketTotal, Payment.paymentDateTime FROM Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo WHERE (CONVERT (Date, Payment.paymentDateTime, 101) = CONVERT (Date, GETDATE(), 101))";
+
 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -63,13 +62,7 @@ namespace MovieTicketingSystem.StaffOnly
         private void getTotalFoodSold(String searchDate)
         {
             
-            string sql = "SELECT Purchase.purchaseNo, Sum(PurchaseMenu.menuQty), Purchase.foodTotal,Payment.paymentDateTime " +
-                "FROM Purchase, Payment, PurchaseMenu, Menu " +
-                "WHERE Purchase.purchaseNo = Payment.purchaseNo and " +
-                "Purchase.purchaseNo = PurchaseMenu.purchaseNo and " +
-                "PurchaseMenu.menuId = Menu.menuId " +
-                "AND CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "'" +
-                "Group By Purchase.purchaseNo, Purchase.foodTotal,Payment.paymentDateTime ";
+            string sql = "SELECT Purchase.purchaseNo, Sum(PurchaseMenu.menuQty), Purchase.foodTotal,Payment.paymentDateTime FROM Purchase, Payment, PurchaseMenu, Menu WHERE Purchase.purchaseNo = Payment.purchaseNo and Purchase.purchaseNo = PurchaseMenu.purchaseNo and PurchaseMenu.menuId = Menu.menuId AND CONVERT(Date, Payment.paymentDateTime,101) = CONVERT(Date, GETDATE(), 101) Group By Purchase.purchaseNo, Purchase.foodTotal,Payment.paymentDateTime";
             
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -91,15 +84,7 @@ namespace MovieTicketingSystem.StaffOnly
 
         private void getMostPopularMovie(String searchDate)
         {
-            string sql = "SELECT Payment.paymentDateTime, Movie.movieName, Count(Ticket.ticketNo) " +
-                "FROM Payment, Purchase, Ticket, Schedule, Movie " +
-                "Where Purchase.purchaseNo = Payment.purchaseNo  " +
-                "AND Ticket.purchaseNo = Purchase.purchaseNo " +
-                "AND TICKET.scheduleNo = Schedule.scheduleNo " +
-                "AND Schedule.movieId = Movie.movieId " +
-                "AND CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "'" +
-                "Group By Movie.movieName, Payment.paymentDateTime " +
-                "Order BY Count(Ticket.ticketNo) DESC";
+            string sql = "SELECT Payment.paymentDateTime, Movie.movieName, COUNT(Ticket.ticketNo) AS Expr1 FROM Payment INNER JOIN Purchase ON Payment.purchaseNo = Purchase.purchaseNo INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo INNER JOIN Schedule ON Ticket.scheduleNo = Schedule.scheduleNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId WHERE (CONVERT (Date, Payment.paymentDateTime, 101) = CONVERT (Date, GETDATE(), 101)) GROUP BY Movie.movieName, Payment.paymentDateTime ORDER BY Expr1 DESC";
 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -121,7 +106,7 @@ namespace MovieTicketingSystem.StaffOnly
 
         private void getMovieSales(String searchDate)
         {
-            String sql = "SELECT SUM(Ticket.ticketPrice) AS Expr1 FROM Payment INNER JOIN Purchase ON Payment.purchaseNo = Purchase.purchaseNo INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo INNER JOIN Schedule ON Ticket.scheduleNo = Schedule.scheduleNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId WHERE (CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "')";
+            String sql = "SELECT SUM(Ticket.ticketPrice) AS Expr1 FROM Payment INNER JOIN Purchase ON Payment.purchaseNo = Purchase.purchaseNo INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo INNER JOIN Schedule ON Ticket.scheduleNo = Schedule.scheduleNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId WHERE (CONVERT (Date, Payment.paymentDateTime, 101) = CONVERT (Date, GETDATE(), 101))";
 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -142,14 +127,7 @@ namespace MovieTicketingSystem.StaffOnly
         }
 
         private void getMostPopularFood(String searchDate) {
-            String sql = "SELECT Menu.menuId, Menu.menuName, Sum(PurchaseMenu.menuQty) " +
-                "FROM Purchase, Payment, PurchaseMenu, Menu " +
-                "WHERE Purchase.purchaseNo = Payment.purchaseNo and " +
-                "Purchase.purchaseNo = PurchaseMenu.purchaseNo and " +
-                "PurchaseMenu.menuId = Menu.menuId " +
-                "AND CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "'" +
-                "Group By Menu.menuId, Menu.menuName " +
-                "Order By Sum(PurchaseMenu.menuQty) DESC";
+            String sql = "SELECT Menu.menuId, Menu.menuName, Sum(PurchaseMenu.menuQty) FROM Purchase, Payment, PurchaseMenu, Menu WHERE Purchase.purchaseNo = Payment.purchaseNo and Purchase.purchaseNo = PurchaseMenu.purchaseNo and PurchaseMenu.menuId = Menu.menuId AND CONVERT(Date, Payment.paymentDateTime) = CONVERT(Date,GETDATE(),101) Group By Menu.menuId, Menu.menuName Order By Sum(PurchaseMenu.menuQty) DESC";
             
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -171,7 +149,7 @@ namespace MovieTicketingSystem.StaffOnly
 
         private void getFoodSales(String searchDate)
         {
-            String sql = "SELECT SUM(Menu.menuPrice * PurchaseMenu.menuQty) AS Sales FROM Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId WHERE (CONVERT(Date, Payment.paymentDateTime) = '" + searchDate + "')";
+            String sql = "SELECT SUM(Menu.menuPrice * PurchaseMenu.menuQty) AS Sales FROM Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId WHERE (CONVERT(Date, Payment.paymentDateTime) = CONVERT(Date,GETDATE(),101))";
 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -193,11 +171,7 @@ namespace MovieTicketingSystem.StaffOnly
 
         private void getUpcomingSchedule(String searchDate)
         {
-            String sql = " Select Schedule.scheduleDateTime As Time, Schedule.hallNo As Hall, Movie.movieName AS Movie " +
-                "From Schedule, Movie " +
-                "WHERE Schedule.movieId = Movie.movieId " +
-                "And CONVERT(Date, scheduleDateTime) = '" + searchDate + "'" +
-                "order by scheduleDateTime";
+            String sql = " Select Schedule.scheduleDateTime As Time, Schedule.hallNo As Hall, Movie.movieName AS Movie From Schedule, Movie WHERE Schedule.movieId = Movie.movieId And CONVERT(Date, scheduleDateTime,101) = CONVERT(Date,GETDATE(),101) Order by scheduleDateTime";
 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
