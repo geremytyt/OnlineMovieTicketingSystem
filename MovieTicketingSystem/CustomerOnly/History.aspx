@@ -3,7 +3,7 @@
        <div class="col-md-10 py-5 mx-auto text-white">
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
-                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
+                <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" ImageUrl="../Image/user.png" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px"/>
                 <hr class="mx-auto w-75" style="border:1px solid white;"/>
                 <div class="row ">
                     <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">

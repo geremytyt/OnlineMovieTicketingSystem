@@ -36,6 +36,7 @@ namespace MovieTicketingSystem.Annonymous
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Invalid token.');window.location.href='../Annonymous/ResetPwd1.aspx';", true);
             }
         }
+
         protected void btnToken_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)

@@ -33,8 +33,10 @@ namespace MovieTicketingSystem.CustomerOnly
 
                     if (dr.Read())
                     {
-                        imgPreview.ImageUrl = dr[7].ToString();
-
+                        if (dr[7].ToString() != "")
+                        {
+                            imgPreview.ImageUrl = dr[7].ToString();
+                        }
                     }
                     dr.Close();
                     con.Close();
@@ -117,16 +119,21 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void Repeater6_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if (((Repeater)sender).Items.Count == 0)
+            {
+                ((Repeater)sender).Visible = false;
+            }
+            else {
+                ((Repeater)sender).Visible = true;
+            }
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 foodTotal = DataBinder.Eval(e.Item.DataItem, "foodTotal").ToString();
             }
-                if (e.Item.ItemType == ListItemType.Footer)
+            if (e.Item.ItemType == ListItemType.Footer)
             {
 
                ((Label)e.Item.FindControl("Label15")).Text = foodTotal;
-  
-
             }
         }
 

@@ -104,6 +104,7 @@ namespace MovieTicketingSystem.Annonymous
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
                 }
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "window.alert('Your account has been registered successfully.');", true);
                 Response.Redirect("Login.aspx");
 
             }

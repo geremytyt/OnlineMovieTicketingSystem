@@ -29,8 +29,10 @@ namespace MovieTicketingSystem.CustomerOnly
 
                 if (dr.Read())
                 {
-                    imgPreview.ImageUrl = dr[7].ToString();
-
+                    if (dr[7].ToString() != "")
+                    {
+                        imgPreview.ImageUrl = dr[7].ToString();
+                    }
                 }
                 dr.Close();
                 con.Close();
