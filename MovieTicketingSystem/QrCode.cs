@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace MovieTicketingSystem
 {
     public static class QrCode
@@ -28,26 +29,30 @@ namespace MovieTicketingSystem
                     Margin = 0
                 }
             };
+
+            // Generate a unique filename based on the payment number
+            string filename = $"qr_{paymentNo}.png";
+            
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filepath = Path.Combine(baseDirectory, "Image/qrCodes", filename);
+
+            // Save the QR code image to disk
             var qrCode = writer.Write($"Payment Number: {paymentNo}");
-            var stream = new MemoryStream();
-            
-            qrCode.Save(stream, ImageFormat.Png);
-            var qrCodeBytes = stream.ToArray();
+          
+            qrCode.Save(filepath, ImageFormat.Png);
 
-
-            // Update the payment record in the database with the QR code image
+            // Save the URL of the image file to the qrCode column in the database
             SqlConnection connection = new SqlConnection(cs);
-            
             connection.Open();
             SqlCommand command = new SqlCommand("UPDATE Payment SET qrCode = @qrCode WHERE paymentNo = @paymentNo", connection);
-                
-            command.Parameters.AddWithValue("@qrCode", qrCodeBytes);
+            command.Parameters.AddWithValue("@qrCode", $"~/Image/qrCodes/{filename}");
             command.Parameters.AddWithValue("@paymentNo", paymentNo);
             command.ExecuteNonQuery();
-
             connection.Close();
-                
         }
+
+
+
 
     }
 }
