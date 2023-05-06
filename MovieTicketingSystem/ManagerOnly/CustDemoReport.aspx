@@ -76,10 +76,9 @@
 <div class="container row" id="reportContainer">
   <div class="col-md-4 p-3">
          <div class="row ">
-             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT custGender, COUNT(custGender) AS Quantity FROM Customer GROUP BY custGender"></asp:SqlDataSource>
                 <h1  class="nav nav-tabs flex-column align-items-center border-0" >Report Type</h1>
                 <ul class="nav nav-tabs flex-column align-items-center profileTab border-0">
- <li class="nav-item mb-3">
+                    <li class="nav-item mb-3">
                         <asp:Button ID="btnSale" runat="server" Text="Sale Report" class="profileTab nav-link " OnClick="btnSale_Click"  type="button" CausesValidation="false"/>
                     </li>
                     <li class="nav-item mb-3">

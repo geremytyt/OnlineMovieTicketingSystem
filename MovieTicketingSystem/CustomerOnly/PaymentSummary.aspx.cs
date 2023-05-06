@@ -112,26 +112,36 @@ namespace MovieTicketingSystem.CustomerOnly
             string custName = "";
             string custEmail = "";
 
-            //if (cookie != null)
-            //{
-            //    string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
-            //    SqlConnection con = new SqlConnection(cs);
-            //    SqlCommand cmd = new SqlCommand(sql, con);
-            //    con.Open();
-            //    cmd.Parameters.AddWithValue("@custId", custId);
-            //    SqlDataReader dr = cmd.ExecuteReader();
+            //Get customer email and name to send email, now we using our own emails to test
 
-            //    custName = dr["custName"].ToString();
-            //    custEmail = dr["custEmail"].ToString();
+            /*if (cookie != null)
+            {
+                string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@custId", custId);
+                SqlDataReader dr = cmd.ExecuteReader();
 
-            //    dr.Close();
-            //    con.Close();
-            //}
+                custName = dr["custName"].ToString();
+                custEmail = dr["custEmail"].ToString();
+
+                dr.Close();
+                con.Close();
+            }*/
 
 
-            // Generate the QR code byte array
             string paymentNo = Request.QueryString["paymentNo"];
-            var qrCodeBytes = QrCode.GenerateQrCode(paymentNo);
+            QrCode.GenerateQrCode(paymentNo);
+            // Retrieve the QR code byte array from the database using the payment number
+            byte[] qrCodeBytes;
+            SqlConnection connection = new SqlConnection(cs);
+            
+            connection.Open();
+            SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
+            command.Parameters.AddWithValue("@paymentNo", paymentNo);
+            qrCodeBytes = (byte[])command.ExecuteScalar();
+            
 
             var apiKey = "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";
 
