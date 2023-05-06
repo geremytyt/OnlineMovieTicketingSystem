@@ -113,7 +113,7 @@ namespace MovieTicketingSystem.CustomerOnly
             string custName = "";
             string custEmail = "";
 
-            //Get customer email and name to send email, now we using our own emails to test
+            //Get customer email and name to send email
 
             if (custId != null)
             {
