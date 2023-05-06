@@ -31,11 +31,14 @@ namespace MovieTicketingSystem.StaffOnly
                     found = true;
                     txtMovieID.Text = id;
                     DateTime date = DateTime.Parse(dr["releaseDate"].ToString());
-                    DateTime endDate = DateTime.Parse(dr["endDate"].ToString());
+                    if(dr["endDate"].ToString() != "")
+                    {
+                        DateTime endDate = DateTime.Parse(dr["endDate"].ToString());
+                        txtEndDate.Text = endDate.ToString("yyyy-MM-dd");
+                        txtDuration.Text = dr["movieDuration"].ToString();
+                    }
                     txtMovieName.Text = dr["movieName"].ToString();
                     txtDate.Text = date.ToString("yyyy-MM-dd");
-                    txtEndDate.Text = endDate.ToString("yyyy-MM-dd");
-                    txtDuration.Text = dr["movieDuration"].ToString();
                     ddlGenre.SelectedValue = dr["genre"].ToString();
                     ddlLanguage.SelectedValue = dr["language"].ToString();
                     txtSynopsis.Text = dr["synopsis"].ToString();

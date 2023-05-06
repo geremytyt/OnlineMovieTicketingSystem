@@ -27,7 +27,12 @@ namespace MovieTicketingSystem.StaffOnly
                 string director = txtDirector.Text;
 
                 DateTime releaseDate = DateTime.Parse(txtDate.Text);
-                DateTime endDate = DateTime.Parse(txtEndDate.Text);
+
+                string endDateString = "";
+                if (txtEndDate.Text != "") {
+                    DateTime endDate = DateTime.Parse(txtEndDate.Text);
+                    endDateString = endDate.ToString("yyyy/MM/dd");
+                }
                 int duration = 0;
                 if (txtDuration.Text.Length > 0)
                 {
@@ -47,7 +52,14 @@ namespace MovieTicketingSystem.StaffOnly
                 cmd.Parameters.AddWithValue("@age", ageRating);
                 cmd.Parameters.AddWithValue("@name", movieName);
                 cmd.Parameters.AddWithValue("@releaseDate", releaseDate.ToString("yyyy/MM/dd"));
-                cmd.Parameters.AddWithValue("@endDate", endDate.ToString("yyyy/MM/dd"));
+                if(endDateString != "")
+                {
+                    cmd.Parameters.AddWithValue("@endDate", endDateString);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@endDate", null);
+                }
                 cmd.Parameters.AddWithValue("@duration", duration);
                 cmd.Parameters.AddWithValue("@genre", genre);
                 cmd.Parameters.AddWithValue("@language", language);

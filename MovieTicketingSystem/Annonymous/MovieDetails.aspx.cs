@@ -43,6 +43,10 @@ namespace MovieTicketingSystem.Annonymous
                     imgMoviePoster.ImageUrl = ResolveUrl(dr["posterURL"].ToString());
                     url = dr["trailerURL"].ToString();
                     btnBuy.CommandArgument = id;
+                    if (dr["movieDuration"].ToString().Equals("0"))
+                    {
+                        btnBuy.Visible= false;
+                    }
                 }
                 if (!found)
                 {
