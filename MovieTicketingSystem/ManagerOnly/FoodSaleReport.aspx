@@ -94,22 +94,23 @@
                    </div>
                      
                    <hr width="100%" style="border: 1px solid white"/>
-                   <div runat="server" id="displayReport" visible="false">
+                   <div runat="server" id="displayReport" visible="false"  class="border border-light p-5">
                        <h1> Food Sale Report</h1>
                    
                         <div class="row ">
-                            <div class="col-6 m-0 justify-content-center">
-                                <asp:Label ID = "lblDate" runat="server" cssClass="text-white" Text="Generate On"></asp:Label>
-                            </div>
-                            <div class="col-6 m-0 justify-content-center">
-                                <asp:Literal ID = "litDate" runat="server"></asp:Literal>
-                            </div>
+                             <div class="justify-content-end d-flex">
+                            <asp:Label ID = "lblDate" runat="server" cssClass="text-white mx-2" Text="Generated On: "></asp:Label>
+                            <asp:Literal ID = "litDate" runat="server"></asp:Literal>
+                       </div>
+                        <div class="justify-content-end d-flex">
+                            <asp:Label ID = "Label1" runat="server" cssClass="text-white mx-2" Text="Date Range: "></asp:Label>
+                            <asp:Literal ID = "Literal1" runat="server"></asp:Literal>
                         </div>
+                        </div>
+                         <div id="ChartReport" class="my-3 mx-auto d-flex align-items-center justify-content-center"></div>
                        <div>
                            <asp:GridView ID="GVReport" runat="server" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover"></asp:GridView>
                        </div>
-                        <br />
-                         <div id="ChartReport"></div>
                    </div>
                </div>
            </div>

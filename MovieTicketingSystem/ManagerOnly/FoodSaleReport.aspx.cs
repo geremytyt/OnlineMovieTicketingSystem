@@ -34,8 +34,9 @@ namespace MovieTicketingSystem.ManagerOnly
             {
                 start = Request.QueryString["Start"] ?? "";
                 end = Request.QueryString["End"] ?? "";
+                Literal1.Text = start + " - " + end;
 
-                if(start != "")
+                if (start != "")
                 {
                     tbFoodReportStartDate.Text = start.ToString();
                 }

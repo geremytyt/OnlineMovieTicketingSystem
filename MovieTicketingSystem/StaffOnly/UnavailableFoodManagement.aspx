@@ -43,9 +43,11 @@
         </asp:GridView>
       </div>
 
+
+
         <div class="col containerRight"> 
-            <div class="detailsView">
-            <h3>Menu Details</h3>   
+                        <div class ="detailsView bg-dark rounded-4 text-white mb-2 border-0">
+                <h3 class="bg-dark rounded-4 text-white mb-2 border-0 text-center mt-2">Menu Details</h3>
             <div class="row g-2">
                 <div class="col-md">
                     <asp:Image ID="menuImg" style="height:200px; width:200px; display:none; " AlternateText="No Picture Uploaded" runat="server" />

@@ -349,7 +349,31 @@ namespace MovieTicketingSystem.StaffOnly
                 //step 8 close dr and close con
                 dr.Close();
                 con.Close();
-            }catch (SqlException ex)
+
+                //disenable validation
+                RVUpload.Enabled = false;
+                RVtbName.Enabled = false;
+                RVPrice.Enabled = false;
+                RVtbDecs.Enabled = false;
+                CVPrice.Enabled = false;
+
+                lblMenuId.Text = "Select An Item";
+                tbName.ReadOnly = true;
+                DDLCategory.Enabled = false;
+                tbPrice.ReadOnly = true;
+                tbDecs.ReadOnly = true;
+                menuImg.Attributes.CssStyle.Add("display", "none");
+
+                btn_add.Visible = false;
+                btn_back.Visible = false;
+                FoodIMageUpload.Visible = false;
+
+                btn_insert.Visible = true;
+                btn_Discontinue.Visible = true;
+                btn_edit.Visible = true;
+
+            }
+            catch (SqlException ex)
             {
                 // Handle the exception and display an error message
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);

@@ -78,7 +78,7 @@
                    <div id="ReportSetting">
                        <asp:Panel ID="Panel1" runat="server" DefaultButton="btnReport">
                             <div class="row" runat="server" >
-                         <div class="form-floating mb-3 w-50" id="topAmountDiv" runat="server" >
+                         <div class="row mx-auto form-floating mb-3 w-50" id="topAmountDiv" runat="server" >
                             <asp:TextBox ID="txtCust" runat="server" class="form-control userInput" placeholder="" TextMode="Number"></asp:TextBox>                                                         
                             <label for="tbtotalCust"> Total Customer </label> 
                              <asp:RangeValidator ID="rvCust" runat="server" ErrorMessage="Number must be between 0 to 10" Type="Integer" SetFocusOnError="true" Display="Dynamic" ControlToValidate="txtCust" MinimumValue="1" MaximumValue="10" CssClass="text-danger"></asp:RangeValidator>
