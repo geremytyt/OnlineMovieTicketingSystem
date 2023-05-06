@@ -300,8 +300,6 @@ namespace MovieTicketingSystem.CustomerOnly
                 //Create new payment and insert payment details into Payment table
                 string paymentType = "card";
                 decimal paymentAmount = Convert.ToDecimal(ticketTotal) + Convert.ToDecimal(totalFoodPayment);
-                string accEmail = "null";
-                string transactionNo = "null";
                 string status = "Completed";
                 string cardNo = ddlPaymentMethod.SelectedValue;
                 DateTime paymentDateTime = DateTime.Now;
@@ -327,17 +325,15 @@ namespace MovieTicketingSystem.CustomerOnly
                 string formattedPaymentNo = string.Format("T{0:D4}", newPaymentNo);
 
                 // Insert the payment details into the Payment table 
-                SqlCommand command3 = new SqlCommand("INSERT INTO Payment (paymentNo, purchaseNo, paymentType, paymentDateTime, paymentAmount, accEmail, cardNo, transactionNo, status) " +
-                "VALUES (@paymentNo, @purchaseNo, @paymentType, @paymentDateTime, @paymentAmount, @accEmail, @cardNo, @transactionNo, @status)", connection);
+                SqlCommand command3 = new SqlCommand("INSERT INTO Payment (paymentNo, purchaseNo, paymentType, paymentDateTime, paymentAmount, cardNo, status) " +
+                "VALUES (@paymentNo, @purchaseNo, @paymentType, @paymentDateTime, @paymentAmount, @cardNo, @status)", connection);
 
                 command3.Parameters.AddWithValue("@paymentNo", formattedPaymentNo);
                 command3.Parameters.AddWithValue("@purchaseNo", formattedPurchaseNo);
                 command3.Parameters.AddWithValue("@paymentType", paymentType);
                 command3.Parameters.AddWithValue("@paymentDateTime", formattedDateTime);
                 command3.Parameters.AddWithValue("@paymentAmount", paymentAmount);
-                command3.Parameters.AddWithValue("@accEmail", accEmail);
                 command3.Parameters.AddWithValue("@cardNo", cardNo);
-                command3.Parameters.AddWithValue("@transactionNo", transactionNo);
                 command3.Parameters.AddWithValue("@status", status);
 
                 command3.ExecuteNonQuery();

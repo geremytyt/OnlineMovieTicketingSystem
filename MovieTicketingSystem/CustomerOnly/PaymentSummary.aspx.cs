@@ -112,24 +112,23 @@ namespace MovieTicketingSystem.CustomerOnly
             string custName = "";
             string custEmail = "";
 
-            //Get customer email and name to send email, now we using our own emails to test, when integrate dat time can uncomment and chnge the code down there
+            //Get customer email and name to send email, now we using our own emails to test
 
-            //For 
-            //if (cookie != null)
-            //{
-            //    string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
-            //    SqlConnection con = new SqlConnection(cs);
-            //    SqlCommand cmd = new SqlCommand(sql, con);
-            //    con.Open();
-            //    cmd.Parameters.AddWithValue("@custId", custId);
-            //    SqlDataReader dr = cmd.ExecuteReader();
+            /*if (cookie != null)
+            {
+                string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.Parameters.AddWithValue("@custId", custId);
+                SqlDataReader dr = cmd.ExecuteReader();
 
-            //    custName = dr["custName"].ToString();
-            //    custEmail = dr["custEmail"].ToString();
+                custName = dr["custName"].ToString();
+                custEmail = dr["custEmail"].ToString();
 
-            //    dr.Close();
-            //    con.Close();
-            //}
+                dr.Close();
+                con.Close();
+            }*/
 
 
             string paymentNo = Request.QueryString["paymentNo"];
