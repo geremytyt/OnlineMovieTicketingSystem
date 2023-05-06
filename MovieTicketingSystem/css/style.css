@@ -304,16 +304,6 @@ d {
     transition-duration: 0.5s;
 }
 
-.containerRight h3 {
-    height: 32px;
-    width: 100%;
-    line-height: 1.9em;
-    font-size: 20px;
-    color: yellow;
-    background-color: black;
-    text-align: center;
-}
-
 .containerRight .form-floating {
     color: white;
 }

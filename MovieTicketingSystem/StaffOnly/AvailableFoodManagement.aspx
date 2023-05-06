@@ -62,12 +62,12 @@
     </div>
 
               
-        <div class="col containerRight"> 
+        <div class="col containerRight  "> 
             
-            <div class ="detailsView">
-                <h3>Menu Details</h3>
+            <div class ="detailsView bg-dark rounded-4 text-white mb-2 border-0">
+                <h3 class="bg-dark rounded-4 text-white mb-2 border-0 text-center mt-2">Menu Details</h3>
             <div class="row g-2">
-                <div class="col-md">
+                <div class="col-md ">
                     <asp:Image ID="menuImg" style="height:200px; width:200px; display:none; " AlternateText="No Picture Uploaded" runat="server" />
                     <asp:FileUpload ID="FoodIMageUpload" CssClass="uploadbtn" runat="server" Visible="false" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" onchange="uploadImg()"/> <br />
                     <asp:RequiredFieldValidator ID="RVUpload" ForeColor="Red" ControlToValidate="FoodIMageUpload" runat="server" ErrorMessage="Please Upload An Image" Enabled="false" ></asp:RequiredFieldValidator>
@@ -83,12 +83,12 @@
                     <asp:RequiredFieldValidator ID="RVtbName" ForeColor="Red" ControlToValidate="tbName" runat="server" ErrorMessage="Please Enter the Price" Enabled="false" ></asp:RequiredFieldValidator>                    
             </div>
             <div class="form-floating mx-auto mb-1 w-100 px-3">
-                <asp:DropDownList ID="DDLCategory" Cssclass="form-control" Enabled="false" runat="server">
+                <asp:DropDownList ID="DDLCategory" Cssclass="form-control  text-white" Enabled="false" runat="server">
                     <asp:ListItem style="background-color:black;">Snack</asp:ListItem>
                     <asp:ListItem style="background-color:black;">Bevarage</asp:ListItem>
                     <asp:ListItem style="background-color:black;">Combo</asp:ListItem>
                 </asp:DropDownList>
-                <label for="tbCategory">Category</label> 
+                <label for="tbCategory text-white">Category</label> 
             </div>
             <div class="form-floating col-md px-3">
                 <asp:TextBox ID="tbPrice" runat="server" class="form-control" placeholder="Price" TextMode="Number"  autocomplete="off" ReadOnly="true"></asp:TextBox>                            
