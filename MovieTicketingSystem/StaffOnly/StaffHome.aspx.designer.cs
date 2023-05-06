@@ -42,6 +42,42 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.Literal litTicketSold;
 
         /// <summary>
+        /// lblMostFood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMostFood;
+
+        /// <summary>
+        /// LitlblMostFood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitlblMostFood;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// LitlblMovieSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitlblMovieSales;
+
+        /// <summary>
         /// lblFoodSold control.
         /// </summary>
         /// <remarks>
@@ -78,31 +114,22 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.Literal LitlblMostMovie;
 
         /// <summary>
-        /// lblMostFood control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMostFood;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// LitlblMostFood control.
+        /// LitlblFoodSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal LitlblMostFood;
-
-        /// <summary>
-        /// GridViewTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label GridViewTitle;
+        protected global::System.Web.UI.WebControls.Literal LitlblFoodSales;
 
         /// <summary>
         /// ScheduleTable control.
@@ -112,5 +139,14 @@ namespace MovieTicketingSystem.StaffOnly
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ScheduleTable;
+
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

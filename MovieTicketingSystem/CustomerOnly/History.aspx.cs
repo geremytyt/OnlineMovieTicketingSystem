@@ -38,7 +38,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 con.Close();
             }
 
-            string sql2 = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
+            string sql2 = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId CROSS JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo CROSS JOIN Menu WHERE (Customer.custId = @custID) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
             SqlConnection con2 = new SqlConnection(cs);
             SqlCommand cmd2 = new SqlCommand(sql2, con2);
             con2.Open();
@@ -47,6 +47,10 @@ namespace MovieTicketingSystem.CustomerOnly
             if (!dr2.HasRows)
             {
                 lblNo.Text = "No Records Found";
+            }
+            else
+            {
+                lblNo.Text = "";
             }
             Repeater4.DataSource = dr2;
             Repeater4.DataBind();
@@ -112,7 +116,8 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void ddlTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string sql = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) AND (Payment.paymentDateTime BETWEEN @start AND @end) GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo";
+            string sql = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) AND (Payment.paymentDateTime BETWEEN @start AND @end) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
+
 
             HttpCookie cookie = Request.Cookies["Customer"];
             if (ddlTime.SelectedIndex == 1) {
@@ -127,6 +132,10 @@ namespace MovieTicketingSystem.CustomerOnly
                 if (!dr.HasRows)
                 {
                     lblNo.Text = "No Records Found";
+                }
+                else
+                {
+                    lblNo.Text = "";
                 }
                 Repeater4.DataSource = dr;
                 Repeater4.DataBind();
@@ -143,6 +152,10 @@ namespace MovieTicketingSystem.CustomerOnly
                 if (!dr.HasRows)
                 {
                     lblNo.Text = "No Records Found";
+                }
+                else
+                {
+                    lblNo.Text = "";
                 }
                 Repeater4.DataSource = dr;
                 Repeater4.DataBind();

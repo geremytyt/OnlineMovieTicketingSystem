@@ -14,7 +14,7 @@
                 });
         });
      </script>
-    <div class="mx-auto" style="width:85%;">
+    <div class="mx-auto" style="width:85%;min-height:100vh;">
     <h1 class="text-white pt-2">Staff Account</h1>
     <hr width="100%" style="border: 1px solid white"/>
     <div class="row">
@@ -105,7 +105,7 @@
                         <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default mx-2 mb-2" OnClick="btnAdd_Click" Width="40%"/>
                         <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default mx-2 mb-2" OnClick="btnReset_Click" Width="40%"/>
                         <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default mx-2 mb-4" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
-                        <asp:Button ID="btnDelete" runat="server" Text="Unresign" CssClass="btn btn-default mx-2 mb-4" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Resign" CssClass="btn btn-default mx-2 mb-4" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                     </div>
             </div>
         </div>

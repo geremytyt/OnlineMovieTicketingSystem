@@ -19,18 +19,16 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String CurrentDate = DateTime.Now.ToString();
-            String searchDate = "8/4/2023";
-            //String searchDate = DateTime.Now.ToString();
+            String searchDate = DateTime.Now.Date.ToString();
 
-            
-
-            TBDate.Text = CurrentDate;
+            TBDate.Text = "Data Up to Date until: " + searchDate;
             
             getTotalTicketSold(searchDate);
             getTotalFoodSold(searchDate);
             getMostPopularMovie(searchDate);
             getMostPopularFood(searchDate);
+            getFoodSales(searchDate);
+            getMovieSales(searchDate);
             getUpcomingSchedule(searchDate);
         }
 
@@ -120,6 +118,28 @@ namespace MovieTicketingSystem.StaffOnly
             }            
         }
 
+        private void getMovieSales(String searchDate)
+        {
+            String sql = "SELECT SUM(Ticket.ticketPrice) AS Expr1 FROM Payment INNER JOIN Purchase ON Payment.purchaseNo = Purchase.purchaseNo INNER JOIN Ticket ON Purchase.purchaseNo = Ticket.purchaseNo INNER JOIN Schedule ON Ticket.scheduleNo = Schedule.scheduleNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId WHERE (CONVERT(Date, Payment.paymentDateTime, 101) = '" + searchDate + "')";
+
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                if (dr.Read())
+                {
+                    LitlblMovieSales.Text = "RM " + dr[0].ToString();
+                }
+            }
+            else
+            {
+                LitlblMovieSales.Text = "None";
+            }
+        }
+
         private void getMostPopularFood(String searchDate) {
             String sql = "SELECT Menu.menuId, Menu.menuName, Sum(PurchaseMenu.menuQty) " +
                 "FROM Purchase, Payment, PurchaseMenu, Menu " +
@@ -148,9 +168,30 @@ namespace MovieTicketingSystem.StaffOnly
             }
         }
 
+        private void getFoodSales(String searchDate)
+        {
+            String sql = "SELECT SUM(Menu.menuPrice * PurchaseMenu.menuQty) AS Sales FROM Purchase INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId WHERE (CONVERT(Date, Payment.paymentDateTime, 101) = '" + searchDate + "')";
+
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                if (dr.Read())
+                {
+                    LitlblFoodSales.Text = "RM " +  dr[0].ToString();
+                }
+            }
+            else
+            {
+                LitlblFoodSales.Text = "RM 0.00";
+            }
+        }
+
         private void getUpcomingSchedule(String searchDate)
         {
-            searchDate = "01/05/2023";
             String sql = " Select Schedule.scheduleDateTime As Time, Schedule.hallNo As Hall, Movie.movieName AS Movie " +
                 "From Schedule, Movie " +
                 "WHERE Schedule.movieId = Movie.movieId " +

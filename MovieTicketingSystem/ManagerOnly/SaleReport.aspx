@@ -43,7 +43,7 @@
         }
     </script>
 
-    <div class="container row" id="reportContainer" style="height:700px;">
+    <div class="container row" id="reportContainer" style="min-height:100vh;">
       <div class="col-md-4 p-3">
              <div class="row ">
                     <h1  class="nav nav-tabs flex-column align-items-center border-0" >Report Type</h1>
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                            <div>
-                               <asp:GridView ID="GVReport" runat="server"></asp:GridView>
+                               <asp:GridView ID="GVReport" runat="server" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover"></asp:GridView>
                            </div>
                             <br />
                              <div id="ChartReport"></div>

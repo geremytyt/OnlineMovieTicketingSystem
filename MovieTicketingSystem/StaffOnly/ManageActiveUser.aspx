@@ -16,7 +16,7 @@
                 });
         });
      </script>
-    <div class="mx-auto" style="width:85%;">
+    <div class="mx-auto" style="width:85%;min-height:100vh;">
     <h1 class="text-white pt-2">Users Account</h1>
     <hr width="100%" style="border: 1px solid white"/>
     <div class="row">

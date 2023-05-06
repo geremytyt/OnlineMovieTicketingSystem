@@ -24,11 +24,9 @@ namespace MovieTicketingSystem.Annonymous
                 customer => customer.custEmail == email);
                 if (c != null)
                 {
-                    if (Security.GetHash(c.custToken) == token) {
-                        if (Convert.ToDateTime(c.custToken.Split('/')[1]) < DateTime.Now)
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');window.location.href='../Annonymous/ResetPwd1.aspx';", true);
-                        }
+                    if (Convert.ToDateTime(c.custToken.Split('/')[1]) < DateTime.Now)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your token has expired. Please try again.');window.location.href='../Annonymous/ResetPwd1.aspx';", true);
                     }
                 }
 

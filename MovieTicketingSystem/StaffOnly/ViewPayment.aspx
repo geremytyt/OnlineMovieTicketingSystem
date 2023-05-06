@@ -18,8 +18,8 @@
                 });
         });
     </script>
-    <div class="mx-auto" style="width:85%;">
-    <div class="container" style="height:700px;">
+    <div class="mx-auto" style="width:85%;min-height:100vh;">
+    <div class="container">
         <h2 class="text-white pt-2">Maintain Payment</h2>
         <hr width="100%" style="border: 1px solid white"/>
         <div class="containerPayment text-white">
@@ -29,12 +29,8 @@
             </div>--%>
             <br />
             <%--<asp:SqlDataSource ID="SqlDataSourcePayment" runat="server" ConnectionString="<%$ ConnectionStrings:MovieConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>--%>
-            <asp:GridView ID="paymentGridView" runat="server" AutoGenerateColumns="False" Width="100%" DataKeyNames="paymentNo" ClientIDMode="Static">
-                <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle  Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
-                <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
-                <PagerStyle CssClass="gridview-pager" BackColor="black" ForeColor="white" HorizontalAlign="Center"/>
-                <SelectedRowStyle BackColor="#f4e618" ForeColor="Black" />
+            <asp:GridView ID="paymentGridView" runat="server" AutoGenerateColumns="False" Width="100%" DataKeyNames="paymentNo" ClientIDMode="Static" 
+                CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="paymentNo" HeaderText="Payment No" ReadOnly="True" SortExpression="paymentNo" />
                     <asp:BoundField DataField="purchaseNo" HeaderText="Purchase No" SortExpression="purchaseNo" />

@@ -27,10 +27,10 @@ namespace MovieTicketingSystem.ManagerOnly
                 sda.Fill(dt);
                 gvStaff.DataSource = dt;
                 gvStaff.DataBind();
+                lblId.Text = generateID();
             }
             gvStaff.UseAccessibleHeader = true;
             gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
-            lblId.Text = generateID();
         }
 
         private string generateID()

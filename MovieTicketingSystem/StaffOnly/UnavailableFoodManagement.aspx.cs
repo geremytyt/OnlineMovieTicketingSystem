@@ -65,12 +65,6 @@ namespace MovieTicketingSystem.StaffOnly
             Response.Redirect("AvailableFoodManagement.aspx");
         }
 
-        protected void SerachButton_Click(object sender, EventArgs e)
-        {
-            String search = SearchBox.Text;
-            Response.Redirect("UnavailableFoodManagement.aspx?search=" + search);
-        }
-
         protected void btnView_Command(object sender, CommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);

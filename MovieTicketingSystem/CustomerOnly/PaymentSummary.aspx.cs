@@ -14,6 +14,7 @@ using MailKit.Security;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using MovieTicketingSystem.Model;
+using System.Net;
 
 namespace MovieTicketingSystem.CustomerOnly
 {
@@ -112,9 +113,9 @@ namespace MovieTicketingSystem.CustomerOnly
             string custName = "";
             string custEmail = "";
 
-            //Get customer email and name to send email, now we using our own emails to test
+            //Get customer email and name to send email
 
-            /*if (cookie != null)
+            if (custId != null)
             {
                 string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
                 SqlConnection con = new SqlConnection(cs);
@@ -123,26 +124,19 @@ namespace MovieTicketingSystem.CustomerOnly
                 cmd.Parameters.AddWithValue("@custId", custId);
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                custName = dr["custName"].ToString();
-                custEmail = dr["custEmail"].ToString();
+                if (dr.Read())
+                {
+                    custName = dr["custName"].ToString();
+                    custEmail = dr["custEmail"].ToString();
+                }
 
                 dr.Close();
                 con.Close();
-            }*/
+            }
 
 
             string paymentNo = Request.QueryString["paymentNo"];
-            QrCode.GenerateQrCode(paymentNo);
-            // Retrieve the QR code byte array from the database using the payment number
-            byte[] qrCodeBytes;
-            SqlConnection connection = new SqlConnection(cs);
-            
-            connection.Open();
-            SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
-            command.Parameters.AddWithValue("@paymentNo", paymentNo);
-            qrCodeBytes = (byte[])command.ExecuteScalar();
-            
-
+         
             var apiKey = "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";
 
             // Create a new SendGrid client
@@ -163,7 +157,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
             // Create a new email message
             var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
-            var to = new EmailAddress("geremytanyentsen@gmail.com", "Staff");
+            var to = new EmailAddress(custEmail, custName);
             var subject = "Payment Confirmation";
             var plainTextContent = "Payment has been made";
             var htmlContent = $@" Thank you for your purchase! Here are your purchase details.<br><br>
@@ -180,17 +174,35 @@ namespace MovieTicketingSystem.CustomerOnly
                           
                           Scan the QR code for purchase number";
 
-            // Convert the QR code byte array to a base64 string
-            var qrCodeBase64 = Convert.ToBase64String(qrCodeBytes);
+            // Generate the QR code for the payment number
+            QrCode.GenerateQrCode(paymentNo);
 
-            // Attach the QR code to the email message
+            // Generate the QR code for the payment number
+            QrCode.GenerateQrCode(paymentNo);
+
+            // Retrieve the file path of the QR code image from the database
+            SqlConnection connection = new SqlConnection(cs);
+            connection.Open();
+            SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
+            command.Parameters.AddWithValue("@paymentNo", paymentNo);
+            string qrCodePath = command.ExecuteScalar().ToString();
+            connection.Close();
+
+            // Read the contents of the file into a byte array
+            byte[] qrCodeBytes = File.ReadAllBytes(Server.MapPath(qrCodePath));
+
+            // Convert the byte array to a base64 string
+            string base64String = Convert.ToBase64String(qrCodeBytes);
+
+            // Attach the QR code to the email message as a base64 string
             var attachment = new Attachment
             {
-                Content = qrCodeBase64,
+                Content = base64String,
                 Filename = "qrCode.png",
                 Type = "image/png",
                 Disposition = "attachment"
             };
+
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             msg.AddAttachment(attachment);
 

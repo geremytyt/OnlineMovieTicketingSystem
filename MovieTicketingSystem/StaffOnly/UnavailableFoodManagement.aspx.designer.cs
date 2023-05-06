@@ -42,24 +42,6 @@ namespace MovieTicketingSystem.StaffOnly
         protected global::System.Web.UI.WebControls.GridView GVMenu;
 
         /// <summary>
-        /// SearchBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchBox;
-
-        /// <summary>
-        /// SerachButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SerachButton;
-
-        /// <summary>
         /// menuImg control.
         /// </summary>
         /// <remarks>
