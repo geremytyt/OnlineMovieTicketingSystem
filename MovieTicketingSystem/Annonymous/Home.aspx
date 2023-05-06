@@ -92,7 +92,6 @@
                                             <h6 class="card-title"><%# Eval("movieName") %></h6>
                                             <div class="d-grid gap-2">
                                                 <asp:Button ID="btnViewMore" runat="server" Text="View More" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnViewMore_Command" />
-                                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" CssClass="btn-default" CommandArgument='<%# Eval("movieId") %>' OnCommand="btnBookNow_Command" />
                                             </div>
                                         </div>
                                     </div>

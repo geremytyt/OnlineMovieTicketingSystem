@@ -83,7 +83,6 @@
                              <div class="form-floating mb-2">
                                  <asp:TextBox ID="txtEndDate" TextMode="Date" placeholder=" " ClientIDMode="Static" runat="server" CssClass="form-control userInput"></asp:TextBox>
                                  <label for="txtEndDate" class="requiredField">End Date</label>
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorDate2" runat="server" ErrorMessage="Please enter a end date" ControlToValidate="txtEndDate" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                  <asp:CustomValidator ID="EndDateValidator" runat="server" ErrorMessage="Invalid End Date,End Date cannot less than Start Date" OnServerValidate="EndDateValidator_ServerValidate" CssClass="invalid-feedback" ControlToValidate="txtEndDate" Display="Dynamic"></asp:CustomValidator>
                              </div>
                          </td>
