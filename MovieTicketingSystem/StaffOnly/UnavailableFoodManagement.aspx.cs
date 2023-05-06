@@ -18,7 +18,7 @@ namespace MovieTicketingSystem.StaffOnly
         {
             if (!IsPostBack)
             {
-               
+                try { 
                 string sql = "Select * FROM Menu Where available = 'false'";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
@@ -27,6 +27,12 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 GVMenu.DataSource = dt;
                 GVMenu.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
             }
             GVMenu.UseAccessibleHeader = true;
             GVMenu.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -35,6 +41,7 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btn_Continue_Click(object sender, EventArgs e)
         {
             //step 2 load detail
+            try { 
             string sql = "UPDATE Menu SET Available=@available WHERE menuId=@menuId";
 
             //step 3 establish connection
@@ -56,6 +63,12 @@ namespace MovieTicketingSystem.StaffOnly
 
             //step 8 close dr and close con
             con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             Response.Redirect("UnavailableFoodManagement.aspx");
         }
@@ -75,6 +88,7 @@ namespace MovieTicketingSystem.StaffOnly
             menuImg.Attributes.CssStyle.Add("display", "initial");
 
             //step 2 load detail
+            try { 
             string sql = "SELECT * FROM MENU WHERE menuId=@menuId";
 
             //step 3 establish connection
@@ -115,6 +129,18 @@ namespace MovieTicketingSystem.StaffOnly
             //step 8 close dr and close con
             dr.Close();
             con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

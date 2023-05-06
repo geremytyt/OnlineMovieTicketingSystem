@@ -13,5 +13,11 @@ namespace MovieTicketingSystem.StaffOnly
         {
 
         }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
+        }
     }
 }

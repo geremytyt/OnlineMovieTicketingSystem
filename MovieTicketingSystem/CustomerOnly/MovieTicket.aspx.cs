@@ -207,5 +207,11 @@ namespace MovieTicketingSystem.CustomerOnly
             }
 
         }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
+        }
     }
 }

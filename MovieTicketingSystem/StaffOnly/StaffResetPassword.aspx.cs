@@ -16,6 +16,7 @@ namespace MovieTicketingSystem.StaffOnly
             HttpCookie cookie = Request.Cookies["Staff"];
             if (cookie != null)
             {
+                try { 
                 string sql = "SELECT * FROM Staff WHERE staffId = @id";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -29,6 +30,12 @@ namespace MovieTicketingSystem.StaffOnly
                 }
                 dr.Close();
                 con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
             }
         }
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -39,6 +46,12 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnResetPwd_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffResetPassword.aspx");
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

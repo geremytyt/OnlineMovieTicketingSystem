@@ -13,6 +13,7 @@ using System.Security.Policy;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
@@ -24,6 +25,12 @@ namespace MovieTicketingSystem.Annonymous
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["Page"] = "Customer";
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

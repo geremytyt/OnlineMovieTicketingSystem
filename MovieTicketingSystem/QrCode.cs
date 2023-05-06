@@ -45,7 +45,7 @@ namespace MovieTicketingSystem
             SqlConnection connection = new SqlConnection(cs);
             connection.Open();
             SqlCommand command = new SqlCommand("UPDATE Payment SET qrCode = @qrCode WHERE paymentNo = @paymentNo", connection);
-            command.Parameters.AddWithValue("@qrCode", $"~/Image/qrCodes/{filename}");
+            command.Parameters.AddWithValue("@qrCode", $"/Image/qrCodes/{filename}");
             command.Parameters.AddWithValue("@paymentNo", paymentNo);
             command.ExecuteNonQuery();
             connection.Close();

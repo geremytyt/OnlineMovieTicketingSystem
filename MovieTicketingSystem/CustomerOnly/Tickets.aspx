@@ -37,7 +37,7 @@
                                             <asp:Label ID="lblMovieName" runat="server" Text='<%#Eval("movieName") %>' Font-Size="14px"></asp:Label><br />
                                             <asp:Label ID="lblRating" runat="server" Text='<%#Eval("ageRating") %>' Font-Size="14px" ForeColor="#808080"></asp:Label>
                                             <div class="text-center">
-                                                <asp:Image CssClass="border-1 mx-auto d-block" ID="imgTicket" runat="server" src="../Image/qrcode.png" Height="150" Width="150" />
+                                                <asp:Image CssClass="border-1 mx-auto d-block" ID="imgTicket" runat="server" src='<%#Eval("qrCode") %>' Height="150" Width="150" />
                                                 <label class="fieldLabel" ID="lblPayNo">Payment No:</label>
                                                 <asp:Label ID="lblPayNo2" runat="server" Text='<%#Eval("paymentNo") %>' Font-Size="14px"></asp:Label><br />
                                                 <label class="fieldLabel" ID="lblPayDate">Payment Date:</label>

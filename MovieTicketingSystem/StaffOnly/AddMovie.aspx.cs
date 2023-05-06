@@ -47,6 +47,7 @@ namespace MovieTicketingSystem.StaffOnly
                 string slideFileUrl = checkFile(slideFile, "~/Image/slideImages/");
 
                 string sql = "INSERT INTO Movie (movieName, releaseDate,endDate, movieDuration, genre, language, synopsis, actor, director, ageRating, posterURL, trailerURL, slideURL) VALUES (@name,@releaseDate,@endDate,@duration,@genre,@language,@synopsis,@actor,@director,@age,@posterUrl,@trailerUrl,@slideUrl)";
+                try { 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@age", ageRating);
@@ -74,6 +75,12 @@ namespace MovieTicketingSystem.StaffOnly
                 if (row >= 1)
                 {
                     Response.Redirect("StaffMovie.aspx");
+                }
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
                 }
             }
 
@@ -124,6 +131,12 @@ namespace MovieTicketingSystem.StaffOnly
                 args.IsValid = false;
             }
 
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

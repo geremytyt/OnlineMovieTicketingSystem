@@ -18,6 +18,7 @@ namespace MovieTicketingSystem.StaffOnly
         {
             if (!IsPostBack)
             {
+                try { 
                 string sql = "SELECT [custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender] FROM [Customer] WHERE ([custStatus] = @custStatus)";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
@@ -27,6 +28,12 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 gvUser.DataSource = dt;
                 gvUser.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
             }
             gvUser.UseAccessibleHeader = true;
             gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -34,6 +41,7 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string id = lblId.Text;
+            try { 
             string sql = "UPDATE Customer SET custStatus=@Status WHERE custId=@Id";
 
             SqlConnection con = new SqlConnection(cs);
@@ -47,6 +55,12 @@ namespace MovieTicketingSystem.StaffOnly
             cmd.ExecuteNonQuery();
 
             con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             Response.Redirect("ManageSuspendedUser.aspx");
 
@@ -74,6 +88,7 @@ namespace MovieTicketingSystem.StaffOnly
                 string phone = txtPhone.Text;
                 string gender = rblGender.SelectedValue.Substring(0, 1);
                 DateTime dob = DateTime.Parse(txtDob.Text);
+                try { 
                 string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob WHERE custId=@Id";
 
                 SqlConnection con = new SqlConnection(cs);
@@ -92,7 +107,12 @@ namespace MovieTicketingSystem.StaffOnly
                 cmd.ExecuteNonQuery();
 
                 con.Close();
-
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
                 Response.Redirect("ManageSuspendedUser.aspx");
             }
         }
@@ -114,6 +134,12 @@ namespace MovieTicketingSystem.StaffOnly
             txtPhone.Text = selectedRow.Cells[4].Text;
             txtDob.Text = (Convert.ToDateTime(selectedRow.Cells[3].Text).ToString("yyyy-MM-dd"));
             rblGender.SelectedValue = selectedRow.Cells[5].Text;
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

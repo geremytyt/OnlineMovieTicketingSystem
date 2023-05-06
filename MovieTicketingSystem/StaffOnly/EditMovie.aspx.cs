@@ -21,6 +21,7 @@ namespace MovieTicketingSystem.StaffOnly
                 bool found = false;
                 string id = Request.QueryString["movieId"] ?? "";
                 string sql = "SELECT * FROM movie WHERE movieId = @Id";
+                try { 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Id", id);
@@ -51,6 +52,12 @@ namespace MovieTicketingSystem.StaffOnly
                 }
                 dr.Close();
                 con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
                 if (!found)
                 {
                     Response.Redirect("StaffMovie.aspx");
@@ -86,6 +93,7 @@ namespace MovieTicketingSystem.StaffOnly
             string posterFileUrl = checkFile(posterFile, "~/Image/posterImages/");
             string slideFileUrl = checkFile(slideFile, "~/Image/slideImages/");
             string sql = "UPDATE Movie SET movieName = @name, releaseDate = @date, endDate = @endDate, movieDuration = @duration, genre = @genre, language = @language, synopsis = @synopsis, actor = @actor, ageRating = @age, posterURL = @posterUrl, trailerURL = @trailerUrl, slideURL = @slideUrl, director = @director WHERE  (movieId = @id)";
+            try { 
             SqlConnection con = new SqlConnection(cs);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@Id", id);
@@ -107,6 +115,12 @@ namespace MovieTicketingSystem.StaffOnly
             if (row >= 1)
             {
                 Response.Redirect("ViewMovie.aspx?movieId=" + id);
+            }
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
             }
         }
         private string checkFile(FileUpload file, string path)
@@ -155,6 +169,12 @@ namespace MovieTicketingSystem.StaffOnly
                 args.IsValid = false;
             }
 
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

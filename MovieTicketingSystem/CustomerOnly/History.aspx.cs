@@ -22,40 +22,56 @@ namespace MovieTicketingSystem.CustomerOnly
             HttpCookie cookie = Request.Cookies["Customer"];
             if (cookie != null)
             {
-                string sql = "SELECT * FROM Customer WHERE custId = @id";
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                try
                 {
-                    imgPreview.ImageUrl = dr[7].ToString();
+                    string sql = "SELECT * FROM Customer WHERE custId = @id";
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                    SqlDataReader dr = cmd.ExecuteReader();
 
+                    if (dr.Read())
+                    {
+                        imgPreview.ImageUrl = dr[7].ToString();
+
+                    }
+                    dr.Close();
+                    con.Close();
                 }
-                dr.Close();
-                con.Close();
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
+
             }
 
-            string sql2 = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId CROSS JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo CROSS JOIN Menu WHERE (Customer.custId = @custID) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
-            SqlConnection con2 = new SqlConnection(cs);
-            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-            con2.Open();
-            cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
-            SqlDataReader dr2 = cmd2.ExecuteReader();
-            if (!dr2.HasRows)
+            try
             {
-                lblNo.Text = "No Records Found";
+                string sql2 = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId CROSS JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo CROSS JOIN Menu WHERE (Customer.custId = @custID) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
+                SqlConnection con2 = new SqlConnection(cs);
+                SqlCommand cmd2 = new SqlCommand(sql2, con2);
+                con2.Open();
+                cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+                if (!dr2.HasRows)
+                {
+                    lblNo.Text = "No Records Found";
+                }
+                else
+                {
+                    lblNo.Text = "";
+                }
+                Repeater4.DataSource = dr2;
+                Repeater4.DataBind();
+                dr2.Close();
+                con2.Close();
             }
-            else
+            catch (SqlException)
             {
-                lblNo.Text = "";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
             }
-            Repeater4.DataSource = dr2;
-            Repeater4.DataBind();
-            dr2.Close();
-            con2.Close();
+
         }
 
         protected void Repeater4_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -116,52 +132,69 @@ namespace MovieTicketingSystem.CustomerOnly
 
         protected void ddlTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string sql = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) AND (Payment.paymentDateTime BETWEEN @start AND @end) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
+            try
+            {
+                string sql = "SELECT Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo WHERE (Customer.custId = @custID) AND (Payment.paymentDateTime BETWEEN @start AND @end) AND (Payment.status = 'Completed') GROUP BY Payment.paymentDateTime, Payment.paymentAmount, Payment.paymentNo ORDER BY Payment.paymentDateTime DESC";
 
 
-            HttpCookie cookie = Request.Cookies["Customer"];
-            if (ddlTime.SelectedIndex == 1) {
-             
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
-                cmd.Parameters.AddWithValue("@start", DateTime.Now.AddMonths(-3));
-                cmd.Parameters.AddWithValue("@end", DateTime.Now);
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (!dr.HasRows)
+                HttpCookie cookie = Request.Cookies["Customer"];
+                if (ddlTime.SelectedIndex == 1)
                 {
-                    lblNo.Text = "No Records Found";
+
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                    cmd.Parameters.AddWithValue("@start", DateTime.Now.AddMonths(-3));
+                    cmd.Parameters.AddWithValue("@end", DateTime.Now);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (!dr.HasRows)
+                    {
+                        lblNo.Text = "No Records Found";
+                    }
+                    else
+                    {
+                        lblNo.Text = "";
+                    }
+                    Repeater4.DataSource = dr;
+                    Repeater4.DataBind();
+                    dr.Close();
+                    con.Close();
                 }
-                else
+                else if (ddlTime.SelectedIndex == 2)
                 {
-                    lblNo.Text = "";
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                    cmd.Parameters.AddWithValue("@start", DateTime.Now.AddYears(-1));
+                    cmd.Parameters.AddWithValue("@end", DateTime.Now.AddMonths(-4));
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (!dr.HasRows)
+                    {
+                        lblNo.Text = "No Records Found";
+                    }
+                    else
+                    {
+                        lblNo.Text = "";
+                    }
+                    Repeater4.DataSource = dr;
+                    Repeater4.DataBind();
+                    dr.Close();
+                    con.Close();
                 }
-                Repeater4.DataSource = dr;
-                Repeater4.DataBind();
-                dr.Close();
-                con.Close();
-            } else if (ddlTime.SelectedIndex == 2) {
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@custId", cookie.Value.ToString());
-                cmd.Parameters.AddWithValue("@start", DateTime.Now.AddYears(-1));
-                cmd.Parameters.AddWithValue("@end", DateTime.Now.AddMonths(-4));
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (!dr.HasRows)
-                {
-                    lblNo.Text = "No Records Found";
-                }
-                else
-                {
-                    lblNo.Text = "";
-                }
-                Repeater4.DataSource = dr;
-                Repeater4.DataBind();
-                dr.Close();
-                con.Close();
             }
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
+
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

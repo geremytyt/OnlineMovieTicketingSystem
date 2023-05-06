@@ -42,20 +42,27 @@ namespace MovieTicketingSystem.User_Control
                     {
                         if (u.Role == "Customer")
                         {
-                            string sql = "SELECT * FROM Customer WHERE custEmail = @email";
-                            SqlConnection con = new SqlConnection(cs);
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            con.Open();
-                            cmd.Parameters.AddWithValue("@email", username);
-                            SqlDataReader dr = cmd.ExecuteReader();
-
-                            if (dr.Read())
+                            try
                             {
-                                id = dr[0].ToString();
-                                status = dr[8].ToString().Trim();
+                                string sql = "SELECT * FROM Customer WHERE custEmail = @email";
+                                SqlConnection con = new SqlConnection(cs);
+                                SqlCommand cmd = new SqlCommand(sql, con);
+                                con.Open();
+                                cmd.Parameters.AddWithValue("@email", username);
+                                SqlDataReader dr = cmd.ExecuteReader();
+
+                                if (dr.Read())
+                                {
+                                    id = dr[0].ToString();
+                                    status = dr[8].ToString().Trim();
+                                }
+                                dr.Close();
+                                con.Close();
                             }
-                            dr.Close();
-                            con.Close();
+                            catch (SqlException)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                            }
                             if (status == "Active")
                             {
                                 HttpCookie cookie = new HttpCookie("Customer", id);

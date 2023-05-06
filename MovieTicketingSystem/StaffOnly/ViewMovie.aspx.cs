@@ -19,6 +19,7 @@ namespace MovieTicketingSystem.StaffOnly
             {
                 bool found = false;
                 string id = Request.QueryString["movieId"] ?? "";
+                try { 
                 string sql = "SELECT * FROM movie WHERE movieId = @Id";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -48,6 +49,12 @@ namespace MovieTicketingSystem.StaffOnly
                 }
                 dr.Close();
                 con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
                 if (!found)
                 {
                     Response.Redirect("StaffMovie.aspx");
@@ -69,6 +76,12 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffMovie.aspx");
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace MovieTicketingSystem.ManagerOnly
     public partial class CustDemoReport : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
-        string cs = Global.cs;
         private static string start { get; set; } 
         private static string end { get; set; }
 
@@ -145,5 +144,10 @@ namespace MovieTicketingSystem.ManagerOnly
             Response.Redirect("TopCustomerReport.aspx");
         }
 
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
+        }
     }
 }

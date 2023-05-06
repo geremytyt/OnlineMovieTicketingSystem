@@ -40,26 +40,37 @@ namespace MovieTicketingSystem.Annonymous
         {
             if (Page.IsValid)
             {
-                string email = Request.QueryString["email"];
-                string text = txtNewPwd.Text;
-                string password = Security.GetHash(text);
-                string sql = "UPDATE Customer SET custPassword=@Password, custToken=@token WHERE custEmail=@email";
+                try
+                {
+                    string email = Request.QueryString["email"];
+                    string text = txtNewPwd.Text;
+                    string password = Security.GetHash(text);
+                    string sql = "UPDATE Customer SET custPassword=@Password, custToken=@token WHERE custEmail=@email";
 
-                SqlConnection con = new SqlConnection(cs);
+                    SqlConnection con = new SqlConnection(cs);
 
-                con.Open();
+                    con.Open();
 
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@token", DBNull.Value);
-                cmd.Parameters.AddWithValue("@Password", password);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@token", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Password", password);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                con.Close();
+                    con.Close();
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.'); window.location.href='../Annonymous/Login.aspx';", true);
-            }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.'); window.location.href='../Annonymous/Login.aspx';", true);
+                }catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
+        }
+        }
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
 
     }

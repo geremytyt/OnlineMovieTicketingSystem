@@ -75,32 +75,38 @@ namespace MovieTicketingSystem.CustomerOnly
 
                 //get info from previous page
                 string paymentNo = Request.QueryString["paymentNo"];
-                
-                
-                //Retrieve payment details from database
-                string paymentQuery = "SELECT paymentNo, purchaseNo, paymentDateTime, paymentAmount, cardNo, status FROM Payment WHERE paymentNo = @paymentNo";
-          
-
-                SqlConnection connection = new SqlConnection(cs);       
-                connection.Open();
-                // Retrieve payment details
-                SqlCommand paymentCommand = new SqlCommand(paymentQuery, connection);
-                paymentCommand.Parameters.AddWithValue("@paymentNo", paymentNo);
-                SqlDataReader paymentReader = paymentCommand.ExecuteReader();
-
-                if (paymentReader.Read())
+                try
                 {
-                    // Populate the payment details labels
-                    lblStatus.Text = paymentReader["status"].ToString();
-                    lblPaymentNo.Text = paymentNo;
-                    lblPurchaseNo.Text = paymentReader["purchaseNo"].ToString();
-                    lblPaymentDateTime.Text = DateTime.Parse(paymentReader["paymentDateTime"].ToString()).ToString("d/M/yyyy H:m:ss");
-                    lblPaymentAmount.Text = string.Format("RM{0:#,##0.00}", paymentReader["paymentAmount"]);
-                    lblCardNo.Text = paymentReader["cardNo"].ToString();
-     
-                    paymentReader.Close();               
+                    //Retrieve payment details from database
+                    string paymentQuery = "SELECT paymentNo, purchaseNo, paymentDateTime, paymentAmount, cardNo, status FROM Payment WHERE paymentNo = @paymentNo";
+
+
+                    SqlConnection connection = new SqlConnection(cs);
+                    connection.Open();
+                    // Retrieve payment details
+                    SqlCommand paymentCommand = new SqlCommand(paymentQuery, connection);
+                    paymentCommand.Parameters.AddWithValue("@paymentNo", paymentNo);
+                    SqlDataReader paymentReader = paymentCommand.ExecuteReader();
+
+                    if (paymentReader.Read())
+                    {
+                        // Populate the payment details labels
+                        lblStatus.Text = paymentReader["status"].ToString();
+                        lblPaymentNo.Text = paymentNo;
+                        lblPurchaseNo.Text = paymentReader["purchaseNo"].ToString();
+                        lblPaymentDateTime.Text = DateTime.Parse(paymentReader["paymentDateTime"].ToString()).ToString("d/M/yyyy H:m:ss");
+                        lblPaymentAmount.Text = string.Format("RM{0:#,##0.00}", paymentReader["paymentAmount"]);
+                        lblCardNo.Text = paymentReader["cardNo"].ToString();
+
+                        paymentReader.Close();
+                    }
                 }
-                
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
+
+
             }
         }
 
@@ -117,21 +123,29 @@ namespace MovieTicketingSystem.CustomerOnly
 
             if (custId != null)
             {
-                string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@custId", custId);
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                try
                 {
-                    custName = dr["custName"].ToString();
-                    custEmail = dr["custEmail"].ToString();
+                    string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@custId", custId);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        custName = dr["custName"].ToString();
+                        custEmail = dr["custEmail"].ToString();
+                    }
+
+                    dr.Close();
+                    con.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
                 }
 
-                dr.Close();
-                con.Close();
             }
 
 
@@ -180,13 +194,16 @@ namespace MovieTicketingSystem.CustomerOnly
             // Generate the QR code for the payment number
             QrCode.GenerateQrCode(paymentNo);
 
-            // Retrieve the file path of the QR code image from the database
-            SqlConnection connection = new SqlConnection(cs);
-            connection.Open();
-            SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
-            command.Parameters.AddWithValue("@paymentNo", paymentNo);
-            string qrCodePath = command.ExecuteScalar().ToString();
-            connection.Close();
+            try
+            {
+                // Retrieve the file path of the QR code image from the database
+                SqlConnection connection = new SqlConnection(cs);
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT qrCode FROM Payment WHERE paymentNo = @paymentNo", connection);
+                command.Parameters.AddWithValue("@paymentNo", paymentNo);
+                string qrCodePath = command.ExecuteScalar().ToString();
+                connection.Close();
+
 
             // Read the contents of the file into a byte array
             byte[] qrCodeBytes = File.ReadAllBytes(Server.MapPath(qrCodePath));
@@ -215,7 +232,11 @@ namespace MovieTicketingSystem.CustomerOnly
                 // Email sent successfully
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Payment confirmation email has been sent');", true);
             }
-
+            }
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
 
             //Reset Ticket and Cart Session
             Session.Remove("Cart");
@@ -223,6 +244,11 @@ namespace MovieTicketingSystem.CustomerOnly
             Session.Remove("Schedule");
 
             Response.Redirect("~/Annonymous/Home.aspx");
+        }
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

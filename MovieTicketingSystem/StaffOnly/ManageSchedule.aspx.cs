@@ -17,28 +17,36 @@ namespace MovieTicketingSystem.StaffOnly
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Update the schedule status, if the schedule status is active and the date and time has passed, set it to completed
-            SqlConnection con = new SqlConnection(cs);
-            con.Open();
-
-            string updateSch = "UPDATE Schedule SET status = 'Completed' WHERE ScheduleDateTime <= GETDATE() AND Status = 'Active'";
-            SqlCommand command = new SqlCommand(updateSch, con);
-            command.ExecuteNonQuery();
-
-            if (!IsPostBack)
+            try
             {
-                string sql = "Select * FROM Schedule";
-                con = new SqlConnection(cs);
-                
-                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                scheduleGridView.DataSource = dt;
-                scheduleGridView.DataBind();
+                //Update the schedule status, if the schedule status is active and the date and time has passed, set it to completed
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
 
+                string updateSch = "UPDATE Schedule SET status = 'Completed' WHERE ScheduleDateTime <= GETDATE() AND Status = 'Active'";
+                SqlCommand command = new SqlCommand(updateSch, con);
+                command.ExecuteNonQuery();
+
+                if (!IsPostBack)
+                {
+                    string sql = "Select * FROM Schedule";
+                    con = new SqlConnection(cs);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    scheduleGridView.DataSource = dt;
+                    scheduleGridView.DataBind();
+
+                }
+
+                con.Close();
             }
-
-            con.Close();
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             scheduleGridView.UseAccessibleHeader = true;
             scheduleGridView.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -106,7 +114,7 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             // Retrieve the last schedule ID from the database
-
+            try { 
             SqlConnection connection = new SqlConnection(cs);
 
             connection.Open();
@@ -126,11 +134,17 @@ namespace MovieTicketingSystem.StaffOnly
             }
 
             int newScheduleId = lastScheduleId + 1;
+
             string formattedScheduleId = string.Format("SC{0:D4}", newScheduleId);
 
             lblScheduleID.Text = formattedScheduleId;
             ddlStatus.SelectedValue = "Active";
-
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
             // Edit buttons
             btnAdd.Visible = false;
             btnEdit.Visible = false;
@@ -195,6 +209,7 @@ namespace MovieTicketingSystem.StaffOnly
                 {
                     // Insert a new record into the Schedule table
                     string status = "Active";
+                    try { 
                     SqlConnection connection = new SqlConnection(cs);
                     connection.Open();
                     string query = "INSERT INTO Schedule (movieId, hallNo, scheduleDateTime, status) VALUES (@movieId, @hallNo, @scheduleDateTime, @status)";
@@ -207,6 +222,12 @@ namespace MovieTicketingSystem.StaffOnly
                     command.Parameters.AddWithValue("@scheduleDateTime", scheduleDateTime);
                     command.Parameters.AddWithValue("@status", status);
                     command.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception and display an error message
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                    }
 
                     // Reset the form
                     lblScheduleID.Text = string.Empty;
@@ -229,6 +250,7 @@ namespace MovieTicketingSystem.StaffOnly
                     ddlStatus.Items.FindByValue("Completed").Enabled = true;
 
                     // Update the grid view
+                    try { 
                     string sql = "Select * FROM Schedule";
                     SqlConnection con = new SqlConnection(cs);
                     con.Open();
@@ -237,6 +259,12 @@ namespace MovieTicketingSystem.StaffOnly
                     sda.Fill(dt);
                     scheduleGridView.DataSource = dt;
                     scheduleGridView.DataBind();
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception and display an error message
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                    }
                     Response.Redirect("ManageSchedule.aspx");
                 }
                 else
@@ -247,7 +275,7 @@ namespace MovieTicketingSystem.StaffOnly
             }
             else if (ViewState["mode"].ToString() == "edit")
             {
-                
+                try { 
                     string scheduleNo = lblScheduleID.Text;
                     string movieId = ddlMovieID.SelectedValue;
                     string hallNo = ddlHall.SelectedValue;
@@ -264,6 +292,7 @@ namespace MovieTicketingSystem.StaffOnly
 
                     reader.Read();
                     initialHallNo = reader.GetString(0);
+
 
                     //Check if hallNo was edited
                     if (!hallNo.Equals(initialHallNo))
@@ -339,6 +368,12 @@ namespace MovieTicketingSystem.StaffOnly
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Hall is not available at the selected time. Please choose a different hall!')", true);
                     }
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
 
             }
         }
@@ -378,37 +413,39 @@ namespace MovieTicketingSystem.StaffOnly
             string movieId = ddlMovieID.SelectedValue;
             string hallNo = ddlHall.SelectedValue;
             bool hallAvailable = false;
-
-            string query = "SELECT scheduleDateTime FROM Schedule WHERE scheduleNo = @scheduleNo";
-            SqlConnection con2 = new SqlConnection(cs);
-            SqlCommand cmd3 = new SqlCommand(query, con2);
-
-            DateTime scheduleStartTime = DateTime.Now;
-            if (ViewState["mode"].ToString() == "add")
+            try
             {
-                scheduleStartTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text + ":00", "yyyy-MM-dd H:m:s", CultureInfo.InvariantCulture);
-            }
-            else if (ViewState["mode"].ToString() == "edit")
-            {
-                         
-                con2.Open();
-                cmd3.Parameters.AddWithValue("@scheduleNo", lblScheduleID.Text);
+                string query = "SELECT scheduleDateTime FROM Schedule WHERE scheduleNo = @scheduleNo";
+                SqlConnection con2 = new SqlConnection(cs);
+                SqlCommand cmd3 = new SqlCommand(query, con2);
 
-                // Execute the query and get a SqlDataReader
-                SqlDataReader reader = cmd3.ExecuteReader();
-                
-                // Check if there are any rows returned
-                if (reader.HasRows)
+                DateTime scheduleStartTime = DateTime.Now;
+                if (ViewState["mode"].ToString() == "add")
                 {
-                    // Read the first row
-                    reader.Read();
+                    scheduleStartTime = DateTime.ParseExact(txtScheduleDate.Text + " " + txtScheduleTime.Text + ":00", "yyyy-MM-dd H:m:s", CultureInfo.InvariantCulture);
+                }
+                else if (ViewState["mode"].ToString() == "edit")
+                {
 
-                    // Get the value of the "scheduleDateTime" column as a DateTime object
-                    scheduleStartTime = reader.GetDateTime(0);
+                    con2.Open();
+                    cmd3.Parameters.AddWithValue("@scheduleNo", lblScheduleID.Text);
+
+                    // Execute the query and get a SqlDataReader
+                    SqlDataReader reader = cmd3.ExecuteReader();
+
+                    // Check if there are any rows returned
+                    if (reader.HasRows)
+                    {
+                        // Read the first row
+                        reader.Read();
+
+                        // Get the value of the "scheduleDateTime" column as a DateTime object
+                        scheduleStartTime = reader.GetDateTime(0);
+
+                    }
 
                 }
-                
-            }
+           
 
             // Retrieve info about selected movie id
             string sql = "SELECT movieDuration FROM Movie WHERE movieId = @movieId";
@@ -446,8 +483,19 @@ namespace MovieTicketingSystem.StaffOnly
             {
                 hallAvailable = true;
             }
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
             return hallAvailable;
 
+        }
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

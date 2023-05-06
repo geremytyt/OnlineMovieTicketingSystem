@@ -19,20 +19,26 @@ namespace MovieTicketingSystem.CustomerOnly
             HttpCookie cookie = Request.Cookies["Customer"];
             if (cookie != null)
             {
-                string sql = "SELECT * FROM Customer WHERE custId = @id";
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                try
                 {
-                    imgPreview.ImageUrl = dr[7].ToString();
+                    string sql = "SELECT * FROM Customer WHERE custId = @id";
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        imgPreview.ImageUrl = dr[7].ToString();
+                    }
+                    dr.Close();
+                    con.Close();
+                }catch (SqlException)
+                {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
                 }
-                dr.Close();
-                con.Close();
-            }
+        }
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -53,6 +59,12 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnResetPwd_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResetPassword.aspx");
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

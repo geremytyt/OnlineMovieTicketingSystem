@@ -11,16 +11,25 @@ namespace MovieTicketingSystem.ErrorPages
 {
 
 
-    public partial class DefaultErrorPage_Customer_
+    public partial class PageLevelError2
     {
 
         /// <summary>
-        /// lblStatus control.
+        /// lblException control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::System.Web.UI.WebControls.Label lblException;
+
+        /// <summary>
+        /// lblSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSource;
     }
 }

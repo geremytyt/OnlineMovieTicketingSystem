@@ -16,17 +16,25 @@ namespace MovieTicketingSystem.ManagerOnly
         {
             if (!IsPostBack)
             {
-                string sql = "SELECT[staffId], [staffName], [staffEmail], [staffIC], [staffPhoneNo], [staffGender], [position] FROM[Staff] WHERE([staffStatus] = @staffStatus AND [position] <> @position)";
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
-                sda.SelectCommand.Parameters.AddWithValue("@staffStatus", "Resigned");
-                sda.SelectCommand.Parameters.AddWithValue("@position", "Manager");
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                gvStaff.DataSource = dt;
-                gvStaff.DataBind();
+                try
+                {
+                    string sql = "SELECT[staffId], [staffName], [staffEmail], [staffIC], [staffPhoneNo], [staffGender], [position] FROM[Staff] WHERE([staffStatus] = @staffStatus AND [position] <> @position)";
+                    SqlConnection con = new SqlConnection(cs);
+                    con.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                    sda.SelectCommand.Parameters.AddWithValue("@staffStatus", "Resigned");
+                    sda.SelectCommand.Parameters.AddWithValue("@position", "Manager");
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    gvStaff.DataSource = dt;
+                    gvStaff.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
             }
+        }
             gvStaff.UseAccessibleHeader = true;
             gvStaff.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
@@ -46,24 +54,32 @@ namespace MovieTicketingSystem.ManagerOnly
             string gender = rblGender.SelectedValue.Substring(0, 1);
             string ic = txtIC.Text;
             string position = ddlPosition.SelectedValue;
-            string sql = "UPDATE Staff SET staffName=@Name, staffPhoneNo=@Phone, staffGender=@Gender,staffIC=@ic, position=@position WHERE staffId=@Id";
+            try
+            {
+                string sql = "UPDATE Staff SET staffName=@Name, staffPhoneNo=@Phone, staffGender=@Gender,staffIC=@ic, position=@position WHERE staffId=@Id";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
+                con.Open();
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", id);
-            cmd.Parameters.AddWithValue("@Name", name);
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.Parameters.AddWithValue("@Phone", phone);
-            cmd.Parameters.AddWithValue("@Gender", gender);
-            cmd.Parameters.AddWithValue("@ic", ic);
-            cmd.Parameters.AddWithValue("@position", position);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Gender", gender);
+                cmd.Parameters.AddWithValue("@ic", ic);
+                cmd.Parameters.AddWithValue("@position", position);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
             Response.Redirect("ManageResignedStaff.aspx");
 
         }
@@ -71,6 +87,7 @@ namespace MovieTicketingSystem.ManagerOnly
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string id = lblId.Text;;
+            try { 
             string sql = "UPDATE Staff SET staffStatus=@Status WHERE staffId=@Id";
 
             SqlConnection con = new SqlConnection(cs);
@@ -84,6 +101,12 @@ namespace MovieTicketingSystem.ManagerOnly
             cmd.ExecuteNonQuery();
 
             con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
             Response.Redirect("ManageResignedStaff.aspx");
 
         }
@@ -103,6 +126,12 @@ namespace MovieTicketingSystem.ManagerOnly
             txtIC.Text = selectedRow.Cells[3].Text;
             rblGender.SelectedValue = selectedRow.Cells[5].Text;
             ddlPosition.SelectedValue = selectedRow.Cells[6].Text.Trim();
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

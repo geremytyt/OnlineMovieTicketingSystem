@@ -7,8 +7,8 @@
             <h2 class="text-center text-lg-start fw-bold text-light col-lg-2" style="display: inline;">Movies</h2>
             <nav class="col-lg-10">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="now-showing-tab" data-bs-toggle="tab" data-bs-target="#now-showing" type="button" role="tab" aria-controls="now-showing" aria-selected="true">Now showing</button>
-                    <button class="nav-link" id="coming-soon-tab" data-bs-toggle="tab" data-bs-target="#coming-soon" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Coming Soon</button>
+                    <button class="loginTab nav-link active" id="now-showing-tab" data-bs-toggle="tab" data-bs-target="#now-showing" type="button" role="tab" aria-controls="now-showing" aria-selected="true">Now showing</button>
+                    <button class="loginTab nav-link" id="coming-soon-tab" data-bs-toggle="tab" data-bs-target="#coming-soon" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Coming Soon</button>
                 </div>
             </nav>
 

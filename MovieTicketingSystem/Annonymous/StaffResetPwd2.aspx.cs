@@ -46,23 +46,37 @@ namespace MovieTicketingSystem.Annonymous
                 string email = Request.QueryString["email"];
                 string text = txtNewPwd.Text;
                 string password = Security.GetHash(text);
-                string sql = "UPDATE Staff SET staffPassword=@Password, staffToken=@token WHERE staffEmail=@email";
+                try
+                {
+                    string sql = "UPDATE Staff SET staffPassword=@Password, staffToken=@token WHERE staffEmail=@email";
 
-                SqlConnection con = new SqlConnection(cs);
+                    SqlConnection con = new SqlConnection(cs);
 
-                con.Open();
+                    con.Open();
 
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@token", DBNull.Value);
-                cmd.Parameters.AddWithValue("@Password", password);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@token", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Password", password);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                con.Close();
+                    con.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
+
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset.');window.location.href='../Annonymous/StaffLogin.aspx';", true);
             }
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

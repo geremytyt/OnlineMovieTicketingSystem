@@ -7,30 +7,29 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieTicketingSystem.Annonymous
+namespace MovieTicketingSystem.ErrorPages
 {
-    public partial class MiddlePage : System.Web.UI.Page
+    public partial class FileNotFound : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // Get the current user's role
                 if (HttpContext.Current.User.IsInRole("Customer"))
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("../Annonymous/Home.aspx");
                 }
                 else if (HttpContext.Current.User.IsInRole("Staff") || HttpContext.Current.User.IsInRole("Manager"))
                 {
                     Response.Redirect("../StaffOnly/StaffHome.aspx");
                 }
             }
-        }
-
-        void Page_Error()
-        {
-            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
-            Server.ClearError();
         }
     }
 }

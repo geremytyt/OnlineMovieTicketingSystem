@@ -27,6 +27,7 @@ namespace MovieTicketingSystem.Annonymous
             cust => cust.custEmail== email && cust.custStatus !="Suspended");
             if (c != null)
             {
+
                 string token = generateToken();
                 string destination = "https://localhost:44377/Annonymous/ResetPwd2.aspx?email=" + txtEmail.Text + "&token=" + token;
                 var apiKey = "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";
@@ -76,21 +77,34 @@ namespace MovieTicketingSystem.Annonymous
 
             string email = txtEmail.Text;
             string hash = Security.GetHash(token);
-            string sql = "UPDATE Customer SET custToken=@token WHERE custEmail=@email";
+            try
+            {
+                string sql = "UPDATE Customer SET custToken=@token WHERE custEmail=@email";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
+                con.Open();
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@token", token);
-            cmd.Parameters.AddWithValue("@email", email);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@token", token);
+                cmd.Parameters.AddWithValue("@email", email);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
+            }            
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+             }
 
             return hash;
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
 
     }

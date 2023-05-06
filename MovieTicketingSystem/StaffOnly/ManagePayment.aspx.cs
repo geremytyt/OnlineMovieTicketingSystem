@@ -25,64 +25,72 @@ namespace MovieTicketingSystem.StaffOnly
                 string paymentNo = Request.QueryString["paymentNo"];
                 if (!string.IsNullOrEmpty(paymentNo))
                 {
-                    SqlConnection conn = new SqlConnection(cs);
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Payment WHERE paymentNo=@paymentNo", conn);
-                    cmd.Parameters.AddWithValue("@paymentNo", paymentNo);
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    try
                     {
-                        lblPaymentNo.Text = reader["paymentNo"].ToString();
-                        lblPaymentDate.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortDateString();
-                        lblPaymentTime.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortTimeString();
-                        lblPaymentAmt.Text = "RM " + reader["paymentAmount"].ToString();
-                        lblCardNo.Text = reader["cardNo"].ToString();
-
-                        string status = reader["status"].ToString();
-                        ddlStatus.SelectedValue = status;
-
-                        string purchaseNo = reader["purchaseNo"].ToString();
-                        lblPurchaseNo.Text = purchaseNo;
-                        reader.Close();
-
-                        cmd = new SqlCommand("SELECT * FROM Purchase WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        reader = cmd.ExecuteReader();
+                        SqlConnection conn = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM Payment WHERE paymentNo=@paymentNo", conn);
+                        cmd.Parameters.AddWithValue("@paymentNo", paymentNo);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
-                            lblTicketTotal.Text = "RM " + reader["ticketTotal"].ToString();
-                            lblFoodTotal.Text = "RM " + reader["foodTotal"].ToString();
-                            lblCustID.Text = reader["custId"].ToString();
+                            lblPaymentNo.Text = reader["paymentNo"].ToString();
+                            lblPaymentDate.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortDateString();
+                            lblPaymentTime.Text = Convert.ToDateTime(reader["paymentDateTime"]).ToShortTimeString();
+                            lblPaymentAmt.Text = "RM " + reader["paymentAmount"].ToString();
+                            lblCardNo.Text = reader["cardNo"].ToString();
+
+                            string status = reader["status"].ToString();
+                            ddlStatus.SelectedValue = status;
+
+                            string purchaseNo = reader["purchaseNo"].ToString();
+                            lblPurchaseNo.Text = purchaseNo;
+                            reader.Close();
+
+                            cmd = new SqlCommand("SELECT * FROM Purchase WHERE purchaseNo=@purchaseNo", conn);
+                            cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                            reader = cmd.ExecuteReader();
+                            if (reader.Read())
+                            {
+                                lblTicketTotal.Text = "RM " + reader["ticketTotal"].ToString();
+                                lblFoodTotal.Text = "RM " + reader["foodTotal"].ToString();
+                                lblCustID.Text = reader["custId"].ToString();
+                            }
+                            reader.Close();
+
+                            // Retrieve all ticket numbers for a given purchaseNo and store them in a DataTable
+                            DataTable dt = new DataTable();
+                            conn = new SqlConnection(cs);
+
+                            conn.Open();
+                            cmd = new SqlCommand("SELECT ticketNo FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
+                            cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                            adapter.Fill(dt);
+
+                            rptTickets.DataSource = dt;
+                            rptTickets.DataBind();
+
+
+                            DataTable dt2 = new DataTable();
+                            conn = new SqlConnection(cs);
+                            cmd = new SqlCommand("SELECT menuId FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
+                            cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
+                            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+                            adapter2.Fill(dt2);
+
+                            rptMenuID.DataSource = dt2;
+                            rptMenuID.DataBind();
+
+
                         }
-                        reader.Close();
-
-                        // Retrieve all ticket numbers for a given purchaseNo and store them in a DataTable
-                        DataTable dt = new DataTable();
-                        conn = new SqlConnection(cs);
-                        
-                        conn.Open();
-                        cmd = new SqlCommand("SELECT ticketNo FROM Ticket WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-
-                        rptTickets.DataSource = dt;
-                        rptTickets.DataBind();
-
-
-                        DataTable dt2 = new DataTable();
-                        conn = new SqlConnection(cs);
-                        cmd = new SqlCommand("SELECT menuId FROM PurchaseMenu WHERE purchaseNo=@purchaseNo", conn);
-                        cmd.Parameters.AddWithValue("@purchaseNo", purchaseNo);
-                        SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
-                        adapter2.Fill(dt2);
-
-                        rptMenuID.DataSource = dt2;
-                        rptMenuID.DataBind();
-
-                       
+                        conn.Close();
                     }
-                    conn.Close();
+                    catch (SqlException ex)
+                    {
+                        // Handle the exception and display an error message
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                    }
                 }
             }
         }
@@ -116,6 +124,7 @@ namespace MovieTicketingSystem.StaffOnly
             string newStatus = ddlStatus.SelectedValue; // Get the selected value from the dropdown list
 
             // Update the payment status in the database
+            try { 
             SqlConnection connection = new SqlConnection(cs);
             
             connection.Open();
@@ -126,7 +135,13 @@ namespace MovieTicketingSystem.StaffOnly
                 command.Parameters.AddWithValue("@paymentNo", paymentNo);
                 command.ExecuteNonQuery();
             }
-            
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
+
 
             btnEdit.Visible = true;
             btnConfirm.Visible = false;
@@ -142,6 +157,12 @@ namespace MovieTicketingSystem.StaffOnly
             btnDone.Visible = true;
             btnCancel.Visible = false;
             ddlStatus.Enabled = false;
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

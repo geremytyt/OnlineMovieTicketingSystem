@@ -19,6 +19,7 @@ namespace MovieTicketingSystem.CustomerOnly
             HttpCookie cookie = Request.Cookies["Customer"];
             if (cookie != null)
             {
+                try {
                 string sql = "SELECT * FROM Customer WHERE custId = @id";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -33,24 +34,35 @@ namespace MovieTicketingSystem.CustomerOnly
                 }
                 dr.Close();
                 con.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
             }
-            string sql2 = "SELECT Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) AND (Schedule.scheduleDateTime > @scheduleDateTime) AND (Payment.status = 'Completed') GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty ORDER BY Schedule.scheduleDateTime DESC";
-            SqlConnection con2 = new SqlConnection(cs);
-            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-            con2.Open();
-            cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
-            cmd2.Parameters.AddWithValue("@scheduleDateTime", DateTime.Now.AddHours(2));
-            SqlDataReader dr2 = cmd2.ExecuteReader();
-            if (!dr2.HasRows)
+            string sql2 = "SELECT Movie.movieName, Movie.ageRating, Payment.qrCode, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) AND (Schedule.scheduleDateTime > @scheduleDateTime) AND (Payment.status = 'Completed') GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty, Payment.qrCode ORDER BY Schedule.scheduleDateTime DESC";
+            try
             {
-                lblNo.Text = "No Records Found";
-            }
+                SqlConnection con2 = new SqlConnection(cs);
+                SqlCommand cmd2 = new SqlCommand(sql2, con2);
+                con2.Open();
+                cmd2.Parameters.AddWithValue("@custId", cookie.Value.ToString());
+                cmd2.Parameters.AddWithValue("@scheduleDateTime", DateTime.Now.AddHours(2));
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+                if (!dr2.HasRows)
+                {
+                    lblNo.Text = "No Records Found";
+                }
 
-            Repeater1.DataSource = dr2;
-            Repeater1.DataBind();
-            dr2.Close();
-            con2.Close();
-        }
+                Repeater1.DataSource = dr2;
+                Repeater1.DataBind();
+                dr2.Close();
+                con2.Close();
+            }catch (SqlException)
+            {
+                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
+    }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -91,6 +103,12 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnResetPwd_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResetPassword.aspx");
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

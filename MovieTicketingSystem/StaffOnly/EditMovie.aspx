@@ -52,7 +52,7 @@
              <div class="col-lg-4 col-md-5 my-3 text-light">
                  <asp:Image ID="imageView" runat="server" CssClass="img-rounded my-2 w-100 h-auto" ImageUrl="~/Image/default.jpeg" />
                  <label class="form-label requiredField" for="posterFile">Poster Image</label>                
-                 <asp:FileUpload ID="posterFile" runat="server" CssClass="form-control my-2" ClientIDMode="Static" onchange="posterImg();" accept=".png,.PNG,.bmp,.BMP,.jpeg,.JPEG,.jpg,.JPG" />
+                 <asp:FileUpload ID="posterFile" runat="server" CssClass="form-control my-2" ClientIDMode="Static" onchange="posterImg();" accept=".png,.PNG,.jpeg,.JPEG,.jpg,.JPG" />
              </div>
              <div class="col-lg-8 col-md-7">
                  <table class="table table-borderless table-responsive text-light">

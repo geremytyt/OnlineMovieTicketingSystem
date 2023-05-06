@@ -20,25 +20,32 @@ namespace MovieTicketingSystem.Annonymous
         {
             txtDob.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
         }
+
         private string generateID()
         {
-            string sql = "SELECT TOP 1 * FROM Customer ORDER BY custId DESC";
             string id = "";
-            int count = 0;
-            SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand(sql, con);
-            con.Open();
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
+            try
             {
-                count = int.Parse((dr[0].ToString().Substring(1, 3))) + 1;
-                id = "C" + count.ToString("000");
-            }
-            dr.Close();
-            con.Close();
+                string sql = "SELECT TOP 1 * FROM Customer ORDER BY custId DESC";
+                int count = 0;
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
 
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    count = int.Parse((dr[0].ToString().Substring(1, 3))) + 1;
+                    id = "C" + count.ToString("000");
+                }
+                dr.Close();
+                con.Close();
+            }
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
             return id;
         }
 
@@ -62,39 +69,50 @@ namespace MovieTicketingSystem.Annonymous
             string id = generateID();
             if (Page.IsValid)
             {
+                try
+                {
+                    string name = txtName.Text.Trim();
+                    string email = txtEmail.Text.Trim();
+                    string password = txtPassword.Text.Trim();
+                    string phone = txtPhone.Text.Trim();
+                    DateTime dob = Convert.ToDateTime(txtDob.Text);
+                    string gender = rblGender.SelectedValue.Substring(0, 1);
+                    string hash = Security.GetHash(password);
 
-                string name = txtName.Text.Trim();
-                string email = txtEmail.Text.Trim();
-                string password = txtPassword.Text.Trim();
-                string phone = txtPhone.Text.Trim();
-                DateTime dob = Convert.ToDateTime(txtDob.Text);
-                string gender = rblGender.SelectedValue.Substring(0, 1);
-                string hash = Security.GetHash(password);
 
-                
-                string sql = "INSERT INTO Customer (custId, custName, custEmail, custPassword, custPhoneNo,  custDob, custGender, custStatus) VALUES (@Id, @Name, @Email, @Password, @PhoneNo, @Dob, @Gender, @Status)";
+                    string sql = "INSERT INTO Customer (custId, custName, custEmail, custPassword, custPhoneNo,  custDob, custGender, custStatus) VALUES (@Id, @Name, @Email, @Password, @PhoneNo, @Dob, @Gender, @Status)";
 
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
+                    SqlConnection con = new SqlConnection(cs);
+                    SqlCommand cmd = new SqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Password", hash);
-                cmd.Parameters.AddWithValue("@PhoneNo", phone);
-                cmd.Parameters.AddWithValue("@Dob", dob);
-                cmd.Parameters.AddWithValue("@Gender", gender);
-                cmd.Parameters.AddWithValue("@Status", "Active");
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", hash);
+                    cmd.Parameters.AddWithValue("@PhoneNo", phone);
+                    cmd.Parameters.AddWithValue("@Dob", dob);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+                    cmd.Parameters.AddWithValue("@Status", "Active");
 
-                con.Open();
+                    con.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                con.Close();
-
+                    con.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
                 Response.Redirect("Login.aspx");
 
             }
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
 
     }

@@ -25,5 +25,10 @@ namespace MovieTicketingSystem.Annonymous
             string id = e.CommandArgument.ToString();
             Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
         }
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
+        }
     }
 }

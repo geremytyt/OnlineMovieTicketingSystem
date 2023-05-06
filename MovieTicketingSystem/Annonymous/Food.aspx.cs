@@ -28,15 +28,21 @@ namespace MovieTicketingSystem.Annonymous
             {
                 string name = Request.QueryString["search"] ?? "";
                 SearchBox.Text = name;
-
-                string sql = "Select * FROM Menu Where available = 'true' And menuName LIKE '%" + name + "%'";
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                repMenu.DataSource = dt;
-                repMenu.DataBind();
+                try
+                {
+                    string sql = "Select * FROM Menu Where available = 'true' And menuName LIKE '%" + name + "%'";
+                    SqlConnection con = new SqlConnection(cs);
+                    con.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    repMenu.DataSource = dt;
+                    repMenu.DataBind();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
             }            
         }
 
@@ -106,6 +112,12 @@ namespace MovieTicketingSystem.Annonymous
         {
             String search = SearchBox.Text;
             Response.Redirect("Food.aspx?search=" + search);
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

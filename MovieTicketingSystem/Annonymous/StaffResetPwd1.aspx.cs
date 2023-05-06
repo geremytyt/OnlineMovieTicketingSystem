@@ -66,31 +66,45 @@ namespace MovieTicketingSystem.Annonymous
 
         private string generateToken()
         {
-            var random = new Random();
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var randomString = new string(Enumerable.Repeat(chars, 6)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-            string expiryDate = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            string token = randomString + "/" + expiryDate;
+                var random = new Random();
+                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var randomString = new string(Enumerable.Repeat(chars, 6)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+                string expiryDate = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            string email = txtEmail.Text;
-            string hash = Security.GetHash(token);
-            string sql = "UPDATE Staff SET staffToken=@token WHERE staffEmail=@email";
+                string token = randomString + "/" + expiryDate;
 
-            SqlConnection con = new SqlConnection(cs);
+                string email = txtEmail.Text;
+                string hash = Security.GetHash(token);
+            try
+            {
+                string sql = "UPDATE Staff SET staffToken=@token WHERE staffEmail=@email";
 
-            con.Open();
+                SqlConnection con = new SqlConnection(cs);
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@token", token);
-            cmd.Parameters.AddWithValue("@email", email);
+                con.Open();
 
-            cmd.ExecuteNonQuery();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@token", token);
+                cmd.Parameters.AddWithValue("@email", email);
 
-            con.Close();
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+            }            
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
 
             return hash;
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

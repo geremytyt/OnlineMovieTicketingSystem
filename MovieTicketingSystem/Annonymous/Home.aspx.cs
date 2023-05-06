@@ -11,7 +11,7 @@ namespace MovieTicketingSystem.Annonymous
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+ 
         }
         protected void btnViewMore_Command(object sender, CommandEventArgs e)
         {
@@ -27,6 +27,12 @@ namespace MovieTicketingSystem.Annonymous
             cookie.Expires = DateTime.Now.AddHours(3);
             Response.Cookies.Add(cookie);
             Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

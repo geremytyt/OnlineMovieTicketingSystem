@@ -19,15 +19,23 @@ namespace MovieTicketingSystem.StaffOnly
         {
             if (!IsPostBack)
             {
-                string sql = "SELECT [custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender] FROM [Customer] WHERE ([custStatus] = @custStatus)";
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(sql, con);
-                sda.SelectCommand.Parameters.AddWithValue("@custStatus","Active");
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                gvUser.DataSource = dt;
-                gvUser.DataBind();
+                try
+                {
+                    string sql = "SELECT [custId], [custName], [custEmail], [custDob], [custPhoneNo], [custGender] FROM [Customer] WHERE ([custStatus] = @custStatus)";
+                    SqlConnection con = new SqlConnection(cs);
+                    con.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter(sql, con);
+                    sda.SelectCommand.Parameters.AddWithValue("@custStatus", "Active");
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    gvUser.DataSource = dt;
+                    gvUser.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
 
             }
             gvUser.UseAccessibleHeader = true;
@@ -37,6 +45,7 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string id = lblId.Text;
+            try { 
             string sql = "UPDATE Customer SET custStatus=@Status WHERE custId=@Id";
 
             SqlConnection con = new SqlConnection(cs);
@@ -50,6 +59,12 @@ namespace MovieTicketingSystem.StaffOnly
             cmd.ExecuteNonQuery();
 
             con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             Response.Redirect("ManageActiveUser.aspx");
 
@@ -77,24 +92,32 @@ namespace MovieTicketingSystem.StaffOnly
                 string phone = txtPhone.Text;
                 string gender = rblGender.SelectedValue.Substring(0, 1);
                 DateTime dob = DateTime.Parse(txtDob.Text);
-                string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob WHERE custId=@Id";
+                try
+                {
+                    string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob WHERE custId=@Id";
 
-                SqlConnection con = new SqlConnection(cs);
+                    SqlConnection con = new SqlConnection(cs);
 
-                con.Open();
+                    con.Open();
 
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Gender", gender);
-                cmd.Parameters.AddWithValue("@Dob", dob);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Phone", phone);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+                    cmd.Parameters.AddWithValue("@Dob", dob);
 
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                con.Close();
+                    con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
 
                 Response.Redirect("ManageActiveUser.aspx");
             }
@@ -120,6 +143,12 @@ namespace MovieTicketingSystem.StaffOnly
         txtDob.Text = (Convert.ToDateTime(selectedRow.Cells[3].Text).ToString("yyyy-MM-dd"));
         rblGender.SelectedValue = selectedRow.Cells[5].Text;
 
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

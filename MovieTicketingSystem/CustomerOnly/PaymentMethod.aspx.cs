@@ -46,28 +46,35 @@ namespace MovieTicketingSystem.CustomerOnly
                 // Get the custID from cookie
                 HttpCookie cookie = Request.Cookies["Customer"];
                 string custId = cookie.Value.ToString();
+                try
+                {
+                    SqlConnection connection = new SqlConnection(cs);
 
-                SqlConnection connection = new SqlConnection(cs);
+                    connection.Open();
 
-                connection.Open();
+                    SqlCommand command = new SqlCommand("INSERT INTO Card (cardNo, custID, cvv, cardHolderName, expiryDate) VALUES (@cardNo, @custID, @cvv, @cardHolderName, @expiryDate)", connection);
 
-                SqlCommand command = new SqlCommand("INSERT INTO Card (cardNo, custID, cvv, cardHolderName, expiryDate) VALUES (@cardNo, @custID, @cvv, @cardHolderName, @expiryDate)", connection);
+                    command.Parameters.AddWithValue("@cardNo", cardNo);
+                    command.Parameters.AddWithValue("@custID", custId);
+                    command.Parameters.AddWithValue("@cvv", cvv);
+                    command.Parameters.AddWithValue("@cardHolderName", cardHolderName);
+                    command.Parameters.AddWithValue("@expiryDate", expiryDate);
 
-                command.Parameters.AddWithValue("@cardNo", cardNo);
-                command.Parameters.AddWithValue("@custID", custId);
-                command.Parameters.AddWithValue("@cvv", cvv);
-                command.Parameters.AddWithValue("@cardHolderName", cardHolderName);
-                command.Parameters.AddWithValue("@expiryDate", expiryDate);
+                    command.ExecuteNonQuery();
 
-                command.ExecuteNonQuery();
-
-                // Redirect the user back to payment page
-                Response.Redirect("~/CustomerOnly/Payment.aspx");
+                    // Redirect the user back to payment page
+                    Response.Redirect("~/CustomerOnly/Payment.aspx");
 
 
-                connection.Close();
+                    connection.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
+
             }
-                
+
         }
 
         protected void cvCardExists_ServerValidate(object source, ServerValidateEventArgs args)
@@ -76,14 +83,28 @@ namespace MovieTicketingSystem.CustomerOnly
             string custId = cookie.Value.ToString();
 
             string cardNo = txtCardNo.Text;
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand checkCommand = new SqlCommand("SELECT COUNT(*) FROM Card WHERE cardNo = @cardNo AND custId = @custId", connection);
-            checkCommand.Parameters.AddWithValue("@cardNo", cardNo);
-            checkCommand.Parameters.AddWithValue("@custId", custId);
-            connection.Open();
-            int cardCount = (int)checkCommand.ExecuteScalar();
-            connection.Close();
-            args.IsValid = (cardCount == 0);
+            try
+            {
+                SqlConnection connection = new SqlConnection(cs);
+                SqlCommand checkCommand = new SqlCommand("SELECT COUNT(*) FROM Card WHERE cardNo = @cardNo AND custId = @custId", connection);
+                checkCommand.Parameters.AddWithValue("@cardNo", cardNo);
+                checkCommand.Parameters.AddWithValue("@custId", custId);
+                connection.Open();
+                int cardCount = (int)checkCommand.ExecuteScalar();
+                connection.Close();
+
+                args.IsValid = (cardCount == 0);
+            }
+            catch (SqlException)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+            }
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
 
     }

@@ -41,19 +41,26 @@ namespace MovieTicketingSystem.User_Control
                     if (c != null)
                     {
                         string password = Security.GetHash(txtCfmPwd.Text);
-                        string sql = "UPDATE Customer SET custPassword=@Password WHERE custId=@Id";
+                        try
+                        {
+                            string sql = "UPDATE Customer SET custPassword=@Password WHERE custId=@Id";
 
-                        SqlConnection con = new SqlConnection(cs);
+                            SqlConnection con = new SqlConnection(cs);
 
-                        con.Open();
+                            con.Open();
 
-                        SqlCommand cmd = new SqlCommand(sql, con);
-                        cmd.Parameters.AddWithValue("@Id", cookie.Value.ToString());
-                        cmd.Parameters.AddWithValue("@Password", password);
+                            SqlCommand cmd = new SqlCommand(sql, con);
+                            cmd.Parameters.AddWithValue("@Id", cookie.Value.ToString());
+                            cmd.Parameters.AddWithValue("@Password", password);
 
-                        cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
 
-                        con.Close();
+                            con.Close();
+                        }
+                        catch (SqlException)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                        }
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset successfully');", true);
                     }
                     else { 
@@ -67,19 +74,27 @@ namespace MovieTicketingSystem.User_Control
                     if (s != null)
                     {
                         string password = Security.GetHash(txtCfmPwd.Text);
-                        string sql = "UPDATE Staff SET staffPassword=@Password WHERE staffId=@Id";
+                        try
+                        {
+                            string sql = "UPDATE Staff SET staffPassword=@Password WHERE staffId=@Id";
 
-                        SqlConnection con = new SqlConnection(cs);
+                            SqlConnection con = new SqlConnection(cs);
 
-                        con.Open();
+                            con.Open();
 
-                        SqlCommand cmd = new SqlCommand(sql, con);
-                        cmd.Parameters.AddWithValue("@Id", cookie.Value.ToString());
-                        cmd.Parameters.AddWithValue("@Password", password);
+                            SqlCommand cmd = new SqlCommand(sql, con);
+                            cmd.Parameters.AddWithValue("@Id", cookie.Value.ToString());
+                            cmd.Parameters.AddWithValue("@Password", password);
 
-                        cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
 
-                        con.Close();
+                            con.Close();
+                        }
+                        catch (SqlException ex)
+                        {
+                            // Handle the exception and display an error message
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                        }
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your password has been reset successfully');", true);
                     }
                     else {

@@ -19,7 +19,8 @@ namespace MovieTicketingSystem.StaffOnly
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {            
+            {
+                try { 
                 string sql = "Select * FROM Menu Where available = 'true' ";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
@@ -28,6 +29,12 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 GVMenu.DataSource = dt;
                 GVMenu.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
             }
             GVMenu.UseAccessibleHeader = true;
             GVMenu.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -83,50 +90,56 @@ namespace MovieTicketingSystem.StaffOnly
 
                 //step 2 load detail
                 string sql = "INSERT INTO Menu VALUES (@menuId, @menuName, @menuCategory, @menuPrice, @menuDesc, @menuUrl, @available)";
-
-                //step 3 establish connection
-                SqlConnection con = new SqlConnection(cs);
-
-                //step 4 open connection
-                con.Open();
-
-                //step 5 sql command
-                SqlCommand cmd = new SqlCommand(sql, con);
-
-
-                //step 5.1 supply parameter to sql
-                cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
-                cmd.Parameters.AddWithValue("@menuName", tbName.Text);
-                cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
-                cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text);
-                cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
-                cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
-                cmd.Parameters.AddWithValue("@available", true);
-
-                //step 6 execute sql
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                //show the added data
-                if (dr.Read())
+                try
                 {
-                    lblMenuId.Text = dr[0].ToString().Trim();
-                    tbName.Text = dr[1].ToString().Trim();
-                    DDLCategory.SelectedItem.Value = dr[2].ToString().Trim();
-                    tbPrice.Text = dr[3].ToString().Trim();
-                    tbDecs.Text = dr[4].ToString().Trim();
+                    //step 3 establish connection
+                    SqlConnection con = new SqlConnection(cs);
+
+                    //step 4 open connection
+                    con.Open();
+
+                    //step 5 sql command
+                    SqlCommand cmd = new SqlCommand(sql, con);
+
+
+                    //step 5.1 supply parameter to sql
+                    cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
+                    cmd.Parameters.AddWithValue("@menuName", tbName.Text);
+                    cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text);
+                    cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
+                    cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
+                    cmd.Parameters.AddWithValue("@available", true);
+
+                    //step 6 execute sql
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    //show the added data
+                    if (dr.Read())
+                    {
+                        lblMenuId.Text = dr[0].ToString().Trim();
+                        tbName.Text = dr[1].ToString().Trim();
+                        DDLCategory.SelectedItem.Value = dr[2].ToString().Trim();
+                        tbPrice.Text = dr[3].ToString().Trim();
+                        tbDecs.Text = dr[4].ToString().Trim();
+                    }
+                    else
+                    {
+                        lblMenuId.Text = " No Record Found";
+                        tbName.Text = " ";
+                        DDLCategory.ClearSelection();
+                        tbPrice.Text = " ";
+                    }
+
+                    //step 8 close dr and close con
+                    dr.Close();
+                    con.Close();
                 }
-                else
+                catch (SqlException ex)
                 {
-                    lblMenuId.Text = " No Record Found";
-                    tbName.Text = " ";
-                    DDLCategory.ClearSelection();
-                    tbPrice.Text = " ";
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
                 }
-
-                //step 8 close dr and close con
-                dr.Close();
-                con.Close();
-
                 Response.Redirect("AvailableFoodManagement.aspx");
             }
         }
@@ -201,32 +214,40 @@ namespace MovieTicketingSystem.StaffOnly
                 menuImg.ImageUrl = ".." + fileUrl;
             }
 
-            //step 2 update detail
-            string sql = "UPDATE Menu SET menuName=@menuName, menuCategory=@menuCategory, menuPrice=@menuPrice, menuDesc=@menuDesc, menuUrl=@menuUrl WHERE menuId=@menuId";
+            try
+            {
+                //step 2 update detail
+                string sql = "UPDATE Menu SET menuName=@menuName, menuCategory=@menuCategory, menuPrice=@menuPrice, menuDesc=@menuDesc, menuUrl=@menuUrl WHERE menuId=@menuId";
 
-            //step 3 establish connection
-            SqlConnection con = new SqlConnection(cs);
+                //step 3 establish connection
+                SqlConnection con = new SqlConnection(cs);
 
-            //step 4 open connection
-            con.Open();
+                //step 4 open connection
+                con.Open();
 
-            //step 5 sql command
-            SqlCommand cmd = new SqlCommand(sql, con);
+                //step 5 sql command
+                SqlCommand cmd = new SqlCommand(sql, con);
 
-            //step 5.1 supply parameter to sql
-            cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
-            cmd.Parameters.AddWithValue("@menuName", tbName.Text);
-            cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
-            cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
-            cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
-            cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
+                //step 5.1 supply parameter to sql
+                cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
+                cmd.Parameters.AddWithValue("@menuName", tbName.Text);
+                cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
+                cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
+                cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
 
-            //step 6 execute sql
+                //step 6 execute sql
 
-            int rowaffected = cmd.ExecuteNonQuery();
+                int rowaffected = cmd.ExecuteNonQuery();
 
-            //step 8 close dr and close con
-            con.Close();
+                //step 8 close dr and close con
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             Response.Redirect("AvailableFoodManagement.aspx");
 
@@ -235,27 +256,35 @@ namespace MovieTicketingSystem.StaffOnly
         protected void btn_Discontinue_Click(object sender, EventArgs e)
         {
             //step 2 load detail
-            string sql = "UPDATE Menu SET Available=@available WHERE menuId=@menuId";
+            try
+            {
+                string sql = "UPDATE Menu SET Available=@available WHERE menuId=@menuId";
 
-            //step 3 establish connection
-            SqlConnection con = new SqlConnection(cs);
+                //step 3 establish connection
+                SqlConnection con = new SqlConnection(cs);
 
-            //step 4 open connection
-            con.Open();
+                //step 4 open connection
+                con.Open();
 
-            //step 5 sql command
-            SqlCommand cmd = new SqlCommand(sql, con);
+                //step 5 sql command
+                SqlCommand cmd = new SqlCommand(sql, con);
 
-            //step 5.1 supply parameter to sql
-            cmd.Parameters.AddWithValue("@available", false);
-            cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
+                //step 5.1 supply parameter to sql
+                cmd.Parameters.AddWithValue("@available", false);
+                cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
 
-            //step 6 execute sql
+                //step 6 execute sql
 
-            int rowaffected = cmd.ExecuteNonQuery();
+                int rowaffected = cmd.ExecuteNonQuery();
 
-            //step 8 close dr and close con
-            con.Close();
+                //step 8 close dr and close con
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }
 
             Response.Redirect("AvailableFoodManagement.aspx");
         }
@@ -273,52 +302,64 @@ namespace MovieTicketingSystem.StaffOnly
             var selectedID = selectedRow.Cells[0].Text;
 
             menuImg.Attributes.CssStyle.Add("display", "initial");
-
-            //step 2 load detail
-            string sql = "SELECT * FROM MENU WHERE menuId=@menuId";
-
-            //step 3 establish connection
-            SqlConnection con = new SqlConnection(cs);
-
-            //step 4 open connection
-            con.Open();
-
-            //step 5 sql command
-            SqlCommand cmd = new SqlCommand(sql, con);
-
-            //step 5.1 supply parameter to sql
-            cmd.Parameters.AddWithValue("@menuId", selectedID);
-
-            //step 6 execute sql
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            //step 7 Read and the dr
-            if (dr.Read())
+            try
             {
-                menuImg.ImageUrl = dr[5].ToString().Trim();
-                lblMenuId.Text = dr[0].ToString().Trim();
-                tbName.Text = dr[1].ToString().Trim();
-                DDLCategory.SelectedItem.Text = dr[2].ToString().Trim();
-                tbPrice.Text = dr[3].ToString().Trim();
-                tbDecs.Text = dr[4].ToString().Trim();
+                //step 2 load detail
+                string sql = "SELECT * FROM MENU WHERE menuId=@menuId";
 
-                btn_edit.Visible = true;
-                btn_Discontinue.Visible = true;
-            }
-            else
+                //step 3 establish connection
+                SqlConnection con = new SqlConnection(cs);
+
+                //step 4 open connection
+                con.Open();
+
+                //step 5 sql command
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                //step 5.1 supply parameter to sql
+                cmd.Parameters.AddWithValue("@menuId", selectedID);
+
+                //step 6 execute sql
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                //step 7 Read and the dr
+                if (dr.Read())
+                {
+                    menuImg.ImageUrl = dr[5].ToString().Trim();
+                    lblMenuId.Text = dr[0].ToString().Trim();
+                    tbName.Text = dr[1].ToString().Trim();
+                    DDLCategory.SelectedItem.Text = dr[2].ToString().Trim();
+                    tbPrice.Text = dr[3].ToString().Trim();
+                    tbDecs.Text = dr[4].ToString().Trim();
+
+                    btn_edit.Visible = true;
+                    btn_Discontinue.Visible = true;
+                }
+                else
+                {
+                    lblMenuId.Text = " No Record Found";
+                    tbName.Text = " ";
+                    DDLCategory.ClearSelection();
+                    tbPrice.Text = " ";
+
+                    btn_edit.Visible = false;
+                    btn_Discontinue.Visible = false;
+                }
+
+                //step 8 close dr and close con
+                dr.Close();
+                con.Close();
+            }catch (SqlException ex)
             {
-                lblMenuId.Text = " No Record Found";
-                tbName.Text = " ";
-                DDLCategory.ClearSelection();
-                tbPrice.Text = " ";
+                // Handle the exception and display an error message
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+            }   
+    }
 
-                btn_edit.Visible = false;
-                btn_Discontinue.Visible = false;
-            }
-
-            //step 8 close dr and close con
-            dr.Close();
-            con.Close();
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

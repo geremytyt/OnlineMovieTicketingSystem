@@ -17,6 +17,7 @@ namespace MovieTicketingSystem.StaffOnly
         {
             if (!IsPostBack)
             {
+                try { 
                 string sql = "Select * FROM Payment";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
@@ -25,6 +26,12 @@ namespace MovieTicketingSystem.StaffOnly
                 sda.Fill(dt);
                 paymentGridView.DataSource = dt;
                 paymentGridView.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    // Handle the exception and display an error message
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred: " + ex.Message + "');", true);
+                }
                 paymentGridView.UseAccessibleHeader = true;
                 paymentGridView.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
@@ -50,6 +57,12 @@ namespace MovieTicketingSystem.StaffOnly
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             string paymentNo = paymentGridView.DataKeys[row.RowIndex]["paymentNo"].ToString();
             Response.Redirect("managePayment.aspx?paymentNo=" + paymentNo);
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError2.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }

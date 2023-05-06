@@ -26,25 +26,31 @@ namespace MovieTicketingSystem.CustomerOnly
                 HttpCookie cookie = Request.Cookies["Customer"];
                 if (cookie != null)
                 {
-                    string sql = "SELECT * FROM Customer WHERE custId = @id";
-                    SqlConnection con = new SqlConnection(cs);
-                    SqlCommand cmd = new SqlCommand(sql, con);
-                    con.Open();
-                    cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    if (dr.Read())
+                    try
                     {
-                        txtName.Text = dr[1].ToString().Trim();
-                        txtEmail.Text = dr[2].ToString();
-                        txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
-                        txtPhone.Text = dr[5].ToString();
-                        Session["Phone"] = dr[5].ToString();
-                        rblGender.SelectedValue = dr[6].ToString();
-                        imgPreview.ImageUrl = dr[7].ToString();
+                        string sql = "SELECT * FROM Customer WHERE custId = @id";
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@id", cookie.Value.ToString());
+                        SqlDataReader dr = cmd.ExecuteReader();
 
+                        if (dr.Read())
+                        {
+                            txtName.Text = dr[1].ToString().Trim();
+                            txtEmail.Text = dr[2].ToString();
+                            txtDob.Text = (Convert.ToDateTime(dr[4]).ToString("yyyy-MM-dd"));
+                            txtPhone.Text = dr[5].ToString();
+                            Session["Phone"] = dr[5].ToString();
+                            rblGender.SelectedValue = dr[6].ToString();
+                            imgPreview.ImageUrl = dr[7].ToString();
+
+                        }
+                        con.Close();
+                    } catch (SqlException)
+                    {       
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
                     }
-                    con.Close();
                 }
             }
         }
@@ -88,6 +94,7 @@ namespace MovieTicketingSystem.CustomerOnly
                 string phone = txtPhone.Text.Trim();
                 string gender = rblGender.SelectedValue.Trim();
                 DateTime dob = DateTime.Parse(txtDob.Text);
+                try { 
                 string sql = "UPDATE Customer SET custName=@Name, custPhoneNo=@Phone, custGender=@Gender,custDob=@Dob, custPhoto=@Photo WHERE custId=@Id";
 
                 SqlConnection con = new SqlConnection(cs);
@@ -105,10 +112,15 @@ namespace MovieTicketingSystem.CustomerOnly
                 cmd.ExecuteNonQuery();
 
                 con.Close();
+                }
+                catch (SqlException)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
+                }
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notification", "alert('Your profile has been edited successfully'); window.location.href='../CustomerOnly/Profile.aspx';", true);
 
             }
-           
+
 
         }
 
@@ -130,6 +142,12 @@ namespace MovieTicketingSystem.CustomerOnly
         protected void btnResetPwd_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResetPassword.aspx");
+        }
+
+        void Page_Error()
+        {
+            Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
+            Server.ClearError();
         }
     }
 }
