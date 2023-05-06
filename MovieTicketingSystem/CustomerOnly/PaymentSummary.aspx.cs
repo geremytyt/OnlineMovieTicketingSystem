@@ -115,7 +115,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
             //Get customer email and name to send email, now we using our own emails to test
 
-            /*if (cookie != null)
+            if (custId != null)
             {
                 string sql = "SELECT custName, custEmail FROM Customer WHERE custId = @custId";
                 SqlConnection con = new SqlConnection(cs);
@@ -124,12 +124,15 @@ namespace MovieTicketingSystem.CustomerOnly
                 cmd.Parameters.AddWithValue("@custId", custId);
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                custName = dr["custName"].ToString();
-                custEmail = dr["custEmail"].ToString();
+                if (dr.Read())
+                {
+                    custName = dr["custName"].ToString();
+                    custEmail = dr["custEmail"].ToString();
+                }
 
                 dr.Close();
                 con.Close();
-            }*/
+            }
 
 
             string paymentNo = Request.QueryString["paymentNo"];
@@ -154,7 +157,7 @@ namespace MovieTicketingSystem.CustomerOnly
 
             // Create a new email message
             var from = new EmailAddress("leeyw-pm20@student.tarc.edu.my", "Starlight Cinema");
-            var to = new EmailAddress("geremytanyentsen@gmail.com", "Staff");
+            var to = new EmailAddress(custEmail, custName);
             var subject = "Payment Confirmation";
             var plainTextContent = "Payment has been made";
             var htmlContent = $@" Thank you for your purchase! Here are your purchase details.<br><br>
