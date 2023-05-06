@@ -137,7 +137,6 @@
     <Content Include="ErrorPages\DefaultErrorPage%28Staff%29.aspx" />
     <Content Include="ErrorPages\FileNotFound%28Customer%29.aspx" />
     <Content Include="ErrorPages\FileNotFound%28Staff%29.aspx" />
-    <Content Include="Image\2 people Combo.jpg" />
     <Content Include="Image\230222_JohnWickChapter4_big.png" />
     <Content Include="Image\230222_SHAZAMFuryOfTheGods_big.png" />
     <Content Include="Image\230228_DungeonsDragonsHonorAmongThieves_big.jpg" />
@@ -146,20 +145,16 @@
     <Content Include="Image\c003.jpg" />
     <Content Include="Image\c004.jpg" />
     <Content Include="Image\c005.jpg" />
-    <Content Include="Image\Coca-cola.jpg" />
     <Content Include="Image\default.jpeg" />
-    <Content Include="Image\Family Combo.jpg" />
     <Content Include="Image\foodImages\MN001.jpg" />
     <Content Include="Image\foodImages\MN002.jpg" />
     <Content Include="Image\foodImages\MN003.jpg" />
     <Content Include="Image\foodImages\MN004.jpg" />
     <Content Include="Image\foodImages\MN005.jpg" />
-    <Content Include="Image\Hotdog.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\mastercard.png" />
     <Content Include="Image\no-video.png" />
     <Content Include="Image\NoImage.png" />
-    <Content Include="Image\Popcorn %28Orginal%29.jpg" />
     <Content Include="Image\popcorn.png" />
     <Content Include="Image\posterImages\230222_JohnWickChapter4_big.png" />
     <Content Include="Image\posterImages\230222_SHAZAMFuryOfTheGods_big.png" />
@@ -173,7 +168,6 @@
     <Content Include="Image\posterImages\230306_Renfield_big.png" />
     <Content Include="Image\posterImages\Air.jpg" />
     <Content Include="Image\posterImages\DeliciousRomance_big.png" />
-    <Content Include="Image\qrcode.png" />
     <Content Include="Image\slideImages\230228_Suzume_big.png" />
     <Content Include="Image\slideImages\AirSlide.jpg" />
     <Content Include="Image\slideImages\DeliciousRomance.jpeg" />

@@ -25,7 +25,7 @@ namespace MovieTicketingSystem.ManagerOnly
         {
             try
             {
-                string query = "SELECT m.movieId, m.movieName, COUNT(*) AS ticketsSold FROM Movie AS m INNER JOIN Schedule AS s ON m.movieId = s.movieId INNER JOIN Ticket AS t ON s.scheduleNo = t.scheduleNo INNER JOIN Purchase AS p ON t.purchaseNo = p.purchaseNo WHERE (m.endDate > GETDATE()) GROUP BY m.movieId, m.movieName, m.posterURL, m.trailerURL ORDER BY ticketsSold DESC";
+                string query = "SELECT m.movieId, m.movieName, COUNT(*) AS ticketsSold FROM Movie AS m INNER JOIN Schedule AS s ON m.movieId = s.movieId INNER JOIN Ticket AS t ON s.scheduleNo = t.scheduleNo INNER JOIN Purchase AS p ON t.purchaseNo = p.purchaseNo INNER JOIN Payment AS pay ON p.purchaseNo = pay.purchaseNo WHERE (m.endDate > GETDATE()) AND pay.status = 'Completed' GROUP BY m.movieId, m.movieName, m.posterURL, m.trailerURL ORDER BY ticketsSold DESC";
                 string constr = Global.cs;
 
                 List<object> chartData = new List<object>();
