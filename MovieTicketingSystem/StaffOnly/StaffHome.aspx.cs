@@ -24,7 +24,6 @@ namespace MovieTicketingSystem.StaffOnly
 
             TBDate.Text = "Up to Date until: " + searchDate;
 
-            searchDate = "5/5/2023";
             getTotalTicketSold(searchDate);
             getTotalFoodSold(searchDate);
             getMostPopularMovie(searchDate);
