@@ -18,5 +18,16 @@ namespace MovieTicketingSystem
         {
             Response.Redirect("../Customer/Home.aspx");
         }
+
+
+        void Page_Error()
+        {
+            Response.Write("<h1>Sorry</h1>" +
+                "<p style=\"color:red;\">" +
+                "One error is encountered in this page: "
+                + Server.GetLastError().Message + "</p>");
+
+            Server.ClearError();
+        }
     }
 }

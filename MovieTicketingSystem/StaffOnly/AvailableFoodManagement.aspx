@@ -30,7 +30,7 @@
        });
    </script>
     
-    <div class="container" style="height:700px;">
+    <div class="container" style="min-height:100vh;">
         <h1 class="text-white pt-2">Food Management</h1>
         <hr width="100%" style="border: 1px solid white"/>
         <div class="row g-2">

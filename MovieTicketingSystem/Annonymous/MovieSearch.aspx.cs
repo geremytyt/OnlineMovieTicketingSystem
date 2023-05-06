@@ -28,5 +28,10 @@ namespace MovieTicketingSystem.Annonymous
             string id = e.CommandArgument.ToString();
             Response.Redirect("~/CustomerOnly/MoviePurchase.aspx?movieId=" + id);
         }
+
+        protected void CurrentMovieRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Label1.Text = "";
+        }
     }
 }

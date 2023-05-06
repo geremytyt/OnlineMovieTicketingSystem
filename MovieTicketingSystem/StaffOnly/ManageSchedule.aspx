@@ -54,13 +54,8 @@
         <hr width="100%" style="border: 1px solid white"/>
         <div class="scheduleGridViewContainer text-white">
             
-            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleNo" ClientIDMode="Static" CssClass="text-white"
-                  Width="100%">
-                <RowStyle Height="50px" BackColor="#262626" ForeColor="White" BorderColor="White" HorizontalAlign="Center"/>
-                <AlternatingRowStyle BackColor="#5c5c5c" ForeColor="White" BorderColor="White" />
-                <HeaderStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                <SelectedRowStyle BackColor="#f4e618" ForeColor="Black"/>
-                <PagerStyle CssClass="gridview-pager" BackColor="black" ForeColor="white" HorizontalAlign="Center"/>
+            <asp:GridView ID="scheduleGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleNo" ClientIDMode="Static"
+                  Width="100%" CssClass="table w-100 table-dark table-striped my-1 table-bordered table-responsive table-hover">
                 <Columns>
                     <asp:BoundField DataField="scheduleNo" HeaderText="Schedule No" ReadOnly="True" SortExpression="scheduleNo" />
                     <asp:BoundField DataField="movieId" HeaderText="Movie Id" SortExpression="movieId" />
@@ -79,8 +74,7 @@
         <div class="scheduleDetailsContainer">
             <div class="bg-dark rounded-4 text-white ">
                 <div class="row">
-                    <h3 class="text-center mt-2">Record</h3>
-                  
+                    <h3 class="text-center mt-2">Record</h3> 
                 </div>
                 <div class="m-4">
                     <label >Schedule No:</label>

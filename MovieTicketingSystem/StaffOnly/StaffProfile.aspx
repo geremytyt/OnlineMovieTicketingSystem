@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffProfile.aspx.cs" Inherits="MovieTicketingSystem.StaffOnly.StaffProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-<div class="col-md-10 py-5 mx-auto text-white">
+<div class="col-md-10 py-5 mx-auto text-white" style="min-height:100vh;">
         <div class="row bg-black rounded-4">
             <div class="col-md-4 p-3">
                 <asp:Image ID="imgPreview" runat="server" class="mt-3 mx-auto d-block" Width="200px" Height="200px" AlternateText="No Picture Uploaded" ImageAlign="AbsMiddle" BorderColor="White" BorderStyle="Solid" BorderWidth="1px" ImageUrl="~/Image/default.jpeg"/>

@@ -14,7 +14,7 @@
                });
        });
     </script>
-    <div class="container" style="height:700px;">
+    <div class="container" style="min-height:100vh;">
          <h1 class="text-white pt-2">Food Management</h1>
         <hr width="100%" style="border: 1px solid white"/>
         <div class="row g-2">
@@ -44,12 +44,8 @@
       </div>
 
         <div class="col containerRight"> 
-            <div class="row w-100 m-0 pl-20 pr-20" >
-                <asp:TextBox CssClass="col-8 rounded" ID="SearchBox" runat="server" autocomplete="off" > </asp:TextBox>
-                <asp:Button CssClass="col-4 btn btn-default" ID="SerachButton" runat="server" Text="Search" OnClick="SerachButton_Click" />
-            </div>
             <div class="detailsView">
-            <h3>Menu Details</h3>
+            <h3>Menu Details</h3>   
             <div class="row g-2">
                 <div class="col-md">
                     <asp:Image ID="menuImg" style="height:200px; width:200px; display:none; " AlternateText="No Picture Uploaded" runat="server" />

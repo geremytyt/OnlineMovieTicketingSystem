@@ -121,7 +121,6 @@
     <Content Include="Annonymous\StaffResetPwd2.aspx" />
     <Content Include="App_Data\MovieDB.mdf" />
     <Content Include="App_Data\MovieDB_log.ldf" />
-    <Content Include="css\manageSchedule.css" />
     <Content Include="CustomerOnly\Cart.aspx" />
     <Content Include="Annonymous\Food.aspx" />
     <Content Include="CustomerOnly\History.aspx" />
@@ -211,8 +210,6 @@
     <Content Include="StaffOnly\ManagePayment.aspx" />
     <Content Include="ManagerOnly\ManageResignedStaff.aspx" />
     <Content Include="StaffOnly\ManageSuspendedUser.aspx" />
-    <Content Include="css\movie.css" />
-    <Content Include="css\payment.css" />
     <Content Include="css\style.css" />
     <Content Include="CustomerOnly\Payment.aspx" />
     <Content Include="CustomerOnly\PaymentMethod.aspx" />
