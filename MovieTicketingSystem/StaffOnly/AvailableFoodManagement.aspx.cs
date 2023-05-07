@@ -357,13 +357,11 @@ namespace MovieTicketingSystem.StaffOnly
                 RVPrice.Enabled = false;
                 RVtbDecs.Enabled = false;
                 CVPrice.Enabled = false;
-
-                lblMenuId.Text = "Select An Item";
+                
                 tbName.ReadOnly = true;
                 DDLCategory.Enabled = false;
                 tbPrice.ReadOnly = true;
                 tbDecs.ReadOnly = true;
-                menuImg.Attributes.CssStyle.Add("display", "none");
 
                 btn_add.Visible = false;
                 btn_back.Visible = false;
