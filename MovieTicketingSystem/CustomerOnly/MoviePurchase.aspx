@@ -11,7 +11,6 @@
                 width: -webkit-fit-content;
                 height: auto;
             }
-
             .textLabel{
                 color:yellow;
             }
@@ -72,7 +71,7 @@
                             },
                         });
                         var slideIndex = parseInt(cookieValue);
-                        swiper.slideTo(slideIndex-1);
+                        swiper.slideTo(slideIndex - 1);
                     </script>
                     </div>
                 </div>
@@ -94,7 +93,7 @@
                                 <label class="form-label textLabel p-1">Select Date :  </label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlDate" runat="server" CssClass="text-light px-3 py-1" BackColor="Black" DataSourceID="SqlDataSource2" DataTextField="scheduleDateTime" DataValueField="scheduleDateTime" AutoPostBack="true" DataTextFormatString="{0:dd/MM/yyyy}"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDate" runat="server" CssClass="text-light px-3 py-1" BackColor="Black" DataSourceID="SqlDataSource2" DataTextField="scheduleDateTime" DataValueField="scheduleDateTime" DataTextFormatString="{0:dd/MM/yyyy}" AutoPostBack="true"></asp:DropDownList>
                             </td>
                         </tr>
 
@@ -112,7 +111,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CONVERT(Date, scheduleDateTime, 101) AS scheduleDateTime FROM Schedule WHERE movieId = @Id AND status = 'Active' GROUP BY CONVERT(Date, scheduleDateTime, 101), scheduleNo">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CAST(scheduleDateTime AS DATE) AS scheduleDateTime FROM Schedule WHERE (movieId = @Id) AND (status = 'Active') GROUP BY CAST(scheduleDateTime AS DATE), scheduleNo">
                 <SelectParameters>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
                 </SelectParameters>
