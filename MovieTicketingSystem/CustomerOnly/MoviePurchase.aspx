@@ -112,7 +112,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CONVERT(VARCHAR(10), scheduleDateTime, 101) AS scheduleDateTime FROM Schedule WHERE movieId = @Id AND status = 'Active' GROUP BY CONVERT(VARCHAR(10), scheduleDateTime, 101), scheduleNo">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CONVERT(Date, scheduleDateTime, 101) AS scheduleDateTime FROM Schedule WHERE movieId = @Id AND status = 'Active' GROUP BY CONVERT(Date, scheduleDateTime, 101), scheduleNo">
                 <SelectParameters>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
                 </SelectParameters>

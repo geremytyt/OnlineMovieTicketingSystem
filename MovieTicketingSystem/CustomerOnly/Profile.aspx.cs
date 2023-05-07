@@ -43,7 +43,10 @@ namespace MovieTicketingSystem.CustomerOnly
                             txtPhone.Text = dr[5].ToString();
                             Session["Phone"] = dr[5].ToString();
                             rblGender.SelectedValue = dr[6].ToString();
-                            imgPreview.ImageUrl = dr[7].ToString();
+                            if (dr[7].ToString() != "")
+                            {
+                                imgPreview.ImageUrl = dr[7].ToString();
+                            }
 
                         }
                         con.Close();

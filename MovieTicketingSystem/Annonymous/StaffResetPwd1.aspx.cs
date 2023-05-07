@@ -71,7 +71,7 @@ namespace MovieTicketingSystem.Annonymous
                 var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 var randomString = new string(Enumerable.Repeat(chars, 6)
                     .Select(s => s[random.Next(s.Length)]).ToArray());
-                string expiryDate = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm:ssZ");
+                string expiryDate = DateTime.Now.AddMinutes(5).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
 
                 string token = randomString + "/" + expiryDate;
 

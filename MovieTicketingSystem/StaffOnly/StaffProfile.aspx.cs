@@ -40,7 +40,9 @@ namespace MovieTicketingSystem.StaffOnly
                         Session["Phone"] = dr[6].ToString();
                         Session["IC"] = dr[4].ToString();
                         rblGender.SelectedValue = dr[5].ToString();
-                        imgPreview.ImageUrl = dr[7].ToString();
+                        if (dr[7].ToString() != "") {
+                            imgPreview.ImageUrl = dr[7].ToString();
+                        }
                         txtPosition.Text = dr[8].ToString().Trim();
                     }
                     con.Close();
