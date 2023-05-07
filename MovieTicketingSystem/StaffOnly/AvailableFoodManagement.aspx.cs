@@ -233,7 +233,7 @@ namespace MovieTicketingSystem.StaffOnly
                 cmd.Parameters.AddWithValue("@menuId", lblMenuId.Text);
                 cmd.Parameters.AddWithValue("@menuName", tbName.Text);
                 cmd.Parameters.AddWithValue("@menuCategory", DDLCategory.SelectedItem.ToString());
-                cmd.Parameters.AddWithValue("@menuPrice", tbPrice.Text.Substring(3));
+                cmd.Parameters.AddWithValue("@menuPrice", Double.Parse(tbPrice.Text));
                 cmd.Parameters.AddWithValue("@menuDesc", tbDecs.Text);
                 cmd.Parameters.AddWithValue("@menuUrl", menuImg.ImageUrl);
 
@@ -357,7 +357,7 @@ namespace MovieTicketingSystem.StaffOnly
                 RVPrice.Enabled = false;
                 RVtbDecs.Enabled = false;
                 CVPrice.Enabled = false;
-                
+
                 tbName.ReadOnly = true;
                 DDLCategory.Enabled = false;
                 tbPrice.ReadOnly = true;

@@ -83,7 +83,7 @@
                     <asp:RequiredFieldValidator ID="RVtbName" ForeColor="Red" ControlToValidate="tbName" runat="server" ErrorMessage="Please Enter the Price" Enabled="false" ></asp:RequiredFieldValidator>                    
             </div>
             <div class="form-floating mx-auto mb-1 w-100 px-3">
-                <asp:DropDownList ID="DDLCategory" Cssclass="form-control  text-white" Enabled="false" runat="server">
+                <asp:DropDownList ID="DDLCategory" Cssclass="form-control text-white" Enabled="false" runat="server">
                     <asp:ListItem style="background-color:black;">Snack</asp:ListItem>
                     <asp:ListItem style="background-color:black;">Bevarage</asp:ListItem>
                     <asp:ListItem style="background-color:black;">Combo</asp:ListItem>
@@ -91,9 +91,9 @@
                 <label for="tbCategory text-white">Category</label> 
             </div>
             <div class="form-floating col-md px-3">
-                <asp:TextBox ID="tbPrice" runat="server" class="form-control" placeholder="Price" TextMode="Number"  autocomplete="off" ReadOnly="true"></asp:TextBox>                            
+                <asp:TextBox ID="tbPrice" runat="server" class="form-control" placeholder="Price" TextMode="Number" step="0.01"  autocomplete="off" ReadOnly="true"></asp:TextBox>                            
                 <label for="tbPrice">Price (RM)</label> 
-                <asp:CompareValidator ID="CVPrice" runat="server" ControlToValidate="tbPrice" Operator="LessThanEqual" Type="Integer" ValueToCompare="0" Enabled="false" ErrorMessage="CompareValidator"></asp:CompareValidator>
+                <asp:CompareValidator ID="CVPrice"  ForeColor="Red" runat="server" ControlToValidate="tbPrice" Operator="GreaterThan" Type="Double" ValueToCompare="0.00" Enabled="false"  ErrorMessage="The price should not less than 0"></asp:CompareValidator>
                  <asp:RequiredFieldValidator ID="RVPrice" ForeColor="Red" ControlToValidate="tbPrice" runat="server" ErrorMessage="Please Enter the Price" Enabled="false" ></asp:RequiredFieldValidator>                    
             </div>
             <div class="form-floating mx-auto mb-3 px-3 w-100">
