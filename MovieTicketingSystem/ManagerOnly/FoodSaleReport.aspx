@@ -95,7 +95,7 @@
                      
                    <hr width="100%" style="border: 1px solid white"/>
                    <div runat="server" id="displayReport" visible="false"  class="border border-light p-5">
-                       <h1> Food Sale Report</h1>
+                       <h1 class="text-center"> Food Sale Report</h1>
                    
                         <div class="row ">
                              <div class="justify-content-end d-flex">

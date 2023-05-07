@@ -101,7 +101,7 @@
                      
                    <hr width="100%" style="border: 1px solid white"/>
                    <div runat="server" id="displayReport" visible="false"  class="border border-light p-5" >
-                       <h1>Top Food Sale Report</h1>                   
+                       <h1  class="text-center">Top Food Sale Report</h1>                   
                         <div class="justify-content-end d-flex">
                             <asp:Label ID = "lblDate" runat="server" cssClass="text-white mx-2" Text="Generated On: "></asp:Label>
                             <asp:Literal ID = "litDate" runat="server"></asp:Literal>

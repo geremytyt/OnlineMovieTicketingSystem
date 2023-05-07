@@ -13,9 +13,20 @@ namespace MovieTicketingSystem.ManagerOnly
     public partial class MovieReport : System.Web.UI.Page
     {
         //step 2: call global asax to retrieve
+        private static string start { get; set; }
+        private static string end { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             litDate.Text = DateTime.Now.ToString();
+
+            if (!IsPostBack)
+            {
+                string top = Request.QueryString["Top"] ?? "";
+                start = Request.QueryString["Start"] ?? "";
+                end = Request.QueryString["End"] ?? "";
+                Literal1.Text = start + " - " + end;
+
+            }
         }
 
         [WebMethod]

@@ -78,10 +78,14 @@
                    <hr width="100%" style="border: 1px solid white" />
                    <div runat="server" id="displayReport" class="border border-light p-5">
                        <h1 class="text-center"> Movie Sales Report</h1>
-                       <div class="justify-content-end d-flex">
+                         <div class="justify-content-end d-flex">
                             <asp:Label ID = "lblDate" runat="server" cssClass="text-white mx-2" Text="Generated On: "></asp:Label>
                             <asp:Literal ID = "litDate" runat="server"></asp:Literal>
                        </div>
+                        <div class="justify-content-end d-flex">
+                            <asp:Label ID = "Label1" runat="server" cssClass="text-white mx-2" Text="Date Range: "></asp:Label>
+                            <asp:Literal ID = "Literal1" runat="server"></asp:Literal>
+                        </div>
                     <div id="ChartReport2" class="my-3 mx-auto d-flex align-items-center justify-content-center"></div>
 
                     </div>
