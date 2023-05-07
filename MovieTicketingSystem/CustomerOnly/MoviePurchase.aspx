@@ -111,12 +111,12 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CAST(scheduleDateTime AS DATE) AS scheduleDateTime FROM Schedule WHERE (movieId = @Id) AND (status = 'Active') GROUP BY CAST(scheduleDateTime AS DATE), scheduleNo">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CONVERT(Date,scheduleDateTime,105) AS scheduleDateTime FROM Schedule WHERE (movieId = @Id) AND (status = 'Active') GROUP BY CONVERT(Date,scheduleDateTime,105), scheduleNo">
                 <SelectParameters>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Schedule WHERE CAST([scheduleDateTime] AS DATE) = CAST(@date AS DATE) AND (movieId = @Id)">
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Schedule WHERE CONVERT(Date,scheduleDateTime,105) = CONVERT(Date,@date,105) AND (movieId = @Id)">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ddlDate" PropertyName="SelectedValue" Name="date"></asp:ControlParameter>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
