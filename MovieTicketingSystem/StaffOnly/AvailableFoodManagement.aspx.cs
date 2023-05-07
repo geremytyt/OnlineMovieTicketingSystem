@@ -74,6 +74,7 @@ namespace MovieTicketingSystem.StaffOnly
             btn_insert.Visible = false;
             btn_Discontinue.Visible = false;
             btn_edit.Visible = false;
+            GVMenu.Columns[4].Visible = false;
 
         }
 
