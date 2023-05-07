@@ -42,7 +42,7 @@ namespace MovieTicketingSystem.CustomerOnly
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "window.alert('An error occurred while processing your request. Please try again later.');", true);
                 }
             }
-            string sql2 = "SELECT Movie.movieName, Movie.ageRating, Payment.qrCode, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo INNER JOIN PurchaseMenu ON Purchase.purchaseNo = PurchaseMenu.purchaseNo INNER JOIN Menu ON PurchaseMenu.menuId = Menu.menuId ON Ticket.purchaseNo = Purchase.purchaseNo CROSS JOIN Staff WHERE (Customer.custId = @custId) AND (Schedule.scheduleDateTime > @scheduleDateTime) AND (Payment.status = 'Completed') GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty, Payment.qrCode ORDER BY Schedule.scheduleDateTime DESC";
+            string sql2 = "SELECT Movie.movieName, Movie.ageRating, Payment.qrCode, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty FROM Schedule INNER JOIN Movie ON Schedule.movieId = Movie.movieId INNER JOIN Hall ON Schedule.hallNo = Hall.hallNo INNER JOIN Ticket ON Schedule.scheduleNo = Ticket.scheduleNo INNER JOIN Customer INNER JOIN Purchase ON Customer.custId = Purchase.custId INNER JOIN Payment ON Purchase.purchaseNo = Payment.purchaseNo ON Ticket.purchaseNo = Purchase.purchaseNo WHERE        (Customer.custId = @custId) AND (Schedule.scheduleDateTime > @scheduleDateTime) AND (Payment.status = 'Completed') GROUP BY Movie.movieName, Movie.ageRating, Payment.paymentNo, Payment.paymentDateTime, Schedule.scheduleDateTime, Schedule.hallNo, Purchase.childrenQty, Purchase.adultQty, Purchase.seniorQty, Payment.qrCode ORDER BY Schedule.scheduleDateTime DESC";
             try
             {
                 SqlConnection con2 = new SqlConnection(cs);
@@ -107,10 +107,24 @@ namespace MovieTicketingSystem.CustomerOnly
             Response.Redirect("ResetPassword.aspx");
         }
 
+        protected void Repeater3_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (((Repeater)sender).Items.Count == 0)
+            {
+                ((Repeater)sender).Visible = false;
+            }
+            else
+            {
+                ((Repeater)sender).Visible = true;
+            }
+        }
+
+
         void Page_Error()
         {
             Response.Redirect("../ErrorPages/PageLevelError.aspx?exception=" + Server.GetLastError().Message + "&location=" + Server.UrlEncode(Request.Url.ToString()));
             Server.ClearError();
         }
+
     }
 }

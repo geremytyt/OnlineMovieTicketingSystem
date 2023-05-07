@@ -85,7 +85,7 @@
                         <asp:RequiredFieldValidator ID="rfvGender" runat="server" ErrorMessage="Please select gender" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtName"></asp:RequiredFieldValidator>
                     </div>
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-default mb-4 mx-2" OnClick="btnEdit_Click" Width="40%" Enabled="false"/>
-                    <asp:Button ID="btnDelete" runat="server" Text="Suspend" CssClass="btn btn-default mb-4 mx-2" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
+                    <asp:Button ID="btnDelete" runat="server" Text="Unsuspend" CssClass="btn btn-default mb-4 mx-2" OnClick="btnDelete_Click" Width="40%" Enabled="false"/>
                 </div>  
             </div>
         </div>

@@ -62,8 +62,10 @@
                                                 <asp:Label ID="lblSenior" Width="33%" runat="server" Text='<%#"Senior x " + Eval("seniorQty") %>'  Font-Size="14px"></asp:Label>
                                                 <asp:Label ID="lblAdult" Width="33%" runat="server" Text='<%#"Adult x " + Eval("adultQty") %>'  Font-Size="14px"></asp:Label>
                                                 <asp:Label ID="lblChildren" Width="33%" runat="server" Text='<%#"Children x " + Eval("childrenQty") %>'  Font-Size="14px"></asp:Label>
-                                                <label class="fieldLabel w-100">Purchased Food</label>
-                                                <asp:Repeater ID="Repeater3" runat="server">
+                                                <asp:Repeater ID="Repeater3" runat="server" OnItemDataBound="Repeater3_ItemDataBound">
+                                                    <HeaderTemplate>
+                                                        <label class="fieldLabel w-100">Purchased Food</label>
+                                                    </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblFood" Width="75%" runat="server" Text='<%#Eval("menuName") %>'  Font-Size="14px"></asp:Label>
                                                         <asp:Label ID="lblQty" Width="25%" runat="server" Text='<%#Eval("menuQty") %>'  Font-Size="14px"></asp:Label>
