@@ -29,8 +29,10 @@ namespace MovieTicketingSystem.ManagerOnly
 
             if (!IsPostBack)
             {
+                string top = Request.QueryString["Top"] ?? "";
                 start = Request.QueryString["Start"] ?? "";
                 end = Request.QueryString["End"] ?? "";
+                Literal1.Text = start + " - " + end;
 
                 if (start != "")
                 {
