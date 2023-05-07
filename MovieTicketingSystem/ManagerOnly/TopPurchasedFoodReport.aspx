@@ -71,7 +71,7 @@
       </div>
 
 
-    <div class="col-md-8" style="height:650px;">
+    <div class="col-md-8" >
         <div class="tab-content container-fluid" id="nav-tabContent">
            <div class="tab-pane fade show active p-3" id="reportContenier">
                <div class="text-white w-100">
