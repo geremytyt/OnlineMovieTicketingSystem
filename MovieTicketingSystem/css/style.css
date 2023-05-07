@@ -652,20 +652,6 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 460px;
 }
 
-.nav-tabs .nav-link.active {
-    background-color: transparent;
-    color: yellow;
-    opacity: 1 !important;
-}
-
-.nav-tabs .nav-link {
-    border: 0;
-    position: relative;
-    color: white;
-    padding: 0.5rem 0 0;
-    margin: 0 1rem;
-}
-
 .movie-container {
     margin: 20px 0;
 }
