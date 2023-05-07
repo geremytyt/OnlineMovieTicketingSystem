@@ -53,7 +53,7 @@
                          <td>
                              <div class="form-floating mb-2">
                                  <asp:TextBox ID="txtDuration" placeholder=" " ClientIDMode="Static" TextMode="Number" runat="server" CssClass="form-control userInput"></asp:TextBox>
-                                 <label for="txtDuration">Duration (minutes)</label>
+                                 <label for="txtDuration" class="requiredField">Duration (minutes)</label>
                                  <asp:RangeValidator ID="RangeValidatorDuration" runat="server" ErrorMessage="Invalid format of duration, Please enter a valid duration (Min.1)" MinimumValue="1" MaximumValue="1000" Type="Integer" ControlToValidate="txtDuration" CssClass="invalid-feedback" Display="Dynamic" SetFocusOnError="true"></asp:RangeValidator>
                              </div>
                          </td>
@@ -82,7 +82,7 @@
                          <td>
                              <div class="form-floating mb-2">
                                  <asp:TextBox ID="txtEndDate" TextMode="Date" placeholder=" " ClientIDMode="Static" runat="server" CssClass="form-control userInput"></asp:TextBox>
-                                 <label for="txtEndDate">End Date</label>
+                                 <label for="txtEndDate" class="requiredField">End Date</label>
                                  <asp:CustomValidator ID="EndDateValidator" runat="server" ErrorMessage="Invalid End Date,End Date cannot less than Start Date" OnServerValidate="EndDateValidator_ServerValidate" CssClass="invalid-feedback" ControlToValidate="txtEndDate" Display="Dynamic"></asp:CustomValidator>
                              </div>
                          </td>
