@@ -93,7 +93,7 @@
                                 <label class="form-label textLabel p-1">Select Date :  </label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlDate" runat="server" CssClass="text-light px-3 py-1" BackColor="Black" DataSourceID="SqlDataSource2" DataTextField="scheduleDateTime" DataValueField="scheduleDateTime" DataTextFormatString="{0:dd/MM/yyyy}" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDate" runat="server" CssClass="text-light px-3 py-1" BackColor="Black" DataSourceID="SqlDataSource2" DataTextField="scheduleDateTime" DataValueField="scheduleDateTime" AutoPostBack="true" ></asp:DropDownList>
                             </td>
                         </tr>
 
@@ -111,12 +111,12 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-default m-2" OnClick="btnNext_Click"/>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT CONVERT(Date,scheduleDateTime,105) AS scheduleDateTime FROM Schedule WHERE (movieId = @Id) AND (status = 'Active') GROUP BY CONVERT(Date,scheduleDateTime,105), scheduleNo">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT DISTINCT FORMAT(scheduleDateTime, 'dd/MM/yyyy') AS scheduleDateTime FROM Schedule WHERE (movieId = @Id) AND (status = 'Active') GROUP BY scheduleDateTime, scheduleNo">
                 <SelectParameters>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Schedule WHERE CONVERT(Date,scheduleDateTime,105) = CONVERT(Date,@date,105) AND (movieId = @Id)">
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:MovieConnectionString %>' SelectCommand="SELECT * FROM Schedule WHERE CONVERT(Date, scheduleDateTime,103) = CONVERT(Date, @date,103) AND (movieId = @Id)">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ddlDate" PropertyName="SelectedValue" Name="date"></asp:ControlParameter>
                     <asp:QueryStringParameter QueryStringField="movieId" Name="Id"></asp:QueryStringParameter>
